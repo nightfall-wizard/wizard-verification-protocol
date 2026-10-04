@@ -1,6 +1,6 @@
 # PROJECT-STATE
 
-Updated: 2026-10-04 23:49:55 CEST
+Updated: 2026-10-04 23:52:57 CEST
 
 ## Project
 
@@ -16,7 +16,7 @@ Proof-of-Project-Reality
 
 ## Current stage
 
-WVP v0.2 internal release signature verification.
+WVP v0.2 hardened signature asset matching.
 
 ## Completed
 
@@ -35,16 +35,19 @@ WVP v0.2 internal release signature verification.
 - detached release signature is verified by conformance using the committed public key
 - wvp-release-check internally verifies detached release signatures
 - wvp-release-check reaches INFO when checksum and signature verification both pass
+- release asset matching now requires exactly one .sha256 asset
+- release asset matching now requires exactly one .sig asset
+- negative unit tests cover missing and duplicate signature/checksum assets
 
 ## Current progress
 
 WVP v0.1 baseline: 100 percent.
 
-WVP v0.2 signature verification: 50 percent after commit, push and CI verification.
+WVP v0.2 signature verification: 60 percent after commit, push and CI verification.
 
 ## Next target
 
-Harden signature verification asset matching and negative test coverage.
+Add tamper-negative signature verification tests and failure conformance.
 
 ## Safety state
 

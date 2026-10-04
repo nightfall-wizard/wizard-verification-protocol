@@ -68,3 +68,6 @@ jobs:
         run: ./conformance/release-check-self-release-signature.sh
         env:
           GH_REPO: ${{ github.repository }}
+
+      - name: WVP signature asset matching conformance
+        run: ./conformance/release-check-signature-asset-matching.sh

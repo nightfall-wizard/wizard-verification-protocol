@@ -1,4 +1,9 @@
-use std::{env, fs, path::PathBuf, process, process::Command};
+use std::{
+    env, fs,
+    path::{Path, PathBuf},
+    process,
+    process::Command,
+};
 
 const VERSION: &str = env!("CARGO_PKG_VERSION");
 const PUBLIC_VERIFICATION_KEY_PATH: &str = "keys/release/wvp-release-signing-public.pem";
@@ -134,6 +139,39 @@ fn signature_work_dir(target: &str, tag: &str) -> Result<PathBuf, String> {
     Ok(dir)
 }
 
+fn select_single_file_by_suffix(dir: &Path, suffix: &str, label: &str) -> Result<PathBuf, String> {
+    let entries = fs::read_dir(dir).map_err(|err| format!("could not read {label} dir: {err}"))?;
+
+    let mut matches: Vec<PathBuf> = entries
+        .flatten()
+        .map(|entry| entry.path())
+        .filter(|path| {
+            path.file_name()
+                .and_then(|name| name.to_str())
+                .map(|name| name.ends_with(suffix))
+                .unwrap_or(false)
+        })
+        .collect();
+
+    matches.sort();
+
+    match matches.len() {
+        0 => Err(format!("no {suffix} asset found")),
+        1 => Ok(matches.remove(0)),
+        _ => {
+            let names = matches
+                .iter()
+                .filter_map(|path| path.file_name().and_then(|name| name.to_str()))
+                .collect::<Vec<_>>()
+                .join(", ");
+
+            Err(format!(
+                "multiple {label} assets found for suffix {suffix}: {names}"
+            ))
+        }
+    }
+}
+
 fn verify_checksum_asset(target: &str, tag: &str) -> (Option<bool>, Option<bool>, Option<String>) {
     let dir = match checksum_work_dir(target, tag) {
         Ok(dir) => dir,
@@ -168,40 +206,12 @@ fn verify_checksum_asset(target: &str, tag: &str) -> (Option<bool>, Option<bool>
         );
     }
 
-    let entries = match fs::read_dir(&dir) {
-        Ok(entries) => entries,
+    let checksum_file = match select_single_file_by_suffix(&dir, ".sha256", "checksum") {
+        Ok(path) => path,
         Err(err) => {
             let _ = fs::remove_dir_all(&dir);
-            return (
-                Some(true),
-                Some(false),
-                Some(format!("could not read checksum dir: {err}")),
-            );
+            return (Some(true), Some(false), Some(err));
         }
-    };
-
-    let mut checksum_file: Option<PathBuf> = None;
-
-    for entry in entries.flatten() {
-        let path = entry.path();
-        if path
-            .file_name()
-            .and_then(|name| name.to_str())
-            .map(|name| name.ends_with(".sha256"))
-            .unwrap_or(false)
-        {
-            checksum_file = Some(path);
-            break;
-        }
-    }
-
-    let Some(checksum_file) = checksum_file else {
-        let _ = fs::remove_dir_all(&dir);
-        return (
-            Some(true),
-            Some(false),
-            Some("no .sha256 asset found".to_string()),
-        );
     };
 
     let Some(checksum_name) = checksum_file.file_name().and_then(|name| name.to_str()) else {
@@ -289,40 +299,12 @@ fn verify_signature_asset(target: &str, tag: &str) -> (Option<bool>, Option<bool
         );
     }
 
-    let entries = match fs::read_dir(&dir) {
-        Ok(entries) => entries,
+    let signature_file = match select_single_file_by_suffix(&dir, ".sig", "signature") {
+        Ok(path) => path,
         Err(err) => {
             let _ = fs::remove_dir_all(&dir);
-            return (
-                Some(true),
-                Some(false),
-                Some(format!("could not read signature dir: {err}")),
-            );
+            return (Some(true), Some(false), Some(err));
         }
-    };
-
-    let mut signature_file: Option<PathBuf> = None;
-
-    for entry in entries.flatten() {
-        let path = entry.path();
-        if path
-            .file_name()
-            .and_then(|name| name.to_str())
-            .map(|name| name.ends_with(".sig"))
-            .unwrap_or(false)
-        {
-            signature_file = Some(path);
-            break;
-        }
-    }
-
-    let Some(signature_file) = signature_file else {
-        let _ = fs::remove_dir_all(&dir);
-        return (
-            Some(true),
-            Some(false),
-            Some("no .sig asset found".to_string()),
-        );
     };
 
     let Some(signature_name) = signature_file.file_name().and_then(|name| name.to_str()) else {
@@ -844,6 +826,72 @@ mod tests {
     fn rejects_empty_repo() {
         let args = vec!["--target".to_string(), "owner/".to_string()];
         assert!(parse_args(&args).unwrap_err().contains("owner/repo"));
+    }
+
+    fn unique_asset_matching_test_dir(label: &str) -> PathBuf {
+        let mut dir = std::env::temp_dir();
+        let nanos = std::time::SystemTime::now()
+            .duration_since(std::time::UNIX_EPOCH)
+            .unwrap()
+            .as_nanos();
+
+        dir.push(format!(
+            "wvp-release-check-{label}-{}-{nanos}",
+            process::id()
+        ));
+
+        std::fs::create_dir_all(&dir).unwrap();
+        dir
+    }
+
+    #[test]
+    fn asset_matching_selects_exact_single_signature() {
+        let dir = unique_asset_matching_test_dir("single-signature");
+        let expected = dir.join("release.bin.sig");
+        std::fs::write(&expected, b"sig").unwrap();
+
+        let actual = select_single_file_by_suffix(&dir, ".sig", "signature").unwrap();
+
+        assert_eq!(actual, expected);
+
+        let _ = std::fs::remove_dir_all(dir);
+    }
+
+    #[test]
+    fn asset_matching_rejects_missing_signature() {
+        let dir = unique_asset_matching_test_dir("missing-signature");
+
+        let err = select_single_file_by_suffix(&dir, ".sig", "signature").unwrap_err();
+
+        assert!(err.contains("no .sig asset found"));
+
+        let _ = std::fs::remove_dir_all(dir);
+    }
+
+    #[test]
+    fn asset_matching_rejects_multiple_signatures() {
+        let dir = unique_asset_matching_test_dir("multiple-signatures");
+        std::fs::write(dir.join("release-a.bin.sig"), b"sig-a").unwrap();
+        std::fs::write(dir.join("release-b.bin.sig"), b"sig-b").unwrap();
+
+        let err = select_single_file_by_suffix(&dir, ".sig", "signature").unwrap_err();
+
+        assert!(err.contains("multiple signature assets found"));
+
+        let _ = std::fs::remove_dir_all(dir);
+    }
+
+    #[test]
+    fn asset_matching_rejects_multiple_checksum_manifests() {
+        let dir = unique_asset_matching_test_dir("multiple-checksums");
+        std::fs::write(dir.join("release-a.sha256"), b"a").unwrap();
+        std::fs::write(dir.join("release-b.sha256"), b"b").unwrap();
+
+        let err = select_single_file_by_suffix(&dir, ".sha256", "checksum").unwrap_err();
+
+        assert!(err.contains("multiple checksum assets found"));
+
+        let _ = std::fs::remove_dir_all(dir);
     }
 
     #[test]
