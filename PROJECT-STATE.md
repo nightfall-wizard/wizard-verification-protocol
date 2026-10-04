@@ -1,16 +1,14 @@
 # PROJECT-STATE
 
-Updated: 2026-10-04 23:02:30 CEST
+Updated: 2026-10-04 23:05:39 CEST
 
 ## Project
 
 Wizard Verification Protocol — WVP
 
-
 ## Builder
 
 nightfall-wizard
-
 
 ## Category
 
@@ -18,16 +16,13 @@ Proof-of-Project-Reality
 
 ## Current stage
 
-Checksum verification integrated into wvp-release-check.
+Bootstrap conformance smoke updated for checksum verification schema.
 
 ## Completed
 
-- WVP v0.1.0 release exists
-- portable release checksum exists
-- CI verifies downloaded release checksum
-- wvp-release-check downloads latest release assets
-- wvp-release-check runs sha256sum -c against checksum asset
+- wvp-release-check verifies release checksums
 - checksum verification result appears in JSON output
+- bootstrap conformance smoke matches current JSON contract
 
 ## Current progress
 
