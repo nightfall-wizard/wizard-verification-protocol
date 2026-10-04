@@ -19,24 +19,27 @@ grep -Fq "signature verification passed and checksum passed" "$DOC"
 
 echo "=== SECRET HEADER SCAN ==="
 BAD=0
-for pattern in \
-  "-----BEGIN PGP PRIVATE KEY BLOCK-----" \
-  "-----BEGIN OPENSSH PRIVATE KEY-----" \
-  "-----BEGIN RSA PRIVATE KEY-----" \
-  "-----BEGIN EC PRIVATE KEY-----" \
-  "-----BEGIN DSA PRIVATE KEY-----" \
-  "AGE-SECRET-KEY-"; do
-  if git grep -nF "$pattern" -- . ":!conformance/release-check-no-secret-signing-material.sh" ":!target" 2>/dev/null; then
+
+check_pattern() {
+  pattern="$1"
+  if git grep -nF "$pattern" -- . ":!conformance/release-check-no-secret-signing-material.sh" ":!conformance/release-check-signature-tooling-capability.sh" ":!target" 2>/dev/null; then
     BAD=1
   fi
-done
+}
+
+check_pattern "-----BEGIN PGP PRIVATE KEY BLOCK-----"
+check_pattern "-----BEGIN OPENSSH PRIVATE KEY-----"
+check_pattern "-----BEGIN RSA PRIVATE KEY-----"
+check_pattern "-----BEGIN EC PRIVATE KEY-----"
+check_pattern "-----BEGIN DSA PRIVATE KEY-----"
+check_pattern "AGE-SECRET-KEY-"
 
 if [ "$BAD" -ne 0 ]; then
-  echo "FAIL: secret signing material pattern found"
+  echo "FAIL: private signing material pattern found"
   false
 fi
 
-echo "No private signing material pattern found."
+echo "No private signing material pattern found outside detector scripts."
 
 END_TS="$(date '+%Y-%m-%d %H:%M:%S %Z')"
 END_EPOCH="$(date +%s)"
