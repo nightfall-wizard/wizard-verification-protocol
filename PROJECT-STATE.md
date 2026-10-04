@@ -1,6 +1,6 @@
 # PROJECT-STATE
 
-Updated: 2026-10-04 22:53:31 CEST
+Updated: 2026-10-04 22:57:49 CEST
 
 ## Project
 
@@ -16,25 +16,20 @@ Proof-of-Project-Reality
 
 ## Current stage
 
-Release artifact discovery added locally.
+WVP self-verification release preparation.
 
 ## Completed
 
-- live GitHub metadata conformance is CI verified
-- latest release discovery added
-- latest release tag discovery added
-- latest release asset count added
-- checksum asset discovery added
-- signature asset discovery added
-- live conformance script checks artifact discovery fields
+- release artifact discovery is CI verified
+- WVP self-verification release policy created
 
 ## Current progress
 
-80 percent locally, 75 percent remote until commit and CI verification.
+85 percent after release creation and live verification.
 
 ## Next target
 
-Commit release artifact discovery, push and verify CI.
+Create WVP v0.1.0 release with checksum asset and verify it with wvp-release-check.
 
 ## Safety state
 
