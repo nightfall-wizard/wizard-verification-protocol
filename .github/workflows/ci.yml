@@ -85,3 +85,6 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: ./conformance/release-check-v020-post-release.sh
+
+      - name: WVP reproducible-build evidence baseline conformance
+        run: ./conformance/release-check-reproducible-build-evidence-baseline.sh

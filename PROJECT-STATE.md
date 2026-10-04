@@ -1,6 +1,6 @@
 # PROJECT-STATE
 
-Updated: 2026-10-05 00:29:46 CEST
+Updated: 2026-10-05 00:36:49 CEST
 
 ## Project
 
@@ -16,7 +16,7 @@ Proof-of-Project-Reality
 
 ## Current stage
 
-WVP v0.2.0 post-release verification complete.
+WVP v0.3 reproducible-build evidence baseline started.
 
 ## Completed
 
@@ -55,6 +55,9 @@ WVP v0.2.0 post-release verification complete.
 - published v0.2.0 detached signature verification passes
 - wvp-release-check self-verifies v0.2.0 as INFO
 - v0.2.0 post-release verification is covered by CI conformance
+- v0.3 reproducible-build evidence model exists
+- v0.3 build provenance script exists
+- v0.3 single-environment build provenance conformance exists
 
 ## Current progress
 
@@ -62,9 +65,11 @@ WVP v0.1 baseline: 100 percent.
 
 WVP v0.2 signature verification: 100 percent.
 
+WVP v0.3 reproducible-build evidence: 10 percent after commit, push and CI verification.
+
 ## Next target
 
-Begin WVP v0.3 reproducible-build evidence path.
+Add repeated same-environment build comparison for wvp-release-check.
 
 ## Safety state
 
