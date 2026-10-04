@@ -1,6 +1,7 @@
 use std::{env, fs, path::PathBuf, process, process::Command};
 
 const VERSION: &str = env!("CARGO_PKG_VERSION");
+const PUBLIC_VERIFICATION_KEY_PATH: &str = "keys/release/wvp-release-signing-public.pem";
 
 #[derive(Debug, Clone, PartialEq, Eq)]
 struct Config {
@@ -116,6 +117,23 @@ fn checksum_work_dir(target: &str, tag: &str) -> Result<PathBuf, String> {
     Ok(dir)
 }
 
+fn signature_work_dir(target: &str, tag: &str) -> Result<PathBuf, String> {
+    let safe_target = target.replace('/', "_");
+    let safe_tag = tag.replace('/', "_");
+    let dir = env::current_dir()
+        .map_err(|err| format!("could not read current dir: {err}"))?
+        .join("target")
+        .join(format!(
+            "wvp-release-signature-{}-{}-{}",
+            safe_target,
+            safe_tag,
+            process::id()
+        ));
+
+    fs::create_dir_all(&dir).map_err(|err| format!("could not create signature dir: {err}"))?;
+    Ok(dir)
+}
+
 fn verify_checksum_asset(target: &str, tag: &str) -> (Option<bool>, Option<bool>, Option<String>) {
     let dir = match checksum_work_dir(target, tag) {
         Ok(dir) => dir,
@@ -218,6 +236,155 @@ fn verify_checksum_asset(target: &str, tag: &str) -> (Option<bool>, Option<bool>
         None
     } else {
         Some(String::from_utf8_lossy(&output.stderr).trim().to_string())
+    };
+
+    let _ = fs::remove_dir_all(&dir);
+
+    (Some(true), Some(passed), error)
+}
+
+fn verify_signature_asset(target: &str, tag: &str) -> (Option<bool>, Option<bool>, Option<String>) {
+    let public_key = PathBuf::from(PUBLIC_VERIFICATION_KEY_PATH);
+
+    if !public_key.is_file() {
+        return (
+            Some(false),
+            None,
+            Some(format!(
+                "public verification key not found at {PUBLIC_VERIFICATION_KEY_PATH}"
+            )),
+        );
+    }
+
+    let dir = match signature_work_dir(target, tag) {
+        Ok(dir) => dir,
+        Err(err) => return (Some(true), Some(false), Some(err)),
+    };
+
+    let download = Command::new("gh")
+        .args(["release", "download", tag, "--repo", target, "--dir"])
+        .arg(&dir)
+        .arg("--clobber")
+        .output();
+
+    let output = match download {
+        Ok(output) => output,
+        Err(err) => {
+            let _ = fs::remove_dir_all(&dir);
+            return (
+                Some(true),
+                Some(false),
+                Some(format!("failed to execute gh release download: {err}")),
+            );
+        }
+    };
+
+    if !output.status.success() {
+        let stderr = String::from_utf8_lossy(&output.stderr).trim().to_string();
+        let _ = fs::remove_dir_all(&dir);
+        return (
+            Some(true),
+            Some(false),
+            Some(format!("gh release download failed: {stderr}")),
+        );
+    }
+
+    let entries = match fs::read_dir(&dir) {
+        Ok(entries) => entries,
+        Err(err) => {
+            let _ = fs::remove_dir_all(&dir);
+            return (
+                Some(true),
+                Some(false),
+                Some(format!("could not read signature dir: {err}")),
+            );
+        }
+    };
+
+    let mut signature_file: Option<PathBuf> = None;
+
+    for entry in entries.flatten() {
+        let path = entry.path();
+        if path
+            .file_name()
+            .and_then(|name| name.to_str())
+            .map(|name| name.ends_with(".sig"))
+            .unwrap_or(false)
+        {
+            signature_file = Some(path);
+            break;
+        }
+    }
+
+    let Some(signature_file) = signature_file else {
+        let _ = fs::remove_dir_all(&dir);
+        return (
+            Some(true),
+            Some(false),
+            Some("no .sig asset found".to_string()),
+        );
+    };
+
+    let Some(signature_name) = signature_file.file_name().and_then(|name| name.to_str()) else {
+        let _ = fs::remove_dir_all(&dir);
+        return (
+            Some(true),
+            Some(false),
+            Some("signature filename is not valid utf-8".to_string()),
+        );
+    };
+
+    let Some(signed_asset_name) = signature_name.strip_suffix(".sig") else {
+        let _ = fs::remove_dir_all(&dir);
+        return (
+            Some(true),
+            Some(false),
+            Some("signature asset does not use .sig suffix".to_string()),
+        );
+    };
+
+    let signed_asset = dir.join(signed_asset_name);
+
+    if !signed_asset.is_file() {
+        let _ = fs::remove_dir_all(&dir);
+        return (
+            Some(true),
+            Some(false),
+            Some(format!(
+                "signed asset not found for signature asset: {signed_asset_name}"
+            )),
+        );
+    }
+
+    let verify = Command::new("openssl")
+        .args(["dgst", "-sha256", "-verify"])
+        .arg(&public_key)
+        .arg("-signature")
+        .arg(&signature_file)
+        .arg(&signed_asset)
+        .output();
+
+    let output = match verify {
+        Ok(output) => output,
+        Err(err) => {
+            let _ = fs::remove_dir_all(&dir);
+            return (
+                Some(true),
+                Some(false),
+                Some(format!("failed to execute openssl: {err}")),
+            );
+        }
+    };
+
+    let passed = output.status.success();
+
+    let error = if passed {
+        None
+    } else {
+        let stderr = String::from_utf8_lossy(&output.stderr).trim().to_string();
+        let stdout = String::from_utf8_lossy(&output.stdout).trim().to_string();
+        let detail = if stderr.is_empty() { stdout } else { stderr };
+        Some(format!("openssl signature verification failed: {detail}"))
     };
 
     let _ = fs::remove_dir_all(&dir);
@@ -331,16 +498,9 @@ fn inspect_github(target: &str) -> GithubMetadata {
         signature_verification_attempted,
         signature_verification_passed,
         signature_verification_error,
-    ) = match signature_asset_count {
-        Some(count) if count > 0 => (
-            Some(false),
-            None,
-            Some(
-                "signature asset discovered but signature verification is not implemented yet"
-                    .to_string(),
-            ),
-        ),
-        Some(0) => (Some(false), None, None),
+    ) = match (&latest_release_tag, signature_asset_count) {
+        (Some(tag), Some(count)) if count > 0 => verify_signature_asset(target, tag),
+        (Some(_), Some(0)) => (Some(false), None, None),
         _ => (Some(false), None, None),
     };
 
@@ -464,7 +624,7 @@ fn print_report(cfg: &Config) {
         println!("  \"status\": \"{status}\",");
         println!("  \"classification\": \"observed\",");
         println!("  \"live_inspection\": {},", cfg.live);
-        println!("  \"summary\": \"GitHub release metadata, artifact discovery and checksum verification baseline\",");
+        println!("  \"summary\": \"GitHub release metadata, artifact discovery, checksum verification and signature verification baseline\",");
         println!("  \"github\": {{");
 
         if let Some(meta) = metadata.as_ref() {
@@ -547,7 +707,7 @@ fn print_report(cfg: &Config) {
         println!("    \"asset name discovery is not checksum verification\",");
         println!("    \"checksum verification is integrity verification only\",");
         println!("    \"signature asset discovery is not signature verification\",");
-        println!("    \"no signature verification yet\",");
+        println!("    \"signature verification depends on configured public key\",");
         println!("    \"no reproducible build verification yet\"");
         println!("  ]");
         println!("}}");
@@ -559,7 +719,7 @@ fn print_report(cfg: &Config) {
         println!("status: {status}");
         println!("classification: observed");
         println!("live_inspection: {}", cfg.live);
-        println!("summary: GitHub release metadata, artifact discovery and checksum verification baseline");
+        println!("summary: GitHub release metadata, artifact discovery, checksum verification and signature verification baseline");
 
         if let Some(meta) = metadata {
             println!("repository_found: {:?}", meta.repository_found);
@@ -608,7 +768,7 @@ fn print_report(cfg: &Config) {
         println!("limitation: asset name discovery is not checksum verification");
         println!("limitation: checksum verification is integrity verification only");
         println!("limitation: signature asset discovery is not signature verification");
-        println!("limitation: no signature verification yet");
+        println!("limitation: signature verification depends on configured public key");
         println!("limitation: no reproducible build verification yet");
     }
 }
@@ -817,8 +977,7 @@ mod tests {
             signature_verification_attempted: Some(false),
             signature_verification_passed: None,
             signature_verification_error: Some(
-                "signature asset discovered but signature verification is not implemented yet"
-                    .to_string(),
+                "signature asset discovered but signature verification not attempted".to_string(),
             ),
             checksum_verification_attempted: Some(true),
             checksum_verification_passed: Some(true),

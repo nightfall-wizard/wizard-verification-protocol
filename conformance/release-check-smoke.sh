@@ -24,7 +24,7 @@ check_contains '"target": "nightfall-wizard/wizard-verification-protocol"'
 check_contains '"status": "WARN"'
 check_contains '"classification": "observed"'
 check_contains '"live_inspection": false'
-check_contains '"summary": "GitHub release metadata, artifact discovery and checksum verification baseline"'
+check_contains '"summary": "GitHub release metadata, artifact discovery, checksum verification and signature verification baseline"'
 
 check_contains '"repository_found": null'
 check_contains '"release_count": null'
@@ -47,7 +47,7 @@ check_contains '"release metadata is not security proof"'
 check_contains '"asset name discovery is not checksum verification"'
 check_contains '"checksum verification is integrity verification only"'
 check_contains '"signature asset discovery is not signature verification"'
-check_contains '"no signature verification yet"'
+check_contains '"signature verification depends on configured public key"'
 check_contains '"no reproducible build verification yet"'
 
 END_TS="$(date '+%Y-%m-%d %H:%M:%S %Z')"

@@ -1,6 +1,6 @@
 # PROJECT-STATE
 
-Updated: 2026-10-04 23:46:08 CEST
+Updated: 2026-10-04 23:49:55 CEST
 
 ## Project
 
@@ -16,7 +16,7 @@ Proof-of-Project-Reality
 
 ## Current stage
 
-WVP v0.2 detached release signature asset.
+WVP v0.2 internal release signature verification.
 
 ## Completed
 
@@ -33,16 +33,18 @@ WVP v0.2 detached release signature asset.
 - public key fingerprint conformance is implemented
 - detached release signature asset exists for v0.1.1
 - detached release signature is verified by conformance using the committed public key
+- wvp-release-check internally verifies detached release signatures
+- wvp-release-check reaches INFO when checksum and signature verification both pass
 
 ## Current progress
 
 WVP v0.1 baseline: 100 percent.
 
-WVP v0.2 signature verification: 40 percent after commit, push and CI verification.
+WVP v0.2 signature verification: 50 percent after commit, push and CI verification.
 
 ## Next target
 
-Implement signature verification execution inside wvp-release-check.
+Harden signature verification asset matching and negative test coverage.
 
 ## Safety state
 

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-echo "=== WVP SIGNATURE DISCOVERED BUT NOT VERIFIED POLICY CONFORMANCE ==="
+echo "=== WVP SIGNATURE VERIFIED POLICY CONFORMANCE ==="
 START_TS="$(date '+%Y-%m-%d %H:%M:%S %Z')"
 START_EPOCH="$(date +%s)"
 echo "Startzeit: $START_TS"
@@ -32,21 +32,17 @@ check_contains() {
   fi
 }
 
-check_contains '"status": "WARN"'
+check_contains '"status": "INFO"'
 check_contains '"latest_release_tag": "'$EXPECTED_TAG'"'
 check_contains '"checksum_asset_count": 1'
+check_contains '"signature_asset_count": 1'
 check_contains '"checksum_verification_attempted": true'
 check_contains '"checksum_verification_passed": true'
-check_contains '"signature_verification_attempted": false'
-check_contains '"signature_verification_passed": null'
-check_contains '"signature_verification_error": "signature asset discovered but signature verification is not implemented yet"'
+check_contains '"signature_verification_attempted": true'
+check_contains '"signature_verification_passed": true'
+check_contains '"signature_verification_error": null'
 check_contains '"signature asset discovery is not signature verification"'
-check_contains '"no signature verification yet"'
-
-if ! echo "$OUT" | grep -Eq '"signature_asset_count": [1-9][0-9]*'; then
-  echo "FAIL: expected at least one signature asset"
-  false
-fi
+check_contains '"signature verification depends on configured public key"'
 
 END_TS="$(date '+%Y-%m-%d %H:%M:%S %Z')"
 END_EPOCH="$(date +%s)"
