@@ -1,6 +1,6 @@
 # PROJECT-STATE
 
-Updated: 2026-10-04 23:55:48 CEST
+Updated: 2026-10-05 00:00:36 CEST
 
 ## Project
 
@@ -16,7 +16,7 @@ Proof-of-Project-Reality
 
 ## Current stage
 
-WVP v0.2 tamper-negative signature verification.
+WVP v0.2 release-candidate documentation.
 
 ## Completed
 
@@ -41,16 +41,19 @@ WVP v0.2 tamper-negative signature verification.
 - tamper-negative tests reject modified signed assets
 - tamper-negative tests reject modified detached signatures
 - tamper-negative tests reject wrong public verification keys
+- v0.2 release-candidate documentation exists
+- v0.2 release checklist exists
+- v0.2 release-candidate documentation is covered by CI conformance
 
 ## Current progress
 
 WVP v0.1 baseline: 100 percent.
 
-WVP v0.2 signature verification: 70 percent after commit, push and CI verification.
+WVP v0.2 signature verification: 80 percent after commit, push and CI verification.
 
 ## Next target
 
-Prepare WVP v0.2 release candidate documentation and release checklist.
+Prepare controlled v0.2.0 version bump and release-build script.
 
 ## Safety state
 

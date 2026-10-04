@@ -74,3 +74,6 @@ jobs:
 
       - name: WVP signature tamper-negative conformance
         run: ./conformance/release-check-signature-tamper-negative.sh
+
+      - name: WVP v0.2 release candidate docs conformance
+        run: ./conformance/release-check-v02-rc-docs.sh
