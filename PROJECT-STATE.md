@@ -1,6 +1,6 @@
 # PROJECT-STATE
 
-Updated: 2026-10-05 00:44:20 CEST
+Updated: 2026-10-05 00:51:38 CEST
 
 ## Project
 
@@ -16,7 +16,7 @@ Proof-of-Project-Reality
 
 ## Current stage
 
-WVP v0.3 independent-environment evidence separation implemented.
+WVP v0.3 CI build provenance artifact generation implemented.
 
 ## Completed
 
@@ -62,6 +62,8 @@ WVP v0.3 independent-environment evidence separation implemented.
 - v0.3 same-environment repeat-build conformance is covered by CI
 - v0.3 independent-environment evidence separation exists
 - v0.3 environment classification conformance is covered by CI
+- v0.3 CI build provenance artifact generation exists
+- v0.3 CI build provenance artifact upload is configured in GitHub Actions
 
 ## Current progress
 
@@ -69,11 +71,11 @@ WVP v0.1 baseline: 100 percent.
 
 WVP v0.2 signature verification: 100 percent.
 
-WVP v0.3 reproducible-build evidence: 30 percent after commit, push and CI verification.
+WVP v0.3 reproducible-build evidence: 40 percent after commit, push and CI verification.
 
 ## Next target
 
-Add CI build provenance artifact generation and Linux-vs-Android evidence comparison format.
+Add Linux-vs-Android build evidence comparison format.
 
 ## Safety state
 

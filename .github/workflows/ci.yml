@@ -94,3 +94,16 @@ jobs:
 
       - name: WVP independent-environment separation conformance
         run: ./conformance/release-check-independent-environment-separation.sh
+
+      - name: WVP CI build provenance artifact conformance
+        run: ./conformance/release-check-ci-build-provenance-artifact.sh
+
+      - name: WVP CI build provenance artifact generation
+        run: ./scripts/release/generate-ci-build-provenance-artifact.sh --require-clean
+
+      - name: Upload WVP CI build provenance artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: wvp-ci-build-provenance-${{ github.sha }}
+          path: target/wvp-ci-build-provenance
+          if-no-files-found: error
