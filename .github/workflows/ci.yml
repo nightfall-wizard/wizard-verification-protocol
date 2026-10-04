@@ -46,3 +46,8 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: ./conformance/release-check-self-release-checksum.sh
+
+      - name: WVP missing signature policy conformance
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: ./conformance/release-check-missing-signature-policy.sh

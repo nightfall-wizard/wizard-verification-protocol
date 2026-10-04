@@ -1,6 +1,6 @@
 # PROJECT-STATE
 
-Updated: 2026-10-04 23:05:39 CEST
+Updated: 2026-10-04 23:07:27 CEST
 
 ## Project
 
@@ -16,21 +16,23 @@ Proof-of-Project-Reality
 
 ## Current stage
 
-Bootstrap conformance smoke updated for checksum verification schema.
+Signature artifact policy and missing-signature conformance.
 
 ## Completed
 
 - wvp-release-check verifies release checksums
 - checksum verification result appears in JSON output
-- bootstrap conformance smoke matches current JSON contract
+- WVP v0.1.0 remains WARN because signature verification is missing
+- signature artifact policy documented
+- missing-signature behavior is enforced by conformance script
 
 ## Current progress
 
-92 percent after commit, push and CI verification.
+95 percent after commit, push and CI verification.
 
 ## Next target
 
-Add signature artifact policy and signature discovery upgrade path.
+Prepare real signature verification implementation path without storing signing secrets in the repository.
 
 ## Safety state
 
