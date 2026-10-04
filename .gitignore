@@ -12,3 +12,10 @@ wallet.dat
 secrets/
 *.backup-*
 **/*.backup-*
+
+# WVP release signing private material
+.wvp-release-signing/
+*.private.pem
+*-private.pem
+*private-key*
+*.secret

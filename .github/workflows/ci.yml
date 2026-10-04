@@ -60,3 +60,6 @@ jobs:
 
       - name: WVP signature status model conformance
         run: ./conformance/release-check-signature-status-model.sh
+
+      - name: WVP public release verification key conformance
+        run: ./conformance/release-check-public-key-policy.sh

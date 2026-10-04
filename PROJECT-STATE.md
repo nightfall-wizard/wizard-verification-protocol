@@ -1,6 +1,6 @@
 # PROJECT-STATE
 
-Updated: 2026-10-04 23:33:22 CEST
+Updated: 2026-10-04 23:39:42 CEST
 
 ## Project
 
@@ -16,7 +16,7 @@ Proof-of-Project-Reality
 
 ## Current stage
 
-WVP v0.2 signature status model.
+WVP v0.2 public release verification key path.
 
 ## Completed
 
@@ -28,17 +28,20 @@ WVP v0.2 signature status model.
 - signature discovery is separated from signature verification
 - JSON fields for signature verification status are implemented
 - INFO now requires checksum verification and signature verification to pass
+- public release verification key is committed
+- private release signing key is kept outside the repository
+- public key fingerprint conformance is implemented
 
 ## Current progress
 
 WVP v0.1 baseline: 100 percent.
 
-WVP v0.2 signature verification: 20 percent after commit, push and CI verification.
+WVP v0.2 signature verification: 30 percent after commit, push and CI verification.
 
 ## Next target
 
-Create public verification key and detached signature workflow without committing private signing material.
+Create detached release signature asset and implement signature verification execution.
 
 ## Safety state
 
-No seeds, private keys, wallet files or tokens are stored in this repository.
+No seeds, wallet files, tokens or private signing keys are stored in this repository.
