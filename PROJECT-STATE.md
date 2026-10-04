@@ -1,6 +1,6 @@
 # PROJECT-STATE
 
-Updated: 2026-10-04 23:14:45 CEST
+Updated: 2026-10-04 23:17:04 CEST
 
 ## Project
 
@@ -16,7 +16,7 @@ Proof-of-Project-Reality
 
 ## Current stage
 
-Dynamic release conformance baseline.
+Current-code release baseline v0.1.1.
 
 ## Completed
 
@@ -24,15 +24,15 @@ Dynamic release conformance baseline.
 - missing signature remains WARN
 - safe signature verification path is documented
 - release conformance resolves the latest release dynamically
-- CI verifies checksum, missing-signature behavior and no-secret policy
+- wvp-release-check version prepared for v0.1.1
 
 ## Current progress
 
-99 percent after commit, push and CI verification.
+100 percent after release creation and end-to-end verification.
 
 ## Next target
 
-Create current-code release baseline and verify it end-to-end.
+Implement real signature verification using public verification material only.
 
 ## Safety state
 
