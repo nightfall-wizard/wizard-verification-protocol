@@ -14,6 +14,11 @@ struct GithubMetadata {
     repository_found: Option<bool>,
     release_count: Option<usize>,
     tag_count: Option<usize>,
+    latest_release_found: Option<bool>,
+    latest_release_tag: Option<String>,
+    latest_release_asset_count: Option<usize>,
+    checksum_asset_count: Option<usize>,
+    signature_asset_count: Option<usize>,
     errors: Vec<String>,
 }
 
@@ -59,7 +64,7 @@ fn validate_target(value: &str) -> Result<(), String> {
 fn print_help() {
     println!("wvp-release-check {VERSION}");
     println!("Usage: wvp-release-check --target owner/repo [--json] [--live]");
-    println!("Status: release metadata inspection bootstrap; not an audit.");
+    println!("Status: release metadata and artifact discovery baseline; not an audit.");
 }
 
 fn gh_api(endpoint: &str, jq: &str) -> Result<String, String> {
@@ -81,8 +86,8 @@ fn gh_api(endpoint: &str, jq: &str) -> Result<String, String> {
     Ok(String::from_utf8_lossy(&output.stdout).trim().to_string())
 }
 
-fn gh_count(endpoint: &str) -> Result<usize, String> {
-    let value = gh_api(endpoint, "length")?;
+fn gh_count(endpoint: &str, jq: &str) -> Result<usize, String> {
+    let value = gh_api(endpoint, jq)?;
     value
         .parse::<usize>()
         .map_err(|err| format!("could not parse count for {endpoint}: {err}"))
@@ -99,7 +104,7 @@ fn inspect_github(target: &str) -> GithubMetadata {
         }
     };
 
-    let release_count = match gh_count(&format!("repos/{target}/releases?per_page=100")) {
+    let release_count = match gh_count(&format!("repos/{target}/releases?per_page=100"), "length") {
         Ok(count) => Some(count),
         Err(err) => {
             errors.push(err);
@@ -107,18 +112,84 @@ fn inspect_github(target: &str) -> GithubMetadata {
         }
     };
 
-    let tag_count = match gh_count(&format!("repos/{target}/tags?per_page=100")) {
+    let tag_count = match gh_count(&format!("repos/{target}/tags?per_page=100"), "length") {
         Ok(count) => Some(count),
         Err(err) => {
             errors.push(err);
             None
         }
+    };
+
+    let latest_endpoint = format!("repos/{target}/releases?per_page=1");
+
+    let (
+        latest_release_found,
+        latest_release_tag,
+        latest_release_asset_count,
+        checksum_asset_count,
+        signature_asset_count,
+    ) = match release_count {
+        Some(0) => (Some(false), None, Some(0), Some(0), Some(0)),
+        Some(_) => {
+            let tag = match gh_api(&latest_endpoint, ".[0].tag_name // \"\"") {
+                Ok(value) if value.is_empty() => None,
+                Ok(value) => Some(value),
+                Err(err) => {
+                    errors.push(err);
+                    None
+                }
+            };
+
+            let asset_count = match gh_count(&latest_endpoint, "[.[0].assets[]?] | length") {
+                Ok(count) => Some(count),
+                Err(err) => {
+                    errors.push(err);
+                    None
+                }
+            };
+
+            let checksum_count = match gh_count(
+                &latest_endpoint,
+                r#"[.[0].assets[]? | select(.name | test("(?i)(sha256|sha512|checksums?|digest)"))] | length"#,
+            ) {
+                Ok(count) => Some(count),
+                Err(err) => {
+                    errors.push(err);
+                    None
+                }
+            };
+
+            let signature_count = match gh_count(
+                &latest_endpoint,
+                r#"[.[0].assets[]? | select(.name | test("(?i)(sig|asc|gpg|minisig|signature)"))] | length"#,
+            ) {
+                Ok(count) => Some(count),
+                Err(err) => {
+                    errors.push(err);
+                    None
+                }
+            };
+
+            (
+                Some(tag.is_some()),
+                tag,
+                asset_count,
+                checksum_count,
+                signature_count,
+            )
+        }
+        None => (None, None, None, None, None),
     };
 
     GithubMetadata {
         repository_found,
         release_count,
         tag_count,
+        latest_release_found,
+        latest_release_tag,
+        latest_release_asset_count,
+        checksum_asset_count,
+        signature_asset_count,
         errors,
     }
 }
@@ -134,6 +205,14 @@ fn status_for(cfg: &Config, metadata: Option<&GithubMetadata>) -> &'static str {
 
     if meta.repository_found == Some(false) || !meta.errors.is_empty() {
         return "FAIL";
+    }
+
+    if meta.release_count == Some(0) {
+        return "WARN";
+    }
+
+    if meta.checksum_asset_count == Some(0) || meta.signature_asset_count == Some(0) {
+        return "WARN";
     }
 
     "INFO"
@@ -159,6 +238,13 @@ fn json_bool_opt(value: Option<bool>) -> String {
 fn json_usize_opt(value: Option<usize>) -> String {
     match value {
         Some(number) => number.to_string(),
+        None => "null".to_string(),
+    }
+}
+
+fn json_string_opt(value: &Option<String>) -> String {
+    match value {
+        Some(text) => format!("\"{}\"", json_escape(text)),
         None => "null".to_string(),
     }
 }
@@ -189,7 +275,7 @@ fn print_report(cfg: &Config) {
         println!("  \"status\": \"{status}\",");
         println!("  \"classification\": \"observed\",");
         println!("  \"live_inspection\": {},", cfg.live);
-        println!("  \"summary\": \"GitHub release metadata inspection baseline\",");
+        println!("  \"summary\": \"GitHub release metadata and artifact discovery baseline\",");
         println!("  \"github\": {{");
 
         if let Some(meta) = metadata.as_ref() {
@@ -202,11 +288,36 @@ fn print_report(cfg: &Config) {
                 json_usize_opt(meta.release_count)
             );
             println!("    \"tag_count\": {},", json_usize_opt(meta.tag_count));
+            println!(
+                "    \"latest_release_found\": {},",
+                json_bool_opt(meta.latest_release_found)
+            );
+            println!(
+                "    \"latest_release_tag\": {},",
+                json_string_opt(&meta.latest_release_tag)
+            );
+            println!(
+                "    \"latest_release_asset_count\": {},",
+                json_usize_opt(meta.latest_release_asset_count)
+            );
+            println!(
+                "    \"checksum_asset_count\": {},",
+                json_usize_opt(meta.checksum_asset_count)
+            );
+            println!(
+                "    \"signature_asset_count\": {},",
+                json_usize_opt(meta.signature_asset_count)
+            );
             print_json_errors(&meta.errors);
         } else {
             println!("    \"repository_found\": null,");
             println!("    \"release_count\": null,");
             println!("    \"tag_count\": null,");
+            println!("    \"latest_release_found\": null,");
+            println!("    \"latest_release_tag\": null,");
+            println!("    \"latest_release_asset_count\": null,");
+            println!("    \"checksum_asset_count\": null,");
+            println!("    \"signature_asset_count\": null,");
             println!("    \"errors\": []");
         }
 
@@ -214,8 +325,10 @@ fn print_report(cfg: &Config) {
         println!("  \"limitations\": [");
         println!("    \"not an audit\",");
         println!("    \"release metadata is not security proof\",");
-        println!("    \"no signature verification yet\",");
+        println!("    \"asset name discovery is not checksum verification\",");
+        println!("    \"signature asset discovery is not signature verification\",");
         println!("    \"no checksum verification yet\",");
+        println!("    \"no signature verification yet\",");
         println!("    \"no reproducible build verification yet\"");
         println!("  ]");
         println!("}}");
@@ -227,12 +340,20 @@ fn print_report(cfg: &Config) {
         println!("status: {status}");
         println!("classification: observed");
         println!("live_inspection: {}", cfg.live);
-        println!("summary: GitHub release metadata inspection baseline");
+        println!("summary: GitHub release metadata and artifact discovery baseline");
 
         if let Some(meta) = metadata {
             println!("repository_found: {:?}", meta.repository_found);
             println!("release_count: {:?}", meta.release_count);
             println!("tag_count: {:?}", meta.tag_count);
+            println!("latest_release_found: {:?}", meta.latest_release_found);
+            println!("latest_release_tag: {:?}", meta.latest_release_tag);
+            println!(
+                "latest_release_asset_count: {:?}",
+                meta.latest_release_asset_count
+            );
+            println!("checksum_asset_count: {:?}", meta.checksum_asset_count);
+            println!("signature_asset_count: {:?}", meta.signature_asset_count);
             for error in meta.errors {
                 println!("error: {error}");
             }
@@ -240,8 +361,10 @@ fn print_report(cfg: &Config) {
 
         println!("limitation: not an audit");
         println!("limitation: release metadata is not security proof");
-        println!("limitation: no signature verification yet");
+        println!("limitation: asset name discovery is not checksum verification");
+        println!("limitation: signature asset discovery is not signature verification");
         println!("limitation: no checksum verification yet");
+        println!("limitation: no signature verification yet");
         println!("limitation: no reproducible build verification yet");
     }
 }
@@ -317,5 +440,49 @@ mod tests {
     fn rejects_empty_repo() {
         let args = vec!["--target".to_string(), "owner/".to_string()];
         assert!(parse_args(&args).unwrap_err().contains("owner/repo"));
+    }
+
+    #[test]
+    fn status_warns_when_live_repo_has_no_releases() {
+        let cfg = Config {
+            target: "owner/repo".to_string(),
+            json: true,
+            live: true,
+        };
+        let meta = GithubMetadata {
+            repository_found: Some(true),
+            release_count: Some(0),
+            tag_count: Some(0),
+            latest_release_found: Some(false),
+            latest_release_tag: None,
+            latest_release_asset_count: Some(0),
+            checksum_asset_count: Some(0),
+            signature_asset_count: Some(0),
+            errors: Vec::new(),
+        };
+
+        assert_eq!(status_for(&cfg, Some(&meta)), "WARN");
+    }
+
+    #[test]
+    fn status_fails_when_live_errors_exist() {
+        let cfg = Config {
+            target: "owner/repo".to_string(),
+            json: true,
+            live: true,
+        };
+        let meta = GithubMetadata {
+            repository_found: Some(true),
+            release_count: Some(1),
+            tag_count: Some(1),
+            latest_release_found: Some(true),
+            latest_release_tag: Some("v1.0.0".to_string()),
+            latest_release_asset_count: Some(1),
+            checksum_asset_count: Some(1),
+            signature_asset_count: Some(1),
+            errors: vec!["api error".to_string()],
+        };
+
+        assert_eq!(status_for(&cfg, Some(&meta)), "FAIL");
     }
 }

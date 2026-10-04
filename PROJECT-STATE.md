@@ -1,6 +1,6 @@
 # PROJECT-STATE
 
-Updated: 2026-10-04 22:51:21 CEST
+Updated: 2026-10-04 22:53:31 CEST
 
 ## Project
 
@@ -16,26 +16,25 @@ Proof-of-Project-Reality
 
 ## Current stage
 
-Live GitHub metadata conformance added to CI.
+Release artifact discovery added locally.
 
 ## Completed
 
-- WVP Proof-of-Project-Reality core committed and CI verified
-- wvp-release-check supports --live
-- repository existence inspection added
-- GitHub release count inspection added
-- GitHub tag count inspection added
-- bootstrap conformance smoke passes
-- live metadata conformance smoke created
-- GitHub Actions configured with GH_TOKEN for live metadata smoke
+- live GitHub metadata conformance is CI verified
+- latest release discovery added
+- latest release tag discovery added
+- latest release asset count added
+- checksum asset discovery added
+- signature asset discovery added
+- live conformance script checks artifact discovery fields
 
 ## Current progress
 
-75 percent after commit, push and CI verification.
+80 percent locally, 75 percent remote until commit and CI verification.
 
 ## Next target
 
-Add checksum and signature discovery fields to release-check.
+Commit release artifact discovery, push and verify CI.
 
 ## Safety state
 
