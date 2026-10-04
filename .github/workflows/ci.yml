@@ -88,3 +88,6 @@ jobs:
 
       - name: WVP reproducible-build evidence baseline conformance
         run: ./conformance/release-check-reproducible-build-evidence-baseline.sh
+
+      - name: WVP same-environment repeat-build conformance
+        run: ./conformance/release-check-same-env-repeat-build.sh

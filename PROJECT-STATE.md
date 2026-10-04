@@ -1,6 +1,6 @@
 # PROJECT-STATE
 
-Updated: 2026-10-05 00:36:49 CEST
+Updated: 2026-10-05 00:40:44 CEST
 
 ## Project
 
@@ -16,7 +16,7 @@ Proof-of-Project-Reality
 
 ## Current stage
 
-WVP v0.3 reproducible-build evidence baseline started.
+WVP v0.3 same-environment repeat-build comparison implemented.
 
 ## Completed
 
@@ -58,6 +58,8 @@ WVP v0.3 reproducible-build evidence baseline started.
 - v0.3 reproducible-build evidence model exists
 - v0.3 build provenance script exists
 - v0.3 single-environment build provenance conformance exists
+- v0.3 same-environment repeat-build comparison exists
+- v0.3 same-environment repeat-build conformance is covered by CI
 
 ## Current progress
 
@@ -65,11 +67,11 @@ WVP v0.1 baseline: 100 percent.
 
 WVP v0.2 signature verification: 100 percent.
 
-WVP v0.3 reproducible-build evidence: 10 percent after commit, push and CI verification.
+WVP v0.3 reproducible-build evidence: 20 percent after commit, push and CI verification.
 
 ## Next target
 
-Add repeated same-environment build comparison for wvp-release-check.
+Add independent-environment build evidence placeholder and CI/Linux-vs-Android evidence separation.
 
 ## Safety state
 
