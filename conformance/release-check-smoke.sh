@@ -19,7 +19,7 @@ check_contains() {
 }
 
 check_contains '"tool": "wvp-release-check"'
-check_contains '"version": "0.1.1"'
+check_contains '"version": "0.2.0"'
 check_contains '"target": "nightfall-wizard/wizard-verification-protocol"'
 check_contains '"status": "WARN"'
 check_contains '"classification": "observed"'

@@ -1,6 +1,6 @@
 # PROJECT-STATE
 
-Updated: 2026-10-05 00:00:36 CEST
+Updated: 2026-10-05 00:05:08 CEST
 
 ## Project
 
@@ -16,7 +16,7 @@ Proof-of-Project-Reality
 
 ## Current stage
 
-WVP v0.2 release-candidate documentation.
+WVP v0.2 controlled version bump and local release build preparation.
 
 ## Completed
 
@@ -44,16 +44,20 @@ WVP v0.2 release-candidate documentation.
 - v0.2 release-candidate documentation exists
 - v0.2 release checklist exists
 - v0.2 release-candidate documentation is covered by CI conformance
+- wvp-release-check package version is prepared as 0.2.0
+- local v0.2 release build script exists
+- local release build script creates binary, checksum and detached signature without upload
+- v0.2 version and build script conformance is covered by CI
 
 ## Current progress
 
 WVP v0.1 baseline: 100 percent.
 
-WVP v0.2 signature verification: 80 percent after commit, push and CI verification.
+WVP v0.2 signature verification: 90 percent after commit, push and CI verification.
 
 ## Next target
 
-Prepare controlled v0.2.0 version bump and release-build script.
+Create controlled v0.2.0 GitHub release with binary, checksum and detached signature assets.
 
 ## Safety state
 
