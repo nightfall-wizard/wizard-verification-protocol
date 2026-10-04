@@ -10,7 +10,15 @@ ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$ROOT"
 
 TARGET="nightfall-wizard/wizard-verification-protocol"
+TAG="$(gh release list --repo "$TARGET" --limit 1 --json tagName --jq '.[0].tagName')"
+
+if [ -z "$TAG" ] || [ "$TAG" = "null" ]; then
+  echo "FAIL: no GitHub release tag found"
+  false
+fi
+
 echo "Target: $TARGET"
+echo "Expected latest tag: $TAG"
 
 OUT="$(cargo run --quiet --manifest-path reference/rust/wvp-release-check/Cargo.toml -- --target "$TARGET" --json --live)"
 echo "$OUT"
@@ -22,7 +30,7 @@ check_contains() {
 
 check_contains '"status": "WARN"'
 check_contains '"latest_release_found": true'
-check_contains '"latest_release_tag": "v0.1.0"'
+check_contains "\"latest_release_tag\": \"$TAG\""
 check_contains '"checksum_asset_count": 1'
 check_contains '"checksum_verification_attempted": true'
 check_contains '"checksum_verification_passed": true'

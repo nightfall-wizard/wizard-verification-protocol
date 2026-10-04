@@ -1,6 +1,6 @@
 # PROJECT-STATE
 
-Updated: 2026-10-04 23:09:56 CEST
+Updated: 2026-10-04 23:14:45 CEST
 
 ## Project
 
@@ -16,23 +16,23 @@ Proof-of-Project-Reality
 
 ## Current stage
 
-Safe signature verification path.
+Dynamic release conformance baseline.
 
 ## Completed
 
 - checksum verification is implemented
 - missing signature remains WARN
-- signature artifact policy is documented
 - safe signature verification path is documented
-- CI rejects private signing material patterns
+- release conformance resolves the latest release dynamically
+- CI verifies checksum, missing-signature behavior and no-secret policy
 
 ## Current progress
 
-97 percent after commit, push and CI verification.
+99 percent after commit, push and CI verification.
 
 ## Next target
 
-Prepare final WVP v0.1 baseline summary and next-version signature implementation target.
+Create current-code release baseline and verify it end-to-end.
 
 ## Safety state
 

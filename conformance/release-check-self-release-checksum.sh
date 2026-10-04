@@ -10,7 +10,13 @@ ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$ROOT"
 
 REPO="nightfall-wizard/wizard-verification-protocol"
-TAG="v0.1.0"
+TAG="$(gh release list --repo "$REPO" --limit 1 --json tagName --jq '.[0].tagName')"
+
+if [ -z "$TAG" ] || [ "$TAG" = "null" ]; then
+  echo "FAIL: no GitHub release tag found"
+  false
+fi
+
 DL_DIR="$ROOT/target/wvp-self-release-checksum-$TAG-$(date +%Y%m%d-%H%M%S)"
 mkdir -p "$DL_DIR"
 
@@ -24,9 +30,10 @@ echo "Downloaded files:"
 find "$DL_DIR" -maxdepth 1 -type f -print | sort
 
 SHA_FILE="$(find "$DL_DIR" -maxdepth 1 -type f -name '*.sha256' | head -n 1)"
+
 if [ -z "$SHA_FILE" ]; then
   echo "FAIL: no checksum asset found"
-  return 1 2>/dev/null || exit 1
+  false
 fi
 
 echo "Checksum file:"
