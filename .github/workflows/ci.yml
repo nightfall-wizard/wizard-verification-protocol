@@ -107,3 +107,6 @@ jobs:
           name: wvp-ci-build-provenance-${{ github.sha }}
           path: target/wvp-ci-build-provenance
           if-no-files-found: error
+
+      - name: WVP build provenance comparison format conformance
+        run: ./conformance/release-check-build-provenance-comparison-format.sh
