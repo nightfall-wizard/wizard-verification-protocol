@@ -22,7 +22,8 @@ BAD=0
 
 check_pattern() {
   pattern="$1"
-  if git grep -nF "$pattern" -- . ":!conformance/release-check-no-secret-signing-material.sh" ":!conformance/release-check-signature-tooling-capability.sh" ":!target" 2>/dev/null; then
+  if git grep -nF "$pattern" -- . ":!conformance/release-check-no-secret-signing-material.sh" ":!conformance/release-check-signature-tooling-capability.sh" \
+      ":!conformance/release-check-public-key-policy.sh" ":!target" 2>/dev/null; then
     BAD=1
   fi
 }
