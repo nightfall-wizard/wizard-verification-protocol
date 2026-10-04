@@ -1,4 +1,4 @@
-use std::{env, process, process::Command};
+use std::{env, fs, path::PathBuf, process, process::Command};
 
 const VERSION: &str = env!("CARGO_PKG_VERSION");
 
@@ -19,6 +19,9 @@ struct GithubMetadata {
     latest_release_asset_count: Option<usize>,
     checksum_asset_count: Option<usize>,
     signature_asset_count: Option<usize>,
+    checksum_verification_attempted: Option<bool>,
+    checksum_verification_passed: Option<bool>,
+    checksum_verification_error: Option<String>,
     errors: Vec<String>,
 }
 
@@ -64,7 +67,7 @@ fn validate_target(value: &str) -> Result<(), String> {
 fn print_help() {
     println!("wvp-release-check {VERSION}");
     println!("Usage: wvp-release-check --target owner/repo [--json] [--live]");
-    println!("Status: release metadata and artifact discovery baseline; not an audit.");
+    println!("Status: release metadata, artifact discovery and checksum verification baseline; not an audit.");
 }
 
 fn gh_api(endpoint: &str, jq: &str) -> Result<String, String> {
@@ -91,6 +94,132 @@ fn gh_count(endpoint: &str, jq: &str) -> Result<usize, String> {
     value
         .parse::<usize>()
         .map_err(|err| format!("could not parse count for {endpoint}: {err}"))
+}
+
+fn checksum_work_dir(target: &str, tag: &str) -> Result<PathBuf, String> {
+    let safe_target = target.replace('/', "_");
+    let safe_tag = tag.replace('/', "_");
+    let dir = env::current_dir()
+        .map_err(|err| format!("could not read current dir: {err}"))?
+        .join("target")
+        .join(format!(
+            "wvp-release-checksum-{}-{}-{}",
+            safe_target,
+            safe_tag,
+            process::id()
+        ));
+
+    fs::create_dir_all(&dir).map_err(|err| format!("could not create checksum dir: {err}"))?;
+    Ok(dir)
+}
+
+fn verify_checksum_asset(target: &str, tag: &str) -> (Option<bool>, Option<bool>, Option<String>) {
+    let dir = match checksum_work_dir(target, tag) {
+        Ok(dir) => dir,
+        Err(err) => return (Some(true), Some(false), Some(err)),
+    };
+
+    let download = Command::new("gh")
+        .args(["release", "download", tag, "--repo", target, "--dir"])
+        .arg(&dir)
+        .arg("--clobber")
+        .output();
+
+    let output = match download {
+        Ok(output) => output,
+        Err(err) => {
+            let _ = fs::remove_dir_all(&dir);
+            return (
+                Some(true),
+                Some(false),
+                Some(format!("failed to execute gh release download: {err}")),
+            );
+        }
+    };
+
+    if !output.status.success() {
+        let stderr = String::from_utf8_lossy(&output.stderr).trim().to_string();
+        let _ = fs::remove_dir_all(&dir);
+        return (
+            Some(true),
+            Some(false),
+            Some(format!("gh release download failed: {stderr}")),
+        );
+    }
+
+    let entries = match fs::read_dir(&dir) {
+        Ok(entries) => entries,
+        Err(err) => {
+            let _ = fs::remove_dir_all(&dir);
+            return (
+                Some(true),
+                Some(false),
+                Some(format!("could not read checksum dir: {err}")),
+            );
+        }
+    };
+
+    let mut checksum_file: Option<PathBuf> = None;
+
+    for entry in entries.flatten() {
+        let path = entry.path();
+        if path
+            .file_name()
+            .and_then(|name| name.to_str())
+            .map(|name| name.ends_with(".sha256"))
+            .unwrap_or(false)
+        {
+            checksum_file = Some(path);
+            break;
+        }
+    }
+
+    let Some(checksum_file) = checksum_file else {
+        let _ = fs::remove_dir_all(&dir);
+        return (
+            Some(true),
+            Some(false),
+            Some("no .sha256 asset found".to_string()),
+        );
+    };
+
+    let Some(checksum_name) = checksum_file.file_name().and_then(|name| name.to_str()) else {
+        let _ = fs::remove_dir_all(&dir);
+        return (
+            Some(true),
+            Some(false),
+            Some("checksum filename is not valid utf-8".to_string()),
+        );
+    };
+
+    let verify = Command::new("sha256sum")
+        .arg("-c")
+        .arg(checksum_name)
+        .current_dir(&dir)
+        .output();
+
+    let output = match verify {
+        Ok(output) => output,
+        Err(err) => {
+            let _ = fs::remove_dir_all(&dir);
+            return (
+                Some(true),
+                Some(false),
+                Some(format!("failed to execute sha256sum: {err}")),
+            );
+        }
+    };
+
+    let passed = output.status.success();
+    let error = if passed {
+        None
+    } else {
+        Some(String::from_utf8_lossy(&output.stderr).trim().to_string())
+    };
+
+    let _ = fs::remove_dir_all(&dir);
+
+    (Some(true), Some(passed), error)
 }
 
 fn inspect_github(target: &str) -> GithubMetadata {
@@ -181,6 +310,20 @@ fn inspect_github(target: &str) -> GithubMetadata {
         None => (None, None, None, None, None),
     };
 
+    let (
+        checksum_verification_attempted,
+        checksum_verification_passed,
+        checksum_verification_error,
+    ) = match (&latest_release_tag, checksum_asset_count) {
+        (Some(tag), Some(count)) if count > 0 => verify_checksum_asset(target, tag),
+        (Some(_), Some(0)) => (
+            Some(false),
+            Some(false),
+            Some("no checksum asset found".to_string()),
+        ),
+        _ => (Some(false), None, None),
+    };
+
     GithubMetadata {
         repository_found,
         release_count,
@@ -190,6 +333,9 @@ fn inspect_github(target: &str) -> GithubMetadata {
         latest_release_asset_count,
         checksum_asset_count,
         signature_asset_count,
+        checksum_verification_attempted,
+        checksum_verification_passed,
+        checksum_verification_error,
         errors,
     }
 }
@@ -207,11 +353,21 @@ fn status_for(cfg: &Config, metadata: Option<&GithubMetadata>) -> &'static str {
         return "FAIL";
     }
 
+    if meta.checksum_verification_passed == Some(false)
+        && meta.checksum_verification_attempted == Some(true)
+    {
+        return "FAIL";
+    }
+
     if meta.release_count == Some(0) {
         return "WARN";
     }
 
     if meta.checksum_asset_count == Some(0) || meta.signature_asset_count == Some(0) {
+        return "WARN";
+    }
+
+    if meta.checksum_verification_passed != Some(true) {
         return "WARN";
     }
 
@@ -275,7 +431,7 @@ fn print_report(cfg: &Config) {
         println!("  \"status\": \"{status}\",");
         println!("  \"classification\": \"observed\",");
         println!("  \"live_inspection\": {},", cfg.live);
-        println!("  \"summary\": \"GitHub release metadata and artifact discovery baseline\",");
+        println!("  \"summary\": \"GitHub release metadata, artifact discovery and checksum verification baseline\",");
         println!("  \"github\": {{");
 
         if let Some(meta) = metadata.as_ref() {
@@ -308,6 +464,18 @@ fn print_report(cfg: &Config) {
                 "    \"signature_asset_count\": {},",
                 json_usize_opt(meta.signature_asset_count)
             );
+            println!(
+                "    \"checksum_verification_attempted\": {},",
+                json_bool_opt(meta.checksum_verification_attempted)
+            );
+            println!(
+                "    \"checksum_verification_passed\": {},",
+                json_bool_opt(meta.checksum_verification_passed)
+            );
+            println!(
+                "    \"checksum_verification_error\": {},",
+                json_string_opt(&meta.checksum_verification_error)
+            );
             print_json_errors(&meta.errors);
         } else {
             println!("    \"repository_found\": null,");
@@ -318,6 +486,9 @@ fn print_report(cfg: &Config) {
             println!("    \"latest_release_asset_count\": null,");
             println!("    \"checksum_asset_count\": null,");
             println!("    \"signature_asset_count\": null,");
+            println!("    \"checksum_verification_attempted\": null,");
+            println!("    \"checksum_verification_passed\": null,");
+            println!("    \"checksum_verification_error\": null,");
             println!("    \"errors\": []");
         }
 
@@ -326,8 +497,8 @@ fn print_report(cfg: &Config) {
         println!("    \"not an audit\",");
         println!("    \"release metadata is not security proof\",");
         println!("    \"asset name discovery is not checksum verification\",");
+        println!("    \"checksum verification is integrity verification only\",");
         println!("    \"signature asset discovery is not signature verification\",");
-        println!("    \"no checksum verification yet\",");
         println!("    \"no signature verification yet\",");
         println!("    \"no reproducible build verification yet\"");
         println!("  ]");
@@ -340,7 +511,7 @@ fn print_report(cfg: &Config) {
         println!("status: {status}");
         println!("classification: observed");
         println!("live_inspection: {}", cfg.live);
-        println!("summary: GitHub release metadata and artifact discovery baseline");
+        println!("summary: GitHub release metadata, artifact discovery and checksum verification baseline");
 
         if let Some(meta) = metadata {
             println!("repository_found: {:?}", meta.repository_found);
@@ -354,6 +525,19 @@ fn print_report(cfg: &Config) {
             );
             println!("checksum_asset_count: {:?}", meta.checksum_asset_count);
             println!("signature_asset_count: {:?}", meta.signature_asset_count);
+            println!(
+                "checksum_verification_attempted: {:?}",
+                meta.checksum_verification_attempted
+            );
+            println!(
+                "checksum_verification_passed: {:?}",
+                meta.checksum_verification_passed
+            );
+            println!(
+                "checksum_verification_error: {:?}",
+                meta.checksum_verification_error
+            );
+
             for error in meta.errors {
                 println!("error: {error}");
             }
@@ -362,8 +546,8 @@ fn print_report(cfg: &Config) {
         println!("limitation: not an audit");
         println!("limitation: release metadata is not security proof");
         println!("limitation: asset name discovery is not checksum verification");
+        println!("limitation: checksum verification is integrity verification only");
         println!("limitation: signature asset discovery is not signature verification");
-        println!("limitation: no checksum verification yet");
         println!("limitation: no signature verification yet");
         println!("limitation: no reproducible build verification yet");
     }
@@ -458,6 +642,9 @@ mod tests {
             latest_release_asset_count: Some(0),
             checksum_asset_count: Some(0),
             signature_asset_count: Some(0),
+            checksum_verification_attempted: Some(false),
+            checksum_verification_passed: None,
+            checksum_verification_error: None,
             errors: Vec::new(),
         };
 
@@ -480,9 +667,62 @@ mod tests {
             latest_release_asset_count: Some(1),
             checksum_asset_count: Some(1),
             signature_asset_count: Some(1),
+            checksum_verification_attempted: Some(true),
+            checksum_verification_passed: Some(true),
+            checksum_verification_error: None,
             errors: vec!["api error".to_string()],
         };
 
         assert_eq!(status_for(&cfg, Some(&meta)), "FAIL");
+    }
+
+    #[test]
+    fn status_fails_when_checksum_verification_fails() {
+        let cfg = Config {
+            target: "owner/repo".to_string(),
+            json: true,
+            live: true,
+        };
+        let meta = GithubMetadata {
+            repository_found: Some(true),
+            release_count: Some(1),
+            tag_count: Some(1),
+            latest_release_found: Some(true),
+            latest_release_tag: Some("v1.0.0".to_string()),
+            latest_release_asset_count: Some(2),
+            checksum_asset_count: Some(1),
+            signature_asset_count: Some(0),
+            checksum_verification_attempted: Some(true),
+            checksum_verification_passed: Some(false),
+            checksum_verification_error: Some("checksum mismatch".to_string()),
+            errors: Vec::new(),
+        };
+
+        assert_eq!(status_for(&cfg, Some(&meta)), "FAIL");
+    }
+
+    #[test]
+    fn status_warns_when_checksum_passes_but_signature_missing() {
+        let cfg = Config {
+            target: "owner/repo".to_string(),
+            json: true,
+            live: true,
+        };
+        let meta = GithubMetadata {
+            repository_found: Some(true),
+            release_count: Some(1),
+            tag_count: Some(1),
+            latest_release_found: Some(true),
+            latest_release_tag: Some("v1.0.0".to_string()),
+            latest_release_asset_count: Some(2),
+            checksum_asset_count: Some(1),
+            signature_asset_count: Some(0),
+            checksum_verification_attempted: Some(true),
+            checksum_verification_passed: Some(true),
+            checksum_verification_error: None,
+            errors: Vec::new(),
+        };
+
+        assert_eq!(status_for(&cfg, Some(&meta)), "WARN");
     }
 }
