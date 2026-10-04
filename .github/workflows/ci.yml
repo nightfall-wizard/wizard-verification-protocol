@@ -57,3 +57,6 @@ jobs:
 
       - name: WVP signature tooling capability conformance
         run: ./conformance/release-check-signature-tooling-capability.sh
+
+      - name: WVP signature status model conformance
+        run: ./conformance/release-check-signature-status-model.sh

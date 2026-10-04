@@ -19,6 +19,9 @@ struct GithubMetadata {
     latest_release_asset_count: Option<usize>,
     checksum_asset_count: Option<usize>,
     signature_asset_count: Option<usize>,
+    signature_verification_attempted: Option<bool>,
+    signature_verification_passed: Option<bool>,
+    signature_verification_error: Option<String>,
     checksum_verification_attempted: Option<bool>,
     checksum_verification_passed: Option<bool>,
     checksum_verification_error: Option<String>,
@@ -324,6 +327,23 @@ fn inspect_github(target: &str) -> GithubMetadata {
         _ => (Some(false), None, None),
     };
 
+    let (
+        signature_verification_attempted,
+        signature_verification_passed,
+        signature_verification_error,
+    ) = match signature_asset_count {
+        Some(count) if count > 0 => (
+            Some(false),
+            None,
+            Some(
+                "signature asset discovered but signature verification is not implemented yet"
+                    .to_string(),
+            ),
+        ),
+        Some(0) => (Some(false), None, None),
+        _ => (Some(false), None, None),
+    };
+
     GithubMetadata {
         repository_found,
         release_count,
@@ -333,6 +353,9 @@ fn inspect_github(target: &str) -> GithubMetadata {
         latest_release_asset_count,
         checksum_asset_count,
         signature_asset_count,
+        signature_verification_attempted,
+        signature_verification_passed,
+        signature_verification_error,
         checksum_verification_attempted,
         checksum_verification_passed,
         checksum_verification_error,
@@ -359,6 +382,12 @@ fn status_for(cfg: &Config, metadata: Option<&GithubMetadata>) -> &'static str {
         return "FAIL";
     }
 
+    if meta.signature_verification_passed == Some(false)
+        && meta.signature_verification_attempted == Some(true)
+    {
+        return "FAIL";
+    }
+
     if meta.release_count == Some(0) {
         return "WARN";
     }
@@ -368,6 +397,10 @@ fn status_for(cfg: &Config, metadata: Option<&GithubMetadata>) -> &'static str {
     }
 
     if meta.checksum_verification_passed != Some(true) {
+        return "WARN";
+    }
+
+    if meta.signature_verification_passed != Some(true) {
         return "WARN";
     }
 
@@ -465,6 +498,18 @@ fn print_report(cfg: &Config) {
                 json_usize_opt(meta.signature_asset_count)
             );
             println!(
+                "    \"signature_verification_attempted\": {},",
+                json_bool_opt(meta.signature_verification_attempted)
+            );
+            println!(
+                "    \"signature_verification_passed\": {},",
+                json_bool_opt(meta.signature_verification_passed)
+            );
+            println!(
+                "    \"signature_verification_error\": {},",
+                json_string_opt(&meta.signature_verification_error)
+            );
+            println!(
                 "    \"checksum_verification_attempted\": {},",
                 json_bool_opt(meta.checksum_verification_attempted)
             );
@@ -486,6 +531,9 @@ fn print_report(cfg: &Config) {
             println!("    \"latest_release_asset_count\": null,");
             println!("    \"checksum_asset_count\": null,");
             println!("    \"signature_asset_count\": null,");
+            println!("    \"signature_verification_attempted\": null,");
+            println!("    \"signature_verification_passed\": null,");
+            println!("    \"signature_verification_error\": null,");
             println!("    \"checksum_verification_attempted\": null,");
             println!("    \"checksum_verification_passed\": null,");
             println!("    \"checksum_verification_error\": null,");
@@ -525,6 +573,18 @@ fn print_report(cfg: &Config) {
             );
             println!("checksum_asset_count: {:?}", meta.checksum_asset_count);
             println!("signature_asset_count: {:?}", meta.signature_asset_count);
+            println!(
+                "signature_verification_attempted: {:?}",
+                meta.signature_verification_attempted
+            );
+            println!(
+                "signature_verification_passed: {:?}",
+                meta.signature_verification_passed
+            );
+            println!(
+                "signature_verification_error: {:?}",
+                meta.signature_verification_error
+            );
             println!(
                 "checksum_verification_attempted: {:?}",
                 meta.checksum_verification_attempted
@@ -642,6 +702,9 @@ mod tests {
             latest_release_asset_count: Some(0),
             checksum_asset_count: Some(0),
             signature_asset_count: Some(0),
+            signature_verification_attempted: Some(false),
+            signature_verification_passed: None,
+            signature_verification_error: None,
             checksum_verification_attempted: Some(false),
             checksum_verification_passed: None,
             checksum_verification_error: None,
@@ -667,6 +730,9 @@ mod tests {
             latest_release_asset_count: Some(1),
             checksum_asset_count: Some(1),
             signature_asset_count: Some(1),
+            signature_verification_attempted: Some(false),
+            signature_verification_passed: None,
+            signature_verification_error: None,
             checksum_verification_attempted: Some(true),
             checksum_verification_passed: Some(true),
             checksum_verification_error: None,
@@ -692,6 +758,9 @@ mod tests {
             latest_release_asset_count: Some(2),
             checksum_asset_count: Some(1),
             signature_asset_count: Some(0),
+            signature_verification_attempted: Some(false),
+            signature_verification_passed: None,
+            signature_verification_error: None,
             checksum_verification_attempted: Some(true),
             checksum_verification_passed: Some(false),
             checksum_verification_error: Some("checksum mismatch".to_string()),
@@ -717,6 +786,9 @@ mod tests {
             latest_release_asset_count: Some(2),
             checksum_asset_count: Some(1),
             signature_asset_count: Some(0),
+            signature_verification_attempted: Some(false),
+            signature_verification_passed: None,
+            signature_verification_error: None,
             checksum_verification_attempted: Some(true),
             checksum_verification_passed: Some(true),
             checksum_verification_error: None,
@@ -724,5 +796,92 @@ mod tests {
         };
 
         assert_eq!(status_for(&cfg, Some(&meta)), "WARN");
+    }
+
+    #[test]
+    fn status_warns_when_signature_asset_exists_but_not_verified() {
+        let cfg = Config {
+            target: "owner/repo".to_string(),
+            json: true,
+            live: true,
+        };
+        let meta = GithubMetadata {
+            repository_found: Some(true),
+            release_count: Some(1),
+            tag_count: Some(1),
+            latest_release_found: Some(true),
+            latest_release_tag: Some("v1.0.0".to_string()),
+            latest_release_asset_count: Some(3),
+            checksum_asset_count: Some(1),
+            signature_asset_count: Some(1),
+            signature_verification_attempted: Some(false),
+            signature_verification_passed: None,
+            signature_verification_error: Some(
+                "signature asset discovered but signature verification is not implemented yet"
+                    .to_string(),
+            ),
+            checksum_verification_attempted: Some(true),
+            checksum_verification_passed: Some(true),
+            checksum_verification_error: None,
+            errors: Vec::new(),
+        };
+
+        assert_eq!(status_for(&cfg, Some(&meta)), "WARN");
+    }
+
+    #[test]
+    fn status_fails_when_signature_verification_fails() {
+        let cfg = Config {
+            target: "owner/repo".to_string(),
+            json: true,
+            live: true,
+        };
+        let meta = GithubMetadata {
+            repository_found: Some(true),
+            release_count: Some(1),
+            tag_count: Some(1),
+            latest_release_found: Some(true),
+            latest_release_tag: Some("v1.0.0".to_string()),
+            latest_release_asset_count: Some(3),
+            checksum_asset_count: Some(1),
+            signature_asset_count: Some(1),
+            signature_verification_attempted: Some(true),
+            signature_verification_passed: Some(false),
+            signature_verification_error: Some("signature verification failed".to_string()),
+            checksum_verification_attempted: Some(true),
+            checksum_verification_passed: Some(true),
+            checksum_verification_error: None,
+            errors: Vec::new(),
+        };
+
+        assert_eq!(status_for(&cfg, Some(&meta)), "FAIL");
+    }
+
+    #[test]
+    fn status_info_when_checksum_and_signature_verification_pass() {
+        let cfg = Config {
+            target: "owner/repo".to_string(),
+            json: true,
+            live: true,
+        };
+        let meta = GithubMetadata {
+            repository_found: Some(true),
+            release_count: Some(1),
+            tag_count: Some(1),
+            latest_release_found: Some(true),
+            latest_release_tag: Some("v1.0.0".to_string()),
+            latest_release_asset_count: Some(3),
+            checksum_asset_count: Some(1),
+            signature_asset_count: Some(1),
+            signature_verification_attempted: Some(true),
+            signature_verification_passed: Some(true),
+            signature_verification_error: None,
+            checksum_verification_attempted: Some(true),
+            checksum_verification_passed: Some(true),
+            checksum_verification_error: None,
+            errors: Vec::new(),
+        };
+
+        assert_eq!(status_for(&cfg, Some(&meta)), "INFO");
     }
 }

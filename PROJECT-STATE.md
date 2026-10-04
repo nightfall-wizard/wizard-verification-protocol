@@ -1,6 +1,6 @@
 # PROJECT-STATE
 
-Updated: 2026-10-04 23:23:12 CEST
+Updated: 2026-10-04 23:33:22 CEST
 
 ## Project
 
@@ -16,7 +16,7 @@ Proof-of-Project-Reality
 
 ## Current stage
 
-WVP v0.2 signature tooling path recovery.
+WVP v0.2 signature status model.
 
 ## Completed
 
@@ -25,12 +25,15 @@ WVP v0.2 signature tooling path recovery.
 - release checksum verification is end-to-end proven
 - OpenSSL signature tooling path is detected
 - no-secret scan excludes detector scripts containing intentional sentinel patterns
+- signature discovery is separated from signature verification
+- JSON fields for signature verification status are implemented
+- INFO now requires checksum verification and signature verification to pass
 
 ## Current progress
 
 WVP v0.1 baseline: 100 percent.
 
-WVP v0.2 signature verification: 10 percent after commit, push and CI verification.
+WVP v0.2 signature verification: 20 percent after commit, push and CI verification.
 
 ## Next target
 
