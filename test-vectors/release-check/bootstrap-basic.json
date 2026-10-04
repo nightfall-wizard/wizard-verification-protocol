@@ -1,0 +1,27 @@
+{
+  "schema": "wvp.release-check.vector.v0",
+  "name": "bootstrap-basic",
+  "description": "Bootstrap release-check vector for a syntactically valid owner/repo target.",
+  "input": {
+    "target": "nightfall-wizard/wizard-verification-protocol",
+    "json": true
+  },
+  "expected": {
+    "tool": "wvp-release-check",
+    "status": "WARN",
+    "classification": "observed",
+    "required_limitations": [
+      "not an audit",
+      "no signature verification yet",
+      "no checksum verification yet",
+      "no reproducible build verification yet"
+    ]
+  },
+  "scope": "bootstrap conformance smoke",
+  "limitations": [
+    "does not call GitHub release API",
+    "does not verify signatures",
+    "does not verify checksums",
+    "does not verify reproducible builds"
+  ]
+}

@@ -1,6 +1,6 @@
 # PROJECT-STATE
 
-Updated: 2026-10-04 22:30:27 CEST
+Updated: 2026-10-04 22:32:53 CEST
 
 ## Project
 
@@ -8,24 +8,26 @@ Wizard Verification Protocol — WVP
 
 ## Current stage
 
-CI baseline hardening.
+Release-check conformance smoke added to CI.
 
 ## Completed
 
 - GitHub repository created
-- initial commit pushed
-- GitHub Actions CI passed
-- CI runner pinned to ubuntu-24.04
-- workflow_dispatch enabled
-- checkout action baseline reviewed
+- CI passed
+- CI baseline hardened
+- wvp-release-check exists
+- release-check bootstrap test vector created
+- release-check conformance smoke script created
+- local conformance smoke passed
+- conformance smoke added to GitHub Actions
 
 ## Current progress
 
-55 percent after successful hardening push and CI run.
+65 percent after successful push and CI verification.
 
 ## Next target
 
-Add release-check test vectors and conformance smoke command.
+Upgrade wvp-release-check from bootstrap output to real GitHub release metadata inspection.
 
 ## Safety state
 

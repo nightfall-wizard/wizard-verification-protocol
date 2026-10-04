@@ -33,3 +33,6 @@ jobs:
 
       - name: Example JSON output
         run: cargo run --manifest-path reference/rust/wvp-release-check/Cargo.toml -- --target nightfall-wizard/wizard-verification-protocol --json
+
+      - name: Release-check conformance smoke
+        run: ./conformance/release-check-smoke.sh
