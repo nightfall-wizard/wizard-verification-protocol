@@ -82,4 +82,6 @@ jobs:
         run: ./conformance/release-check-v02-version-build-script.sh
 
       - name: WVP v0.2.0 post-release conformance
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: ./conformance/release-check-v020-post-release.sh
