@@ -1,6 +1,6 @@
 # PROJECT-STATE
 
-Updated: 2026-10-04 22:28:40 CEST
+Updated: 2026-10-04 22:30:27 CEST
 
 ## Project
 
@@ -8,27 +8,24 @@ Wizard Verification Protocol — WVP
 
 ## Current stage
 
-CI, initial commit and GitHub push stage.
+CI baseline hardening.
 
 ## Completed
 
-- GitHub CLI authenticated
-- local WVP directory created
-- Git repository initialized
-- base WVP files created
-- release integrity spec created
-- Rust workspace created
-- wvp-release-check created
-- cargo test completed locally
-- GitHub Actions CI file created
+- GitHub repository created
+- initial commit pushed
+- GitHub Actions CI passed
+- CI runner pinned to ubuntu-24.04
+- workflow_dispatch enabled
+- checkout action baseline reviewed
 
 ## Current progress
 
-45 percent after successful push.
+55 percent after successful hardening push and CI run.
 
 ## Next target
 
-Verify GitHub Actions result and fix CI if needed.
+Add release-check test vectors and conformance smoke command.
 
 ## Safety state
 
