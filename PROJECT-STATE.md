@@ -1,6 +1,6 @@
 # PROJECT-STATE
 
-Updated: 2026-10-04 23:07:27 CEST
+Updated: 2026-10-04 23:09:56 CEST
 
 ## Project
 
@@ -16,23 +16,23 @@ Proof-of-Project-Reality
 
 ## Current stage
 
-Signature artifact policy and missing-signature conformance.
+Safe signature verification path.
 
 ## Completed
 
-- wvp-release-check verifies release checksums
-- checksum verification result appears in JSON output
-- WVP v0.1.0 remains WARN because signature verification is missing
-- signature artifact policy documented
-- missing-signature behavior is enforced by conformance script
+- checksum verification is implemented
+- missing signature remains WARN
+- signature artifact policy is documented
+- safe signature verification path is documented
+- CI rejects private signing material patterns
 
 ## Current progress
 
-95 percent after commit, push and CI verification.
+97 percent after commit, push and CI verification.
 
 ## Next target
 
-Prepare real signature verification implementation path without storing signing secrets in the repository.
+Prepare final WVP v0.1 baseline summary and next-version signature implementation target.
 
 ## Safety state
 

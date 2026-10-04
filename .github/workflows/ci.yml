@@ -51,3 +51,6 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: ./conformance/release-check-missing-signature-policy.sh
+
+      - name: WVP no-secret signing material conformance
+        run: ./conformance/release-check-no-secret-signing-material.sh
