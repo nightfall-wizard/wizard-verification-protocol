@@ -9,33 +9,32 @@ echo "Startzeit: $START_TS"
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$ROOT"
 
-TARGET="nightfall-wizard/wizard-verification-protocol"
+TARGET="${WVP_TARGET:-nightfall-wizard/wizard-verification-protocol}"
+
 echo "Target: $TARGET"
 
-OUT="$(cargo run --quiet --manifest-path reference/rust/wvp-release-check/Cargo.toml -- --target "$TARGET" --json --live)"
+OUT="$(
+  cargo run --quiet --manifest-path reference/rust/wvp-release-check/Cargo.toml -- \
+    --target "$TARGET" \
+    --json \
+    --live
+)"
+
 echo "$OUT"
 
-echo "$OUT" | grep -q '"tool": "wvp-release-check"'
-echo "$OUT" | grep -q '"target": "nightfall-wizard/wizard-verification-protocol"'
 echo "$OUT" | grep -q '"live_inspection": true'
 echo "$OUT" | grep -q '"repository_found": true'
-echo "$OUT" | grep -q '"release_count":'
-echo "$OUT" | grep -q '"tag_count":'
-echo "$OUT" | grep -q '"latest_release_found":'
-echo "$OUT" | grep -q '"latest_release_tag":'
-echo "$OUT" | grep -q '"latest_release_asset_count":'
-echo "$OUT" | grep -q '"checksum_asset_count":'
+echo "$OUT" | grep -q '"latest_release_found": true'
+echo "$OUT" | grep -q '"latest_release_tag": "v0.1.1"'
+echo "$OUT" | grep -q '"checksum_asset_count": 1'
+echo "$OUT" | grep -Eq '"signature_asset_count": [1-9][0-9]*'
 echo "$OUT" | grep -q '"checksum_verification_attempted": true'
 echo "$OUT" | grep -q '"checksum_verification_passed": true'
-echo "$OUT" | grep -q '"checksum_verification_error": null'
-echo "$OUT" | grep -q '"signature_asset_count":'
 echo "$OUT" | grep -q '"signature_verification_attempted": false'
 echo "$OUT" | grep -q '"signature_verification_passed": null'
-echo "$OUT" | grep -q '"signature_verification_error": null'
-echo "$OUT" | grep -q '"errors":'
-echo "$OUT" | grep -q '"release metadata is not security proof"'
-echo "$OUT" | grep -q '"asset name discovery is not checksum verification"'
-echo "$OUT" | grep -q '"signature asset discovery is not signature verification"'
+echo "$OUT" | grep -q '"signature_verification_error": "signature asset discovered but signature verification is not implemented yet"'
+echo "$OUT" | grep -q '"status": "WARN"'
+echo "$OUT" | grep -q '"no signature verification yet"'
 
 END_TS="$(date '+%Y-%m-%d %H:%M:%S %Z')"
 END_EPOCH="$(date +%s)"

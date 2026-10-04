@@ -63,3 +63,8 @@ jobs:
 
       - name: WVP public release verification key conformance
         run: ./conformance/release-check-public-key-policy.sh
+
+      - name: WVP self-release signature conformance
+        run: ./conformance/release-check-self-release-signature.sh
+        env:
+          GH_REPO: ${{ github.repository }}
