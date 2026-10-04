@@ -1,6 +1,6 @@
 # PROJECT-STATE
 
-Updated: 2026-10-04 22:46:27 CEST
+Updated: 2026-10-04 22:49:12 CEST
 
 ## Project
 
@@ -16,33 +16,24 @@ Proof-of-Project-Reality
 
 ## Current stage
 
-WVP Proof-of-Project-Reality core specification layer.
+wvp-release-check upgraded with live GitHub metadata inspection.
 
 ## Completed
 
-- GitHub repository created
-- CI passed
-- CI baseline hardened
-- wvp-release-check exists
-- release-check bootstrap test vector created
-- release-check conformance smoke script created
-- conformance smoke added to GitHub Actions
-- WVP-SPEC.md created
-- METHODOLOGY.md created
-- EVIDENCE-STANDARD.md created
-- CLAIM-MATRIX.md created
-- RISK-MODEL.md created
-- SCORING-MODEL.md created
-- REPORT-TEMPLATE.md created
-- README repositioned to Proof-of-Project-Reality
+- WVP Proof-of-Project-Reality core committed and CI verified
+- wvp-release-check supports --live
+- repository existence inspection added
+- GitHub release count inspection added
+- GitHub tag count inspection added
+- bootstrap conformance smoke still passes
 
 ## Current progress
 
-60 percent.
+70 percent.
 
 ## Next target
 
-Commit WVP Proof-of-Project-Reality core, push and verify CI.
+Commit live GitHub metadata inspection, push and verify CI.
 
 ## Safety state
 
