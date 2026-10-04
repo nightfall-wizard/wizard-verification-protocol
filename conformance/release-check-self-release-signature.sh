@@ -10,7 +10,7 @@ ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$ROOT"
 
 REPO="${GH_REPO:-nightfall-wizard/wizard-verification-protocol}"
-TAG="${WVP_RELEASE_TAG:-v0.1.1}"
+TAG="${WVP_RELEASE_TAG:-v0.2.0}"
 ASSET="wvp-release-check-termux-android-aarch64"
 CHECKSUM_ASSET="$ASSET.sha256"
 SIG_ASSET="$ASSET.sig"

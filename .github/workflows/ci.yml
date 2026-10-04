@@ -80,3 +80,6 @@ jobs:
 
       - name: WVP v0.2 version and build script conformance
         run: ./conformance/release-check-v02-version-build-script.sh
+
+      - name: WVP v0.2.0 post-release conformance
+        run: ./conformance/release-check-v020-post-release.sh
