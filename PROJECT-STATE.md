@@ -1,14 +1,22 @@
 # PROJECT-STATE
 
-Updated: 2026-10-04 22:32:53 CEST
+Updated: 2026-10-04 22:46:27 CEST
 
 ## Project
 
 Wizard Verification Protocol — WVP
 
+## Builder
+
+nightfall-wizard
+
+## Category
+
+Proof-of-Project-Reality
+
 ## Current stage
 
-Release-check conformance smoke added to CI.
+WVP Proof-of-Project-Reality core specification layer.
 
 ## Completed
 
@@ -18,16 +26,23 @@ Release-check conformance smoke added to CI.
 - wvp-release-check exists
 - release-check bootstrap test vector created
 - release-check conformance smoke script created
-- local conformance smoke passed
 - conformance smoke added to GitHub Actions
+- WVP-SPEC.md created
+- METHODOLOGY.md created
+- EVIDENCE-STANDARD.md created
+- CLAIM-MATRIX.md created
+- RISK-MODEL.md created
+- SCORING-MODEL.md created
+- REPORT-TEMPLATE.md created
+- README repositioned to Proof-of-Project-Reality
 
 ## Current progress
 
-65 percent after successful push and CI verification.
+60 percent.
 
 ## Next target
 
-Upgrade wvp-release-check from bootstrap output to real GitHub release metadata inspection.
+Commit WVP Proof-of-Project-Reality core, push and verify CI.
 
 ## Safety state
 

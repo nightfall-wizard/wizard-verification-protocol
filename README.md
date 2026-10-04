@@ -1,32 +1,37 @@
 # Wizard Verification Protocol — WVP
 
-WVP is a zero-budget, mobile-built verification standard for Rust cryptocurrency protocols.
+Built by nightfall-wizard.
 
-Positioning:
+## Category
 
-> Wizard Verification Protocol — mobile-built verification standards for Rust cryptocurrency protocols.
+Proof-of-Project-Reality
 
-Built from Android/Termux.  
-Verified by GitHub Actions.  
-Zero paid infrastructure.  
-Specs • Reference implementations • Test vectors • Conformance suites.
+## Core Sentence
 
-## Principle
+Wizard Verification Protocol turns project claims into verifiable reality.
 
-Do not become a reference through claims.  
-Become a reference through reproducible artifacts.
+## Adversarial Principle
 
-## Initial modules
+No claim without proof. No proof without reproduction. No verification without adversarial testing.
 
-1. `wvp-release-check`
-2. `wvp-scorecard`
-3. `wvp-node-diagnose`
-4. `wvp-conformance`
-5. `wvp-light-verify`
+## Purpose
 
-## First reference target
+WVP is a mobile-built, zero-budget verification standard for checking whether crypto and open-source projects are technically, organizationally and economically real.
 
-Nightfall is used as the first WVP reference target.
+## Schelling Point Goal
 
-This is not an audit.  
-Reports must distinguish observed, verified, not found, not verified, out of scope and limitations.
+When someone wants to verify whether a project is real, they should think of WVP.
+
+Without WVP, a project check is incomplete.
+
+## Current Status
+
+Bootstrap implementation in progress.
+
+## Current Modules
+
+- wvp-release-check
+- wvp-scorecard
+- wvp-node-diagnose
+- wvp-conformance
+- wvp-light-verify
