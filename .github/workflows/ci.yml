@@ -91,3 +91,6 @@ jobs:
 
       - name: WVP same-environment repeat-build conformance
         run: ./conformance/release-check-same-env-repeat-build.sh
+
+      - name: WVP independent-environment separation conformance
+        run: ./conformance/release-check-independent-environment-separation.sh
