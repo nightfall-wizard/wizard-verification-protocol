@@ -253,6 +253,31 @@ fn verify_checksum_asset(target: &str, tag: &str) -> (Option<bool>, Option<bool>
     (Some(true), Some(passed), error)
 }
 
+fn verify_detached_signature(
+    public_key: &Path,
+    signature_file: &Path,
+    signed_asset: &Path,
+) -> Result<(), String> {
+    let output = Command::new("openssl")
+        .args(["dgst", "-sha256", "-verify"])
+        .arg(public_key)
+        .arg("-signature")
+        .arg(signature_file)
+        .arg(signed_asset)
+        .output()
+        .map_err(|err| format!("failed to execute openssl: {err}"))?;
+
+    if output.status.success() {
+        return Ok(());
+    }
+
+    let stderr = String::from_utf8_lossy(&output.stderr).trim().to_string();
+    let stdout = String::from_utf8_lossy(&output.stdout).trim().to_string();
+    let detail = if stderr.is_empty() { stdout } else { stderr };
+
+    Err(format!("openssl signature verification failed: {detail}"))
+}
+
 fn verify_signature_asset(target: &str, tag: &str) -> (Option<bool>, Option<bool>, Option<String>) {
     let public_key = PathBuf::from(PUBLIC_VERIFICATION_KEY_PATH);
 
@@ -338,36 +363,8 @@ fn verify_signature_asset(target: &str, tag: &str) -> (Option<bool>, Option<bool
         );
     }
 
-    let verify = Command::new("openssl")
-        .args(["dgst", "-sha256", "-verify"])
-        .arg(&public_key)
-        .arg("-signature")
-        .arg(&signature_file)
-        .arg(&signed_asset)
-        .output();
-
-    let output = match verify {
-        Ok(output) => output,
-        Err(err) => {
-            let _ = fs::remove_dir_all(&dir);
-            return (
-                Some(true),
-                Some(false),
-                Some(format!("failed to execute openssl: {err}")),
-            );
-        }
-    };
-
-    let passed = output.status.success();
-
-    let error = if passed {
-        None
-    } else {
-        let stderr = String::from_utf8_lossy(&output.stderr).trim().to_string();
-        let stdout = String::from_utf8_lossy(&output.stdout).trim().to_string();
-        let detail = if stderr.is_empty() { stdout } else { stderr };
-        Some(format!("openssl signature verification failed: {detail}"))
-    };
+    let error = verify_detached_signature(&public_key, &signature_file, &signed_asset).err();
+    let passed = error.is_none();
 
     let _ = fs::remove_dir_all(&dir);
 
@@ -892,6 +889,166 @@ mod tests {
         assert!(err.contains("multiple checksum assets found"));
 
         let _ = std::fs::remove_dir_all(dir);
+    }
+
+    #[derive(Debug)]
+    struct SignatureFixture {
+        dir: PathBuf,
+        public_key: PathBuf,
+        wrong_public_key: PathBuf,
+        asset: PathBuf,
+        signature: PathBuf,
+    }
+
+    fn run_checked_command(command: &mut Command) {
+        let output = command.output().expect("command must execute");
+        assert!(
+            output.status.success(),
+            "command failed\nstdout:\n{}\nstderr:\n{}",
+            String::from_utf8_lossy(&output.stdout),
+            String::from_utf8_lossy(&output.stderr)
+        );
+    }
+
+    fn build_signature_fixture(label: &str) -> SignatureFixture {
+        let dir = unique_asset_matching_test_dir(label);
+
+        let signing_key = dir.join("signing-key.pem");
+        let public_key = dir.join("verification-key.pem");
+        let wrong_signing_key = dir.join("wrong-signing-key.pem");
+        let wrong_public_key = dir.join("wrong-verification-key.pem");
+        let asset = dir.join("release.bin");
+        let signature = dir.join("release.bin.sig");
+
+        std::fs::write(&asset, b"original release bytes\n").unwrap();
+
+        run_checked_command(
+            Command::new("openssl")
+                .arg("genpkey")
+                .arg("-algorithm")
+                .arg("RSA")
+                .arg("-pkeyopt")
+                .arg("rsa_keygen_bits:3072")
+                .arg("-out")
+                .arg(&signing_key),
+        );
+
+        run_checked_command(
+            Command::new("openssl")
+                .arg("pkey")
+                .arg("-in")
+                .arg(&signing_key)
+                .arg("-pubout")
+                .arg("-out")
+                .arg(&public_key),
+        );
+
+        run_checked_command(
+            Command::new("openssl")
+                .arg("genpkey")
+                .arg("-algorithm")
+                .arg("RSA")
+                .arg("-pkeyopt")
+                .arg("rsa_keygen_bits:3072")
+                .arg("-out")
+                .arg(&wrong_signing_key),
+        );
+
+        run_checked_command(
+            Command::new("openssl")
+                .arg("pkey")
+                .arg("-in")
+                .arg(&wrong_signing_key)
+                .arg("-pubout")
+                .arg("-out")
+                .arg(&wrong_public_key),
+        );
+
+        run_checked_command(
+            Command::new("openssl")
+                .arg("dgst")
+                .arg("-sha256")
+                .arg("-sign")
+                .arg(&signing_key)
+                .arg("-out")
+                .arg(&signature)
+                .arg(&asset),
+        );
+
+        SignatureFixture {
+            dir,
+            public_key,
+            wrong_public_key,
+            asset,
+            signature,
+        }
+    }
+
+    #[test]
+    fn signature_verification_accepts_valid_signature() {
+        let fixture = build_signature_fixture("valid-signature");
+
+        let result =
+            verify_detached_signature(&fixture.public_key, &fixture.signature, &fixture.asset);
+
+        assert!(result.is_ok());
+
+        let _ = std::fs::remove_dir_all(fixture.dir);
+    }
+
+    #[test]
+    fn signature_tamper_rejects_modified_asset() {
+        let fixture = build_signature_fixture("tampered-asset");
+
+        std::fs::write(&fixture.asset, b"tampered release bytes\n").unwrap();
+
+        let result =
+            verify_detached_signature(&fixture.public_key, &fixture.signature, &fixture.asset);
+
+        assert!(result.is_err());
+        assert!(result
+            .unwrap_err()
+            .contains("signature verification failed"));
+
+        let _ = std::fs::remove_dir_all(fixture.dir);
+    }
+
+    #[test]
+    fn signature_tamper_rejects_modified_signature() {
+        let fixture = build_signature_fixture("tampered-signature");
+
+        let mut bytes = std::fs::read(&fixture.signature).unwrap();
+        assert!(!bytes.is_empty());
+        bytes[0] ^= 0x01;
+        std::fs::write(&fixture.signature, bytes).unwrap();
+
+        let result =
+            verify_detached_signature(&fixture.public_key, &fixture.signature, &fixture.asset);
+
+        assert!(result.is_err());
+        assert!(result
+            .unwrap_err()
+            .contains("signature verification failed"));
+
+        let _ = std::fs::remove_dir_all(fixture.dir);
+    }
+
+    #[test]
+    fn signature_tamper_rejects_wrong_public_key() {
+        let fixture = build_signature_fixture("wrong-public-key");
+
+        let result = verify_detached_signature(
+            &fixture.wrong_public_key,
+            &fixture.signature,
+            &fixture.asset,
+        );
+
+        assert!(result.is_err());
+        assert!(result
+            .unwrap_err()
+            .contains("signature verification failed"));
+
+        let _ = std::fs::remove_dir_all(fixture.dir);
     }
 
     #[test]

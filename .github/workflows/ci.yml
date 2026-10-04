@@ -71,3 +71,6 @@ jobs:
 
       - name: WVP signature asset matching conformance
         run: ./conformance/release-check-signature-asset-matching.sh
+
+      - name: WVP signature tamper-negative conformance
+        run: ./conformance/release-check-signature-tamper-negative.sh

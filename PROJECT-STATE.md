@@ -1,6 +1,6 @@
 # PROJECT-STATE
 
-Updated: 2026-10-04 23:52:57 CEST
+Updated: 2026-10-04 23:55:48 CEST
 
 ## Project
 
@@ -16,7 +16,7 @@ Proof-of-Project-Reality
 
 ## Current stage
 
-WVP v0.2 hardened signature asset matching.
+WVP v0.2 tamper-negative signature verification.
 
 ## Completed
 
@@ -38,16 +38,19 @@ WVP v0.2 hardened signature asset matching.
 - release asset matching now requires exactly one .sha256 asset
 - release asset matching now requires exactly one .sig asset
 - negative unit tests cover missing and duplicate signature/checksum assets
+- tamper-negative tests reject modified signed assets
+- tamper-negative tests reject modified detached signatures
+- tamper-negative tests reject wrong public verification keys
 
 ## Current progress
 
 WVP v0.1 baseline: 100 percent.
 
-WVP v0.2 signature verification: 60 percent after commit, push and CI verification.
+WVP v0.2 signature verification: 70 percent after commit, push and CI verification.
 
 ## Next target
 
-Add tamper-negative signature verification tests and failure conformance.
+Prepare WVP v0.2 release candidate documentation and release checklist.
 
 ## Safety state
 
