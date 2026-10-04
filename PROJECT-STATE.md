@@ -1,6 +1,6 @@
 # PROJECT-STATE
 
-Updated: 2026-10-04 22:49:12 CEST
+Updated: 2026-10-04 22:51:21 CEST
 
 ## Project
 
@@ -16,7 +16,7 @@ Proof-of-Project-Reality
 
 ## Current stage
 
-wvp-release-check upgraded with live GitHub metadata inspection.
+Live GitHub metadata conformance added to CI.
 
 ## Completed
 
@@ -25,15 +25,17 @@ wvp-release-check upgraded with live GitHub metadata inspection.
 - repository existence inspection added
 - GitHub release count inspection added
 - GitHub tag count inspection added
-- bootstrap conformance smoke still passes
+- bootstrap conformance smoke passes
+- live metadata conformance smoke created
+- GitHub Actions configured with GH_TOKEN for live metadata smoke
 
 ## Current progress
 
-70 percent.
+75 percent after commit, push and CI verification.
 
 ## Next target
 
-Commit live GitHub metadata inspection, push and verify CI.
+Add checksum and signature discovery fields to release-check.
 
 ## Safety state
 

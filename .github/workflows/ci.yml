@@ -36,3 +36,8 @@ jobs:
 
       - name: Release-check conformance smoke
         run: ./conformance/release-check-smoke.sh
+
+      - name: Release-check live GitHub metadata smoke
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: ./conformance/release-check-live-smoke.sh
