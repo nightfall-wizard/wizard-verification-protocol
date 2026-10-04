@@ -1,0 +1,12 @@
+/target/
+**/*.rs.bk
+.env
+.env.*
+*.log
+*.seed
+*.key
+*.wallet
+*.sqlite
+*.db
+wallet.dat
+secrets/
