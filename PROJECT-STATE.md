@@ -1,35 +1,46 @@
 # PROJECT-STATE
 
-Updated: 2026-10-04 22:57:49 CEST
+Updated: 2026-10-04 22:59:54 CEST
 
 ## Project
 
 Wizard Verification Protocol — WVP
 
+
 ## Builder
+
 
 nightfall-wizard
 
+
 ## Category
+
 
 Proof-of-Project-Reality
 
+
 ## Current stage
 
-WVP self-verification release preparation.
+
+Portable self-release checksum verification.
+
 
 ## Completed
 
-- release artifact discovery is CI verified
-- WVP self-verification release policy created
+
+- WVP v0.1.0 release exists
+- release checksum asset made portable
+- downloaded release asset verifies with sha256sum -c
+- self-release checksum conformance script created
+- CI configured to verify WVP self-release checksum
 
 ## Current progress
 
-85 percent after release creation and live verification.
+88 percent after commit, push and CI verification.
 
 ## Next target
 
-Create WVP v0.1.0 release with checksum asset and verify it with wvp-release-check.
+Integrate checksum verification result fields into wvp-release-check itself.
 
 ## Safety state
 

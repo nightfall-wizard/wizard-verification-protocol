@@ -41,3 +41,8 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: ./conformance/release-check-live-smoke.sh
+
+      - name: WVP self-release checksum conformance
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: ./conformance/release-check-self-release-checksum.sh
