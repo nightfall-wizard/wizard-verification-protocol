@@ -54,3 +54,6 @@ jobs:
 
       - name: WVP no-secret signing material conformance
         run: ./conformance/release-check-no-secret-signing-material.sh
+
+      - name: WVP signature tooling capability conformance
+        run: ./conformance/release-check-signature-tooling-capability.sh

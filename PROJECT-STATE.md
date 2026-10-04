@@ -1,6 +1,6 @@
 # PROJECT-STATE
 
-Updated: 2026-10-04 23:17:04 CEST
+Updated: 2026-10-04 23:20:50 CEST
 
 ## Project
 
@@ -16,23 +16,26 @@ Proof-of-Project-Reality
 
 ## Current stage
 
-Current-code release baseline v0.1.1.
+WVP v0.2 signature tooling path.
 
 ## Completed
 
+- WVP v0.1.1 release baseline is complete
 - checksum verification is implemented
+- release checksum verification is end-to-end proven
 - missing signature remains WARN
-- safe signature verification path is documented
-- release conformance resolves the latest release dynamically
-- wvp-release-check version prepared for v0.1.1
+- signature tooling path is documented
+- CI verifies that no private signing material is committed
 
 ## Current progress
 
-100 percent after release creation and end-to-end verification.
+WVP v0.1 baseline: 100 percent.
+
+WVP v0.2 signature verification: 10 percent after commit, push and CI verification.
 
 ## Next target
 
-Implement real signature verification using public verification material only.
+Create public verification key and detached signature workflow without committing private signing material.
 
 ## Safety state
 
