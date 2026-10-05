@@ -123,6 +123,9 @@ jobs:
 
       - name: WVP v0.3 unsigned asset staging conformance
         run: ./conformance/release-check-v030-unsigned-asset-staging.sh
+
+      - name: WVP v0.3 detached signature procedure conformance
+        run: ./conformance/release-check-v030-detached-signature-procedure.sh
       - name: WVP Android-vs-CI local conformance script syntax
         run: bash -n ./conformance/release-check-android-vs-ci-build-provenance.sh
 

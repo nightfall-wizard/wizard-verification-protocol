@@ -667,3 +667,28 @@ Progress interpretation after successful CI:
 - Not 100%.
 <!-- WVP:STEP-19T-V030-DETACHED-SIGNATURE-PROCEDURE:END -->
 
+
+<!-- WVP:STEP-19U-V030-DETACHED-SIGNATURE-PROCEDURE-CI:START -->
+## STEP 19U — v0.3.0 Detached Signature Procedure Check Wired Into CI
+
+Status: `implemented`
+
+CI-enforced check:
+
+    ./conformance/release-check-v030-detached-signature-procedure.sh
+
+Reason:
+
+- STEP 19T prepared the detached signature procedure without private-key exposure;
+- dry-run creates no signature;
+- sign mode refuses missing private-key input;
+- STEP 19U makes the detached signature procedure machine-checked in CI;
+- this still does not create a tag, GitHub release or detached signature.
+
+Progress interpretation after successful CI:
+
+- Total project: approximately 72%.
+- WVP v0.3: approximately 96%.
+- Not 100%.
+<!-- WVP:STEP-19U-V030-DETACHED-SIGNATURE-PROCEDURE-CI:END -->
+
