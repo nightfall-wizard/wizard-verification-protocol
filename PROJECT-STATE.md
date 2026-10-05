@@ -1618,3 +1618,45 @@ Progress interpretation after successful CI:
 - Overall WVP system: not 100%.
 <!-- WVP:STEP-21M-SEMANTIC-COVERAGE-GUARD:END -->
 
+
+<!-- WVP:STEP-21N-RUNNER-REPORT-ARTIFACT:START -->
+## STEP 21N — v0.4 Fixture Runner Report Artifact
+
+Status: `implemented`
+
+Purpose:
+
+- Add reproducible WVP v0.4 fixture runner report artifacts.
+- Store machine-readable runner summary in JSON.
+- Store human-readable runner summary in Markdown.
+- Verify report contents against live offline runner output in CI.
+- Preserve offline, read-only, non-mutating, and claim-limited execution.
+
+Artifacts:
+
+- `reports/release-check/WVP-V040-FIXTURE-RUNNER-REPORT.json`
+- `reports/release-check/WVP-V040-FIXTURE-RUNNER-REPORT.md`
+- `conformance/wvp-v040-release-check-fixture-runner-report-conformance.sh`
+
+Boundaries:
+
+- this is a fixture runner report, not a full independent audit engine;
+- no release-check Rust runtime behavior is changed by this step;
+- no tag is created;
+- no GitHub release is created;
+- no GitHub release asset is uploaded;
+- no private key, seed phrase, wallet secret, or API token is added;
+- no custody, broker, exchange, paid-report, or investment-advice function is introduced;
+- no audit claim is made;
+- no legal clearance guarantee is made;
+- no binary safety proof is claimed;
+- no source-to-release proof is claimed;
+- no reproducible-build proof is claimed.
+
+Progress interpretation after successful CI:
+
+- Total project: approximately 93%.
+- WVP v0.4: fixtures, runner design, index validator, runner skeleton, semantic classification layer, semantic coverage guard, and runner report artifact.
+- Overall WVP system: not 100%.
+<!-- WVP:STEP-21N-RUNNER-REPORT-ARTIFACT:END -->
+

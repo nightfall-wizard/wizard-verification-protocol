@@ -1,0 +1,195 @@
+{
+  "artifact": "WVP-V040-FIXTURE-RUNNER-REPORT",
+  "artifact_version": "1",
+  "authentication_required": false,
+  "boundaries": {
+    "not_an_audit": true,
+    "not_binary_safety_proof": true,
+    "not_investment_advice": true,
+    "not_legal_clearance": true,
+    "not_reproducible_build_proof": true,
+    "not_source_to_release_proof": true,
+    "not_wallet_safety_claim": true
+  },
+  "claims": {
+    "audit_claim": false,
+    "binary_safety_claim": false,
+    "investment_suitability_claim": false,
+    "legal_compliance_claim": false,
+    "reproducible_build_claim": false,
+    "source_to_release_claim": false,
+    "wallet_safety_claim": false
+  },
+  "fixture_results": [
+    {
+      "actual_classification": {
+        "binary_asset_count": 1,
+        "checksum_asset_count": 1,
+        "duplicate_checksum_state": false,
+        "duplicate_signature_state": false,
+        "missing_signature_state_must_not_be_silent_success": false,
+        "public_key_must_not_count_as_signature": true,
+        "public_key_name_contains_signing_state": false,
+        "public_key_without_signature_state": false,
+        "public_verification_key_asset_count": 0,
+        "signature_asset_count": 1,
+        "signature_verification_must_not_be_claimed": true,
+        "signature_without_public_key_state": true
+      },
+      "checked_expected_keys": [
+        "binary_asset_count",
+        "checksum_asset_count",
+        "signature_asset_count",
+        "public_verification_key_asset_count",
+        "signature_without_public_key_state",
+        "signature_verification_must_not_be_claimed",
+        "missing_public_key_state_must_not_be_silent_success"
+      ],
+      "id": "FRC-003",
+      "mismatches": [],
+      "runner_stage": "semantic_classification_layer",
+      "status": "PASS",
+      "unchecked_expected_keys": []
+    },
+    {
+      "actual_classification": {
+        "binary_asset_count": 1,
+        "checksum_asset_count": 1,
+        "duplicate_checksum_state": false,
+        "duplicate_signature_state": false,
+        "missing_signature_state_must_not_be_silent_success": true,
+        "public_key_must_not_count_as_signature": true,
+        "public_key_name_contains_signing_state": true,
+        "public_key_without_signature_state": true,
+        "public_verification_key_asset_count": 1,
+        "signature_asset_count": 0,
+        "signature_verification_must_not_be_claimed": true,
+        "signature_without_public_key_state": false
+      },
+      "checked_expected_keys": [
+        "binary_asset_count",
+        "checksum_asset_count",
+        "signature_asset_count",
+        "public_verification_key_asset_count",
+        "public_key_without_signature_state",
+        "public_key_must_not_count_as_signature",
+        "signature_verification_must_not_be_claimed",
+        "missing_signature_state_must_not_be_silent_success"
+      ],
+      "id": "FRC-004",
+      "mismatches": [],
+      "runner_stage": "semantic_classification_layer",
+      "status": "PASS",
+      "unchecked_expected_keys": []
+    },
+    {
+      "actual_classification": {
+        "binary_asset_count": 1,
+        "checksum_asset_count": 2,
+        "duplicate_checksum_state": true,
+        "duplicate_signature_state": false,
+        "missing_signature_state_must_not_be_silent_success": false,
+        "public_key_must_not_count_as_signature": true,
+        "public_key_name_contains_signing_state": true,
+        "public_key_without_signature_state": false,
+        "public_verification_key_asset_count": 1,
+        "signature_asset_count": 1,
+        "signature_verification_must_not_be_claimed": false,
+        "signature_without_public_key_state": false
+      },
+      "checked_expected_keys": [
+        "binary_asset_count",
+        "checksum_asset_count",
+        "signature_asset_count",
+        "public_verification_key_asset_count",
+        "duplicate_checksum_state",
+        "checksum_state_must_not_be_silent_success"
+      ],
+      "id": "FRC-005",
+      "mismatches": [],
+      "runner_stage": "semantic_classification_layer",
+      "status": "PASS",
+      "unchecked_expected_keys": []
+    },
+    {
+      "actual_classification": {
+        "binary_asset_count": 1,
+        "checksum_asset_count": 1,
+        "duplicate_checksum_state": false,
+        "duplicate_signature_state": true,
+        "missing_signature_state_must_not_be_silent_success": false,
+        "public_key_must_not_count_as_signature": true,
+        "public_key_name_contains_signing_state": true,
+        "public_key_without_signature_state": false,
+        "public_verification_key_asset_count": 1,
+        "signature_asset_count": 2,
+        "signature_verification_must_not_be_claimed": false,
+        "signature_without_public_key_state": false
+      },
+      "checked_expected_keys": [
+        "binary_asset_count",
+        "checksum_asset_count",
+        "signature_asset_count",
+        "public_verification_key_asset_count",
+        "duplicate_signature_state",
+        "signature_state_must_not_be_silent_success",
+        "public_key_must_not_count_as_signature"
+      ],
+      "id": "FRC-006",
+      "mismatches": [],
+      "runner_stage": "semantic_classification_layer",
+      "status": "PASS",
+      "unchecked_expected_keys": []
+    },
+    {
+      "actual_classification": {
+        "binary_asset_count": 1,
+        "checksum_asset_count": 1,
+        "duplicate_checksum_state": false,
+        "duplicate_signature_state": false,
+        "missing_signature_state_must_not_be_silent_success": true,
+        "public_key_must_not_count_as_signature": true,
+        "public_key_name_contains_signing_state": true,
+        "public_key_without_signature_state": true,
+        "public_verification_key_asset_count": 1,
+        "signature_asset_count": 0,
+        "signature_verification_must_not_be_claimed": true,
+        "signature_without_public_key_state": false
+      },
+      "checked_expected_keys": [
+        "binary_asset_count",
+        "checksum_asset_count",
+        "signature_asset_count",
+        "public_verification_key_asset_count",
+        "public_key_name_contains_signing",
+        "public_key_must_not_count_as_signature"
+      ],
+      "id": "FRC-007",
+      "mismatches": [],
+      "runner_stage": "semantic_classification_layer",
+      "status": "PASS",
+      "unchecked_expected_keys": []
+    }
+  ],
+  "fixtures_failed": 0,
+  "fixtures_implemented": 5,
+  "fixtures_passed": 5,
+  "fixtures_total": 10,
+  "fixtures_warned": 0,
+  "network_required": false,
+  "offline": true,
+  "release_mutation": false,
+  "required_implemented": [
+    "FRC-003",
+    "FRC-004",
+    "FRC-005",
+    "FRC-006",
+    "FRC-007"
+  ],
+  "runner_stage": "semantic_classification_layer",
+  "semantic_mode": "known_expected_keys_checked",
+  "semantic_unchecked_keys_total": 0,
+  "status": "PASS",
+  "suite": "release-check-fixtures-v0.4",
+  "wvp_module": "wvp-release-check"
+}

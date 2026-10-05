@@ -178,3 +178,6 @@ jobs:
 
       - name: WVP v0.4 fixture runner semantic coverage conformance
         run: ./conformance/wvp-v040-release-check-fixture-runner-semantic-coverage-conformance.sh
+
+      - name: WVP v0.4 fixture runner report conformance
+        run: ./conformance/wvp-v040-release-check-fixture-runner-report-conformance.sh
