@@ -1,0 +1,51 @@
+{
+  "schema": "wvp-source-to-release-boundary-matrix-v0.5",
+  "generated_utc": "2026-10-05T15:05:36Z",
+  "project": "Nightfall",
+  "repository": "Instinctes/nightfall",
+  "release_tag": "v1.0.5",
+  "claims": [
+    {
+      "claim_id": "NF-SR-001",
+      "atomic_claim": "The latest Nightfall release tag is visible and can be resolved locally.",
+      "observed_evidence": "tag_found=yes; tag_local_commit=9591ac0a3a58f734883f8b248b7b05aac88ee8f0",
+      "verdict": "consistent",
+      "limitation": "Tag resolution does not prove binary provenance."
+    },
+    {
+      "claim_id": "NF-SR-002",
+      "atomic_claim": "A release workflow exists at the release tag.",
+      "observed_evidence": "yes",
+      "verdict": "consistent",
+      "limitation": "Workflow presence does not prove that every release asset was produced by that workflow."
+    },
+    {
+      "claim_id": "NF-SR-003",
+      "atomic_claim": "Release assets have workflow surface explanations by filename category.",
+      "observed_evidence": "explained=11; not_explained=0; asset_count=11",
+      "verdict": "consistent",
+      "limitation": "Filename/workflow surface matching is heuristic and not source-to-binary proof."
+    },
+    {
+      "claim_id": "NF-SR-004",
+      "atomic_claim": "Nightfall release binaries match source.",
+      "observed_evidence": "not proven by v0.5",
+      "verdict": "not_verifiable",
+      "limitation": "Requires reproducible build process or stronger provenance evidence."
+    },
+    {
+      "claim_id": "NF-SR-005",
+      "atomic_claim": "Nightfall release builds are reproducible.",
+      "observed_evidence": "not proven by v0.5",
+      "verdict": "not_verifiable",
+      "limitation": "Requires deterministic build recipe, pinned toolchains and byte-level comparison."
+    },
+    {
+      "claim_id": "NF-SR-006",
+      "atomic_claim": "Nightfall release binaries are safe.",
+      "observed_evidence": "not proven by workflow, tag or checksum evidence",
+      "verdict": "contradicted",
+      "limitation": "Binary safety cannot be inferred from release workflow surface evidence."
+    }
+  ]
+}
