@@ -1,0 +1,101 @@
+{
+  "schema": "wvp-claim-matrix-v0.1",
+  "generated_utc": "2026-10-05T14:40:17Z",
+  "project": "Nightfall",
+  "source_repository": "https://github.com/Instinctes/nightfall.git",
+  "source_commit": "41357431ba8771d38d7d1f6d8bc77caf131fbdc4",
+  "wvp_repository_commit": "6ac95028b532c17c471be756d7fc9c87ffea1671",
+  "status": "bootstrap-reality-check",
+  "claims": [
+    {
+      "claim_id": "NF-WVP-001",
+      "atomic_claim": "Nightfall source repository was inspected from a pinned commit.",
+      "required_evidence": "Git commit hash from public repository.",
+      "observed_evidence": "41357431ba8771d38d7d1f6d8bc77caf131fbdc4",
+      "reproduction_command": "git clone --depth 1 https://github.com/Instinctes/nightfall.git && git -C nightfall rev-parse HEAD",
+      "verdict": "consistent",
+      "limitation": "Only the checked public GitHub source snapshot is covered."
+    },
+    {
+      "claim_id": "NF-WVP-002",
+      "atomic_claim": "Nightfall has a public security policy file.",
+      "required_evidence": "SECURITY.md exists in repository root.",
+      "observed_evidence": "present",
+      "reproduction_command": "test -f SECURITY.md",
+      "verdict": "consistent",
+      "limitation": "Presence of SECURITY.md does not prove security."
+    },
+    {
+      "claim_id": "NF-WVP-003",
+      "atomic_claim": "Nightfall has public contribution rules.",
+      "required_evidence": "CONTRIBUTING.md exists in repository root.",
+      "observed_evidence": "present",
+      "reproduction_command": "test -f CONTRIBUTING.md",
+      "verdict": "consistent",
+      "limitation": "Contribution rules do not prove maintainer review quality."
+    },
+    {
+      "claim_id": "NF-WVP-004",
+      "atomic_claim": "Nightfall has a CI workflow.",
+      "required_evidence": ".github/workflows/ci.yml exists.",
+      "observed_evidence": "present",
+      "reproduction_command": "test -f .github/workflows/ci.yml",
+      "verdict": "consistent",
+      "limitation": "Workflow presence does not prove all checks are passing at every commit."
+    },
+    {
+      "claim_id": "NF-WVP-005",
+      "atomic_claim": "Nightfall has a release workflow.",
+      "required_evidence": ".github/workflows/release.yml exists.",
+      "observed_evidence": "present",
+      "reproduction_command": "test -f .github/workflows/release.yml",
+      "verdict": "consistent",
+      "limitation": "Release workflow presence does not prove binary reproducibility or signature validity."
+    },
+    {
+      "claim_id": "NF-WVP-006",
+      "atomic_claim": "Nightfall has internal audit or review documents in docs/.",
+      "required_evidence": "docs/AUDIT-*.md files exist.",
+      "observed_evidence": "3 audit-like document(s)",
+      "reproduction_command": "find docs -maxdepth 1 -type f -name 'AUDIT-*.md'",
+      "verdict": "consistent",
+      "limitation": "Internal review documents are not external audits."
+    },
+    {
+      "claim_id": "NF-WVP-007",
+      "atomic_claim": "Nightfall is externally audited.",
+      "required_evidence": "Named independent audit report with scope, date, commit, findings and auditor identity.",
+      "observed_evidence": "Internal-review wording matches: 29",
+      "reproduction_command": "grep -RInE 'Internal|not independent|not an outside audit|not an audit' SECURITY.md docs/",
+      "verdict": "not_enough_evidence",
+      "limitation": "This WVP v0.1 check does not search the full internet or validate external auditor identities."
+    },
+    {
+      "claim_id": "NF-WVP-008",
+      "atomic_claim": "Nightfall has no premine, treasury, mint authority, freeze capability or admin key.",
+      "required_evidence": "Full code review of consensus, genesis, emission, wallet and release history.",
+      "observed_evidence": "Text/code keyword surface matches: 25",
+      "reproduction_command": "grep -RInE 'admin key|mint authority|freeze capability|premine|treasury|ecosystem fund' README.md SECURITY.md CONTRIBUTING.md FAIR_LAUNCH.md docs crates",
+      "verdict": "not_verifiable",
+      "limitation": "Keyword scanning can find leads but cannot prove absence of backdoors."
+    },
+    {
+      "claim_id": "NF-WVP-009",
+      "atomic_claim": "Nightfall has a fair-launch document.",
+      "required_evidence": "FAIR_LAUNCH.md exists.",
+      "observed_evidence": "present",
+      "reproduction_command": "test -f FAIR_LAUNCH.md",
+      "verdict": "consistent",
+      "limitation": "Document presence does not prove historical fairness."
+    },
+    {
+      "claim_id": "NF-WVP-010",
+      "atomic_claim": "This WVP report proves Nightfall is secure.",
+      "required_evidence": "Impossible from this report type.",
+      "observed_evidence": "WVP v0.1 is a claim/evidence reality check only.",
+      "reproduction_command": "Read reports/nightfall/WVP-NIGHTFALL-REALITY-REPORT-v0.1.md",
+      "verdict": "contradicted",
+      "limitation": "Security requires independent audit, adversarial testing, formal review where applicable and time under mainnet conditions."
+    }
+  ]
+}
