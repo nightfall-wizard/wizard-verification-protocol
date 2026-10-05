@@ -40,8 +40,9 @@
     {
       "id": "FRC-007",
       "name": "public-key-name-contains-signing",
+      "path": "fixtures/release-check/FRC-007-public-key-name-contains-signing",
       "priority": "P0",
-      "status": "planned"
+      "status": "implemented"
     },
     {
       "id": "FRC-008",

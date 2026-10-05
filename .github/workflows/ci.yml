@@ -148,3 +148,6 @@ jobs:
 
       - name: WVP v0.4 release-check fixture strategy conformance
         run: ./conformance/wvp-v040-release-check-fixture-strategy-conformance.sh
+
+      - name: WVP v0.4 FRC-007 fixture conformance
+        run: ./conformance/wvp-v040-release-check-frc007-conformance.sh

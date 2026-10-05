@@ -1,0 +1,39 @@
+{
+  "fixture_id": "FRC-007",
+  "expected_classification": {
+    "binary_asset_count": 1,
+    "checksum_asset_count": 1,
+    "signature_asset_count": 0,
+    "public_verification_key_asset_count": 1,
+    "public_key_name_contains_signing": true,
+    "public_key_must_not_count_as_signature": true
+  },
+  "signature_suffix_policy": {
+    "allowed_signature_suffixes": [
+      ".sig",
+      ".asc",
+      ".minisig",
+      ".gpg",
+      ".signature"
+    ],
+    "public_key_suffixes_are_not_signatures": [
+      ".pem",
+      ".pub"
+    ]
+  },
+  "expected_status_boundary": {
+    "fixture_is_deterministic": true,
+    "live_github_required": false,
+    "network_required": false,
+    "authentication_required": false
+  },
+  "non_claims": {
+    "audit_claim": false,
+    "legal_compliance_claim": false,
+    "binary_safety_claim": false,
+    "source_to_release_claim": false,
+    "reproducible_build_claim": false,
+    "wallet_safety_claim": false,
+    "investment_suitability_claim": false
+  }
+}
