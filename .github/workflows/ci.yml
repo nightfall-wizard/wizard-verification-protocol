@@ -142,3 +142,6 @@ jobs:
 
       - name: WVP v0.4 scope plan conformance
         run: ./conformance/wvp-v040-scope-plan-conformance.sh
+
+      - name: WVP v0.4 release-check hardening matrix conformance
+        run: ./conformance/wvp-v040-release-check-hardening-matrix-conformance.sh

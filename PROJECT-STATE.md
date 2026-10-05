@@ -1112,3 +1112,43 @@ Progress interpretation after successful CI:
 - Overall WVP system: not 100%.
 <!-- WVP:STEP-21A-V040-SCOPE-PLAN:END -->
 
+
+<!-- WVP:STEP-21B-V040-RELEASE-CHECK-HARDENING-MATRIX:START -->
+## STEP 21B — WVP v0.4 Release-Check Hardening Issue Matrix
+
+Status: `implemented`
+
+Purpose:
+
+- Convert the v0.4 release-check hardening track into concrete implementation issues.
+- Define P0 release-check hardening work before code changes.
+- Add CI-backed conformance for the hardening matrix.
+
+P0 issue focus:
+
+- RCH-001: strict signature asset classification.
+- RCH-002: public verification key must not count as a signature asset.
+- RCH-003: duplicate checksum/signature asset ambiguity.
+- RCH-004: missing checksum/signature/public-key states.
+
+Boundaries:
+
+- no tag is created by this step;
+- no GitHub release is created by this step;
+- no release asset is uploaded by this step;
+- no private key is added;
+- no custody, exchange, broker, trading, or investment-advice function is introduced;
+- no audit claim is made;
+- no legal compliance guarantee is made;
+- no binary safety proof is claimed;
+- no source-to-release proof is claimed;
+- no reproducible-build proof is claimed.
+
+Progress interpretation after successful CI:
+
+- Total project: approximately 81%.
+- WVP v0.3 publication/post-release: 100% for publication only.
+- WVP v0.4: planned; release-check hardening matrix defined.
+- Overall WVP system: not 100%.
+<!-- WVP:STEP-21B-V040-RELEASE-CHECK-HARDENING-MATRIX:END -->
+
