@@ -281,3 +281,54 @@ Progress interpretation after successful CI:
 - Not 100%.
 <!-- WVP:STEP-19K-RECOVER-2-WORKFLOW-INDENT:END -->
 
+
+<!-- WVP:STEP-19L-V030-RELEASE-DOCS:START -->
+## STEP 19L — v0.3 Release Notes and Artifact Naming Plan
+
+Status: `implemented`
+
+Release notes draft:
+
+    docs/release/WVP-V0.3-RELEASE-NOTES-DRAFT.md
+
+Artifact naming plan:
+
+    docs/release/WVP-V0.3-ARTIFACT-NAMING-PLAN.md
+
+Conformance check:
+
+    ./conformance/release-check-v030-release-docs.sh
+
+Purpose:
+
+- document what v0.3 adds;
+- define expected release artifact names;
+- keep asset names platform- and version-explicit;
+- preserve explicit non-claims around audits, binary safety, source-to-release proof and reproducible builds.
+
+Progress interpretation after successful CI:
+
+- Total project: approximately 60%.
+- WVP v0.3: approximately 75%.
+- Not 100%.
+<!-- WVP:STEP-19L-V030-RELEASE-DOCS:END -->
+
+
+<!-- WVP:STEP-19L-RECOVER-NON-CLAIM-TERM:START -->
+## STEP 19L-RECOVER — Release Notes Non-Claim Term Fixed
+
+Status: `implemented`
+
+Reason:
+
+- STEP 19L created the release notes, artifact naming plan and release-docs conformance check;
+- the first run failed because the conformance check required the exact phrase `must not claim` in both documents;
+- the release notes used equivalent weaker wording and were corrected to match the machine-checkable non-claim boundary.
+
+Progress interpretation after successful CI:
+
+- Total project: approximately 60%.
+- WVP v0.3: approximately 75%.
+- Not 100%.
+<!-- WVP:STEP-19L-RECOVER-NON-CLAIM-TERM:END -->
+
