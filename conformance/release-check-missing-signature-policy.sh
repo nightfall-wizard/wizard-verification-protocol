@@ -10,7 +10,7 @@ ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$ROOT"
 
 TARGET="${WVP_TARGET:-nightfall-wizard/wizard-verification-protocol}"
-EXPECTED_TAG="${WVP_RELEASE_TAG:-v0.2.0}"
+EXPECTED_TAG="${WVP_RELEASE_TAG:-v0.3.0}"
 
 echo "Target: $TARGET"
 echo "Expected latest tag: $EXPECTED_TAG"

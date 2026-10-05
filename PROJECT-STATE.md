@@ -955,3 +955,43 @@ Progress interpretation after successful CI:
 - Overall WVP system: not 100%.
 <!-- WVP:STEP-20A-RECOVER-3-LIVE-SMOKE-REALIGNMENT:END -->
 
+
+<!-- WVP:STEP-20A-RECOVER-4B-SIGNATURE-POLICY-DEFAULT-TAG:START -->
+## STEP 20A-RECOVER-4B — Signature Policy Default Tag Updated
+
+Status: `implemented`
+
+Reason:
+
+- v0.3.0 is now the latest GitHub release.
+- The signature policy conformance check still defaulted to v0.2.0.
+- The check already uses a dynamic `EXPECTED_TAG` mechanism.
+- The correct fix is to update the default expected tag to v0.3.0, not to hard-code JSON literals.
+
+Current expected live state:
+
+- latest release tag: v0.3.0;
+- release asset count: 4 in the live smoke;
+- checksum asset count: 1;
+- signature asset count: 1;
+- checksum verification passes;
+- detached signature verification passes;
+- public verification key remains published.
+
+Boundary:
+
+- no tag is created by this recovery;
+- no GitHub release is created by this recovery;
+- no private key is added;
+- no reproducible-build proof is claimed;
+- no source-to-release proof is claimed;
+- no binary safety proof is claimed;
+- no audit claim is made.
+
+Progress interpretation after successful CI:
+
+- Total project: approximately 79%.
+- WVP v0.3 publication/post-release: 100%.
+- Overall WVP system: not 100%.
+<!-- WVP:STEP-20A-RECOVER-4B-SIGNATURE-POLICY-DEFAULT-TAG:END -->
+
