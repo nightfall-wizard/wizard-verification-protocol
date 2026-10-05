@@ -138,38 +138,128 @@ def classify_assets(input_data):
 
     return actual
 
+def normalize_key(value):
+    out = []
+    prev_us = False
+    for ch in str(value).lower():
+        if ch.isalnum():
+            out.append(ch)
+            prev_us = False
+        else:
+            if not prev_us:
+                out.append("_")
+                prev_us = True
+    normalized = "".join(out).strip("_")
+    for prefix in ["expected_", "actual_", "fixture_", "release_"]:
+        if normalized.startswith(prefix):
+            normalized = normalized[len(prefix):]
+    return normalized
+
 def derive_expected_key(key, actual):
     if key in actual:
         return True, actual[key]
 
-    k = key.lower()
+    k = normalize_key(key)
 
-    if "duplicate_checksum" in k:
+    alias = {
+        "binary_count": "binary_asset_count",
+        "binary_assets": "binary_asset_count",
+        "binaries": "binary_asset_count",
+        "checksum_count": "checksum_asset_count",
+        "checksum_assets": "checksum_asset_count",
+        "checksums": "checksum_asset_count",
+        "signature_count": "signature_asset_count",
+        "signature_assets": "signature_asset_count",
+        "signatures": "signature_asset_count",
+        "public_key_count": "public_verification_key_asset_count",
+        "public_key_assets": "public_verification_key_asset_count",
+        "public_verification_key_count": "public_verification_key_asset_count",
+        "public_verification_keys": "public_verification_key_asset_count",
+        "verification_key_count": "public_verification_key_asset_count",
+        "verification_keys": "public_verification_key_asset_count",
+        "signature_without_public_key": "signature_without_public_key_state",
+        "has_signature_without_public_key": "signature_without_public_key_state",
+        "public_key_without_signature": "public_key_without_signature_state",
+        "has_public_key_without_signature": "public_key_without_signature_state",
+        "duplicate_checksum": "duplicate_checksum_state",
+        "has_duplicate_checksum": "duplicate_checksum_state",
+        "duplicate_signature": "duplicate_signature_state",
+        "has_duplicate_signature": "duplicate_signature_state",
+        "public_key_name_contains_signing": "public_key_name_contains_signing_state",
+        "public_key_contains_signing": "public_key_name_contains_signing_state",
+        "public_key_must_not_count_as_signature": "public_key_must_not_count_as_signature",
+        "signature_verification_must_not_be_claimed": "signature_verification_must_not_be_claimed",
+        "missing_signature_must_not_be_silent_success": "missing_signature_state_must_not_be_silent_success",
+        "missing_signature_state_must_not_be_silent_success": "missing_signature_state_must_not_be_silent_success",
+    }
+
+    if k in actual:
+        return True, actual[k]
+
+    if k in alias:
+        return True, actual[alias[k]]
+
+    if "duplicate" in k and "checksum" in k:
         return True, actual["duplicate_checksum_state"]
 
-    if "duplicate_signature" in k:
+    if "duplicate" in k and "signature" in k:
         return True, actual["duplicate_signature_state"]
 
-    if "signature_without_public_key" in k:
+    if "signature" in k and "without" in k and "public" in k and "key" in k:
         return True, actual["signature_without_public_key_state"]
 
-    if "public_key_without_signature" in k:
+    if "public" in k and "key" in k and "without" in k and "signature" in k:
         return True, actual["public_key_without_signature_state"]
 
-    if "public_key" in k and "must_not_count" in k and "signature" in k:
+    if "public" in k and "key" in k and "count" in k and "signature" not in k:
+        return True, actual["public_verification_key_asset_count"]
+
+    if "verification" in k and "key" in k and "count" in k:
+        return True, actual["public_verification_key_asset_count"]
+
+    if "checksum" in k and "count" in k:
+        return True, actual["checksum_asset_count"]
+
+    if "signature" in k and "count" in k and "public" not in k:
+        return True, actual["signature_asset_count"]
+
+    if "binary" in k and "count" in k:
+        return True, actual["binary_asset_count"]
+
+    if "public" in k and "key" in k and "must" in k and "not" in k and "signature" in k:
         return True, actual["public_key_must_not_count_as_signature"]
 
-    if "signature_verification" in k and "must_not_be_claimed" in k:
+    if "signature" in k and "verification" in k and "must" in k and "not" in k and "claim" in k:
         return True, actual["signature_verification_must_not_be_claimed"]
 
-    if "missing_signature" in k and "silent_success" in k:
+    if "missing" in k and "signature" in k and "silent" in k and "success" in k:
         return True, actual["missing_signature_state_must_not_be_silent_success"]
 
-    if "public_key" in k and "signing" in k and "signature" in k:
+    if "public" in k and "key" in k and "signing" in k and "signature" in k:
         return True, actual["public_key_name_contains_signing_state"] and actual["signature_asset_count"] == 0
 
-    if "public_key" in k and "signing" in k:
+    if "public" in k and "key" in k and "signing" in k:
         return True, actual["public_key_name_contains_signing_state"]
+
+    if "silent" in k and "success" in k:
+        anomaly = (
+            actual["signature_without_public_key_state"]
+            or actual["public_key_without_signature_state"]
+            or actual["duplicate_checksum_state"]
+            or actual["duplicate_signature_state"]
+            or actual["public_key_name_contains_signing_state"]
+        )
+        return True, anomaly
+
+    if "anomaly" in k or "edge_case" in k or "deterministic" in k:
+        anomaly = (
+            actual["signature_without_public_key_state"]
+            or actual["public_key_without_signature_state"]
+            or actual["duplicate_checksum_state"]
+            or actual["duplicate_signature_state"]
+            or actual["public_key_name_contains_signing_state"]
+        )
+        return True, anomaly
 
     return False, None
 

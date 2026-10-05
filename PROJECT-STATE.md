@@ -1578,3 +1578,43 @@ Progress interpretation after successful CI:
 - Overall WVP system: not 100%.
 <!-- WVP:STEP-21L-FIXTURE-RUNNER-SEMANTIC-LAYER:END -->
 
+
+<!-- WVP:STEP-21M-SEMANTIC-COVERAGE-GUARD:START -->
+## STEP 21M — Semantic Coverage Guard
+
+Status: `implemented`
+
+Purpose:
+
+- Add CI-backed semantic coverage guard for WVP v0.4 release-check fixtures.
+- Require all `expected_classification` keys for FRC-003, FRC-004, FRC-005, FRC-006, and FRC-007 to be semantically checked.
+- Reject unknown unchecked semantic keys through a negative coverage test.
+- Preserve offline, read-only, non-mutating, and claim-limited execution.
+
+Artifacts:
+
+- `conformance/wvp-v040-release-check-fixture-runner-skeleton.sh`
+- `conformance/wvp-v040-release-check-fixture-runner-semantic-coverage-conformance.sh`
+
+Boundaries:
+
+- this is semantic fixture coverage, not a full independent audit engine;
+- no release-check Rust runtime behavior is changed by this step;
+- no tag is created;
+- no GitHub release is created;
+- no release asset is uploaded;
+- no private key, seed phrase, wallet secret, or API token is added;
+- no custody, broker, exchange, paid-report, or investment-advice function is introduced;
+- no audit claim is made;
+- no legal clearance guarantee is made;
+- no binary safety proof is claimed;
+- no source-to-release proof is claimed;
+- no reproducible-build proof is claimed.
+
+Progress interpretation after successful CI:
+
+- Total project: approximately 92%.
+- WVP v0.4: fixtures, runner design, index validator, runner skeleton, semantic classification layer, and semantic coverage guard.
+- Overall WVP system: not 100%.
+<!-- WVP:STEP-21M-SEMANTIC-COVERAGE-GUARD:END -->
+
