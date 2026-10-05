@@ -1,0 +1,51 @@
+{
+  "schema": "wvp-reproducibility-gap-matrix-v0.6",
+  "generated_utc": "2026-10-05T15:08:03Z",
+  "project": "Nightfall",
+  "repository": "Instinctes/nightfall",
+  "release_tag": "v1.0.5",
+  "claims": [
+    {
+      "claim_id": "NF-REP-001",
+      "atomic_claim": "Nightfall has a Cargo.lock at the release tag.",
+      "observed_evidence": "yes; sha256=f95730fdfeec1e1651aeba5fc0017aff3443dc206ffd0f94fd4ba08dc1d82014",
+      "verdict": "consistent",
+      "limitation": "Cargo.lock presence does not prove that release binaries were built from it."
+    },
+    {
+      "claim_id": "NF-REP-002",
+      "atomic_claim": "Nightfall has an exact Rust toolchain pinned at the release tag.",
+      "observed_evidence": "unknown_or_absent; file=none",
+      "verdict": "not_enough_evidence",
+      "limitation": "Toolchain metadata alone does not prove deterministic builds."
+    },
+    {
+      "claim_id": "NF-REP-003",
+      "atomic_claim": "GitHub Actions dependencies are SHA-pinned.",
+      "observed_evidence": "uses=12; sha_pinned=0; status=some_or_all_actions_not_sha_pinned",
+      "verdict": "not_enough_evidence",
+      "limitation": "Pinned actions reduce drift but do not prove release asset provenance."
+    },
+    {
+      "claim_id": "NF-REP-004",
+      "atomic_claim": "GitHub Actions runners are fully pinned and non-floating.",
+      "observed_evidence": "runner_latest_count=3; status=floating_runner_detected",
+      "verdict": "not_enough_evidence",
+      "limitation": "Runner labels are only one part of build reproducibility."
+    },
+    {
+      "claim_id": "NF-REP-005",
+      "atomic_claim": "Nightfall release builds are byte-identical reproducible.",
+      "observed_evidence": "no byte-identical rebuild performed in v0.6",
+      "verdict": "not_verifiable",
+      "limitation": "Requires deterministic build recipe, controlled environment and byte-level comparison."
+    },
+    {
+      "claim_id": "NF-REP-006",
+      "atomic_claim": "Nightfall release binaries are safe.",
+      "observed_evidence": "not proven by reproducibility metadata",
+      "verdict": "contradicted",
+      "limitation": "Binary safety cannot be inferred from build metadata."
+    }
+  ]
+}
