@@ -1895,3 +1895,43 @@ Progress interpretation after successful CI:
 - Overall WVP system: not 100%.
 <!-- WVP:STEP-21T-PUBLIC-STATUS-ALIGNMENT:END -->
 
+
+<!-- WVP:STEP-21U-CAPABILITIES-AND-USAGE:START -->
+## STEP 21U — v0.4 Capabilities and Usage Guide
+
+Status: `implemented`
+
+Purpose:
+
+- Add CI-backed public documentation for what WVP v0.4 can do.
+- Document what WVP v0.4 cannot do.
+- Document practical local usage commands.
+- Confirm that this step does not create a tag, GitHub release, GitHub release asset, or signature.
+- Preserve legal, operational, offline, read-only, non-mutating, and claim-limited execution.
+
+Artifacts:
+
+- `docs/release-check/WVP-V040-CAPABILITIES-AND-USAGE.md`
+- `conformance/wvp-v040-capabilities-and-usage-conformance.sh`
+
+Boundaries:
+
+- this is usage documentation, not an actual release;
+- no tag is created;
+- no GitHub release is created;
+- no GitHub release asset is uploaded;
+- no private key, seed phrase, wallet secret, or API token is added;
+- no custody, broker, exchange, paid-report, or investment-advice function is introduced;
+- no audit claim is made;
+- no legal clearance guarantee is made;
+- no binary safety proof is claimed;
+- no source-to-release proof is claimed;
+- no reproducible-build proof is claimed.
+
+Progress interpretation after successful CI:
+
+- Total project: approximately 99%.
+- WVP v0.4: capabilities and usage documented.
+- Overall WVP system: not 100%.
+<!-- WVP:STEP-21U-CAPABILITIES-AND-USAGE:END -->
+

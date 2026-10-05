@@ -199,3 +199,6 @@ jobs:
 
       - name: WVP v0.4 public status alignment conformance
         run: ./conformance/wvp-v040-public-status-alignment-conformance.sh
+
+      - name: WVP v0.4 capabilities and usage conformance
+        run: ./conformance/wvp-v040-capabilities-and-usage-conformance.sh
