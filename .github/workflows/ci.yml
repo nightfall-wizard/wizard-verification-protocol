@@ -172,3 +172,6 @@ jobs:
 
       - name: WVP v0.4 fixture runner skeleton conformance
         run: ./conformance/wvp-v040-release-check-fixture-runner-skeleton-conformance.sh
+
+      - name: WVP v0.4 fixture runner semantic conformance
+        run: ./conformance/wvp-v040-release-check-fixture-runner-semantic-conformance.sh

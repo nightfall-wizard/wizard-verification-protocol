@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-echo "=== WVP v0.4 FIXTURE RUNNER SKELETON CONFORMANCE ==="
+echo "=== WVP v0.4 FIXTURE RUNNER SEMANTIC CONFORMANCE ==="
 START_TS="$(date '+%Y-%m-%d %H:%M:%S %Z')"
 START_EPOCH="$(date +%s)"
 echo "Startzeit: $START_TS"
@@ -15,14 +15,14 @@ test -x "$RUNNER"
 bash -n "$RUNNER"
 echo "Runner exists and syntax is OK."
 
-echo "=== RUN JSON MODE ==="
+echo "=== RUN SEMANTIC JSON MODE ==="
 OUT_JSON="$(mktemp)"
 "$RUNNER" "$INDEX" --json-only > "$OUT_JSON"
 python3 -m json.tool "$OUT_JSON" >/dev/null
-echo "JSON mode output is valid JSON."
+echo "Semantic JSON output is valid JSON."
 
-echo "=== VERIFY JSON CONTENT ==="
-python3 - "$OUT_JSON" <<'PY'
+echo "=== VERIFY SEMANTIC JSON CONTENT ==="
+python3 - "$OUT_JSON" <<'PY2'
 import json
 import sys
 from pathlib import Path
@@ -35,12 +35,17 @@ if data.get("wvp_module") != "wvp-release-check":
 if data.get("suite") != "release-check-fixtures-v0.4":
     raise SystemExit("FAIL: wrong suite")
 
-allowed_stages = {"skeleton", "semantic_classification_layer"}
-if data.get("runner_stage") not in allowed_stages:
-    raise SystemExit("FAIL: unsupported runner stage: " + str(data.get("runner_stage")))
+if data.get("runner_stage") != "semantic_classification_layer":
+    raise SystemExit("FAIL: wrong runner stage")
+
+if data.get("semantic_mode") != "known_expected_keys_checked":
+    raise SystemExit("FAIL: wrong semantic mode")
 
 if data.get("status") != "PASS":
     raise SystemExit("FAIL: status not PASS")
+
+if data.get("fixtures_failed") != 0:
+    raise SystemExit("FAIL: fixtures_failed must be zero")
 
 if data.get("network_required") is not False:
     raise SystemExit("FAIL: network_required must be false")
@@ -52,20 +57,26 @@ if data.get("release_mutation") is not False:
     raise SystemExit("FAIL: release_mutation must be false")
 
 required = {"FRC-003", "FRC-004", "FRC-005", "FRC-006", "FRC-007"}
+seen = {item.get("id") for item in data.get("fixture_results", [])}
 
-if "required_implemented" in data:
-    implemented = set(data.get("required_implemented", []))
-else:
-    implemented = {item.get("id") for item in data.get("fixture_results", [])}
+if not required.issubset(seen):
+    raise SystemExit("FAIL: missing required fixture result")
 
-if not required.issubset(implemented):
-    raise SystemExit("FAIL: required implemented fixture set mismatch")
-
-if data.get("fixtures_failed") != 0:
-    raise SystemExit("FAIL: fixtures_failed must be zero")
-
-if data.get("fixtures_implemented", 0) < len(required):
-    raise SystemExit("FAIL: fixtures_implemented too low")
+for item in data.get("fixture_results", []):
+    if item.get("id") in required:
+        if item.get("status") != "PASS":
+            raise SystemExit("FAIL: required fixture did not pass: " + str(item.get("id")))
+        if not item.get("checked_expected_keys"):
+            raise SystemExit("FAIL: no semantic keys checked for: " + str(item.get("id")))
+        actual = item.get("actual_classification", {})
+        for key in [
+            "binary_asset_count",
+            "checksum_asset_count",
+            "signature_asset_count",
+            "public_verification_key_asset_count",
+        ]:
+            if key not in actual:
+                raise SystemExit("FAIL: missing actual classification key: " + key)
 
 claims = data.get("claims", {})
 for key in [
@@ -80,35 +91,31 @@ for key in [
     if claims.get(key) is not False:
         raise SystemExit(f"FAIL: claim must be false: {key}")
 
-print("JSON content OK.")
-PY
+print("Semantic JSON content OK.")
+PY2
 
 echo "=== RUN HUMAN MODE ==="
 "$RUNNER" "$INDEX" | grep -q "RESULT: PASS"
 echo "Human mode OK."
 
-echo "=== RUN NEGATIVE TEST ==="
+echo "=== RUN SEMANTIC NEGATIVE TEST ==="
 REPO_ROOT="$(pwd)"
 TMPDIR="$(mktemp -d)"
 trap 'rm -rf "$TMPDIR" "$OUT_JSON"' EXIT
 
+mkdir -p "$TMPDIR"
 cp -R fixtures "$TMPDIR/fixtures"
 
-python3 - "$TMPDIR/fixtures/release-check/FIXTURE-INDEX.json" <<'PY'
+python3 - "$TMPDIR/fixtures/release-check/FRC-004-public-key-no-signature/expected.json" <<'PY2'
 import json
 import sys
 from pathlib import Path
 
 path = Path(sys.argv[1])
 data = json.loads(path.read_text(encoding="utf-8"))
-
-for row in data["fixtures"]:
-    if row.get("id") == "FRC-004":
-        row["path"] = "../unsafe"
-        break
-
+data["expected_classification"]["signature_asset_count"] = 99
 path.write_text(json.dumps(data, indent=2, sort_keys=True) + "\n", encoding="utf-8")
-PY
+PY2
 
 set +e
 (
@@ -121,11 +128,11 @@ set -e
 echo "NEG_RESULT=$NEG_RESULT"
 
 if [ "$NEG_RESULT" -eq 0 ]; then
-  echo "FAIL: negative unsafe path test unexpectedly passed."
+  echo "FAIL: semantic negative mismatch unexpectedly passed."
   exit 1
 fi
 
-echo "Negative test OK."
+echo "Semantic negative test OK."
 
 echo "=== VERIFY NO SECRET-LIKE MATERIAL ==="
 PRIVATE_RE='BEGIN (PGP |OPENSSH |RSA |EC |DSA )?PR''IVATE KEY|AGE-SE''CRET-KEY-|ghp_[A-Za-z0-9_]{20,}'
@@ -140,13 +147,12 @@ END_EPOCH="$(date +%s)"
 DURATION="$((END_EPOCH - START_EPOCH))"
 
 echo
-echo "=== WVP v0.4 FIXTURE RUNNER SKELETON CONFORMANCE RESULT ==="
+echo "=== WVP v0.4 FIXTURE RUNNER SEMANTIC CONFORMANCE RESULT ==="
 echo "RESULT: PASS"
-echo "Fixture runner skeleton baseline still validates."
-echo "Semantic runner stage is accepted as forward-compatible extension."
-echo "JSON output validates."
-echo "Offline/read-only boundary is explicit."
-echo "Negative unsafe-path test rejects malformed index state."
+echo "Semantic classification layer exists."
+echo "Expected classification keys are checked where supported."
+echo "Semantic mismatch negative test rejects altered expected classification."
+echo "Offline/read-only boundary is preserved."
 echo "No audit/legal/binary/reproducible/source-to-release claim is made."
 echo "Endzeit: $END_TS"
 echo "Dauer Sekunden: $DURATION"

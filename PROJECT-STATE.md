@@ -1536,3 +1536,45 @@ Progress interpretation after successful CI:
 - Overall WVP system: not 100%.
 <!-- WVP:STEP-21K-FIXTURE-RUNNER-SKELETON:END -->
 
+
+<!-- WVP:STEP-21L-FIXTURE-RUNNER-SEMANTIC-LAYER:START -->
+## STEP 21L — Fixture Runner Semantic Classification Layer
+
+Status: `implemented`
+
+Purpose:
+
+- Extend the fixture runner skeleton with a first semantic classification layer.
+- Classify release assets into binary, checksum, detached signature, and public verification key groups.
+- Compare supported `expected_classification` keys against actual derived fixture classification.
+- Preserve offline, read-only, non-mutating, and claim-limited execution.
+- Add CI-backed semantic conformance and mismatch-negative testing.
+
+Artifacts:
+
+- `conformance/wvp-v040-release-check-fixture-runner-skeleton.sh`
+- `conformance/wvp-v040-release-check-fixture-runner-semantic-conformance.sh`
+
+Boundaries:
+
+- this is the first semantic layer, not a full independent audit engine;
+- unsupported expected keys may remain explicitly reported as unchecked;
+- no release-check Rust runtime behavior is changed by this step;
+- no tag is created;
+- no GitHub release is created;
+- no release asset is uploaded;
+- no private key, seed phrase, wallet secret, or API token is added;
+- no custody, broker, exchange, paid-report, or investment-advice function is introduced;
+- no audit claim is made;
+- no legal clearance guarantee is made;
+- no binary safety proof is claimed;
+- no source-to-release proof is claimed;
+- no reproducible-build proof is claimed.
+
+Progress interpretation after successful CI:
+
+- Total project: approximately 91%.
+- WVP v0.4: fixtures, runner design, index validator, runner skeleton, and first semantic classification layer.
+- Overall WVP system: not 100%.
+<!-- WVP:STEP-21L-FIXTURE-RUNNER-SEMANTIC-LAYER:END -->
+
