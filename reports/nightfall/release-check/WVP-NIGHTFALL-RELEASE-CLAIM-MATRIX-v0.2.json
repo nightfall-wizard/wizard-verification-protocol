@@ -1,0 +1,50 @@
+{
+  "schema": "wvp-release-claim-matrix-v0.2",
+  "generated_utc": "2026-10-05T14:48:10Z",
+  "project": "Nightfall",
+  "repository": "Instinctes/nightfall",
+  "claims": [
+    {
+      "claim_id": "NF-REL-001",
+      "atomic_claim": "Nightfall has a latest GitHub release inspectable through the GitHub API.",
+      "observed_evidence": "yes",
+      "verdict": "consistent",
+      "limitation": "GitHub API availability does not prove release safety."
+    },
+    {
+      "claim_id": "NF-REL-002",
+      "atomic_claim": "The latest Nightfall release has downloadable assets.",
+      "observed_evidence": "11 asset(s)",
+      "verdict": "consistent",
+      "limitation": "Asset presence does not prove source-to-binary correspondence."
+    },
+    {
+      "claim_id": "NF-REL-003",
+      "atomic_claim": "The latest Nightfall release has checksum-like assets.",
+      "observed_evidence": "3 checksum-like asset(s)",
+      "verdict": "consistent",
+      "limitation": "Checksum presence does not prove independent trust."
+    },
+    {
+      "claim_id": "NF-REL-004",
+      "atomic_claim": "The latest Nightfall release has signature-like assets.",
+      "observed_evidence": "0 signature-like asset(s)",
+      "verdict": "not_enough_evidence",
+      "limitation": "Signature presence requires public-key identity verification."
+    },
+    {
+      "claim_id": "NF-REL-005",
+      "atomic_claim": "The latest Nightfall release binaries match source.",
+      "observed_evidence": "not checked in v0.2",
+      "verdict": "not_verifiable",
+      "limitation": "Requires asset download, tag verification, build recipe and reproducibility boundary."
+    },
+    {
+      "claim_id": "NF-REL-006",
+      "atomic_claim": "The latest Nightfall release is security-proven.",
+      "observed_evidence": "not proven by release metadata",
+      "verdict": "contradicted",
+      "limitation": "Security requires audit, adversarial review, tests and time under real conditions."
+    }
+  ]
+}
