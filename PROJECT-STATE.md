@@ -174,3 +174,31 @@ Progress interpretation:
 - Not 100%; the remaining work still includes v0.3 release publication, stronger source-to-release documentation, broader WVP module completion and final release evidence.
 <!-- WVP:STEP-19I-DOCS-REFERENCE:END -->
 
+
+<!-- WVP:STEP-19J-V030-READINESS-CHECKLIST:START -->
+## STEP 19J — v0.3 Release Readiness Checklist
+
+Status: `implemented`
+
+Release readiness document:
+
+    docs/release/WVP-V0.3-RELEASE-READINESS-CHECKLIST.md
+
+Conformance check:
+
+    ./conformance/release-check-v030-readiness-checklist.sh
+
+Purpose:
+
+- define what remains before WVP v0.3 can be published;
+- separate completed evidence from missing release requirements;
+- prevent false 100% completion claims;
+- preserve the explicit non-claims around audits, binary safety, source-to-release proof and reproducible builds.
+
+Progress interpretation after successful CI:
+
+- Total project: approximately 56–58%.
+- WVP v0.3: approximately 70%.
+- Not 100%.
+<!-- WVP:STEP-19J-V030-READINESS-CHECKLIST:END -->
+
