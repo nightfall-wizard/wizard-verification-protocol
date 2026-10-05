@@ -355,3 +355,32 @@ Progress interpretation after successful CI:
 - Not 100%.
 <!-- WVP:STEP-19M-V030-RELEASE-DOCS-CI:END -->
 
+
+<!-- WVP:STEP-19N-V030-VERSION-RELEASE-PLAN:START -->
+## STEP 19N — v0.3 Version Bump and Release Command Plan
+
+Status: `implemented`
+
+Plan:
+
+    docs/release/WVP-V0.3-VERSION-BUMP-AND-RELEASE-COMMAND-PLAN.md
+
+Conformance check:
+
+    ./conformance/release-check-v030-version-release-plan.sh
+
+Purpose:
+
+- define the planned v0.3.0 version bump;
+- define release asset staging commands;
+- define checksum and signature command shapes;
+- define tag and GitHub release command shapes;
+- preserve the boundary that this is a plan, not a release.
+
+Progress interpretation after successful CI:
+
+- Total project: approximately 63%.
+- WVP v0.3: approximately 81%.
+- Not 100%.
+<!-- WVP:STEP-19N-V030-VERSION-RELEASE-PLAN:END -->
+
