@@ -202,3 +202,34 @@ Progress interpretation after successful CI:
 - Not 100%.
 <!-- WVP:STEP-19J-V030-READINESS-CHECKLIST:END -->
 
+
+<!-- WVP:STEP-19K-V030-READINESS-CI:START -->
+## STEP 19K — v0.3 Readiness Check Wired Into CI
+
+Status: `implemented`
+
+Workflow:
+
+    .github/workflows/ci.yml
+
+CI-enforced readiness check:
+
+    ./conformance/release-check-v030-readiness-checklist.sh
+
+CI syntax-only check for local Android-vs-CI command:
+
+    bash -n ./conformance/release-check-android-vs-ci-build-provenance.sh
+
+Reason:
+
+- the v0.3 readiness checklist must be checked by CI, not only manually;
+- the Android-vs-CI command depends on GitHub CLI and an already-created artifact, so CI only verifies shell syntax for that command;
+- this keeps local/manual evidence separate from CI-enforced checks.
+
+Progress interpretation after successful CI:
+
+- Total project: approximately 58–59%.
+- WVP v0.3: approximately 72%.
+- Not 100%.
+<!-- WVP:STEP-19K-V030-READINESS-CI:END -->
+
