@@ -692,3 +692,66 @@ Progress interpretation after successful CI:
 - Not 100%.
 <!-- WVP:STEP-19U-V030-DETACHED-SIGNATURE-PROCEDURE-CI:END -->
 
+
+<!-- WVP:STEP-19V-V030-LOCAL-SIGNING-EXECUTION-GUARD:START -->
+## STEP 19V — v0.3.0 Local Signing Execution Guard Prepared
+
+Status: `implemented`
+
+Guard script:
+
+    ./scripts/release/guard-v030-local-signing-execution.sh
+
+Documentation:
+
+    docs/release/WVP-V0.3-LOCAL-SIGNING-EXECUTION-GUARD.md
+
+Conformance check:
+
+    ./conformance/release-check-v030-local-signing-execution-guard.sh
+
+Purpose:
+
+- define the local pre-signing decision boundary;
+- require a clean source tree before signing can be approved;
+- require HEAD to match origin/main before signing can be approved;
+- require unsigned staging and detached-signature dry-run to pass;
+- require the staging manifest to match the current source commit;
+- verify that dirty-tree require-ready mode is refused;
+- preserve the boundary that this step creates no tag, no GitHub release and no signature.
+
+Progress interpretation after successful CI:
+
+- Total project: approximately 73%.
+- WVP v0.3: approximately 97%.
+- Not 100%.
+<!-- WVP:STEP-19V-V030-LOCAL-SIGNING-EXECUTION-GUARD:END -->
+
+
+<!-- WVP:STEP-19V-RECOVER-DOC-GREP:START -->
+## STEP 19V-RECOVER — Local Signing Guard Doc Grep Fixed
+
+Status: `implemented`
+
+Reason:
+
+- STEP 19V created the local signing execution guard, documentation and conformance check;
+- the first run failed in the documentation term check;
+- the conformance check searched for `HEAD matches` as one plain string;
+- the documentation uses Markdown backticks around `HEAD` and `origin/main`;
+- the check now verifies the required terms without being brittle to Markdown formatting.
+
+Boundary:
+
+- no v0.3.0 tag is created;
+- no GitHub release is created;
+- no signature is created;
+- no private signing material is introduced.
+
+Progress interpretation after successful CI:
+
+- Total project: approximately 73%.
+- WVP v0.3: approximately 97%.
+- Not 100%.
+<!-- WVP:STEP-19V-RECOVER-DOC-GREP:END -->
+
