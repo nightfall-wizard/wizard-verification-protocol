@@ -920,3 +920,38 @@ Progress interpretation:
 - Overall WVP system: not 100%.
 <!-- WVP:STEP-20A-RECOVER-POST-RELEASE-VERIFICATION:END -->
 
+
+<!-- WVP:STEP-20A-RECOVER-3-LIVE-SMOKE-REALIGNMENT:START -->
+## STEP 20A-RECOVER-3 — Live Smoke Realigned With v0.3.0 Release State
+
+Status: `implemented`
+
+Reason:
+
+- v0.3.0 is now the latest GitHub release.
+- The live metadata smoke still expected v0.2.0 and three release assets.
+- v0.3.0 intentionally has four release assets:
+  - release binary;
+  - checksum file;
+  - detached signature;
+  - public verification key.
+- The release-check signature asset counter was too broad and matched the public key asset name because it contains `signing`.
+- Signature asset detection is now restricted to actual signature-like suffixes.
+
+Boundary:
+
+- no tag is created by this recovery;
+- no GitHub release is created by this recovery;
+- no private key is added;
+- no reproducible-build proof is claimed;
+- no source-to-release proof is claimed;
+- no binary safety proof is claimed;
+- no audit claim is made.
+
+Progress interpretation after successful CI:
+
+- Total project: approximately 79%.
+- WVP v0.3 publication/post-release: 100%.
+- Overall WVP system: not 100%.
+<!-- WVP:STEP-20A-RECOVER-3-LIVE-SMOKE-REALIGNMENT:END -->
+
