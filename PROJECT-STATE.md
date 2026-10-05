@@ -332,3 +332,26 @@ Progress interpretation after successful CI:
 - Not 100%.
 <!-- WVP:STEP-19L-RECOVER-NON-CLAIM-TERM:END -->
 
+
+<!-- WVP:STEP-19M-V030-RELEASE-DOCS-CI:START -->
+## STEP 19M — v0.3 Release Docs Check Wired Into CI
+
+Status: `implemented`
+
+CI-enforced check:
+
+    ./conformance/release-check-v030-release-docs.sh
+
+Reason:
+
+- STEP 19L created the v0.3 release notes draft, artifact naming plan and local release-docs conformance check;
+- STEP 19M makes that check CI-enforced;
+- release documentation must be machine-checked before release work continues.
+
+Progress interpretation after successful CI:
+
+- Total project: approximately 61–62%.
+- WVP v0.3: approximately 78%.
+- Not 100%.
+<!-- WVP:STEP-19M-V030-RELEASE-DOCS-CI:END -->
+

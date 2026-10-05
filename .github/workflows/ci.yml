@@ -111,6 +111,9 @@ jobs:
       - name: WVP v0.3 release readiness checklist conformance
         run: ./conformance/release-check-v030-readiness-checklist.sh
 
+
+      - name: WVP v0.3 release docs conformance
+        run: ./conformance/release-check-v030-release-docs.sh
       - name: WVP Android-vs-CI local conformance script syntax
         run: bash -n ./conformance/release-check-android-vs-ci-build-provenance.sh
 
