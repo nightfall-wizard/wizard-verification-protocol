@@ -995,3 +995,46 @@ Progress interpretation after successful CI:
 - Overall WVP system: not 100%.
 <!-- WVP:STEP-20A-RECOVER-4B-SIGNATURE-POLICY-DEFAULT-TAG:END -->
 
+
+<!-- WVP:STEP-20A-RECOVER-5-V020-LATEST-DECOUPLING:START -->
+## STEP 20A-RECOVER-5 — v0.2.0 Post-Release Check Decoupled From Latest Release
+
+Status: `implemented`
+
+Reason:
+
+- v0.3.0 is now the latest GitHub release.
+- The v0.2.0 post-release conformance check still correctly verifies the historical v0.2.0 release assets.
+- It incorrectly expected the current live latest release to still be v0.2.0.
+- Historical release checks must be tag-scoped and must not fail when a newer release is published.
+
+Current behavior:
+
+- v0.2.0 post-release check still verifies:
+  - v0.2.0 GitHub release exists;
+  - v0.2.0 has exactly three historical assets;
+  - v0.2.0 checksum verifies;
+  - v0.2.0 detached signature verifies;
+  - no audit claim is made.
+- It no longer asserts that v0.2.0 is the latest release.
+- Current latest-release state is covered by:
+  - `release-check-live-smoke.sh`;
+  - `release-check-v030-post-release-publication.sh`.
+
+Boundary:
+
+- no tag is created by this recovery;
+- no GitHub release is created by this recovery;
+- no private key is added;
+- no reproducible-build proof is claimed;
+- no source-to-release proof is claimed;
+- no binary safety proof is claimed;
+- no audit claim is made.
+
+Progress interpretation after successful CI:
+
+- Total project: approximately 79%.
+- WVP v0.3 publication/post-release: 100%.
+- Overall WVP system: not 100%.
+<!-- WVP:STEP-20A-RECOVER-5-V020-LATEST-DECOUPLING:END -->
+

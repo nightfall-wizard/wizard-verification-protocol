@@ -63,8 +63,15 @@ target/release/wvp-release-check \
 
 grep -Fq '"version": "0.3.0"' "$JSON_OUT"
 grep -Fq '"status": "INFO"' "$JSON_OUT"
-grep -Fq '"latest_release_tag": "v0.2.0"' "$JSON_OUT"
-grep -Fq '"latest_release_asset_count": 3' "$JSON_OUT"
+grep -Fq '"repository_found": true' "$JSON_OUT"
+grep -Fq '"live_inspection": true' "$JSON_OUT"
+
+# Historical v0.2.0 release verification above is tag-scoped.
+# The current live latest release may advance beyond v0.2.0.
+# Do not assert latest_release_tag or latest_release_asset_count here.
+# Current latest-release policy is covered by release-check-live-smoke.sh
+# and the v0.3 post-release publication conformance check.
+
 grep -Fq '"checksum_asset_count": 1' "$JSON_OUT"
 grep -Fq '"signature_asset_count": 1' "$JSON_OUT"
 grep -Fq '"checksum_verification_passed": true' "$JSON_OUT"
