@@ -1070,3 +1070,45 @@ Progress interpretation after successful CI:
 - Overall WVP system: not 100%.
 <!-- WVP:STEP-20A-RECOVER-6-GH-TOKEN-POST-RELEASE-CI:END -->
 
+
+<!-- WVP:STEP-21A-V040-SCOPE-PLAN:START -->
+## STEP 21A — WVP v0.4 Scope and Execution Plan
+
+Status: `implemented`
+
+Purpose:
+
+- Start the next development section after v0.3 publication and post-release verification.
+- Document the v0.4 scope before implementation.
+- Keep legal compliance and safety as the first constraint.
+- Add CI-backed conformance for the v0.4 plan.
+
+v0.4 planned tracks:
+
+- release-check hardening;
+- scorecard security baseline;
+- node-diagnose read-only diagnostics;
+- conformance and test vectors;
+- light-verify design phase.
+
+Boundaries:
+
+- no tag is created by this step;
+- no GitHub release is created by this step;
+- no release asset is uploaded by this step;
+- no private key is added;
+- no custody, exchange, broker, trading, or investment-advice function is introduced;
+- no audit claim is made;
+- no legal compliance guarantee is made;
+- no binary safety proof is claimed;
+- no source-to-release proof is claimed;
+- no reproducible-build proof is claimed.
+
+Progress interpretation after successful CI:
+
+- Total project: approximately 80%.
+- WVP v0.3 publication/post-release: 100% for publication only.
+- WVP v0.4: planned, not implemented.
+- Overall WVP system: not 100%.
+<!-- WVP:STEP-21A-V040-SCOPE-PLAN:END -->
+

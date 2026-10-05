@@ -140,3 +140,5 @@ jobs:
       - name: WVP build provenance comparison format conformance
         run: ./conformance/release-check-build-provenance-comparison-format.sh
 
+      - name: WVP v0.4 scope plan conformance
+        run: ./conformance/wvp-v040-scope-plan-conformance.sh
