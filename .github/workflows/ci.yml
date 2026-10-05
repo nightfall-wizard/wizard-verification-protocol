@@ -157,3 +157,6 @@ jobs:
 
       - name: WVP v0.4 FRC-006 duplicate signature fixture conformance
         run: ./conformance/wvp-v040-release-check-frc006-conformance.sh
+
+      - name: WVP v0.4 FRC-003 signature without public key fixture conformance
+        run: ./conformance/wvp-v040-release-check-frc003-conformance.sh

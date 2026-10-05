@@ -1322,3 +1322,48 @@ Progress interpretation after successful CI:
 - Overall WVP system: not 100%.
 <!-- WVP:STEP-21F-FRC006-DUPLICATE-SIGNATURE-FIXTURE:END -->
 
+
+<!-- WVP:STEP-21G-FRC003-SIGNATURE-NO-PUBLIC-KEY-FIXTURE:START -->
+## STEP 21G — FRC-003 Signature Without Public Key Fixture
+
+Status: `implemented`
+
+Purpose:
+
+- Add deterministic signature-no-public-key fixture.
+- Cover the case where a release has a detached signature but no public verification key.
+- Assert that signature verification must not be claimed without a public key.
+- Add CI-backed conformance for FRC-003.
+
+Fixture:
+
+- ID: FRC-003.
+- Name: signature-no-public-key.
+- Path: `fixtures/release-check/FRC-003-signature-no-public-key`.
+- Expected signature asset count: 1.
+- Expected public verification key asset count: 0.
+- Expected status class: WARN_OR_FAIL_DETERMINISTIC.
+
+Boundaries:
+
+- no fixture runner is implemented by this step;
+- no release-check runtime behavior is changed by this step;
+- no tag is created by this step;
+- no GitHub release is created by this step;
+- no release asset is uploaded by this step;
+- no private key, seed phrase, wallet secret, or API token is added;
+- no custody, exchange, broker, trading, or investment-advice function is introduced;
+- no audit claim is made;
+- no legal compliance guarantee is made;
+- no binary safety proof is claimed;
+- no source-to-release proof is claimed;
+- no reproducible-build proof is claimed.
+
+Progress interpretation after successful CI:
+
+- Total project: approximately 86%.
+- WVP v0.3 publication/post-release: 100% for publication only.
+- WVP v0.4: planned; hardening matrix, fixture strategy, and four deterministic fixtures defined.
+- Overall WVP system: not 100%.
+<!-- WVP:STEP-21G-FRC003-SIGNATURE-NO-PUBLIC-KEY-FIXTURE:END -->
+
