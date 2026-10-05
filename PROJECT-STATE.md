@@ -609,3 +609,27 @@ Progress interpretation after successful CI:
 - Not 100%.
 <!-- WVP:STEP-19R-RECOVER-2-SECRET-SCAN-SELF-MATCH:END -->
 
+
+<!-- WVP:STEP-19S-V030-UNSIGNED-ASSET-STAGING-CI:START -->
+## STEP 19S — v0.3.0 Unsigned Asset Staging Check Wired Into CI
+
+Status: `implemented`
+
+CI-enforced check:
+
+    ./conformance/release-check-v030-unsigned-asset-staging.sh
+
+Reason:
+
+- STEP 19R prepared local unsigned v0.3.0 release asset staging;
+- STEP 19R recovery fixed the staging manifest boolean handling and scanner self-match;
+- STEP 19S makes unsigned asset staging machine-checked in CI;
+- this still does not create a tag, GitHub release or detached signature.
+
+Progress interpretation after successful CI:
+
+- Total project: approximately 70%.
+- WVP v0.3: approximately 94%.
+- Not 100%.
+<!-- WVP:STEP-19S-V030-UNSIGNED-ASSET-STAGING-CI:END -->
+
