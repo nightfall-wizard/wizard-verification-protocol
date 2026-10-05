@@ -817,3 +817,30 @@ Progress interpretation after successful CI:
 - Not 100%.
 <!-- WVP:STEP-19X-V030-RELEASE-PUBLICATION-GUARD:END -->
 
+
+<!-- WVP:STEP-19Y-V030-RELEASE-PUBLICATION-GUARD-CI:START -->
+## STEP 19Y — v0.3.0 Release Publication Guard Check Wired Into CI
+
+Status: `implemented`
+
+CI-enforced check:
+
+    ./conformance/release-check-v030-release-publication-guard.sh
+
+Reason:
+
+- STEP 19X prepared the final release publication guard;
+- the guard checks local and remote v0.3.0 tag collision state;
+- the guard checks GitHub release collision state;
+- the guard verifies staged asset and checksum state;
+- the guard refuses publication approval when the detached signature is missing;
+- STEP 19Y makes the publication guard machine-checked in CI;
+- this still does not create a tag, GitHub release or detached signature.
+
+Progress interpretation after successful CI:
+
+- Total project: approximately 76%.
+- WVP v0.3: approximately 99%.
+- Not 100%.
+<!-- WVP:STEP-19Y-V030-RELEASE-PUBLICATION-GUARD-CI:END -->
+
