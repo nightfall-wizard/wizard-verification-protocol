@@ -1,0 +1,8 @@
+nightfall-core-1.0.5-linux-x64 | pass | sha256=ed5136eca5769654ee103b1e2061037787494da1aa96371b85cb90d2bd1fcade
+nightfall-core-1.0.5-windows-x64.exe | pass | sha256=75c8f7ca8487b3c086e1efd94e8469b17b1b79b7cdd37429bd4f4b3e98e605ee
+nightfall-wallet-1.0.5-linux-x64 | pass | sha256=432fba1360f563a72853b83e0124da1713fdf551bbfdd28954a68d422dad8c3b
+nightfall-wallet-1.0.5-windows-x64.exe | pass | sha256=f4d06a799c8e0082fead6bf17e76370b8a3345e7912d985d325c6a7db93a9183
+NIGHTFALLCOIN-Core-1.0.5-macOS-arm64.dmg | pass | sha256=2f05818ca6d91cce54a73e882b0ffbcb0c7476cf87343da1b3a973c676027de5
+NIGHTFALLCOIN-Core-1.0.5-macOS-intel.dmg | pass | sha256=90a55ea773c7887210e1b79b8515d42e19a10316c45ba31d6180fed8ecf57467
+nightfalld-1.0.5-linux-x64 | pass | sha256=b5b623adefecc48de0c5e361650736c93d320c53a1be53189f21f005f5317236
+nightfalld-1.0.5-windows-x64.exe | pass | sha256=5acd1825e717a705d57c42cf62cdba473bc1746e5211737fa967ccbe2099dfde
