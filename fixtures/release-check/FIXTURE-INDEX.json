@@ -23,8 +23,9 @@
     {
       "id": "FRC-004",
       "name": "public-key-no-signature",
+      "path": "fixtures/release-check/FRC-004-public-key-no-signature",
       "priority": "P0",
-      "status": "planned"
+      "status": "implemented"
     },
     {
       "id": "FRC-005",
