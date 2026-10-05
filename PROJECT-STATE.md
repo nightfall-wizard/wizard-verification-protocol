@@ -1152,3 +1152,38 @@ Progress interpretation after successful CI:
 - Overall WVP system: not 100%.
 <!-- WVP:STEP-21B-V040-RELEASE-CHECK-HARDENING-MATRIX:END -->
 
+
+<!-- WVP:STEP-21C-V040-RELEASE-CHECK-FIXTURE-STRATEGY:START -->
+## STEP 21C — WVP v0.4 Release-Check Fixture Strategy
+
+Status: `implemented`
+
+Purpose:
+
+- Define deterministic fixture strategy for release-check hardening.
+- Create fixture root and fixture index.
+- Add CI-backed conformance for fixture strategy and safety boundaries.
+
+Boundaries:
+
+- no fixture runner is implemented by this step;
+- no release-check behavior is changed by this step;
+- no tag is created by this step;
+- no GitHub release is created by this step;
+- no release asset is uploaded by this step;
+- no private key, seed phrase, wallet secret, or API token is added;
+- no custody, exchange, broker, trading, or investment-advice function is introduced;
+- no audit claim is made;
+- no legal compliance guarantee is made;
+- no binary safety proof is claimed;
+- no source-to-release proof is claimed;
+- no reproducible-build proof is claimed.
+
+Progress interpretation after successful CI:
+
+- Total project: approximately 82%.
+- WVP v0.3 publication/post-release: 100% for publication only.
+- WVP v0.4: planned; release-check hardening matrix and fixture strategy defined.
+- Overall WVP system: not 100%.
+<!-- WVP:STEP-21C-V040-RELEASE-CHECK-FIXTURE-STRATEGY:END -->
+

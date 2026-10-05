@@ -1,0 +1,83 @@
+{
+  "fixture_root": "fixtures/release-check",
+  "fixtures": [
+    {
+      "id": "FRC-001",
+      "name": "valid-signed-release",
+      "priority": "P0",
+      "status": "planned"
+    },
+    {
+      "id": "FRC-002",
+      "name": "checksum-no-signature",
+      "priority": "P0",
+      "status": "planned"
+    },
+    {
+      "id": "FRC-003",
+      "name": "signature-no-public-key",
+      "priority": "P0",
+      "status": "planned"
+    },
+    {
+      "id": "FRC-004",
+      "name": "public-key-no-signature",
+      "priority": "P0",
+      "status": "planned"
+    },
+    {
+      "id": "FRC-005",
+      "name": "duplicate-checksum",
+      "priority": "P0",
+      "status": "planned"
+    },
+    {
+      "id": "FRC-006",
+      "name": "duplicate-signature",
+      "priority": "P0",
+      "status": "planned"
+    },
+    {
+      "id": "FRC-007",
+      "name": "public-key-name-contains-signing",
+      "priority": "P0",
+      "status": "planned"
+    },
+    {
+      "id": "FRC-008",
+      "name": "malformed-asset-names",
+      "priority": "P1",
+      "status": "planned"
+    },
+    {
+      "id": "FRC-009",
+      "name": "no-assets",
+      "priority": "P1",
+      "status": "planned"
+    },
+    {
+      "id": "FRC-010",
+      "name": "no-releases",
+      "priority": "P1",
+      "status": "planned"
+    }
+  ],
+  "non_claims": {
+    "audit_claim": false,
+    "binary_safety_claim": false,
+    "investment_suitability_claim": false,
+    "legal_compliance_claim": false,
+    "reproducible_build_claim": false,
+    "source_to_release_claim": false,
+    "wallet_safety_claim": false
+  },
+  "safety": {
+    "api_tokens_allowed": false,
+    "custody_data_allowed": false,
+    "investment_advice_allowed": false,
+    "private_keys_allowed": false,
+    "seed_phrases_allowed": false,
+    "wallet_secrets_allowed": false
+  },
+  "status": "planned"
+}

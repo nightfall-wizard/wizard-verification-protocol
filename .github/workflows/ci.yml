@@ -145,3 +145,6 @@ jobs:
 
       - name: WVP v0.4 release-check hardening matrix conformance
         run: ./conformance/wvp-v040-release-check-hardening-matrix-conformance.sh
+
+      - name: WVP v0.4 release-check fixture strategy conformance
+        run: ./conformance/wvp-v040-release-check-fixture-strategy-conformance.sh
