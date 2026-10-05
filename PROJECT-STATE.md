@@ -1700,3 +1700,42 @@ Progress interpretation after successful CI:
 <!-- WVP:STEP-21O-RELEASE-READINESS-CHECKLIST:END -->
 
 
+
+<!-- WVP:STEP-21P-RELEASE-NOTES-DRAFT:START -->
+## STEP 21P — v0.4 Release Notes Draft
+
+Status: `implemented`
+
+Purpose:
+
+- Add CI-backed WVP v0.4 release notes draft.
+- Record release-note text for a possible future v0.4 release.
+- Confirm that this step does not create a tag, GitHub release, GitHub release asset, or signature.
+- Preserve offline, read-only, non-mutating, and claim-limited execution.
+
+Artifacts:
+
+- `docs/release-check/WVP-V040-RELEASE-NOTES-DRAFT.md`
+- `conformance/wvp-v040-release-notes-draft-conformance.sh`
+
+Boundaries:
+
+- this is a release notes draft, not an actual release;
+- no tag is created;
+- no GitHub release is created;
+- no GitHub release asset is uploaded;
+- no private key, seed phrase, wallet secret, or API token is added;
+- no custody, broker, exchange, paid-report, or investment-advice function is introduced;
+- no audit claim is made;
+- no legal clearance guarantee is made;
+- no binary safety proof is claimed;
+- no source-to-release proof is claimed;
+- no reproducible-build proof is claimed.
+
+Progress interpretation after successful CI:
+
+- Total project: approximately 95%.
+- WVP v0.4: release notes draft added.
+- Overall WVP system: not 100%.
+<!-- WVP:STEP-21P-RELEASE-NOTES-DRAFT:END -->
+

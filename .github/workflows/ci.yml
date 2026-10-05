@@ -184,3 +184,6 @@ jobs:
 
       - name: WVP v0.4 release readiness checklist conformance
         run: ./conformance/wvp-v040-release-readiness-checklist-conformance.sh
+
+      - name: WVP v0.4 release notes draft conformance
+        run: ./conformance/wvp-v040-release-notes-draft-conformance.sh
