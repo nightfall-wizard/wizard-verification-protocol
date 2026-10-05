@@ -1,0 +1,225 @@
+name: Release
+
+# Builds the Windows and Linux binaries on GitHub runners and attaches
+# them to the release for the tag that triggered this.
+#
+# Why not cross-compile from macOS: it needs a mingw toolchain that has to be
+# kept working on one person's laptop, and the result is a binary nobody else
+# can reproduce. Building on GitHub's runner means the artefacts come from a
+# published, inspectable workflow on a machine none of us control — which is a
+# weaker claim than a reproducible build, but a considerably better one than
+# "trust the laptop it came off".
+#
+# macOS .dmg files are still built locally with scripts/build-macos-dmgs.sh and
+# uploaded by hand, because bundling and packaging on a runner would need code
+# signing credentials this project deliberately does not have.
+
+on:
+  push:
+    tags: ["v*"]
+  # Lets the Windows artefacts be rebuilt for an existing tag without moving it.
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Existing tag to attach binaries to (e.g. v0.4.0)"
+        required: true
+
+permissions:
+  contents: write
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  windows:
+    name: windows-x86_64
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.inputs.tag || github.ref }}
+
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+
+      # The tests gate the release. Shipping a binary from a tree that fails
+      # its own exploit regression suite would be worse than shipping nothing.
+      - name: Tests
+        run: cargo test --workspace
+
+      - name: Build
+        run: cargo build --release -p nightfall-core -p nightfall-node -p nightfall-wallet
+
+      - name: The binary must agree with the tag
+        shell: pwsh
+        run: |
+          $tag = if ($env:INPUT_TAG) { $env:INPUT_TAG } else { "${{ github.ref_name }}" }
+          $version = $tag -replace '^v', ''
+          $got = (& ./target/release/nightfalld.exe --version).Split(' ')[1]
+          if ($got -ne $version) {
+            Write-Error "tag says $version, binary says $got"
+            exit 1
+          }
+          Write-Host "nightfalld reports $got, matching $tag"
+        env:
+          INPUT_TAG: ${{ github.event.inputs.tag }}
+
+      - name: Collect and checksum
+        shell: pwsh
+        run: |
+          $tag = if ($env:INPUT_TAG) { $env:INPUT_TAG } else { "${{ github.ref_name }}" }
+          $version = $tag -replace '^v', ''
+          New-Item -ItemType Directory -Force -Path dist | Out-Null
+
+          # Version in the filename, same reason as the macOS builds: a URL
+          # should refer to exactly one file, so a cache can never serve an old
+          # binary under a new build's published checksum.
+          $map = @{
+            "nightfall-core.exe"   = "nightfall-core-$version-windows-x64.exe"
+            "nightfalld.exe"       = "nightfalld-$version-windows-x64.exe"
+            "nightfall-wallet.exe" = "nightfall-wallet-$version-windows-x64.exe"
+          }
+          foreach ($src in $map.Keys) {
+            Copy-Item "target/release/$src" "dist/$($map[$src])"
+          }
+
+          $lines = Get-ChildItem dist -Filter *.exe | ForEach-Object {
+            "$((Get-FileHash $_.FullName -Algorithm SHA256).Hash.ToLower())  $($_.Name)"
+          }
+          # LF, not CRLF. This is the second time.
+          #
+          # `Set-Content` writes Windows line endings, which puts a carriage
+          # return on the end of every filename in the list. `shasum -a 256 -c`
+          # on macOS or Linux then looks for a file whose name ends in \r,
+          # reports "No such file or directory" for every entry, and tells the
+          # one user who actually verified their download that it failed. The
+          # binaries are fine; the list is not.
+          #
+          # Fixed once in v0.5.4 and lost again somewhere in 0.7.x, so the step
+          # below now fails the build rather than trusting anyone to remember.
+          $text = ($lines -join "`n") + "`n"
+          [System.IO.File]::WriteAllText(
+            (Join-Path $PWD "dist/SHA256SUMS-$version-windows.txt"),
+            $text,
+            (New-Object System.Text.UTF8Encoding $false)
+          )
+          Get-Content "dist/SHA256SUMS-$version-windows.txt"
+        env:
+          # Without this the step falls back to `github.ref_name`, which is the
+          # branch when the workflow is started by hand rather than by a tag.
+          # It then writes SHA256SUMS-main-windows.txt while every later step
+          # looks for SHA256SUMS-<version>-windows.txt, and the run dies on a
+          # missing file with an error that talks about carriage returns.
+          # Latent since the workflow was written; only a manual re-run reaches
+          # it, which is exactly when nobody is expecting a workflow bug.
+          INPUT_TAG: ${{ github.event.inputs.tag }}
+
+      - name: The checksum list must be readable off Windows
+        shell: pwsh
+        run: |
+          $tag = if ($env:INPUT_TAG) { $env:INPUT_TAG } else { "${{ github.ref_name }}" }
+          $version = $tag -replace '^v', ''
+          $path = "dist/SHA256SUMS-$version-windows.txt"
+          $bytes = [System.IO.File]::ReadAllBytes($path)
+          if ($bytes -contains 13) {
+            Write-Error "$path contains a carriage return — shasum -c will fail on macOS and Linux"
+            exit 1
+          }
+          Write-Host "$path is LF-only"
+        env:
+          INPUT_TAG: ${{ github.event.inputs.tag }}
+
+      - name: Attach to release
+        shell: bash
+        run: |
+          TAG="${INPUT_TAG:-${GITHUB_REF_NAME}}"
+          # `gh release upload` needs a release, and pushing a tag does not
+          # make one. On 0.9.1 both jobs built for half an hour and then
+          # failed on this line because the release did not exist yet —
+          # the tag did, which looks the same until you read the error.
+          # Create it if it is missing; --verify-tag so a typo in the tag
+          # cannot invent a release for a commit nobody tagged.
+          RELEASE_FLAGS=()
+          if [[ "$TAG" == *-* ]]; then RELEASE_FLAGS=(--prerelease --latest=false); fi
+          if ! gh release view "$TAG" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            gh release create "$TAG" --repo "$GITHUB_REPOSITORY" --verify-tag "${RELEASE_FLAGS[@]}" \
+              --title "NIGHTFALLCOIN Core ${TAG#v}" \
+              --notes "Binaries built by this workflow. Verify the SHA256 before running anything."
+          fi
+          # --clobber so re-running for a tag replaces rather than fails.
+          gh release upload "$TAG" dist/* --clobber --repo "$GITHUB_REPOSITORY"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          INPUT_TAG: ${{ github.event.inputs.tag }}
+
+  linux:
+    name: linux-x86_64
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.inputs.tag || github.ref }}
+
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+
+      - name: Install GUI dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libgtk-3-dev libxcb-render0-dev \
+            libxcb-shape0-dev libxcb-xfixes0-dev libxkbcommon-dev libssl-dev
+
+      - name: Tests
+        run: cargo test --workspace
+
+      - name: Build
+        run: cargo build --release -p nightfall-core -p nightfall-node -p nightfall-wallet
+
+      # The seeds once ran 0.8.0 code that introduced itself as 0.7.8, because
+      # the binary was built before the version bump. Nothing broke, but the
+      # network's own version census was wrong and nobody could tell from the
+      # outside. A tag is a promise about what is inside the file.
+      - name: The binary must agree with the tag
+        run: |
+          TAG="${INPUT_TAG:-${GITHUB_REF_NAME}}"
+          VERSION="${TAG#v}"
+          GOT="$(./target/release/nightfalld --version | awk '{print $2}')"
+          if [ "$GOT" != "$VERSION" ]; then
+            echo "tag says $VERSION, binary says $GOT" >&2
+            exit 1
+          fi
+          echo "nightfalld reports $GOT, matching $TAG"
+        env:
+          INPUT_TAG: ${{ github.event.inputs.tag }}
+
+      - name: Collect and checksum
+        run: |
+          TAG="${INPUT_TAG:-${GITHUB_REF_NAME}}"
+          VERSION="${TAG#v}"
+          mkdir -p dist
+          cp target/release/nightfall-core "dist/nightfall-core-${VERSION}-linux-x64"
+          cp target/release/nightfalld "dist/nightfalld-${VERSION}-linux-x64"
+          cp target/release/nightfall-wallet "dist/nightfall-wallet-${VERSION}-linux-x64"
+          chmod +x dist/*
+          (cd dist && sha256sum nightfall*-linux-x64 > "SHA256SUMS-${VERSION}-linux.txt")
+          cat "dist/SHA256SUMS-${VERSION}-linux.txt"
+        env:
+          INPUT_TAG: ${{ github.event.inputs.tag }}
+
+      - name: Attach to release
+        run: |
+          TAG="${INPUT_TAG:-${GITHUB_REF_NAME}}"
+          # Same guard as the Windows job — see the comment there. Whichever
+          # of the two finishes first creates the release; the other finds it.
+          RELEASE_FLAGS=()
+          if [[ "$TAG" == *-* ]]; then RELEASE_FLAGS=(--prerelease --latest=false); fi
+          if ! gh release view "$TAG" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            gh release create "$TAG" --repo "$GITHUB_REPOSITORY" --verify-tag "${RELEASE_FLAGS[@]}" \
+              --title "NIGHTFALLCOIN Core ${TAG#v}" \
+              --notes "Binaries built by this workflow. Verify the SHA256 before running anything." \
+              || true
+          fi
+          gh release upload "$TAG" dist/* --clobber --repo "$GITHUB_REPOSITORY"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          INPUT_TAG: ${{ github.event.inputs.tag }}
