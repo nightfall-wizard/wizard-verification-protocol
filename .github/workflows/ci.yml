@@ -130,8 +130,8 @@ jobs:
       - name: WVP v0.3 local signing execution guard conformance
         run: ./conformance/release-check-v030-local-signing-execution-guard.sh
 
-      - name: WVP v0.3 release publication guard conformance
-        run: ./conformance/release-check-v030-release-publication-guard.sh
+      - name: WVP v0.3 post-release publication conformance
+        run: ./conformance/release-check-v030-post-release-publication.sh
       - name: WVP Android-vs-CI local conformance script syntax
         run: bash -n ./conformance/release-check-android-vs-ci-build-provenance.sh
 

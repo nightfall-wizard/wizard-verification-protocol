@@ -873,3 +873,50 @@ Progress interpretation after successful CI:
 - Not 100%.
 <!-- WVP:STEP-19Z-RECOVER-SIGNATURE-CONFORMANCE-ENV-ISOLATION:END -->
 
+
+<!-- WVP:STEP-20A-RECOVER-POST-RELEASE-VERIFICATION:START -->
+## STEP 20A-RECOVER — v0.3.0 Post-Release Verification and CI Realignment
+
+Status: `implemented`
+
+Release state:
+
+- v0.3.0 GitHub release exists.
+- Remote tag v0.3.0 exists.
+- Release URL: https://github.com/nightfall-wizard/wizard-verification-protocol/releases/tag/v0.3.0
+- Source commit: `538460a967936b70792e4d275d50ee3b2a0b90c4`
+
+Published release assets:
+
+- `wvp-release-check-v0.3.0-termux-android-aarch64`
+- `wvp-release-check-v0.3.0-termux-android-aarch64.sha256`
+- `wvp-release-check-v0.3.0-termux-android-aarch64.sig`
+- `wvp-release-signing-public-rsa3072.pem`
+
+Verified evidence:
+
+- Asset SHA256: `e77aee158c8a3997c17d45dc51f9192839103b9eef0bf59cc3abb312b963e1fb`
+- Signature SHA256: `46cca5c071cdc7fe7f702fe89f261bc702b8de3fe5bd3a6da1856dfcb65dff07`
+- Public key SHA256 fingerprint: `9a6e8ccbca7d75086d54c3d53bce8f48fd2abb506b26d98fd6803301dfa7a802`
+- Downloaded release asset checksum verification passes.
+- Downloaded detached signature verification passes.
+
+CI realignment:
+
+- The pre-release publication guard CI step was replaced with post-release publication conformance.
+- This is required because v0.3.0 now intentionally has a remote tag and GitHub release.
+
+Boundary:
+
+- This release does not claim reproducible-build proof.
+- This release does not claim source-to-release proof.
+- This release does not claim binary safety proof.
+- This release does not claim audit result.
+
+Progress interpretation:
+
+- Total project: approximately 78%.
+- WVP v0.3 release publication: 100% for publication only.
+- Overall WVP system: not 100%.
+<!-- WVP:STEP-20A-RECOVER-POST-RELEASE-VERIFICATION:END -->
+
