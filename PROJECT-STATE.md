@@ -1660,3 +1660,43 @@ Progress interpretation after successful CI:
 - Overall WVP system: not 100%.
 <!-- WVP:STEP-21N-RUNNER-REPORT-ARTIFACT:END -->
 
+
+<!-- WVP:STEP-21O-RELEASE-READINESS-CHECKLIST:START -->
+## STEP 21O — v0.4 Release Readiness Checklist
+
+Status: `implemented`
+
+Purpose:
+
+- Add CI-backed WVP v0.4 release-readiness checklist.
+- Record required evidence before a future v0.4 release.
+- Confirm that this step does not create a tag, GitHub release, or GitHub release asset.
+- Preserve offline, read-only, non-mutating, and claim-limited execution.
+
+Artifacts:
+
+- `docs/release-check/WVP-V040-RELEASE-READINESS-CHECKLIST.md`
+- `conformance/wvp-v040-release-readiness-checklist-conformance.sh`
+
+Boundaries:
+
+- this is release-readiness preparation, not an actual release;
+- no tag is created;
+- no GitHub release is created;
+- no GitHub release asset is uploaded;
+- no private key, seed phrase, wallet secret, or API token is added;
+- no custody, broker, exchange, paid-report, or investment-advice function is introduced;
+- no audit claim is made;
+- no legal clearance guarantee is made;
+- no binary safety proof is claimed;
+- no source-to-release proof is claimed;
+- no reproducible-build proof is claimed.
+
+Progress interpretation after successful CI:
+
+- Total project: approximately 94%.
+- WVP v0.4: release-readiness checklist added.
+- Overall WVP system: not 100%.
+<!-- WVP:STEP-21O-RELEASE-READINESS-CHECKLIST:END -->
+
+
