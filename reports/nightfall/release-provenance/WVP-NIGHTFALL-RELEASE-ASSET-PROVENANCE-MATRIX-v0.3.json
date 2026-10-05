@@ -1,0 +1,51 @@
+{
+  "schema": "wvp-release-asset-provenance-matrix-v0.3",
+  "generated_utc": "2026-10-05T14:51:43Z",
+  "project": "Nightfall",
+  "repository": "Instinctes/nightfall",
+  "release_tag": "v1.0.5",
+  "claims": [
+    {
+      "claim_id": "NF-PROV-001",
+      "atomic_claim": "The latest Nightfall release tag is visible through git ls-remote.",
+      "observed_evidence": "yes, 9591ac0a3a58f734883f8b248b7b05aac88ee8f0",
+      "verdict": "consistent",
+      "limitation": "Tag visibility does not prove binary provenance."
+    },
+    {
+      "claim_id": "NF-PROV-002",
+      "atomic_claim": "Nightfall release assets have GitHub uploader metadata.",
+      "observed_evidence": "2 unique uploader(s): Instinctes, github-actions[bot]",
+      "verdict": "consistent",
+      "limitation": "GitHub uploader metadata is not a cryptographic signature."
+    },
+    {
+      "claim_id": "NF-PROV-003",
+      "atomic_claim": "The release has checksum-like assets.",
+      "observed_evidence": "3 checksum-like asset(s)",
+      "verdict": "consistent",
+      "limitation": "Checksum presence does not prove independent trust."
+    },
+    {
+      "claim_id": "NF-PROV-004",
+      "atomic_claim": "Every binary-like asset is referenced by checksum file content by filename.",
+      "observed_evidence": "complete_by_filename; covered=8; missing=0",
+      "verdict": "consistent",
+      "limitation": "Filename coverage does not prove checksum correctness unless local hashes are computed."
+    },
+    {
+      "claim_id": "NF-PROV-005",
+      "atomic_claim": "The release has signature-like assets.",
+      "observed_evidence": "0 signature-like asset(s)",
+      "verdict": "not_enough_evidence",
+      "limitation": "Signature detection is name-based and still requires public-key verification."
+    },
+    {
+      "claim_id": "NF-PROV-006",
+      "atomic_claim": "The release binaries are safe.",
+      "observed_evidence": "not proven by v0.3",
+      "verdict": "contradicted",
+      "limitation": "Safety cannot be inferred from release metadata, checksums or uploaders alone."
+    }
+  ]
+}
