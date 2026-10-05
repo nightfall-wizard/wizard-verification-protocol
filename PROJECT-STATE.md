@@ -1413,3 +1413,43 @@ Progress interpretation after successful CI:
 - Overall WVP system: not 100%.
 <!-- WVP:STEP-21H-FRC004-PUBLIC-KEY-NO-SIGNATURE-FIXTURE:END -->
 
+
+<!-- WVP:STEP-21I-FIXTURE-RUNNER-DESIGN:START -->
+## STEP 21I — Release-Check Fixture Runner Design
+
+Status: `implemented`
+
+Purpose:
+
+- Add compact design anchor for a future WVP v0.4 release-check fixture runner.
+- Bind implemented deterministic fixtures FRC-003, FRC-004, FRC-005, FRC-006, and FRC-007.
+- Define runner contract, status model, exit-code model, offline boundary, secret boundary, and non-claims.
+- Add CI-backed conformance for the design anchor.
+
+Artifacts:
+
+- `docs/release-check/WVP-V040-FIXTURE-RUNNER-DESIGN.md`
+- `conformance/wvp-v040-release-check-fixture-runner-design-conformance.sh`
+
+Boundaries:
+
+- no generic fixture runner is implemented by this step;
+- no release-check runtime behavior is changed by this step;
+- no tag is created;
+- no GitHub release is created;
+- no release asset is uploaded;
+- no private key, seed phrase, wallet secret, or API token is added;
+- no custody, broker, exchange, paid-report, or investment-advice function is introduced;
+- no audit claim is made;
+- no legal compliance guarantee is made;
+- no binary safety proof is claimed;
+- no source-to-release proof is claimed;
+- no reproducible-build proof is claimed.
+
+Progress interpretation after successful CI:
+
+- Total project: approximately 88%.
+- WVP v0.4: five deterministic fixtures plus fixture-runner design.
+- Overall WVP system: not 100%.
+<!-- WVP:STEP-21I-FIXTURE-RUNNER-DESIGN:END -->
+
