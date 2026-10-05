@@ -1,0 +1,44 @@
+{
+  "schema": "wvp-release-download-verify-matrix-v0.4",
+  "generated_utc": "2026-10-05T14:54:21Z",
+  "project": "Nightfall",
+  "repository": "Instinctes/nightfall",
+  "release_tag": "v1.0.5",
+  "claims": [
+    {
+      "claim_id": "NF-DL-001",
+      "atomic_claim": "Nightfall release checksum-like files can be downloaded.",
+      "observed_evidence": "3 checksum-like asset(s)",
+      "verdict": "consistent",
+      "limitation": "Checksum files are not independently trusted."
+    },
+    {
+      "claim_id": "NF-DL-002",
+      "atomic_claim": "Nightfall release binary-like assets were downloaded for SHA256 verification.",
+      "observed_evidence": "size_policy=ok; binary_count=8",
+      "verdict": "consistent",
+      "limitation": "Download does not imply execution or safety."
+    },
+    {
+      "claim_id": "NF-DL-003",
+      "atomic_claim": "Downloaded binary-like assets match published SHA256 checksum entries.",
+      "observed_evidence": "verdict=all_downloaded_binary_assets_match_published_sha256; pass=8; fail=0; missing=0",
+      "verdict": "consistent",
+      "limitation": "Matching published checksums do not prove source-to-binary correspondence."
+    },
+    {
+      "claim_id": "NF-DL-004",
+      "atomic_claim": "Release binaries were executed.",
+      "observed_evidence": "no execution performed",
+      "verdict": "contradicted",
+      "limitation": "WVP v0.4 intentionally does not execute release binaries."
+    },
+    {
+      "claim_id": "NF-DL-005",
+      "atomic_claim": "Release binaries are safe.",
+      "observed_evidence": "not proven by checksum verification",
+      "verdict": "contradicted",
+      "limitation": "Safety requires separate security review and cannot be inferred from checksums."
+    }
+  ]
+}
