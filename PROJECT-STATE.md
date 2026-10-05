@@ -755,3 +755,29 @@ Progress interpretation after successful CI:
 - Not 100%.
 <!-- WVP:STEP-19V-RECOVER-DOC-GREP:END -->
 
+
+<!-- WVP:STEP-19W-V030-LOCAL-SIGNING-GUARD-CI:START -->
+## STEP 19W — v0.3.0 Local Signing Execution Guard Wired Into CI
+
+Status: `implemented`
+
+CI-enforced check:
+
+    ./conformance/release-check-v030-local-signing-execution-guard.sh
+
+Reason:
+
+- STEP 19V prepared the local signing execution guard;
+- STEP 19V recovery fixed the Markdown-sensitive documentation term check;
+- the guard evaluates pre-signing readiness without creating a signature;
+- the guard verifies dirty-tree refusal behavior;
+- STEP 19W makes the local signing execution guard machine-checked in CI;
+- this still does not create a tag, GitHub release or detached signature.
+
+Progress interpretation after successful CI:
+
+- Total project: approximately 74%.
+- WVP v0.3: approximately 98%.
+- Not 100%.
+<!-- WVP:STEP-19W-V030-LOCAL-SIGNING-GUARD-CI:END -->
+
