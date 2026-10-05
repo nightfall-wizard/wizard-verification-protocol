@@ -36,7 +36,7 @@ It is not a source-to-release proof.
 
 ## Required Before v0.3 Release
 
-- [ ] v0.3 version bump is prepared.
+- [x] v0.3 version bump is prepared.
 - [ ] v0.3 release notes are drafted.
 - [ ] v0.3 release asset build command is documented.
 - [ ] v0.3 checksum generation command is documented.

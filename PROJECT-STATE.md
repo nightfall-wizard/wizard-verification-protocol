@@ -407,3 +407,67 @@ Progress interpretation after successful CI:
 - Not 100%.
 <!-- WVP:STEP-19O-V030-VERSION-RELEASE-PLAN-CI:END -->
 
+
+<!-- WVP:STEP-19P-ACTUAL-V030-VERSION-BUMP:START -->
+## STEP 19P — Actual v0.3.0 Version Bump
+
+Status: `implemented`
+
+Version file:
+
+    reference/rust/wvp-release-check/Cargo.toml
+
+Lockfile:
+
+    reference/rust/wvp-release-check/Cargo.lock
+
+Conformance check:
+
+    ./conformance/release-check-v030-actual-version-bump.sh
+
+Purpose:
+
+- change the package version from 0.2.0 to 0.3.0;
+- regenerate the Cargo lockfile;
+- update the v0.3 readiness checklist version-bump item;
+- preserve the boundary that this is not a tag, not a GitHub release and not a signature event.
+
+Progress interpretation after successful CI:
+
+- Total project: approximately 66%.
+- WVP v0.3: approximately 87%.
+- Not 100%.
+<!-- WVP:STEP-19P-ACTUAL-V030-VERSION-BUMP:END -->
+
+
+<!-- WVP:STEP-19P-RECOVER-ACTUAL-VERSION-BUMP:START -->
+## STEP 19P-RECOVER — Actual v0.3.0 Version Bump Check Fixed
+
+Status: `implemented`
+
+Version file:
+
+    reference/rust/wvp-release-check/Cargo.toml
+
+Detected lockfile:
+
+    Cargo.lock
+
+Conformance check:
+
+    ./conformance/release-check-v030-actual-version-bump.sh
+
+Reason:
+
+- STEP 19P correctly changed the package version to 0.3.0;
+- the first actual-version conformance check failed because the Cargo.lock path assumption was too strict;
+- this recovery detects the real lockfile path and verifies the v0.3.0 package entry there;
+- this remains a version-bump commit only, not a tag, not a GitHub release and not a signature event.
+
+Progress interpretation after successful CI:
+
+- Total project: approximately 66%.
+- WVP v0.3: approximately 87%.
+- Not 100%.
+<!-- WVP:STEP-19P-RECOVER-ACTUAL-VERSION-BUMP:END -->
+
