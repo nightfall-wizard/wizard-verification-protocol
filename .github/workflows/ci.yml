@@ -109,10 +109,11 @@ jobs:
           if-no-files-found: error
 
       - name: WVP v0.3 release readiness checklist conformance
-      run: ./conformance/release-check-v030-readiness-checklist.sh
+        run: ./conformance/release-check-v030-readiness-checklist.sh
 
-    - name: WVP Android-vs-CI local conformance script syntax
-      run: bash -n ./conformance/release-check-android-vs-ci-build-provenance.sh
+      - name: WVP Android-vs-CI local conformance script syntax
+        run: bash -n ./conformance/release-check-android-vs-ci-build-provenance.sh
 
-    - name: WVP build provenance comparison format conformance
+      - name: WVP build provenance comparison format conformance
         run: ./conformance/release-check-build-provenance-comparison-format.sh
+

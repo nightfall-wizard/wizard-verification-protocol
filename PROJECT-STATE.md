@@ -261,3 +261,23 @@ Progress interpretation after successful CI:
 - Not 100%.
 <!-- WVP:STEP-19K-RECOVER-WORKFLOW-YAML:END -->
 
+
+<!-- WVP:STEP-19K-RECOVER-2-WORKFLOW-INDENT:START -->
+## STEP 19K-RECOVER-2 — Workflow Step Indentation Fixed
+
+Status: `implemented`
+
+Reason:
+
+- the first 19K recovery recorded state but did not modify the workflow file;
+- the workflow still had malformed step indentation;
+- this recovery force-rewrites the affected GitHub Actions steps with six-space step indentation and eight-space `run:` indentation;
+- CI must be green before release work continues.
+
+Progress interpretation after successful CI:
+
+- Total project: approximately 58–59%.
+- WVP v0.3: approximately 72%.
+- Not 100%.
+<!-- WVP:STEP-19K-RECOVER-2-WORKFLOW-INDENT:END -->
+
