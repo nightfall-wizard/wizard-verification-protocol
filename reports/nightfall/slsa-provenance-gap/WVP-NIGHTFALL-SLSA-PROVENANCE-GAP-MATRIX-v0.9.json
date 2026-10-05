@@ -1,0 +1,51 @@
+{
+  "schema": "wvp-slsa-provenance-gap-matrix-v0.9",
+  "generated_utc": "2026-10-05T15:38:03Z",
+  "project": "Nightfall",
+  "repository": "Instinctes/nightfall",
+  "release_tag": "v1.0.5",
+  "claims": [
+    {
+      "claim_id": "NF-SLSA-001",
+      "atomic_claim": "The Nightfall release tag commit can be resolved.",
+      "observed_evidence": "tag_commit_sha=9591ac0a3a58f734883f8b248b7b05aac88ee8f0",
+      "verdict": "consistent",
+      "limitation": "Tag commit visibility does not prove binary provenance."
+    },
+    {
+      "claim_id": "NF-SLSA-002",
+      "atomic_claim": "The local GitHub CLI can attempt attestation/provenance verification.",
+      "observed_evidence": "yes",
+      "verdict": "consistent",
+      "limitation": "CLI support does not mean release assets have usable provenance."
+    },
+    {
+      "claim_id": "NF-SLSA-003",
+      "atomic_claim": "Nightfall binary-like release assets expose strong SLSA/in-toto provenance surface.",
+      "observed_evidence": "verdict=no_slsa_provenance_surface_verified; pass=0; partial=0; fail=8; skipped=0; binary_count=8",
+      "verdict": "not_enough_evidence",
+      "limitation": "Surface detection is not full source-to-binary proof."
+    },
+    {
+      "claim_id": "NF-SLSA-004",
+      "atomic_claim": "Nightfall release assets are fully linked to source commit, builder identity, workflow and asset digest.",
+      "observed_evidence": "checked heuristically in v0.9; verdict=no_slsa_provenance_surface_verified",
+      "verdict": "not_enough_evidence",
+      "limitation": "Requires complete provenance validation and digest-level release asset linkage."
+    },
+    {
+      "claim_id": "NF-SLSA-005",
+      "atomic_claim": "Nightfall release binaries match source.",
+      "observed_evidence": "not proven by v0.9",
+      "verdict": "not_verifiable",
+      "limitation": "Requires stronger provenance and/or reproducible build comparison."
+    },
+    {
+      "claim_id": "NF-SLSA-006",
+      "atomic_claim": "Nightfall release binaries are safe.",
+      "observed_evidence": "not proven by SLSA/provenance metadata",
+      "verdict": "contradicted",
+      "limitation": "Binary safety cannot be inferred from provenance metadata."
+    }
+  ]
+}
