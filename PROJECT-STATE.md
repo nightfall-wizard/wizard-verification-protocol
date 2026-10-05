@@ -384,3 +384,26 @@ Progress interpretation after successful CI:
 - Not 100%.
 <!-- WVP:STEP-19N-V030-VERSION-RELEASE-PLAN:END -->
 
+
+<!-- WVP:STEP-19O-V030-VERSION-RELEASE-PLAN-CI:START -->
+## STEP 19O — v0.3 Version/Release Plan Check Wired Into CI
+
+Status: `implemented`
+
+CI-enforced check:
+
+    ./conformance/release-check-v030-version-release-plan.sh
+
+Reason:
+
+- STEP 19N created the v0.3 version bump and release command plan;
+- STEP 19O makes that plan machine-checked in CI;
+- release execution must not proceed unless the version/release plan stays valid.
+
+Progress interpretation after successful CI:
+
+- Total project: approximately 64–65%.
+- WVP v0.3: approximately 84%.
+- Not 100%.
+<!-- WVP:STEP-19O-V030-VERSION-RELEASE-PLAN-CI:END -->
+
