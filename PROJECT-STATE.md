@@ -233,3 +233,31 @@ Progress interpretation after successful CI:
 - Not 100%.
 <!-- WVP:STEP-19K-V030-READINESS-CI:END -->
 
+
+<!-- WVP:STEP-19K-RECOVER-WORKFLOW-YAML:START -->
+## STEP 19K-RECOVER — Workflow YAML Recovery
+
+Status: `implemented`
+
+Failed run:
+
+    37289978792
+
+Recovered workflow:
+
+    .github/workflows/ci.yml
+
+Reason:
+
+- STEP 19K correctly added the v0.3 readiness check conceptually;
+- the first CI attempt failed at workflow-file level;
+- the workflow block was reinserted using marker-derived indentation;
+- CI must be green again before any further release work.
+
+Progress interpretation after successful CI:
+
+- Total project: approximately 58–59%.
+- WVP v0.3: approximately 72%.
+- Not 100%.
+<!-- WVP:STEP-19K-RECOVER-WORKFLOW-YAML:END -->
+
