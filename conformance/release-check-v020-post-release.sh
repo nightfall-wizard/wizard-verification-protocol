@@ -61,7 +61,7 @@ target/release/wvp-release-check \
   --json \
   --live | tee "$JSON_OUT"
 
-grep -Fq '"version": "0.2.0"' "$JSON_OUT"
+grep -Fq '"version": "0.3.0"' "$JSON_OUT"
 grep -Fq '"status": "INFO"' "$JSON_OUT"
 grep -Fq '"latest_release_tag": "v0.2.0"' "$JSON_OUT"
 grep -Fq '"latest_release_asset_count": 3' "$JSON_OUT"

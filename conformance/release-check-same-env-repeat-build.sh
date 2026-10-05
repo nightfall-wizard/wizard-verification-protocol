@@ -67,8 +67,8 @@ OUT_B="$("$OUT_DIR/build-b/$BINARY_NAME" --target nightfall-wizard/wizard-verifi
 echo "$OUT_A"
 echo "$OUT_B"
 
-echo "$OUT_A" | grep -Fq '"version": "0.2.0"'
-echo "$OUT_B" | grep -Fq '"version": "0.2.0"'
+echo "$OUT_A" | grep -Fq '"version": "0.3.0"'
+echo "$OUT_B" | grep -Fq '"version": "0.3.0"'
 
 END_TS="$(date '+%Y-%m-%d %H:%M:%S %Z')"
 END_EPOCH="$(date +%s)"

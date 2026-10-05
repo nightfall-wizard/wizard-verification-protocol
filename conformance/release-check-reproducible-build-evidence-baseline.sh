@@ -54,7 +54,7 @@ grep -Fq '"cargo":' "$OUT_DIR/BUILD-PROVENANCE.json"
 
 OUT="$("$OUT_DIR/$ASSET_NAME" --target nightfall-wizard/wizard-verification-protocol --json)"
 echo "$OUT"
-echo "$OUT" | grep -Fq '"version": "0.2.0"'
+echo "$OUT" | grep -Fq '"version": "0.3.0"'
 
 END_TS="$(date '+%Y-%m-%d %H:%M:%S %Z')"
 END_EPOCH="$(date +%s)"

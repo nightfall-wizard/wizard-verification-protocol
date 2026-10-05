@@ -471,3 +471,28 @@ Progress interpretation after successful CI:
 - Not 100%.
 <!-- WVP:STEP-19P-RECOVER-ACTUAL-VERSION-BUMP:END -->
 
+
+<!-- WVP:STEP-19P-RECOVER-3-CURRENT-TOOL-VERSION-CHECKS:START -->
+## STEP 19P-RECOVER-3 — Current Tool Version Checks Updated
+
+Status: `implemented`
+
+Failed CI run:
+
+    PROJECT-STATE.md
+
+Reason:
+
+- STEP 19P successfully bumped the current `wvp-release-check` package to 0.3.0;
+- several current-version conformance checks still expected the local tool output to contain version 0.2.0;
+- those current-tool expectations were updated to 0.3.0;
+- historical v0.2.0 release metadata checks remain distinct and are not treated as proof of a v0.3.0 release;
+- this step does not create a tag, release or signature.
+
+Progress interpretation after successful CI:
+
+- Total project: approximately 66–67%.
+- WVP v0.3: approximately 88%.
+- Not 100%.
+<!-- WVP:STEP-19P-RECOVER-3-CURRENT-TOOL-VERSION-CHECKS:END -->
+
