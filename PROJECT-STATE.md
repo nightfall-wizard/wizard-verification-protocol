@@ -124,3 +124,38 @@ This is valid cross-environment build-provenance evidence.
 It strengthens WVP release-integrity documentation but remains below reproducible-build proof level.
 <!-- WVP:STEP-19F-ANDROID-VS-CI:END -->
 
+
+<!-- WVP:STEP-19H-REUSABLE-ANDROID-VS-CI-CONFORMANCE:START -->
+## STEP 19H — Reusable Android vs CI Build Provenance Conformance
+
+Status: `implemented`
+
+Reusable local conformance command:
+
+    ./conformance/release-check-android-vs-ci-build-provenance.sh
+
+Purpose:
+
+- Download the GitHub Actions build-provenance artifact for the checked-out commit.
+- Generate a fresh Android-Termux build-provenance artifact locally.
+- Compare both artifact sets.
+- Validate that Android-Termux and GitHub Actions are treated as separate environment classes.
+- Validate that source commit, package version and Cargo.lock hash match.
+- Preserve the explicit non-claim that this is not a reproducible-build proof.
+
+Required preconditions:
+
+- clean Git source tree;
+- authenticated GitHub CLI;
+- successful GitHub Actions run for the checked-out commit;
+- downloadable `wvp-ci-build-provenance-<commit>` artifact.
+
+Limits:
+
+- not an audit;
+- not a binary-safety proof;
+- not a source-to-release proof;
+- not a reproducible-build proof;
+- not intended to run as part of normal CI because it depends on an already-uploaded GitHub Actions artifact.
+<!-- WVP:STEP-19H-REUSABLE-ANDROID-VS-CI-CONFORMANCE:END -->
+
