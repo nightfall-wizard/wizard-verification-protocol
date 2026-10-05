@@ -82,3 +82,45 @@ Add actual CI-artifact download and Android-vs-CI comparison command.
 ## Safety state
 
 No seeds, wallet files, tokens or private signing keys are stored in this repository.
+
+<!-- WVP:STEP-19F-ANDROID-VS-CI:START -->
+## STEP 19F / 19G — Android vs CI Build Provenance Evidence
+
+Date: 2026-10-05  
+Commit: `75a777b37e23bf350057dfc8917ef9d29396a184`  
+GitHub Actions Run ID: `37242108764`  
+Evidence report: `docs/release/ANDROID-VS-CI-BUILD-EVIDENCE-2026-10-05.md`  
+Machine-readable comparison: `target/wvp-android-vs-ci-build-provenance-comparison-75a777b/BUILD-PROVENANCE-COMPARISON.json`
+
+### Result
+
+`PASS`
+
+### Verified / observed
+
+- `verified`: Android-Termux artifact exists.
+- `verified`: GitHub Actions artifact exists.
+- `verified`: both artifacts contain build provenance JSON, environment classification JSON, manifest, native binary and SHA256 file.
+- `verified`: both artifact-local SHA256 checks pass.
+- `verified`: source commit matches.
+- `verified`: package version matches.
+- `verified`: Cargo.lock hash matches.
+- `observed`: Android-Termux environment class differs from GitHub Actions environment class.
+- `observed`: binary SHA256 differs.
+- `observed`: binary size differs.
+- `observed`: Rust/Cargo versions differ.
+
+### Limits
+
+- No reproducible-build claim.
+- No source-to-release proof.
+- No binary-safety proof.
+- No audit claim.
+- Cross-architecture native binaries are not expected to be byte-identical.
+
+### Current interpretation
+
+This is valid cross-environment build-provenance evidence.  
+It strengthens WVP release-integrity documentation but remains below reproducible-build proof level.
+<!-- WVP:STEP-19F-ANDROID-VS-CI:END -->
+
