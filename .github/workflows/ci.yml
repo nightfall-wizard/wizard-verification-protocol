@@ -190,3 +190,6 @@ jobs:
 
       - name: WVP v0.4 final pre-release gate conformance
         run: ./conformance/wvp-v040-final-pre-release-gate-conformance.sh
+
+      - name: WVP v0.4 controlled release plan conformance
+        run: ./conformance/wvp-v040-controlled-release-plan-conformance.sh

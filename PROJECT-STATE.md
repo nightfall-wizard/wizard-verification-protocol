@@ -1778,3 +1778,42 @@ Progress interpretation after successful CI:
 - Overall WVP system: not 100%.
 <!-- WVP:STEP-21Q-FINAL-PRE-RELEASE-GATE:END -->
 
+
+<!-- WVP:STEP-21R-CONTROLLED-RELEASE-PLAN:START -->
+## STEP 21R — Controlled v0.4.0 Release Plan
+
+Status: `implemented`
+
+Purpose:
+
+- Add CI-backed controlled v0.4.0 release plan.
+- Define the future manual release sequence without executing it.
+- Confirm that this step does not create a tag, GitHub release, GitHub release asset, or signature.
+- Preserve legal, operational, offline, read-only, non-mutating, and claim-limited execution.
+
+Artifacts:
+
+- `docs/release-check/WVP-V040-CONTROLLED-RELEASE-PLAN.md`
+- `conformance/wvp-v040-controlled-release-plan-conformance.sh`
+
+Boundaries:
+
+- this is a release plan, not an actual release;
+- no tag is created;
+- no GitHub release is created;
+- no GitHub release asset is uploaded;
+- no private key, seed phrase, wallet secret, or API token is added;
+- no custody, broker, exchange, paid-report, or investment-advice function is introduced;
+- no audit claim is made;
+- no legal clearance guarantee is made;
+- no binary safety proof is claimed;
+- no source-to-release proof is claimed;
+- no reproducible-build proof is claimed.
+
+Progress interpretation after successful CI:
+
+- Total project: approximately 97%.
+- WVP v0.4: controlled release plan added.
+- Overall WVP system: not 100%.
+<!-- WVP:STEP-21R-CONTROLLED-RELEASE-PLAN:END -->
+
