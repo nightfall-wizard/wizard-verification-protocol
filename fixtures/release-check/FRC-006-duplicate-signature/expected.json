@@ -1,0 +1,42 @@
+{
+  "fixture_id": "FRC-006",
+  "expected_classification": {
+    "binary_asset_count": 1,
+    "checksum_asset_count": 1,
+    "signature_asset_count": 2,
+    "public_verification_key_asset_count": 1,
+    "duplicate_signature_state": true,
+    "signature_state_must_not_be_silent_success": true,
+    "public_key_must_not_count_as_signature": true
+  },
+  "signature_policy": {
+    "signature_names": [
+      "wvp-release-check-vfixture-termux-android-aarch64.sig",
+      "wvp-release-check-vfixture-termux-android-aarch64.asc"
+    ],
+    "allowed_signature_suffixes": [
+      ".sig",
+      ".asc",
+      ".minisig",
+      ".gpg",
+      ".signature"
+    ],
+    "duplicate_signature_assets_are_ambiguous": true,
+    "expected_status_class": "FAIL_OR_WARN_DETERMINISTIC"
+  },
+  "expected_status_boundary": {
+    "fixture_is_deterministic": true,
+    "live_github_required": false,
+    "network_required": false,
+    "authentication_required": false
+  },
+  "non_claims": {
+    "audit_claim": false,
+    "legal_compliance_claim": false,
+    "binary_safety_claim": false,
+    "source_to_release_claim": false,
+    "reproducible_build_claim": false,
+    "wallet_safety_claim": false,
+    "investment_suitability_claim": false
+  }
+}

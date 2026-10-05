@@ -35,8 +35,9 @@
     {
       "id": "FRC-006",
       "name": "duplicate-signature",
+      "path": "fixtures/release-check/FRC-006-duplicate-signature",
       "priority": "P0",
-      "status": "planned"
+      "status": "implemented"
     },
     {
       "id": "FRC-007",
