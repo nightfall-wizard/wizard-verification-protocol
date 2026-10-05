@@ -132,6 +132,8 @@ jobs:
 
       - name: WVP v0.3 post-release publication conformance
         run: ./conformance/release-check-v030-post-release-publication.sh
+        env:
+          GH_TOKEN: ${{ github.token }}
       - name: WVP Android-vs-CI local conformance script syntax
         run: bash -n ./conformance/release-check-android-vs-ci-build-provenance.sh
 

@@ -1038,3 +1038,35 @@ Progress interpretation after successful CI:
 - Overall WVP system: not 100%.
 <!-- WVP:STEP-20A-RECOVER-5-V020-LATEST-DECOUPLING:END -->
 
+
+<!-- WVP:STEP-20A-RECOVER-6-GH-TOKEN-POST-RELEASE-CI:START -->
+## STEP 20A-RECOVER-6 — GH_TOKEN Added to v0.3 Post-Release CI Step
+
+Status: `implemented`
+
+Reason:
+
+- The v0.3 post-release publication conformance check uses GitHub CLI.
+- In CI, `gh release view` and `gh release download` require `GH_TOKEN`.
+- Local execution passed because the local GitHub CLI session was authenticated.
+- The CI workflow step now explicitly sets:
+  - `GH_TOKEN: ${{ github.token }}`
+
+Boundary:
+
+- no tag is created by this recovery;
+- no GitHub release is created by this recovery;
+- no release asset is uploaded by this recovery;
+- no private key is added;
+- no reproducible-build proof is claimed;
+- no source-to-release proof is claimed;
+- no binary safety proof is claimed;
+- no audit claim is made.
+
+Progress interpretation after successful CI:
+
+- Total project: approximately 79%.
+- WVP v0.3 publication/post-release: 100%.
+- Overall WVP system: not 100%.
+<!-- WVP:STEP-20A-RECOVER-6-GH-TOKEN-POST-RELEASE-CI:END -->
+
