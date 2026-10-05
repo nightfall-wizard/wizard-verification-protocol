@@ -50,18 +50,32 @@ echo "Dry-run did not create signature."
 echo
 
 echo "=== VERIFY SIGN MODE REFUSES MISSING PRIVATE KEY ==="
+rm -f "$SIGNATURE"
+
+MISSING_KEY_LOG="target/wvp-v030-detached-signature-missing-key.log"
+
 set +e
-"$SIGN_SCRIPT" --sign > target/wvp-v030-sign-missing-key.log 2>&1
-SIGN_MISSING_KEY_RESULT=$?
+(
+  unset WVP_SIGNING_PRIVATE_KEY
+  unset WVP_VERIFY_PUBLIC_KEY
+  "$SIGN_SCRIPT" --sign
+) > "$MISSING_KEY_LOG" 2>&1
+MISSING_KEY_RESULT=$?
 set -e
 
-if [ "$SIGN_MISSING_KEY_RESULT" -eq 0 ]; then
-  echo "FAIL: sign mode succeeded without private key."
-  cat target/wvp-v030-sign-missing-key.log
+if [ "$MISSING_KEY_RESULT" -eq 0 ]; then
+  echo "FAIL: sign mode succeeded without private key after env isolation."
+  cat "$MISSING_KEY_LOG"
   exit 1
 fi
 
-grep -q "WVP_SIGNING_PRIVATE_KEY" target/wvp-v030-sign-missing-key.log
+if [ -e "$SIGNATURE" ]; then
+  echo "FAIL: missing-key negative test created a signature."
+  cat "$MISSING_KEY_LOG"
+  exit 1
+fi
+
+grep -Eq "WVP_SIGNING_PRIVATE_KEY|private key|Private signing key" "$MISSING_KEY_LOG"
 echo "Missing private-key refusal OK."
 echo
 

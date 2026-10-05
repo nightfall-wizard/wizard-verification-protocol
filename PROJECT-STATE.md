@@ -844,3 +844,32 @@ Progress interpretation after successful CI:
 - Not 100%.
 <!-- WVP:STEP-19Y-V030-RELEASE-PUBLICATION-GUARD-CI:END -->
 
+
+<!-- WVP:STEP-19Z-RECOVER-SIGNATURE-CONFORMANCE-ENV-ISOLATION:START -->
+## STEP 19Z-RECOVER — Detached Signature Conformance Env Isolation Fixed
+
+Status: `implemented`
+
+Reason:
+
+- STEP 19Z was run with `WVP_SIGNING_PRIVATE_KEY` and `WVP_VERIFY_PUBLIC_KEY` set;
+- the detached-signature conformance check includes a negative test that expects sign mode to fail without a private key;
+- because the key environment was inherited, the negative test signed successfully and created a detached signature;
+- the negative test now explicitly unsets signing-related environment variables before checking missing-key refusal;
+- the check also fails if the negative test creates a signature.
+
+Boundary:
+
+- no v0.3.0 tag is created;
+- no GitHub release is created;
+- no publication is executed;
+- no private signing material is introduced;
+- the accidental local signature from the failed negative test is removed before validation.
+
+Progress interpretation after successful CI:
+
+- Total project: approximately 76%.
+- WVP v0.3: still approximately 99%.
+- Not 100%.
+<!-- WVP:STEP-19Z-RECOVER-SIGNATURE-CONFORMANCE-ENV-ISOLATION:END -->
+
