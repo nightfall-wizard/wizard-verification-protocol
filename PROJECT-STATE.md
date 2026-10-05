@@ -1493,3 +1493,46 @@ Progress interpretation after successful CI:
 - Overall WVP system: not 100%.
 <!-- WVP:STEP-21J-FIXTURE-INDEX-VALIDATOR:END -->
 
+
+<!-- WVP:STEP-21K-FIXTURE-RUNNER-SKELETON:START -->
+## STEP 21K — Fixture Runner Skeleton
+
+Status: `implemented`
+
+Purpose:
+
+- Add generic WVP v0.4 release-check fixture runner skeleton.
+- Read `fixtures/release-check/FIXTURE-INDEX.json`.
+- Validate implemented fixture structure.
+- Emit machine-readable JSON result.
+- Keep execution offline, read-only, non-mutating, and claim-limited.
+- Add CI-backed conformance for JSON output and negative unsafe-path behavior.
+
+Artifacts:
+
+- `conformance/wvp-v040-release-check-fixture-runner-skeleton.sh`
+- `conformance/wvp-v040-release-check-fixture-runner-skeleton-conformance.sh`
+
+Boundaries:
+
+- skeleton validates fixture structure only;
+- no full fixture semantic classifier is implemented by this step;
+- no release-check Rust runtime behavior is changed by this step;
+- no tag is created;
+- no GitHub release is created;
+- no release asset is uploaded;
+- no private key, seed phrase, wallet secret, or API token is added;
+- no custody, broker, exchange, paid-report, or investment-advice function is introduced;
+- no audit claim is made;
+- no legal clearance guarantee is made;
+- no binary safety proof is claimed;
+- no source-to-release proof is claimed;
+- no reproducible-build proof is claimed.
+
+Progress interpretation after successful CI:
+
+- Total project: approximately 90%.
+- WVP v0.4: fixtures, runner design, index validator, and runner skeleton.
+- Overall WVP system: not 100%.
+<!-- WVP:STEP-21K-FIXTURE-RUNNER-SKELETON:END -->
+
