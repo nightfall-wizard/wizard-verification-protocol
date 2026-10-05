@@ -520,3 +520,92 @@ Progress interpretation after successful CI:
 - Not 100%.
 <!-- WVP:STEP-19Q-ACTUAL-V030-VERSION-BUMP-CI:END -->
 
+
+<!-- WVP:STEP-19R-V030-UNSIGNED-ASSET-STAGING:START -->
+## STEP 19R — v0.3.0 Unsigned Release Asset Staging
+
+Status: `implemented`
+
+Staging script:
+
+    ./scripts/release/stage-v030-unsigned-asset.sh
+
+Documentation:
+
+    docs/release/WVP-V0.3-UNSIGNED-ASSET-STAGING.md
+
+Conformance check:
+
+    ./conformance/release-check-v030-unsigned-asset-staging.sh
+
+Purpose:
+
+- build the v0.3.0 release binary locally;
+- stage the unsigned release asset under the planned v0.3.0 name;
+- generate and verify the SHA-256 checksum asset;
+- write a staging manifest with explicit non-claims;
+- preserve the boundary that this is not a tag, not a GitHub release and not a signature event.
+
+Progress interpretation after successful CI:
+
+- Total project: approximately 69%.
+- WVP v0.3: approximately 92%.
+- Not 100%.
+<!-- WVP:STEP-19R-V030-UNSIGNED-ASSET-STAGING:END -->
+
+
+<!-- WVP:STEP-19R-RECOVER-PYTHON-BOOLEAN:START -->
+## STEP 19R-RECOVER — Unsigned Staging Python Boolean Fixed
+
+Status: `implemented`
+
+Reason:
+
+- STEP 19R created the unsigned v0.3.0 release asset staging script, documentation and conformance check;
+- the first staging run failed while writing `STAGING-MANIFEST.json`;
+- the shell value `true`/`false` was injected into Python directly;
+- Python requires boolean conversion to `True`/`False` semantics;
+- the staging script now converts the dirty-tree flag safely.
+
+Boundary:
+
+- no v0.3.0 tag is created;
+- no GitHub release is created;
+- no signature is created;
+- unsigned staging remains local evidence only.
+
+Progress interpretation after successful CI:
+
+- Total project: approximately 69%.
+- WVP v0.3: approximately 92%.
+- Not 100%.
+<!-- WVP:STEP-19R-RECOVER-PYTHON-BOOLEAN:END -->
+
+
+<!-- WVP:STEP-19R-RECOVER-2-SECRET-SCAN-SELF-MATCH:START -->
+## STEP 19R-RECOVER-2 — Secret-Scan Self-Match Fixed
+
+Status: `implemented`
+
+Reason:
+
+- STEP 19R unsigned staging passed locally;
+- the final staged secret scan failed because the staging script contained the literal secret-detection regex;
+- this was a scanner self-match, not private signing material;
+- the staging script now constructs the secret-detection pattern from split parts;
+- real secret-like material remains detectable, but the scanner no longer flags its own detection rule.
+
+Boundary:
+
+- no v0.3.0 tag is created;
+- no GitHub release is created;
+- no signature is created;
+- unsigned staging remains local evidence only.
+
+Progress interpretation after successful CI:
+
+- Total project: approximately 69%.
+- WVP v0.3: approximately 92%.
+- Not 100%.
+<!-- WVP:STEP-19R-RECOVER-2-SECRET-SCAN-SELF-MATCH:END -->
+
