@@ -1,0 +1,59 @@
+{
+  "schema": "wvp-evidence-index-v0.1",
+  "generated_utc": "2026-10-05T14:40:17Z",
+  "project": "Nightfall",
+  "source_repository": "https://github.com/Instinctes/nightfall.git",
+  "source_commit": "41357431ba8771d38d7d1f6d8bc77caf131fbdc4",
+  "evidence": [
+    {
+      "id": "EV-NF-001",
+      "kind": "repository_commit",
+      "path": ".",
+      "status": "captured",
+      "value": "41357431ba8771d38d7d1f6d8bc77caf131fbdc4"
+    },
+    {
+      "id": "EV-NF-002",
+      "kind": "file",
+      "path": "SECURITY.md",
+      "status": "present"
+    },
+    {
+      "id": "EV-NF-003",
+      "kind": "file",
+      "path": "CONTRIBUTING.md",
+      "status": "present"
+    },
+    {
+      "id": "EV-NF-004",
+      "kind": "file",
+      "path": "FAIR_LAUNCH.md",
+      "status": "present"
+    },
+    {
+      "id": "EV-NF-005",
+      "kind": "workflow",
+      "path": ".github/workflows/ci.yml",
+      "status": "present"
+    },
+    {
+      "id": "EV-NF-006",
+      "kind": "workflow",
+      "path": ".github/workflows/release.yml",
+      "status": "present"
+    },
+    {
+      "id": "EV-NF-007",
+      "kind": "audit_like_documents",
+      "path": "docs/AUDIT-*.md",
+      "status": "count:3"
+    },
+    {
+      "id": "EV-NF-008",
+      "kind": "keyword_surface_scan",
+      "path": "README.md SECURITY.md CONTRIBUTING.md FAIR_LAUNCH.md docs crates",
+      "status": "matches:25",
+      "limitation": "Keyword scan is not absence proof."
+    }
+  ]
+}
