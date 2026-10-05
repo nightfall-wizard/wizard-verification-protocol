@@ -1,0 +1,74 @@
+generated_utc=2026-10-05T15:08:03Z
+repository=Instinctes/nightfall
+release_tag=v1.0.5
+release_name=NIGHTFALLCOIN Core 1.0.5
+published_at=2026-09-22T03:34:27Z
+release_author=Instinctes
+tag_commit=9591ac0a3a58f734883f8b248b7b05aac88ee8f0
+
+cargo_lock_present=yes
+cargo_lock_sha256=f95730fdfeec1e1651aeba5fc0017aff3443dc206ffd0f94fd4ba08dc1d82014
+toolchain_file=none
+exact_rust_toolchain_pinned=unknown_or_absent
+
+release_workflow_present=yes
+actions_uses_count=12
+actions_sha_pinned_count=0
+actions_non_sha_count=12
+actions_pinning_status=some_or_all_actions_not_sha_pinned
+runner_count=4
+runner_latest_count=3
+runner_pinning_status=floating_runner_detected
+build_command_surface_count=19
+repro_gap_level=material_reproducibility_gap
+
+local_environment_metadata_only=true
+local_rustc=rustc 1.99.0 (b940084d7 2026-09-28) (built from a source tarball)
+local_cargo=cargo 1.99.0 (5f94df478 2026-08-27) (built from a source tarball)
+local_uname=Linux localhost 4.4.111-21427293 #1 SMP PREEMPT Fri May 22 17:57:14 KST 2026 aarch64 Android
+local_git=git version 2.56.0
+local_gh=gh version 2.101.0
+
+=== rust toolchain content ===
+none
+
+=== actions uses lines ===
+uses: actions/checkout@v4
+uses: dtolnay/rust-toolchain@stable
+uses: Swatinem/rust-cache@v2
+uses: actions/checkout@v4
+uses: dtolnay/rust-toolchain@stable
+uses: Swatinem/rust-cache@v2
+uses: actions/checkout@v4
+uses: dtolnay/rust-toolchain@stable
+uses: Swatinem/rust-cache@v2
+uses: actions/checkout@v4
+uses: dtolnay/rust-toolchain@stable
+uses: Swatinem/rust-cache@v2
+
+=== runner lines ===
+runs-on: ubuntu-latest
+runs-on: ${{ matrix.os }}
+runs-on: windows-latest
+runs-on: ubuntu-latest
+
+=== build command lines ===
+/data/data/com.termux/files/home/.tmp/wvp-nightfall-v06/nightfall/README.md:99:cargo build --release -p nightfall-core
+/data/data/com.termux/files/home/.tmp/wvp-nightfall-v06/nightfall/README.md:260:cargo run --release -p nightfall-crypto --example powbench
+/data/data/com.termux/files/home/.tmp/wvp-nightfall-v06/nightfall/README.md:273:`cargo run --release -p nightfall-node --example checkpoint -- <height>`.
+/data/data/com.termux/files/home/.tmp/wvp-nightfall-v06/nightfall/README.md:281:cargo build --release -p nightfall-node -p nightfall-wallet
+/data/data/com.termux/files/home/.tmp/wvp-nightfall-v06/nightfall/README.md:385:cargo test --workspace
+/data/data/com.termux/files/home/.tmp/wvp-nightfall-v06/nightfall/CONTRIBUTING.md:25:cargo fmt --all
+/data/data/com.termux/files/home/.tmp/wvp-nightfall-v06/nightfall/CONTRIBUTING.md:26:cargo clippy --workspace --all-targets    # must be clean, not "mostly clean"
+/data/data/com.termux/files/home/.tmp/wvp-nightfall-v06/nightfall/CONTRIBUTING.md:27:cargo test --workspace
+/data/data/com.termux/files/home/.tmp/wvp-nightfall-v06/nightfall/.github/workflows/ci.yml:33:        run: cargo fmt --all --check
+/data/data/com.termux/files/home/.tmp/wvp-nightfall-v06/nightfall/.github/workflows/ci.yml:38:        run: cargo clippy --workspace --all-targets -- -D warnings
+/data/data/com.termux/files/home/.tmp/wvp-nightfall-v06/nightfall/.github/workflows/ci.yml:41:        run: cargo test --workspace
+/data/data/com.termux/files/home/.tmp/wvp-nightfall-v06/nightfall/.github/workflows/ci.yml:73:        run: cargo test -p nightfall-ledger --test exploit_regression -- --nocapture
+/data/data/com.termux/files/home/.tmp/wvp-nightfall-v06/nightfall/.github/workflows/ci.yml:78:        run: cargo test -p nightfall-storage --test reorg_persistence
+/data/data/com.termux/files/home/.tmp/wvp-nightfall-v06/nightfall/.github/workflows/ci.yml:100:        run: cargo build --release -p nightfall-node -p nightfall-wallet -p nightfall-core
+/data/data/com.termux/files/home/.tmp/wvp-nightfall-v06/nightfall/.github/workflows/ci.yml:111:        run: cargo test -p nightfall-wallet --lib
+/data/data/com.termux/files/home/.tmp/wvp-nightfall-v06/nightfall/.github/workflows/release.yml:48:        run: cargo test --workspace
+/data/data/com.termux/files/home/.tmp/wvp-nightfall-v06/nightfall/.github/workflows/release.yml:51:        run: cargo build --release -p nightfall-core -p nightfall-node -p nightfall-wallet
+/data/data/com.termux/files/home/.tmp/wvp-nightfall-v06/nightfall/.github/workflows/release.yml:173:        run: cargo test --workspace
+/data/data/com.termux/files/home/.tmp/wvp-nightfall-v06/nightfall/.github/workflows/release.yml:176:        run: cargo build --release -p nightfall-core -p nightfall-node -p nightfall-wallet
