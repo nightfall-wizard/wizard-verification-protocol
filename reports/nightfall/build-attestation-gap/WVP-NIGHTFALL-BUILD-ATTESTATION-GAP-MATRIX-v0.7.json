@@ -1,0 +1,51 @@
+{
+  "schema": "wvp-build-attestation-gap-matrix-v0.7",
+  "generated_utc": "2026-10-05T15:11:38Z",
+  "project": "Nightfall",
+  "repository": "Instinctes/nightfall",
+  "release_tag": "v1.0.5",
+  "claims": [
+    {
+      "claim_id": "NF-ATT-001",
+      "atomic_claim": "GitHub Release Asset API digest fields are present for Nightfall release assets.",
+      "observed_evidence": "digest_present=11; digest_missing=0; asset_count=11",
+      "verdict": "consistent",
+      "limitation": "GitHub API asset digests are integrity metadata, not source-to-binary proof."
+    },
+    {
+      "claim_id": "NF-ATT-002",
+      "atomic_claim": "The local GitHub CLI supports attestation verification.",
+      "observed_evidence": "yes",
+      "verdict": "consistent",
+      "limitation": "CLI support does not mean release assets have attestations."
+    },
+    {
+      "claim_id": "NF-ATT-003",
+      "atomic_claim": "Nightfall binary-like release assets have verifiable GitHub build attestations.",
+      "observed_evidence": "verdict=no_binary_asset_attestation_verified; pass=0; fail=8; skipped=0; binary_count=8",
+      "verdict": "not_enough_evidence",
+      "limitation": "Attestation verification must still be linked to expected commit, workflow and builder identity."
+    },
+    {
+      "claim_id": "NF-ATT-004",
+      "atomic_claim": "Nightfall release assets are fully linked to specific workflow runs.",
+      "observed_evidence": "not checked in v0.7",
+      "verdict": "not_verifiable",
+      "limitation": "Requires workflow-run linkage analysis in v0.8."
+    },
+    {
+      "claim_id": "NF-ATT-005",
+      "atomic_claim": "Nightfall release binaries match source.",
+      "observed_evidence": "not proven by v0.7",
+      "verdict": "not_verifiable",
+      "limitation": "Requires stronger provenance and/or reproducible build comparison."
+    },
+    {
+      "claim_id": "NF-ATT-006",
+      "atomic_claim": "Nightfall release binaries are safe.",
+      "observed_evidence": "not proven by attestation metadata",
+      "verdict": "contradicted",
+      "limitation": "Binary safety cannot be inferred from metadata or attestations alone."
+    }
+  ]
+}

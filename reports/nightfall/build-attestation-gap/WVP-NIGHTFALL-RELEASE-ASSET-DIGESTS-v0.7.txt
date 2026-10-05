@@ -1,0 +1,11 @@
+- nightfall-core-1.0.5-linux-x64 | api_digest=sha256:ed5136eca5769654ee103b1e2061037787494da1aa96371b85cb90d2bd1fcade | size=16325424 | uploader=github-actions[bot]
+- nightfall-core-1.0.5-windows-x64.exe | api_digest=sha256:75c8f7ca8487b3c086e1efd94e8469b17b1b79b7cdd37429bd4f4b3e98e605ee | size=9003008 | uploader=github-actions[bot]
+- nightfall-wallet-1.0.5-linux-x64 | api_digest=sha256:432fba1360f563a72853b83e0124da1713fdf551bbfdd28954a68d422dad8c3b | size=1710376 | uploader=github-actions[bot]
+- nightfall-wallet-1.0.5-windows-x64.exe | api_digest=sha256:f4d06a799c8e0082fead6bf17e76370b8a3345e7912d985d325c6a7db93a9183 | size=1231360 | uploader=github-actions[bot]
+- NIGHTFALLCOIN-Core-1.0.5-macOS-arm64.dmg | api_digest=sha256:2f05818ca6d91cce54a73e882b0ffbcb0c7476cf87343da1b3a973c676027de5 | size=8060841 | uploader=Instinctes
+- NIGHTFALLCOIN-Core-1.0.5-macOS-intel.dmg | api_digest=sha256:90a55ea773c7887210e1b79b8515d42e19a10316c45ba31d6180fed8ecf57467 | size=9190889 | uploader=Instinctes
+- nightfalld-1.0.5-linux-x64 | api_digest=sha256:b5b623adefecc48de0c5e361650736c93d320c53a1be53189f21f005f5317236 | size=5455656 | uploader=github-actions[bot]
+- nightfalld-1.0.5-windows-x64.exe | api_digest=sha256:5acd1825e717a705d57c42cf62cdba473bc1746e5211737fa967ccbe2099dfde | size=4158976 | uploader=github-actions[bot]
+- SHA256SUMS-1.0.5-linux.txt | api_digest=sha256:0532425d650c3887ea8a5d5438345a149b4ad5a5a54410ab49419c6ce03d9ebc | size=289 | uploader=github-actions[bot]
+- SHA256SUMS-1.0.5-windows.txt | api_digest=sha256:1a84c6d019c66ae9ecbef3bf85345798241311d8f43674ef30b67b7182769991 | size=307 | uploader=github-actions[bot]
+- SHA256SUMS-1.0.5.txt | api_digest=sha256:88dcf695ff8ae5ee724347ced812779c7b4ec51f3ae0062624316c599d9f6a92 | size=214 | uploader=Instinctes
