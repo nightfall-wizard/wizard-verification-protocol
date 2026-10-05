@@ -1453,3 +1453,43 @@ Progress interpretation after successful CI:
 - Overall WVP system: not 100%.
 <!-- WVP:STEP-21I-FIXTURE-RUNNER-DESIGN:END -->
 
+
+<!-- WVP:STEP-21J-FIXTURE-INDEX-VALIDATOR:START -->
+## STEP 21J — Fixture Index Validator
+
+Status: `implemented`
+
+Purpose:
+
+- Add reusable WVP v0.4 release-check fixture index validator.
+- Validate fixture IDs, statuses, paths, required files, JSON syntax, duplicate IDs, unsafe paths, and required implemented fixtures.
+- Add negative tests for missing required fixture, duplicate fixture ID, and unsafe fixture path.
+- Add CI-backed conformance for the validator.
+
+Artifacts:
+
+- `conformance/wvp-v040-release-check-fixture-index-validator.sh`
+- `conformance/wvp-v040-release-check-fixture-index-validator-conformance.sh`
+
+Boundaries:
+
+- no generic fixture runner is implemented by this step;
+- no release-check runtime behavior is changed by this step;
+- no tag is created;
+- no GitHub release is created;
+- no release asset is uploaded;
+- no private key, seed phrase, wallet secret, or API token is added;
+- no custody, broker, exchange, paid-report, or investment-advice function is introduced;
+- no audit claim is made;
+- no legal clearance guarantee is made;
+- no binary safety proof is claimed;
+- no source-to-release proof is claimed;
+- no reproducible-build proof is claimed.
+
+Progress interpretation after successful CI:
+
+- Total project: approximately 89%.
+- WVP v0.4: five deterministic fixtures, runner design, and fixture index validator.
+- Overall WVP system: not 100%.
+<!-- WVP:STEP-21J-FIXTURE-INDEX-VALIDATOR:END -->
+
