@@ -193,3 +193,6 @@ jobs:
 
       - name: WVP v0.4 controlled release plan conformance
         run: ./conformance/wvp-v040-controlled-release-plan-conformance.sh
+
+      - name: WVP v0.4 pre-release prep stop marker conformance
+        run: ./conformance/wvp-v040-pre-release-prep-stop-marker-conformance.sh

@@ -1817,3 +1817,42 @@ Progress interpretation after successful CI:
 - Overall WVP system: not 100%.
 <!-- WVP:STEP-21R-CONTROLLED-RELEASE-PLAN:END -->
 
+
+<!-- WVP:STEP-21S-PRE-RELEASE-PREP-STOP-MARKER:START -->
+## STEP 21S — v0.4 Pre-Release Prep Stop Marker
+
+Status: `implemented`
+
+Purpose:
+
+- Add CI-backed v0.4 pre-release preparation stop marker.
+- Mark v0.4 preparation as complete but not released.
+- Confirm that this step does not create a tag, GitHub release, GitHub release asset, or signature.
+- Require any real v0.4.0 release to be a separate explicit action.
+
+Artifacts:
+
+- `docs/release-check/WVP-V040-PRE-RELEASE-PREP-STOP-MARKER.md`
+- `conformance/wvp-v040-pre-release-prep-stop-marker-conformance.sh`
+
+Boundaries:
+
+- this is a stop marker, not an actual release;
+- no tag is created;
+- no GitHub release is created;
+- no GitHub release asset is uploaded;
+- no private key, seed phrase, wallet secret, or API token is added;
+- no custody, broker, exchange, paid-report, or investment-advice function is introduced;
+- no audit claim is made;
+- no legal clearance guarantee is made;
+- no binary safety proof is claimed;
+- no source-to-release proof is claimed;
+- no reproducible-build proof is claimed.
+
+Progress interpretation after successful CI:
+
+- Total project: approximately 98%.
+- WVP v0.4: pre-release preparation track stopped before release execution.
+- Overall WVP system: not 100%.
+<!-- WVP:STEP-21S-PRE-RELEASE-PREP-STOP-MARKER:END -->
+
