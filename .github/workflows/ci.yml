@@ -187,3 +187,6 @@ jobs:
 
       - name: WVP v0.4 release notes draft conformance
         run: ./conformance/wvp-v040-release-notes-draft-conformance.sh
+
+      - name: WVP v0.4 final pre-release gate conformance
+        run: ./conformance/wvp-v040-final-pre-release-gate-conformance.sh

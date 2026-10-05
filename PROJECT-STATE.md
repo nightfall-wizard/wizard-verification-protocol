@@ -1739,3 +1739,42 @@ Progress interpretation after successful CI:
 - Overall WVP system: not 100%.
 <!-- WVP:STEP-21P-RELEASE-NOTES-DRAFT:END -->
 
+
+<!-- WVP:STEP-21Q-FINAL-PRE-RELEASE-GATE:START -->
+## STEP 21Q — v0.4 Final Pre-Release Gate
+
+Status: `implemented`
+
+Purpose:
+
+- Add CI-backed final WVP v0.4 pre-release gate.
+- Consolidate v0.4 evidence, release notes, readiness, report status, implemented fixture coverage, and no-release status.
+- Confirm that this step does not create a tag, GitHub release, GitHub release asset, or signature.
+- Preserve offline, read-only, non-mutating, and claim-limited execution.
+
+Artifacts:
+
+- `docs/release-check/WVP-V040-FINAL-PRE-RELEASE-GATE.md`
+- `conformance/wvp-v040-final-pre-release-gate-conformance.sh`
+
+Boundaries:
+
+- this is a final pre-release gate, not an actual release;
+- no tag is created;
+- no GitHub release is created;
+- no GitHub release asset is uploaded;
+- no private key, seed phrase, wallet secret, or API token is added;
+- no custody, broker, exchange, paid-report, or investment-advice function is introduced;
+- no audit claim is made;
+- no legal clearance guarantee is made;
+- no binary safety proof is claimed;
+- no source-to-release proof is claimed;
+- no reproducible-build proof is claimed.
+
+Progress interpretation after successful CI:
+
+- Total project: approximately 96%.
+- WVP v0.4: final pre-release gate added.
+- Overall WVP system: not 100%.
+<!-- WVP:STEP-21Q-FINAL-PRE-RELEASE-GATE:END -->
+
