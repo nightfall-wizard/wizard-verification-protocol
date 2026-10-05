@@ -1,0 +1,11 @@
+nightfall-core-1.0.5-linux-x64 | category=linux-binary | linkage=no_workflow_artifact_link_detected | limitation=artifact-name-linkage-is-heuristic
+nightfall-core-1.0.5-windows-x64.exe | category=windows-binary | linkage=no_workflow_artifact_link_detected | limitation=artifact-name-linkage-is-heuristic
+nightfall-wallet-1.0.5-linux-x64 | category=linux-binary | linkage=no_workflow_artifact_link_detected | limitation=artifact-name-linkage-is-heuristic
+nightfall-wallet-1.0.5-windows-x64.exe | category=windows-binary | linkage=no_workflow_artifact_link_detected | limitation=artifact-name-linkage-is-heuristic
+NIGHTFALLCOIN-Core-1.0.5-macOS-arm64.dmg | category=macos-artifact | linkage=no_workflow_artifact_link_detected | limitation=artifact-name-linkage-is-heuristic
+NIGHTFALLCOIN-Core-1.0.5-macOS-intel.dmg | category=macos-artifact | linkage=no_workflow_artifact_link_detected | limitation=artifact-name-linkage-is-heuristic
+nightfalld-1.0.5-linux-x64 | category=linux-binary | linkage=no_workflow_artifact_link_detected | limitation=artifact-name-linkage-is-heuristic
+nightfalld-1.0.5-windows-x64.exe | category=windows-binary | linkage=no_workflow_artifact_link_detected | limitation=artifact-name-linkage-is-heuristic
+SHA256SUMS-1.0.5-linux.txt | category=checksum | linkage=no_workflow_artifact_link_detected | limitation=artifact-name-linkage-is-heuristic
+SHA256SUMS-1.0.5-windows.txt | category=checksum | linkage=no_workflow_artifact_link_detected | limitation=artifact-name-linkage-is-heuristic
+SHA256SUMS-1.0.5.txt | category=checksum | linkage=no_workflow_artifact_link_detected | limitation=artifact-name-linkage-is-heuristic

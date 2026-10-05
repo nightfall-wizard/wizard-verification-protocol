@@ -1,0 +1,51 @@
+{
+  "schema": "wvp-workflow-run-linkage-matrix-v0.8",
+  "generated_utc": "2026-10-05T15:17:38Z",
+  "project": "Nightfall",
+  "repository": "Instinctes/nightfall",
+  "release_tag": "v1.0.5",
+  "claims": [
+    {
+      "claim_id": "NF-WFL-001",
+      "atomic_claim": "The Nightfall release tag commit can be resolved.",
+      "observed_evidence": "tag_commit_sha=9591ac0a3a58f734883f8b248b7b05aac88ee8f0",
+      "verdict": "consistent",
+      "limitation": "Tag commit visibility does not prove binary provenance."
+    },
+    {
+      "claim_id": "NF-WFL-002",
+      "atomic_claim": "Candidate GitHub Actions workflow runs can be found for the release tag or tag commit.",
+      "observed_evidence": "candidate_run_count=2",
+      "verdict": "consistent",
+      "limitation": "Candidate workflow runs do not prove that release assets came from those runs."
+    },
+    {
+      "claim_id": "NF-WFL-003",
+      "atomic_claim": "Workflow artifacts can be found for candidate release workflow runs.",
+      "observed_evidence": "artifact_count=0; expired=0",
+      "verdict": "not_enough_evidence",
+      "limitation": "Artifacts may be expired, incomplete or not identical to release assets."
+    },
+    {
+      "claim_id": "NF-WFL-004",
+      "atomic_claim": "Release assets can be linked to workflow artifacts by name.",
+      "observed_evidence": "exact=0; surface=0; no_link=11; verdict=candidate_runs_found_but_no_artifacts_found",
+      "verdict": "not_enough_evidence",
+      "limitation": "Name linkage is heuristic and does not prove source-to-binary correspondence."
+    },
+    {
+      "claim_id": "NF-WFL-005",
+      "atomic_claim": "Nightfall release binaries match source.",
+      "observed_evidence": "not proven by v0.8",
+      "verdict": "not_verifiable",
+      "limitation": "Requires stronger provenance and/or reproducible build comparison."
+    },
+    {
+      "claim_id": "NF-WFL-006",
+      "atomic_claim": "Nightfall release binaries are safe.",
+      "observed_evidence": "not proven by workflow-run metadata",
+      "verdict": "contradicted",
+      "limitation": "Binary safety cannot be inferred from workflow metadata."
+    }
+  ]
+}
