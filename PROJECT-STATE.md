@@ -633,3 +633,37 @@ Progress interpretation after successful CI:
 - Not 100%.
 <!-- WVP:STEP-19S-V030-UNSIGNED-ASSET-STAGING-CI:END -->
 
+
+<!-- WVP:STEP-19T-V030-DETACHED-SIGNATURE-PROCEDURE:START -->
+## STEP 19T — v0.3.0 Detached Signature Procedure Prepared
+
+Status: `implemented`
+
+Procedure script:
+
+    ./scripts/release/sign-v030-staged-asset.sh
+
+Documentation:
+
+    docs/release/WVP-V0.3-DETACHED-SIGNATURE-PROCEDURE.md
+
+Conformance check:
+
+    ./conformance/release-check-v030-detached-signature-procedure.sh
+
+Purpose:
+
+- define a detached signature procedure for the staged v0.3.0 asset;
+- require private signing material to remain outside the repository;
+- require explicit signing mode before any signature can be created;
+- verify that dry-run mode creates no signature;
+- verify that signing mode refuses missing private-key input;
+- preserve the boundary that this step creates no tag, no GitHub release and no signature.
+
+Progress interpretation after successful CI:
+
+- Total project: approximately 71%.
+- WVP v0.3: approximately 95%.
+- Not 100%.
+<!-- WVP:STEP-19T-V030-DETACHED-SIGNATURE-PROCEDURE:END -->
+
