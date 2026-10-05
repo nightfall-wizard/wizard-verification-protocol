@@ -496,3 +496,27 @@ Progress interpretation after successful CI:
 - Not 100%.
 <!-- WVP:STEP-19P-RECOVER-3-CURRENT-TOOL-VERSION-CHECKS:END -->
 
+
+<!-- WVP:STEP-19Q-ACTUAL-V030-VERSION-BUMP-CI:START -->
+## STEP 19Q — Actual v0.3.0 Version Bump Check Wired Into CI
+
+Status: `implemented`
+
+CI-enforced check:
+
+    ./conformance/release-check-v030-actual-version-bump.sh
+
+Reason:
+
+- STEP 19P changed the package version to 0.3.0;
+- STEP 19P recovery corrected current-version conformance checks;
+- STEP 19Q makes the actual v0.3.0 version bump check CI-enforced;
+- this still does not create a tag, GitHub release or signature.
+
+Progress interpretation after successful CI:
+
+- Total project: approximately 67–68%.
+- WVP v0.3: approximately 90%.
+- Not 100%.
+<!-- WVP:STEP-19Q-ACTUAL-V030-VERSION-BUMP-CI:END -->
+

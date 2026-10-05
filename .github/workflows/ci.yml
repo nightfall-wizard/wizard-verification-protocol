@@ -117,6 +117,9 @@ jobs:
 
       - name: WVP v0.3 version/release plan conformance
         run: ./conformance/release-check-v030-version-release-plan.sh
+
+      - name: WVP v0.3 actual version bump conformance
+        run: ./conformance/release-check-v030-actual-version-bump.sh
       - name: WVP Android-vs-CI local conformance script syntax
         run: bash -n ./conformance/release-check-android-vs-ci-build-provenance.sh
 
