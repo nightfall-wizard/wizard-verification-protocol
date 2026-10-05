@@ -159,3 +159,18 @@ Limits:
 - not intended to run as part of normal CI because it depends on an already-uploaded GitHub Actions artifact.
 <!-- WVP:STEP-19H-REUSABLE-ANDROID-VS-CI-CONFORMANCE:END -->
 
+
+<!-- WVP:STEP-19I-DOCS-REFERENCE:START -->
+## STEP 19I — README/SPEC/LIMITATIONS Reference Android vs CI Conformance
+
+Status: `implemented`
+
+The reusable Android-vs-CI build-provenance conformance command is now referenced from the main documentation surface.
+
+Progress interpretation:
+
+- Total project: approximately 54–55%.
+- WVP v0.3: approximately 65%.
+- Not 100%; the remaining work still includes v0.3 release publication, stronger source-to-release documentation, broader WVP module completion and final release evidence.
+<!-- WVP:STEP-19I-DOCS-REFERENCE:END -->
+

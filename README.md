@@ -35,3 +35,30 @@ Bootstrap implementation in progress.
 - wvp-node-diagnose
 - wvp-conformance
 - wvp-light-verify
+
+<!-- WVP:ANDROID-VS-CI-CONFORMANCE:START -->
+## Android vs CI Build Provenance Conformance
+
+WVP includes a local, authenticated Android-vs-CI conformance command:
+
+    ./conformance/release-check-android-vs-ci-build-provenance.sh
+
+This command downloads the GitHub Actions build-provenance artifact for the checked-out commit, generates a fresh Android-Termux artifact locally, compares both artifacts, and validates that the result stays within the correct claim boundary.
+
+It verifies:
+
+- same source commit;
+- same package version;
+- same Cargo.lock hash;
+- Android-Termux and GitHub Actions are separate environment classes;
+- cross-architecture binary differences are not treated as failure;
+- no reproducible-build claim is made.
+
+It does not prove:
+
+- binary safety;
+- source-to-release correspondence;
+- full reproducible builds;
+- audit status.
+<!-- WVP:ANDROID-VS-CI-CONFORMANCE:END -->
+
