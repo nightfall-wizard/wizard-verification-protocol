@@ -781,3 +781,39 @@ Progress interpretation after successful CI:
 - Not 100%.
 <!-- WVP:STEP-19W-V030-LOCAL-SIGNING-GUARD-CI:END -->
 
+
+<!-- WVP:STEP-19X-V030-RELEASE-PUBLICATION-GUARD:START -->
+## STEP 19X — v0.3.0 Release Publication Guard Prepared
+
+Status: `implemented`
+
+Guard script:
+
+    ./scripts/release/guard-v030-release-publication.sh
+
+Documentation:
+
+    docs/release/WVP-V0.3-RELEASE-PUBLICATION-GUARD.md
+
+Conformance check:
+
+    ./conformance/release-check-v030-release-publication-guard.sh
+
+Purpose:
+
+- define the final pre-publication decision boundary;
+- require no existing local or remote v0.3.0 tag;
+- require no existing GitHub v0.3.0 release;
+- require staged asset and checksum verification;
+- require detached signature presence before publication approval;
+- require detached signature verification before publication approval;
+- verify that require-ready mode refuses missing detached signature;
+- preserve the boundary that this step creates no tag, no GitHub release and no signature.
+
+Progress interpretation after successful CI:
+
+- Total project: approximately 75%.
+- WVP v0.3: approximately 99%.
+- Not 100%.
+<!-- WVP:STEP-19X-V030-RELEASE-PUBLICATION-GUARD:END -->
+
