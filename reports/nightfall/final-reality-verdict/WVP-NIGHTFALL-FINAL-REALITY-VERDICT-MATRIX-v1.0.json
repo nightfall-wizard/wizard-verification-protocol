@@ -1,0 +1,73 @@
+{
+  "schema": "wvp-final-reality-verdict-matrix-v1.0",
+  "generated_utc": "2026-10-05T15:42:40Z",
+  "project": "Nightfall",
+  "release_tag": "v1.0.5",
+  "track_progress_percent": 100,
+  "claims": [
+    {
+      "claim_id": "NF-FINAL-001",
+      "atomic_claim": "Nightfall has public repository and release evidence that WVP can inspect.",
+      "observed_evidence": "v0.1-v0.9 reports present",
+      "verdict": "consistent",
+      "limitation": "Inspectability is not security proof."
+    },
+    {
+      "claim_id": "NF-FINAL-002",
+      "atomic_claim": "Nightfall release assets are visible.",
+      "observed_evidence": "asset_count=11; binary_count=8; checksum_count=3; signature_count=0",
+      "verdict": "consistent",
+      "limitation": "Asset visibility does not prove safety or source-to-binary correspondence."
+    },
+    {
+      "claim_id": "NF-FINAL-003",
+      "atomic_claim": "Nightfall release assets are fully linked to workflow artifacts.",
+      "observed_evidence": "candidate_runs=2; artifacts=0; no_link=11; verdict=candidate_runs_found_but_no_artifacts_found",
+      "verdict": "not_enough_evidence",
+      "limitation": "Workflow linkage is incomplete or heuristic unless artifact digests and release asset digests are fully matched."
+    },
+    {
+      "claim_id": "NF-FINAL-004",
+      "atomic_claim": "Nightfall release assets have complete SLSA provenance.",
+      "observed_evidence": "slsa_verdict=no_slsa_provenance_surface_verified; pass=0; partial=0; fail=8; skipped=0",
+      "verdict": "not_enough_evidence",
+      "limitation": "SLSA surface is not equivalent to independent security audit or reproducible build proof."
+    },
+    {
+      "claim_id": "NF-FINAL-005",
+      "atomic_claim": "Nightfall release binaries match source.",
+      "observed_evidence": "source_to_binary_proven=no",
+      "verdict": "not_verifiable",
+      "limitation": "Requires stronger provenance and/or byte-identical reproducible build comparison."
+    },
+    {
+      "claim_id": "NF-FINAL-006",
+      "atomic_claim": "Nightfall release builds are reproducible.",
+      "observed_evidence": "reproducible_build_proven=no; reproducibility_gap=material_reproducibility_gap",
+      "verdict": "not_verifiable",
+      "limitation": "Requires deterministic build recipe and byte-level rebuild comparison."
+    },
+    {
+      "claim_id": "NF-FINAL-007",
+      "atomic_claim": "Nightfall release binaries are safe.",
+      "observed_evidence": "binary_safety_proven=no",
+      "verdict": "contradicted",
+      "limitation": "Binary safety cannot be inferred from metadata, checksums, workflow runs or provenance alone."
+    },
+    {
+      "claim_id": "NF-FINAL-008",
+      "atomic_claim": "Nightfall is externally audited.",
+      "observed_evidence": "external_audit_proven=no",
+      "verdict": "not_enough_evidence",
+      "limitation": "Requires independent audit evidence."
+    },
+    {
+      "claim_id": "NF-FINAL-009",
+      "atomic_claim": "Nightfall is investment-worthy.",
+      "observed_evidence": "not assessed by WVP",
+      "verdict": "not_verifiable",
+      "limitation": "WVP is not investment advice."
+    }
+  ],
+  "final_status": "technically_inspectable_but_not_security_or_source_to_binary_proven"
+}

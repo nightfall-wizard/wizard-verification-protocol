@@ -1,0 +1,9 @@
+v0.1 reality report | present | reports/nightfall/WVP-NIGHTFALL-REALITY-REPORT-v0.1.md
+v0.2 release check | present | reports/nightfall/release-check/WVP-NIGHTFALL-RELEASE-CHECK-v0.2.md
+v0.3 release asset provenance | present | reports/nightfall/release-provenance/WVP-NIGHTFALL-RELEASE-ASSET-PROVENANCE-v0.3.md
+v0.4 release download verify | present | reports/nightfall/release-download-verify/WVP-NIGHTFALL-RELEASE-DOWNLOAD-VERIFY-v0.4.md
+v0.5 source-to-release boundary | present | reports/nightfall/source-to-release-boundary/WVP-NIGHTFALL-SOURCE-TO-RELEASE-BOUNDARY-v0.5.md
+v0.6 reproducibility gap | present | reports/nightfall/reproducibility-gap/WVP-NIGHTFALL-REPRODUCIBILITY-GAP-v0.6.md
+v0.7 build attestation gap | present | reports/nightfall/build-attestation-gap/WVP-NIGHTFALL-BUILD-ATTESTATION-GAP-v0.7.md
+v0.8 workflow run linkage | present | reports/nightfall/workflow-run-linkage/WVP-NIGHTFALL-WORKFLOW-RUN-LINKAGE-v0.8.md
+v0.9 SLSA provenance gap | present | reports/nightfall/slsa-provenance-gap/WVP-NIGHTFALL-SLSA-PROVENANCE-GAP-v0.9.md
