@@ -196,3 +196,6 @@ jobs:
 
       - name: WVP v0.4 pre-release prep stop marker conformance
         run: ./conformance/wvp-v040-pre-release-prep-stop-marker-conformance.sh
+
+      - name: WVP v0.4 public status alignment conformance
+        run: ./conformance/wvp-v040-public-status-alignment-conformance.sh

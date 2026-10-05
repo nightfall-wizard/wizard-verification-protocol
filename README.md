@@ -62,3 +62,57 @@ It does not prove:
 - audit status.
 <!-- WVP:ANDROID-VS-CI-CONFORMANCE:END -->
 
+
+<!-- WVP:V040-PUBLIC-STATUS:START -->
+## WVP v0.4 Public Status
+
+Status: `prepared-not-released`
+
+WVP v0.4 release preparation is complete, but v0.4.0 has not been released.
+
+Current public interpretation:
+
+- v0.4 release evidence has been prepared.
+- v0.4 release notes draft exists.
+- v0.4 final pre-release gate exists.
+- v0.4 controlled release plan exists.
+- v0.4 pre-release preparation is intentionally stopped before release execution.
+- A real v0.4.0 release requires a separate explicit release execution step.
+
+Release action status:
+
+| Action | Status |
+|---|---:|
+| v0.4.0 Git tag created | `no` |
+| v0.4.0 GitHub release created | `no` |
+| v0.4.0 GitHub release asset uploaded | `no` |
+| Private key added | `no` |
+| Signature created | `no` |
+
+Prepared evidence:
+
+- `docs/release-check/WVP-V040-PRE-RELEASE-PREP-STOP-MARKER.md`
+- `docs/release-check/WVP-V040-CONTROLLED-RELEASE-PLAN.md`
+- `docs/release-check/WVP-V040-FINAL-PRE-RELEASE-GATE.md`
+- `docs/release-check/WVP-V040-RELEASE-NOTES-DRAFT.md`
+- `docs/release-check/WVP-V040-RELEASE-READINESS-CHECKLIST.md`
+- `reports/release-check/WVP-V040-FIXTURE-RUNNER-REPORT.json`
+- `reports/release-check/WVP-V040-FIXTURE-RUNNER-REPORT.md`
+- `fixtures/release-check/FIXTURE-INDEX.json`
+
+Reference commit at status alignment:
+
+- `1b6bfadbab943f023871f8adedc04982b580980e`
+
+Explicit non-claims:
+
+- This is not an audit.
+- This is not legal clearance.
+- This is not a binary safety proof.
+- This is not a source-to-release proof.
+- This is not a reproducible-build proof.
+- This is not a wallet safety claim.
+- This is not investment advice.
+- This is not a custody, broker, exchange, or paid-report function.
+<!-- WVP:V040-PUBLIC-STATUS:END -->
+

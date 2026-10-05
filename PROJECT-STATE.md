@@ -1856,3 +1856,42 @@ Progress interpretation after successful CI:
 - Overall WVP system: not 100%.
 <!-- WVP:STEP-21S-PRE-RELEASE-PREP-STOP-MARKER:END -->
 
+
+<!-- WVP:STEP-21T-PUBLIC-STATUS-ALIGNMENT:START -->
+## STEP 21T — v0.4 Public Status Alignment
+
+Status: `implemented`
+
+Purpose:
+
+- Add CI-backed public README status alignment for WVP v0.4.
+- Make the public repository state explicit: v0.4 is prepared but not released.
+- Confirm that this step does not create a tag, GitHub release, GitHub release asset, or signature.
+- Preserve legal, operational, offline, read-only, non-mutating, and claim-limited execution.
+
+Artifacts:
+
+- `README.md`
+- `conformance/wvp-v040-public-status-alignment-conformance.sh`
+
+Boundaries:
+
+- this is public status alignment, not an actual release;
+- no tag is created;
+- no GitHub release is created;
+- no GitHub release asset is uploaded;
+- no private key, seed phrase, wallet secret, or API token is added;
+- no custody, broker, exchange, paid-report, or investment-advice function is introduced;
+- no audit claim is made;
+- no legal clearance guarantee is made;
+- no binary safety proof is claimed;
+- no source-to-release proof is claimed;
+- no reproducible-build proof is claimed.
+
+Progress interpretation after successful CI:
+
+- Total project: approximately 99%.
+- WVP v0.4: public status aligned with prepared-not-released state.
+- Overall WVP system: not 100%.
+<!-- WVP:STEP-21T-PUBLIC-STATUS-ALIGNMENT:END -->
+
