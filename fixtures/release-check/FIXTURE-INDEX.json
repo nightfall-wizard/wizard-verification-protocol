@@ -28,8 +28,9 @@
     {
       "id": "FRC-005",
       "name": "duplicate-checksum",
+      "path": "fixtures/release-check/FRC-005-duplicate-checksum",
       "priority": "P0",
-      "status": "planned"
+      "status": "implemented"
     },
     {
       "id": "FRC-006",

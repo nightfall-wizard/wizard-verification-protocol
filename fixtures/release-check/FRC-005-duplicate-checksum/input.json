@@ -1,0 +1,38 @@
+{
+  "fixture_id": "FRC-005",
+  "name": "duplicate-checksum",
+  "purpose": "Verify that multiple checksum-like assets create an explicit ambiguous checksum state instead of being silently accepted.",
+  "release": {
+    "tag_name": "vfixture-frc-005",
+    "assets": [
+      {
+        "name": "wvp-release-check-vfixture-termux-android-aarch64",
+        "role_hint": "binary"
+      },
+      {
+        "name": "wvp-release-check-vfixture-termux-android-aarch64.sha256",
+        "role_hint": "checksum"
+      },
+      {
+        "name": "SHA256SUMS",
+        "role_hint": "checksum"
+      },
+      {
+        "name": "wvp-release-check-vfixture-termux-android-aarch64.sig",
+        "role_hint": "signature"
+      },
+      {
+        "name": "wvp-release-signing-public-rsa3072.pem",
+        "role_hint": "public_verification_key"
+      }
+    ]
+  },
+  "safety": {
+    "contains_private_key": false,
+    "contains_seed_phrase": false,
+    "contains_wallet_secret": false,
+    "contains_api_token": false,
+    "contains_investment_advice": false,
+    "contains_custody_functionality": false
+  }
+}
