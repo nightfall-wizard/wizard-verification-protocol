@@ -2096,3 +2096,46 @@ This turns the AUNEYA architecture from a documented vision into a concrete tech
 Define AUNEYA Witness Proof Schema v0.1 so a lawful claim can produce a structured witness proof.
 <!-- WVP:STEP-24-AUNEYA-CLAIM-SCHEMA-V01:END -->
 
+<!-- WVP:STEP-25-AUNEYA-WITNESS-PROOF-SCHEMA-V01:START -->
+## STEP 25 — AUNEYA Witness Proof Schema v0.1
+
+Date: 2026-10-06
+
+### Purpose
+
+AUNEYA now has its first machine-readable witness proof format.
+
+This turns a lawful public AUNEYA claim into a structured proof object that records witness class, observed status, evidence hashes, lawful boundary confirmation, timing and integrity metadata.
+
+### Added
+
+- `schemas/auneya-witness-proof-v0.1.schema.json`
+- `docs/auneya/AUNEYA-WITNESS-PROOF-SCHEMA-V0.1.md`
+- `fixtures/auneya/witness-proofs/valid-release-reality-prooflet.json`
+- `fixtures/auneya/witness-proofs/valid-download-integrity-prooflet.json`
+- `fixtures/auneya/witness-proofs/invalid-private-data-proof.json`
+- `conformance/auneya-witness-proof-schema-v0.1.sh`
+
+### Verified
+
+- valid release-reality prooflet passes
+- valid download-integrity prooflet passes
+- invalid private-data proof is rejected
+- witness proof references an existing claim fixture
+- lawful proof requires public or authorized target confirmation
+- lawful proof rejects private data, hacked data, paywall bypass, credential use and surveillance
+
+### Explicit non-claims
+
+- No token is created by this step.
+- No reward is created by this step.
+- No token sale is offered.
+- No market value is claimed.
+- No return, profit, yield or financial outcome is offered or promised.
+- Legal review is required before any public token launch, listing, sale, transferability or market-value communication.
+
+### Next target
+
+Define AUNEYA Event Schema v0.1 so multiple lawful witness proofs can form an Auneya Event.
+<!-- WVP:STEP-25-AUNEYA-WITNESS-PROOF-SCHEMA-V01:END -->
+

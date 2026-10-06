@@ -170,3 +170,34 @@ Explicit non-claims:
 - Legal review is required before any public token launch, listing, sale, transferability or market-value communication.
 <!-- WVP:AUNEYA-CLAIM-SCHEMA-V01:END -->
 
+<!-- WVP:AUNEYA-WITNESS-PROOF-SCHEMA-V01:START -->
+## AUNEYA Witness Proof Schema v0.1
+
+AUNEYA Witness Proof Schema v0.1 defines the first machine-readable proof format for checked lawful public claims.
+
+It defines:
+
+- proof identity
+- claim reference
+- witness identity class
+- observed status
+- evidence hashes
+- lawful boundary confirmation
+- timing metadata
+- proof integrity metadata
+
+Files:
+
+- `schemas/auneya-witness-proof-v0.1.schema.json`
+- `docs/auneya/AUNEYA-WITNESS-PROOF-SCHEMA-V0.1.md`
+- `fixtures/auneya/witness-proofs/`
+- `conformance/auneya-witness-proof-schema-v0.1.sh`
+
+Explicit non-claims:
+
+- No token is created by this schema.
+- No reward is created by this schema.
+- No market value is claimed.
+- Legal review is required before any public token launch, listing, sale, transferability or market-value communication.
+<!-- WVP:AUNEYA-WITNESS-PROOF-SCHEMA-V01:END -->
+

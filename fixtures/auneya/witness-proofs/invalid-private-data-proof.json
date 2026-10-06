@@ -1,0 +1,44 @@
+{
+  "schema_version": "auneya-witness-proof-v0.1",
+  "proof_id": "auneya_proof_invalid_private_001",
+  "proof_type": "prooflet",
+  "claim_id": "auneya_claim_invalid_private_001",
+  "claim_schema_version": "auneya-claim-v0.1",
+  "claim_hash": "sha256:9999999999999999999999999999999999999999999999999999999999999999",
+  "witness": {
+    "witness_id": "witness_android_termux_001",
+    "device_class": "android_termux",
+    "environment_class": "phone_safe",
+    "software_name": "wvp",
+    "software_version": "research-v0.1"
+  },
+  "observed_status": "dangerous",
+  "evidence": [
+    {
+      "evidence_type": "page_snapshot_hash",
+      "evidence_hash": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "evidence_locator": "https://example.com/private-account",
+      "observed_at": "2026-10-06T00:02:05Z"
+    }
+  ],
+  "lawful_boundary_confirmation": {
+    "public_or_authorized_target": false,
+    "no_private_data_accessed": false,
+    "no_hacked_data_used": true,
+    "no_paywall_bypass_used": true,
+    "no_credentials_used": false,
+    "no_surveillance_performed": true,
+    "notes": "This fixture must fail because it represents private or credential-based access."
+  },
+  "timing": {
+    "started_at": "2026-10-06T00:02:00Z",
+    "completed_at": "2026-10-06T00:02:15Z",
+    "duration_ms": 15000
+  },
+  "integrity": {
+    "proof_hash": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+    "signature_status": "unsigned_research_fixture"
+  },
+  "created_at": "2026-10-06T00:02:16Z",
+  "non_value_notice": "This invalid fixture is for conformance testing only."
+}

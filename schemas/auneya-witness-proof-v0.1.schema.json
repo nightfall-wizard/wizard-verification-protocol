@@ -1,0 +1,265 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://wvp.local/schemas/auneya-witness-proof-v0.1.schema.json",
+  "title": "AUNEYA Witness Proof Schema v0.1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "proof_id",
+    "proof_type",
+    "claim_id",
+    "claim_schema_version",
+    "claim_hash",
+    "witness",
+    "observed_status",
+    "evidence",
+    "lawful_boundary_confirmation",
+    "timing",
+    "integrity",
+    "created_at"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "auneya-witness-proof-v0.1"
+    },
+    "proof_id": {
+      "type": "string",
+      "pattern": "^auneya_proof_[a-z0-9_\\-]{8,100}$"
+    },
+    "proof_type": {
+      "type": "string",
+      "enum": [
+        "pulse_observation",
+        "micro_proof",
+        "prooflet",
+        "claim_observation"
+      ]
+    },
+    "claim_id": {
+      "type": "string",
+      "pattern": "^auneya_claim_[a-z0-9_\\-]{8,80}$"
+    },
+    "claim_schema_version": {
+      "type": "string",
+      "const": "auneya-claim-v0.1"
+    },
+    "claim_hash": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$"
+    },
+    "witness": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "witness_id",
+        "device_class",
+        "environment_class",
+        "software_name",
+        "software_version"
+      ],
+      "properties": {
+        "witness_id": {
+          "type": "string",
+          "pattern": "^witness_[a-z0-9_\\-]{8,100}$"
+        },
+        "device_class": {
+          "type": "string",
+          "enum": [
+            "android_termux",
+            "linux_ci",
+            "linux_desktop",
+            "unknown"
+          ]
+        },
+        "environment_class": {
+          "type": "string",
+          "enum": [
+            "phone_safe",
+            "ci_runner",
+            "desktop",
+            "unknown"
+          ]
+        },
+        "software_name": {
+          "type": "string",
+          "enum": [
+            "wvp",
+            "auneya-witness"
+          ]
+        },
+        "software_version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80
+        }
+      }
+    },
+    "observed_status": {
+      "type": "string",
+      "enum": [
+        "verified",
+        "false",
+        "unverifiable",
+        "stale",
+        "dangerous",
+        "conflicting"
+      ]
+    },
+    "evidence": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 30,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "evidence_type",
+          "evidence_hash",
+          "observed_at"
+        ],
+        "properties": {
+          "evidence_type": {
+            "type": "string",
+            "enum": [
+              "http_status",
+              "content_hash",
+              "detached_signature",
+              "checksum_file",
+              "release_metadata",
+              "commit_reference",
+              "build_metadata",
+              "dns_record",
+              "tls_certificate",
+              "page_snapshot_hash",
+              "publisher_identity",
+              "version_metadata",
+              "contract_verification",
+              "supply_evidence",
+              "audit_scope",
+              "file_metadata"
+            ]
+          },
+          "evidence_hash": {
+            "type": "string",
+            "pattern": "^sha256:[a-f0-9]{64}$"
+          },
+          "evidence_locator": {
+            "type": "string",
+            "maxLength": 1000
+          },
+          "observed_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      }
+    },
+    "lawful_boundary_confirmation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "public_or_authorized_target",
+        "no_private_data_accessed",
+        "no_hacked_data_used",
+        "no_paywall_bypass_used",
+        "no_credentials_used",
+        "no_surveillance_performed",
+        "notes"
+      ],
+      "properties": {
+        "public_or_authorized_target": {
+          "type": "boolean",
+          "const": true
+        },
+        "no_private_data_accessed": {
+          "type": "boolean",
+          "const": true
+        },
+        "no_hacked_data_used": {
+          "type": "boolean",
+          "const": true
+        },
+        "no_paywall_bypass_used": {
+          "type": "boolean",
+          "const": true
+        },
+        "no_credentials_used": {
+          "type": "boolean",
+          "const": true
+        },
+        "no_surveillance_performed": {
+          "type": "boolean",
+          "const": true
+        },
+        "notes": {
+          "type": "string",
+          "minLength": 8,
+          "maxLength": 500
+        }
+      }
+    },
+    "timing": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "started_at",
+        "completed_at"
+      ],
+      "properties": {
+        "started_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "completed_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "duration_ms": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 3600000
+        }
+      }
+    },
+    "integrity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "proof_hash",
+        "signature_status"
+      ],
+      "properties": {
+        "proof_hash": {
+          "type": "string",
+          "pattern": "^sha256:[a-f0-9]{64}$"
+        },
+        "signature_status": {
+          "type": "string",
+          "enum": [
+            "unsigned_research_fixture",
+            "signed",
+            "signature_not_checked"
+          ]
+        },
+        "signature_algorithm": {
+          "type": "string",
+          "maxLength": 80
+        },
+        "signature": {
+          "type": "string",
+          "maxLength": 1000
+        }
+      }
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "non_value_notice": {
+      "type": "string",
+      "maxLength": 500
+    }
+  }
+}

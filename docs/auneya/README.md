@@ -31,3 +31,11 @@ Legal review is required before any public token launch, listing, sale, transfer
 - `../../conformance/auneya-claim-schema-v0.1.sh`
 
 The claim schema defines the first machine-readable AUNEYA claim format for the provable web.
+
+## Witness Proof Schema
+
+- `AUNEYA-WITNESS-PROOF-SCHEMA-V0.1.md`
+- `../../schemas/auneya-witness-proof-v0.1.schema.json`
+- `../../conformance/auneya-witness-proof-schema-v0.1.sh`
+
+The witness proof schema defines the first machine-readable AUNEYA proof format produced after a lawful public claim is checked.
