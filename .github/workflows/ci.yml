@@ -67,9 +67,10 @@ jobs:
         run: ./conformance/release-check-public-key-policy.sh
 
       - name: WVP self-release signature conformance
-        run: ./conformance/release-check-self-release-signature.sh
         env:
+          GH_TOKEN: ${{ github.token }}
           GH_REPO: ${{ github.repository }}
+        run: ./conformance/release-check-self-release-signature.sh
 
       - name: WVP signature asset matching conformance
         run: ./conformance/release-check-signature-asset-matching.sh
