@@ -39,6 +39,9 @@ jobs:
       - name: WVP stable JSON report contract tests
         run: cargo test --workspace --locked report_contract
 
+      - name: WVP report v1 compatibility guard
+        run: cargo test --workspace --locked compatibility_guard
+
       - name: Example JSON output
         run: cargo run --manifest-path reference/rust/wvp-release-check/Cargo.toml -- --target nightfall-wizard/wizard-verification-protocol --json
 

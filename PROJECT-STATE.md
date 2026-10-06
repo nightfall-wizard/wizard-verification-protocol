@@ -2696,3 +2696,28 @@ Interpretation:
 
 This is an interface-stability step. It makes the JSON output safer for downstream tools and reduces accidental breaking-change risk.
 <!-- WVP:PR20-STABLE-JSON-REPORT-CONTRACT:END -->
+
+<!-- WVP:PR21-REPORT-V1-COMPATIBILITY-GUARD:START -->
+## PR21 — Report v1 Compatibility Guard
+
+Status: `implemented locally; pending PR review`
+
+Purpose:
+
+- add a snapshot guard for the JSON report v1 shape;
+- prevent silent field renames, removals, moves or JSON type changes;
+- make breaking report changes intentional;
+- require either a schema-version update or an explicit snapshot update;
+- preserve downstream-tool compatibility discipline.
+
+Files:
+
+- `reference/rust/wvp-release-check/tests/compatibility_guard.rs`
+- `reference/rust/wvp-release-check/tests/fixtures/report_contract_v1_shape.txt`
+- `docs/release-check/WVP-REPORT-V1-COMPATIBILITY-GUARD.md`
+- `.github/workflows/ci.yml`
+
+Interpretation:
+
+This is a backwards-compatibility hardening step. It strengthens the machine-readable interface introduced by PR20 and reduces accidental breaking-change risk.
+<!-- WVP:PR21-REPORT-V1-COMPATIBILITY-GUARD:END -->
