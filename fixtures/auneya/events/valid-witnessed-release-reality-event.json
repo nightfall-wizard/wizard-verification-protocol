@@ -1,0 +1,51 @@
+{
+  "schema_version": "auneya-event-v0.1",
+  "event_id": "auneya_event_release_reality_witnessed_001",
+  "event_type": "witnessed_event",
+  "claim_id": "auneya_claim_release_reality_001",
+  "claim_schema_version": "auneya-claim-v0.1",
+  "claim_hash": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+  "event_status": "witnessed",
+  "quorum": {
+    "min_witnesses": 2,
+    "actual_witnesses": 2,
+    "independent_witnesses": 2,
+    "required_matching_status": "verified"
+  },
+  "witness_proofs": [
+    {
+      "proof_id": "auneya_proof_release_reality_001",
+      "proof_schema_version": "auneya-witness-proof-v0.1",
+      "proof_hash": "sha256:4444444444444444444444444444444444444444444444444444444444444444",
+      "witness_id": "witness_android_termux_001",
+      "observed_status": "verified"
+    },
+    {
+      "proof_id": "auneya_proof_release_reality_002",
+      "proof_schema_version": "auneya-witness-proof-v0.1",
+      "proof_hash": "sha256:eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+      "witness_id": "witness_android_termux_002",
+      "observed_status": "verified"
+    }
+  ],
+  "lawful_boundary_confirmation": {
+    "only_lawful_public_or_authorized_proofs": true,
+    "no_private_data_accessed": true,
+    "no_hacked_data_used": true,
+    "no_paywall_bypass_used": true,
+    "no_credentials_used": true,
+    "no_surveillance_performed": true,
+    "notes": "This event is formed only from lawful public release-reality proof fixtures."
+  },
+  "timing": {
+    "opened_at": "2026-10-06T00:00:00Z",
+    "closed_at": "2026-10-06T00:04:00Z",
+    "duration_ms": 240000
+  },
+  "integrity": {
+    "event_hash": "sha256:ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+    "signature_status": "unsigned_research_fixture"
+  },
+  "created_at": "2026-10-06T00:04:01Z",
+  "non_value_notice": "This Auneya Event is protocol research and does not create a token, reward or market value."
+}

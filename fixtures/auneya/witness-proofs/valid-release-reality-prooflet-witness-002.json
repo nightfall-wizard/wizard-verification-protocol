@@ -1,0 +1,50 @@
+{
+  "schema_version": "auneya-witness-proof-v0.1",
+  "proof_id": "auneya_proof_release_reality_002",
+  "proof_type": "prooflet",
+  "claim_id": "auneya_claim_release_reality_001",
+  "claim_schema_version": "auneya-claim-v0.1",
+  "claim_hash": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+  "witness": {
+    "witness_id": "witness_android_termux_002",
+    "device_class": "android_termux",
+    "environment_class": "phone_safe",
+    "software_name": "wvp",
+    "software_version": "research-v0.1"
+  },
+  "observed_status": "verified",
+  "evidence": [
+    {
+      "evidence_type": "http_status",
+      "evidence_hash": "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+      "evidence_locator": "https://github.com/nightfall-wizard/wizard-verification-protocol/releases",
+      "observed_at": "2026-10-06T00:03:05Z"
+    },
+    {
+      "evidence_type": "release_metadata",
+      "evidence_hash": "sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+      "evidence_locator": "https://github.com/nightfall-wizard/wizard-verification-protocol/releases",
+      "observed_at": "2026-10-06T00:03:10Z"
+    }
+  ],
+  "lawful_boundary_confirmation": {
+    "public_or_authorized_target": true,
+    "no_private_data_accessed": true,
+    "no_hacked_data_used": true,
+    "no_paywall_bypass_used": true,
+    "no_credentials_used": true,
+    "no_surveillance_performed": true,
+    "notes": "Only public repository metadata was checked by a second independent witness fixture."
+  },
+  "timing": {
+    "started_at": "2026-10-06T00:03:00Z",
+    "completed_at": "2026-10-06T00:03:15Z",
+    "duration_ms": 15000
+  },
+  "integrity": {
+    "proof_hash": "sha256:eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+    "signature_status": "unsigned_research_fixture"
+  },
+  "created_at": "2026-10-06T00:03:16Z",
+  "non_value_notice": "This witness proof is protocol research and does not create a token, reward or market value."
+}

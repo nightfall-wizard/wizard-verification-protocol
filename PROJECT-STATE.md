@@ -2139,3 +2139,49 @@ This turns a lawful public AUNEYA claim into a structured proof object that reco
 Define AUNEYA Event Schema v0.1 so multiple lawful witness proofs can form an Auneya Event.
 <!-- WVP:STEP-25-AUNEYA-WITNESS-PROOF-SCHEMA-V01:END -->
 
+<!-- WVP:STEP-26-AUNEYA-EVENT-SCHEMA-V01:START -->
+## STEP 26 — AUNEYA Event Schema v0.1
+
+Date: 2026-10-06
+
+### Purpose
+
+AUNEYA now has its first machine-readable event format.
+
+This turns multiple lawful witness proofs for the same public claim into an Auneya Event with quorum, independent witness count, event status, lawful boundary confirmation and event integrity metadata.
+
+### Added
+
+- `schemas/auneya-event-v0.1.schema.json`
+- `docs/auneya/AUNEYA-EVENT-SCHEMA-V0.1.md`
+- `fixtures/auneya/witness-proofs/valid-release-reality-prooflet-witness-002.json`
+- `fixtures/auneya/events/valid-witnessed-release-reality-event.json`
+- `fixtures/auneya/events/invalid-duplicate-witness-event.json`
+- `fixtures/auneya/events/invalid-private-data-event.json`
+- `conformance/auneya-event-schema-v0.1.sh`
+
+### Verified
+
+- valid witnessed release-reality event passes
+- duplicate-witness event is rejected
+- private-data event is rejected
+- event proof references must exist
+- event proofs must match the same claim id and claim hash
+- witness ids must be independent
+- non-dispute events require matching observed status
+- only lawful public or authorized proofs may form a valid event
+
+### Explicit non-claims
+
+- No token is created by this step.
+- No reward is created by this step.
+- No token sale is offered.
+- No market value is claimed.
+- No return, profit, yield or financial outcome is offered or promised.
+- Legal review is required before any public token launch, listing, sale, transferability or market-value communication.
+
+### Next target
+
+Define AUNEYA Pulse and Prooflet Flow v0.1 so the phone-first witness loop can be simulated without value, token or mainnet activation.
+<!-- WVP:STEP-26-AUNEYA-EVENT-SCHEMA-V01:END -->
+

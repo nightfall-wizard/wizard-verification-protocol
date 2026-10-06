@@ -1,0 +1,44 @@
+{
+  "schema_version": "auneya-event-v0.1",
+  "event_id": "auneya_event_invalid_private_data_001",
+  "event_type": "dispute_event",
+  "claim_id": "auneya_claim_invalid_private_001",
+  "claim_schema_version": "auneya-claim-v0.1",
+  "claim_hash": "sha256:9999999999999999999999999999999999999999999999999999999999999999",
+  "event_status": "disputed",
+  "quorum": {
+    "min_witnesses": 1,
+    "actual_witnesses": 1,
+    "independent_witnesses": 1,
+    "required_matching_status": "dangerous"
+  },
+  "witness_proofs": [
+    {
+      "proof_id": "auneya_proof_invalid_private_001",
+      "proof_schema_version": "auneya-witness-proof-v0.1",
+      "proof_hash": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "witness_id": "witness_android_termux_001",
+      "observed_status": "dangerous"
+    }
+  ],
+  "lawful_boundary_confirmation": {
+    "only_lawful_public_or_authorized_proofs": true,
+    "no_private_data_accessed": true,
+    "no_hacked_data_used": true,
+    "no_paywall_bypass_used": true,
+    "no_credentials_used": true,
+    "no_surveillance_performed": true,
+    "notes": "This event must fail because the referenced proof and claim are private-data fixtures."
+  },
+  "timing": {
+    "opened_at": "2026-10-06T00:02:00Z",
+    "closed_at": "2026-10-06T00:03:00Z",
+    "duration_ms": 60000
+  },
+  "integrity": {
+    "event_hash": "sha256:cdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd",
+    "signature_status": "unsigned_research_fixture"
+  },
+  "created_at": "2026-10-06T00:04:03Z",
+  "non_value_notice": "This invalid fixture is for conformance testing only."
+}

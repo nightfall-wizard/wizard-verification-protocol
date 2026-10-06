@@ -201,3 +201,34 @@ Explicit non-claims:
 - Legal review is required before any public token launch, listing, sale, transferability or market-value communication.
 <!-- WVP:AUNEYA-WITNESS-PROOF-SCHEMA-V01:END -->
 
+<!-- WVP:AUNEYA-EVENT-SCHEMA-V01:START -->
+## AUNEYA Event Schema v0.1
+
+AUNEYA Event Schema v0.1 defines how multiple lawful witness proofs for the same public claim form an Auneya Event.
+
+It defines:
+
+- event identity
+- claim reference
+- witness proof references
+- quorum rules
+- independent witness count
+- event status
+- lawful boundary confirmation
+- event integrity metadata
+
+Files:
+
+- `schemas/auneya-event-v0.1.schema.json`
+- `docs/auneya/AUNEYA-EVENT-SCHEMA-V0.1.md`
+- `fixtures/auneya/events/`
+- `conformance/auneya-event-schema-v0.1.sh`
+
+Explicit non-claims:
+
+- No token is created by this schema.
+- No reward is created by this schema.
+- No market value is claimed.
+- Legal review is required before any public token launch, listing, sale, transferability or market-value communication.
+<!-- WVP:AUNEYA-EVENT-SCHEMA-V01:END -->
+

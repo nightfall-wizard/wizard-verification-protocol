@@ -1,0 +1,251 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://wvp.local/schemas/auneya-event-v0.1.schema.json",
+  "title": "AUNEYA Event Schema v0.1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "event_id",
+    "event_type",
+    "claim_id",
+    "claim_schema_version",
+    "claim_hash",
+    "event_status",
+    "quorum",
+    "witness_proofs",
+    "lawful_boundary_confirmation",
+    "timing",
+    "integrity",
+    "created_at"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "auneya-event-v0.1"
+    },
+    "event_id": {
+      "type": "string",
+      "pattern": "^auneya_event_[a-z0-9_\\-]{8,120}$"
+    },
+    "event_type": {
+      "type": "string",
+      "enum": [
+        "observed_event",
+        "witnessed_event",
+        "sealed_event",
+        "dispute_event"
+      ]
+    },
+    "claim_id": {
+      "type": "string",
+      "pattern": "^auneya_claim_[a-z0-9_\\-]{8,80}$"
+    },
+    "claim_schema_version": {
+      "type": "string",
+      "const": "auneya-claim-v0.1"
+    },
+    "claim_hash": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$"
+    },
+    "event_status": {
+      "type": "string",
+      "enum": [
+        "observed",
+        "witnessed",
+        "sealed",
+        "disputed",
+        "expired"
+      ]
+    },
+    "quorum": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "min_witnesses",
+        "actual_witnesses",
+        "independent_witnesses",
+        "required_matching_status"
+      ],
+      "properties": {
+        "min_witnesses": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 100
+        },
+        "actual_witnesses": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 100
+        },
+        "independent_witnesses": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 100
+        },
+        "required_matching_status": {
+          "type": "string",
+          "enum": [
+            "verified",
+            "false",
+            "unverifiable",
+            "stale",
+            "dangerous",
+            "conflicting"
+          ]
+        }
+      }
+    },
+    "witness_proofs": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 100,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "proof_id",
+          "proof_schema_version",
+          "proof_hash",
+          "witness_id",
+          "observed_status"
+        ],
+        "properties": {
+          "proof_id": {
+            "type": "string",
+            "pattern": "^auneya_proof_[a-z0-9_\\-]{8,100}$"
+          },
+          "proof_schema_version": {
+            "type": "string",
+            "const": "auneya-witness-proof-v0.1"
+          },
+          "proof_hash": {
+            "type": "string",
+            "pattern": "^sha256:[a-f0-9]{64}$"
+          },
+          "witness_id": {
+            "type": "string",
+            "pattern": "^witness_[a-z0-9_\\-]{8,100}$"
+          },
+          "observed_status": {
+            "type": "string",
+            "enum": [
+              "verified",
+              "false",
+              "unverifiable",
+              "stale",
+              "dangerous",
+              "conflicting"
+            ]
+          }
+        }
+      }
+    },
+    "lawful_boundary_confirmation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "only_lawful_public_or_authorized_proofs",
+        "no_private_data_accessed",
+        "no_hacked_data_used",
+        "no_paywall_bypass_used",
+        "no_credentials_used",
+        "no_surveillance_performed",
+        "notes"
+      ],
+      "properties": {
+        "only_lawful_public_or_authorized_proofs": {
+          "type": "boolean",
+          "const": true
+        },
+        "no_private_data_accessed": {
+          "type": "boolean",
+          "const": true
+        },
+        "no_hacked_data_used": {
+          "type": "boolean",
+          "const": true
+        },
+        "no_paywall_bypass_used": {
+          "type": "boolean",
+          "const": true
+        },
+        "no_credentials_used": {
+          "type": "boolean",
+          "const": true
+        },
+        "no_surveillance_performed": {
+          "type": "boolean",
+          "const": true
+        },
+        "notes": {
+          "type": "string",
+          "minLength": 8,
+          "maxLength": 500
+        }
+      }
+    },
+    "timing": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "opened_at",
+        "closed_at"
+      ],
+      "properties": {
+        "opened_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "closed_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "duration_ms": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 86400000
+        }
+      }
+    },
+    "integrity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "event_hash",
+        "signature_status"
+      ],
+      "properties": {
+        "event_hash": {
+          "type": "string",
+          "pattern": "^sha256:[a-f0-9]{64}$"
+        },
+        "signature_status": {
+          "type": "string",
+          "enum": [
+            "unsigned_research_fixture",
+            "signed",
+            "signature_not_checked"
+          ]
+        },
+        "signature_algorithm": {
+          "type": "string",
+          "maxLength": 80
+        },
+        "signature": {
+          "type": "string",
+          "maxLength": 1000
+        }
+      }
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "non_value_notice": {
+      "type": "string",
+      "maxLength": 500
+    }
+  }
+}

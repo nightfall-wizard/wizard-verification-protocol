@@ -39,3 +39,11 @@ The claim schema defines the first machine-readable AUNEYA claim format for the 
 - `../../conformance/auneya-witness-proof-schema-v0.1.sh`
 
 The witness proof schema defines the first machine-readable AUNEYA proof format produced after a lawful public claim is checked.
+
+## Event Schema
+
+- `AUNEYA-EVENT-SCHEMA-V0.1.md`
+- `../../schemas/auneya-event-v0.1.schema.json`
+- `../../conformance/auneya-event-schema-v0.1.sh`
+
+The event schema defines how multiple lawful witness proofs for the same claim form an Auneya Event.
