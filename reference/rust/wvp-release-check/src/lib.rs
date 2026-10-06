@@ -3,6 +3,7 @@ pub mod error;
 pub mod model;
 pub mod provider;
 pub mod report;
+pub mod report_model;
 pub mod verify;
 
 use classify::status_for;

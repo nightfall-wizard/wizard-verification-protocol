@@ -1,0 +1,96 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/nightfall-wizard/wizard-verification-protocol/docs/schemas/wvp-release-check-report-v1.schema.json",
+  "title": "WVP Release Check Report v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "tool",
+    "version",
+    "target",
+    "status",
+    "classification",
+    "live_inspection",
+    "summary",
+    "github",
+    "limitations"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "integer",
+      "const": 1
+    },
+    "tool": {
+      "type": "string",
+      "const": "wvp-release-check"
+    },
+    "version": {
+      "type": "string"
+    },
+    "target": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["INFO", "WARN", "FAIL"]
+    },
+    "classification": {
+      "type": "string",
+      "const": "observed"
+    },
+    "live_inspection": {
+      "type": "boolean"
+    },
+    "summary": {
+      "type": "string"
+    },
+    "github": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "repository_found",
+        "release_count",
+        "tag_count",
+        "latest_release_found",
+        "latest_release_tag",
+        "latest_release_asset_count",
+        "checksum_asset_count",
+        "signature_asset_count",
+        "signature_verification_attempted",
+        "signature_verification_passed",
+        "signature_verification_error",
+        "checksum_verification_attempted",
+        "checksum_verification_passed",
+        "checksum_verification_error",
+        "errors"
+      ],
+      "properties": {
+        "repository_found": { "type": ["boolean", "null"] },
+        "release_count": { "type": ["integer", "null"], "minimum": 0 },
+        "tag_count": { "type": ["integer", "null"], "minimum": 0 },
+        "latest_release_found": { "type": ["boolean", "null"] },
+        "latest_release_tag": { "type": ["string", "null"] },
+        "latest_release_asset_count": { "type": ["integer", "null"], "minimum": 0 },
+        "checksum_asset_count": { "type": ["integer", "null"], "minimum": 0 },
+        "signature_asset_count": { "type": ["integer", "null"], "minimum": 0 },
+        "signature_verification_attempted": { "type": ["boolean", "null"] },
+        "signature_verification_passed": { "type": ["boolean", "null"] },
+        "signature_verification_error": { "type": ["string", "null"] },
+        "checksum_verification_attempted": { "type": ["boolean", "null"] },
+        "checksum_verification_passed": { "type": ["boolean", "null"] },
+        "checksum_verification_error": { "type": ["string", "null"] },
+        "errors": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "limitations": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1
+    }
+  }
+}

@@ -2667,3 +2667,32 @@ Interpretation:
 
 This is a security-boundary hardening step. It does not add broad feature scope. It reduces the risk of false-positive release-integrity classification.
 <!-- WVP:PR19-ADVERSARIAL-CLASSIFICATION-INVARIANTS:END -->
+
+<!-- WVP:PR20-STABLE-JSON-REPORT-CONTRACT:START -->
+## PR20 — Stable JSON Report Contract
+
+Status: `implemented locally; pending PR review`
+
+Purpose:
+
+- replace manual JSON report string assembly with a typed report model;
+- introduce `schema_version: 1`;
+- document the JSON report contract in a checked schema file;
+- add regression tests for the top-level report contract;
+- add tests for GitHub metadata object shape, status enum closure, limitations, and schema-file consistency;
+- wire stable JSON contract tests into CI.
+
+Files:
+
+- `reference/rust/wvp-release-check/src/report_model.rs`
+- `reference/rust/wvp-release-check/src/report.rs`
+- `reference/rust/wvp-release-check/src/lib.rs`
+- `reference/rust/wvp-release-check/tests/report_contract.rs`
+- `docs/schemas/wvp-release-check-report-v1.schema.json`
+- `docs/release-check/WVP-STABLE-JSON-REPORT-CONTRACT.md`
+- `.github/workflows/ci.yml`
+
+Interpretation:
+
+This is an interface-stability step. It makes the JSON output safer for downstream tools and reduces accidental breaking-change risk.
+<!-- WVP:PR20-STABLE-JSON-REPORT-CONTRACT:END -->

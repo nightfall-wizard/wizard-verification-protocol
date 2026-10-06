@@ -36,6 +36,9 @@ jobs:
       - name: WVP adversarial classification invariant tests
         run: cargo test --workspace --locked adversarial
 
+      - name: WVP stable JSON report contract tests
+        run: cargo test --workspace --locked report_contract
+
       - name: Example JSON output
         run: cargo run --manifest-path reference/rust/wvp-release-check/Cargo.toml -- --target nightfall-wizard/wizard-verification-protocol --json
 
