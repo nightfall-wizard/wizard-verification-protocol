@@ -110,3 +110,13 @@ The local claim selector lets a Termux user choose between supported lawful publ
 - `../../conformance/auneya-local-collection-ledger-simulation-v0.1.sh`
 
 The local collection ledger simulation persistently counts local non-value simulated entries without creating AUNEYA, neya, market value or transferability.
+
+## Local Collection Status Display
+
+- `AUNEYA-LOCAL-COLLECTION-STATUS-DISPLAY-V0.1.md`
+- `../../tools/auneya/auneya_local_collection_status.py`
+- `../../fixtures/auneya/local-runner/example-local-collection-status-display.txt`
+- `../../fixtures/auneya/local-runner/example-local-collection-status-compact.txt`
+- `../../conformance/auneya-local-collection-status-display-v0.1.sh`
+
+The local collection status display shows local simulated collection totals in a clean Termux view without creating AUNEYA, neya, market value or transferability.

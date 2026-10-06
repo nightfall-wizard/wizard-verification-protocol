@@ -479,3 +479,38 @@ Explicit non-claims:
 - Legal review is required before any public token launch, listing, sale, transferability or market-value communication.
 <!-- WVP:AUNEYA-LOCAL-COLLECTION-LEDGER-SIMULATION-V01:END -->
 
+<!-- WVP:AUNEYA-LOCAL-COLLECTION-STATUS-DISPLAY-V01:START -->
+## AUNEYA Local Collection Status Display v0.1
+
+Show the local simulated collection status from Termux:
+
+`python3 tools/auneya/auneya_local_collection_status.py --ledger .auneya/local-collection-ledger.json`
+
+Compact status:
+
+`python3 tools/auneya/auneya_local_collection_status.py --ledger .auneya/local-collection-ledger.json --compact`
+
+Self-check:
+
+`./conformance/auneya-local-collection-status-display-v0.1.sh`
+
+Files:
+
+- `tools/auneya/auneya_local_collection_status.py`
+- `docs/auneya/AUNEYA-LOCAL-COLLECTION-STATUS-DISPLAY-V0.1.md`
+- `fixtures/auneya/local-runner/example-local-collection-status-display.txt`
+- `fixtures/auneya/local-runner/example-local-collection-status-compact.txt`
+- `conformance/auneya-local-collection-status-display-v0.1.sh`
+
+Explicit non-claims:
+
+- No token is created by this display.
+- No AUNEYA is created by this display.
+- No neya is created by this display.
+- No real reward is created by this display.
+- No market value is claimed.
+- No mainnet is activated.
+- Simulated entries are non-transferable and non-value only.
+- Legal review is required before any public token launch, listing, sale, transferability or market-value communication.
+<!-- WVP:AUNEYA-LOCAL-COLLECTION-STATUS-DISPLAY-V01:END -->
+

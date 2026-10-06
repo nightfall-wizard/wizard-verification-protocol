@@ -2494,3 +2494,49 @@ The ledger persistently counts local non-value simulated entries from lawful pub
 Define AUNEYA Local Collection Status Display v0.1 so a phone user can see local simulated collection totals in a clean Termux view.
 <!-- WVP:STEP-33-AUNEYA-LOCAL-COLLECTION-LEDGER-SIMULATION-V01:END -->
 
+<!-- WVP:STEP-34-AUNEYA-LOCAL-COLLECTION-STATUS-DISPLAY-V01:START -->
+## STEP 34 — AUNEYA Local Collection Status Display v0.1
+
+Date: 2026-10-06
+
+### Purpose
+
+AUNEYA now has a local collection status display.
+
+The display reads the local collection ledger simulation and shows phone-friendly Termux totals.
+
+### Added
+
+- `tools/auneya/auneya_local_collection_status.py`
+- `docs/auneya/AUNEYA-LOCAL-COLLECTION-STATUS-DISPLAY-V0.1.md`
+- `fixtures/auneya/local-runner/example-local-collection-status-display.txt`
+- `fixtures/auneya/local-runner/example-local-collection-status-compact.txt`
+- `conformance/auneya-local-collection-status-display-v0.1.sh`
+
+### Verified
+
+- status display handles missing ledger as empty local simulation
+- status display reads valid local collection ledger
+- status display shows total simulated entries
+- status display shows total simulated_neya counted
+- status display shows latest local simulated entry
+- compact status output is available
+- boundary violations are rejected
+- no token, AUNEYA, neya, real reward or mainnet is created
+
+### Explicit non-claims
+
+- No token is created by this step.
+- No AUNEYA is created by this step.
+- No neya is created by this step.
+- No real reward is created by this step.
+- No token sale is offered.
+- No market value is claimed.
+- No return, profit, yield or financial outcome is offered or promised.
+- Legal review is required before any public token launch, listing, sale, transferability or market-value communication.
+
+### Next target
+
+Define AUNEYA Local Collect Command v0.1 so a phone user can record and view a local non-value simulated collection entry with one command.
+<!-- WVP:STEP-34-AUNEYA-LOCAL-COLLECTION-STATUS-DISPLAY-V01:END -->
+

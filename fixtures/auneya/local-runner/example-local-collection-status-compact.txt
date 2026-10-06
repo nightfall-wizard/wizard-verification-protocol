@@ -1,0 +1,12 @@
+AUNEYA LOCAL COLLECTION STATUS
+ledger_exists=true
+total_entries=2
+total_simulated_neya=36840
+unit=simulated_neya
+token_created=false
+auneya_created=false
+neya_created=false
+real_reward_created=false
+market_value_claimed=false
+transferable=false
+mainnet=not_active

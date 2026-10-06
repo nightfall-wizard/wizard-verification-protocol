@@ -1,0 +1,40 @@
+AUNEYA LOCAL COLLECTION STATUS
+===============================
+Mode:                           local non-value simulation
+Ledger exists:                  true
+Ledger:                         .tmp/auneya-local-collection-status/example/local-collection-ledger.json
+Network:                        none
+Mainnet:                        not active
+Token created:                  false
+AUNEYA created:                 false
+neya created:                   false
+Real reward created:            false
+Market value claimed:           false
+Transferable:                   false
+
+TOTALS
+-------------------------------
+Total simulated entries:        2
+Total simulated_neya:           36840
+Unit:                           simulated_neya
+
+LATEST ENTRY
+-------------------------------
+Entry sequence:                 2
+Claim key:                      website-claim-reality
+Claim ID:                       auneya_claim_website_reality_001
+Simulated amount:               18420 simulated_neya
+Prooflet:                       auneya_prooflet_local_001
+Created at:                     2026-10-06T00:17:06Z
+
+ENTRIES
+-------------------------------
+#1 release-reality 18420 simulated_neya
+#2 website-claim-reality 18420 simulated_neya
+
+BOUNDARY
+-------------------------------
+This is local protocol research.
+No token, AUNEYA, neya, real reward, mainnet or market value is created.
+Nothing shown here is transferable.
+Legal review is required before any public token launch, listing, sale, transferability or market-value communication.
