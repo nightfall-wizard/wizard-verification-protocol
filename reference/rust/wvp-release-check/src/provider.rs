@@ -117,7 +117,7 @@ fn inspect_github(target: &RepositoryTarget) -> ReleaseObservation {
             };
             let signature_count = match gh_count(
                 &latest_endpoint,
-                r#"[.[0].assets[]? | select(.name | test("(?i)(\.(sig|asc|minisig|gpg)$|\.signature$)"))] | length"#,
+                r#"[.[0].assets[]? | select(.name | test("(?i)([.](sig|asc|minisig|gpg)$|[.]signature$)"))] | length"#,
             ) {
                 Ok(count) => Some(count),
                 Err(err) => {
