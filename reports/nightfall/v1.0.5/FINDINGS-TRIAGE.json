@@ -1,0 +1,164 @@
+{
+  "id": "WVP-SEC-008",
+  "created_unix": 1791320975,
+  "purpose": "Private disclosure and findings triage workflow",
+  "class_count": 9,
+  "severity_count": 5,
+  "workflow_state_count": 9,
+  "triage_rule_count": 8,
+  "security_classes": [
+    {
+      "id": "CLASS-001",
+      "name": "Inflation",
+      "private_default": true,
+      "public_detail_allowed": "only after fix or maintainer clearance",
+      "reason": "May describe ways to create invalid value."
+    },
+    {
+      "id": "CLASS-002",
+      "name": "Theft",
+      "private_default": true,
+      "public_detail_allowed": "only after fix or maintainer clearance",
+      "reason": "May endanger user funds."
+    },
+    {
+      "id": "CLASS-003",
+      "name": "Fund destruction",
+      "private_default": true,
+      "public_detail_allowed": "only after fix or maintainer clearance",
+      "reason": "May cause irreversible loss."
+    },
+    {
+      "id": "CLASS-004",
+      "name": "Consensus split",
+      "private_default": true,
+      "public_detail_allowed": "only after fix or maintainer clearance",
+      "reason": "May split network state."
+    },
+    {
+      "id": "CLASS-005",
+      "name": "Remote crash or resource exhaustion",
+      "private_default": true,
+      "public_detail_allowed": "only after fix or maintainer clearance",
+      "reason": "May enable denial of service."
+    },
+    {
+      "id": "CLASS-006",
+      "name": "Privacy break",
+      "private_default": true,
+      "public_detail_allowed": "only after fix or maintainer clearance",
+      "reason": "May deanonymize users."
+    },
+    {
+      "id": "CLASS-007",
+      "name": "Key recovery",
+      "private_default": true,
+      "public_detail_allowed": "only after fix or maintainer clearance",
+      "reason": "May expose secrets."
+    },
+    {
+      "id": "CLASS-008",
+      "name": "Release integrity failure",
+      "private_default": true,
+      "public_detail_allowed": "only after fix or maintainer clearance",
+      "reason": "May affect supply-chain trust."
+    },
+    {
+      "id": "CLASS-009",
+      "name": "Documentation-to-code mismatch",
+      "private_default": false,
+      "public_detail_allowed": "sanitized summary allowed",
+      "reason": "Usually process risk unless it exposes an exploit path."
+    }
+  ],
+  "severity_levels": [
+    {
+      "level": "INFO",
+      "private_default": false,
+      "definition": "No direct security impact; improves clarity."
+    },
+    {
+      "level": "LOW",
+      "private_default": false,
+      "definition": "Limited impact or hard-to-trigger issue."
+    },
+    {
+      "level": "MEDIUM",
+      "private_default": true,
+      "definition": "Meaningful security impact requiring maintainer review."
+    },
+    {
+      "level": "HIGH",
+      "private_default": true,
+      "definition": "Likely serious impact on funds, consensus, privacy, or availability."
+    },
+    {
+      "level": "CRITICAL",
+      "private_default": true,
+      "definition": "Potential catastrophic impact or easy exploitation."
+    }
+  ],
+  "workflow_states": [
+    "observed",
+    "classified",
+    "evidence_captured",
+    "private_hold",
+    "maintainer_contact_ready",
+    "maintainer_contacted",
+    "fix_or_response_pending",
+    "resolved",
+    "sanitized_public_summary"
+  ],
+  "triage_rules": [
+    {
+      "id": "TRIAGE-001",
+      "rule": "Do not publish exploit steps.",
+      "required": true
+    },
+    {
+      "id": "TRIAGE-002",
+      "rule": "Do not publish payloads that enable theft, inflation, fund destruction, or consensus split.",
+      "required": true
+    },
+    {
+      "id": "TRIAGE-003",
+      "rule": "Do not request or store seeds, private keys, wallet files, or live funds.",
+      "required": true
+    },
+    {
+      "id": "TRIAGE-004",
+      "rule": "Use sanitized summaries for public reports until fix or maintainer clearance.",
+      "required": true
+    },
+    {
+      "id": "TRIAGE-005",
+      "rule": "Keep reproducible local evidence but redact secrets and exploit-enabling detail.",
+      "required": true
+    },
+    {
+      "id": "TRIAGE-006",
+      "rule": "Mark WVP outputs as non-audit unless an independent audit exists.",
+      "required": true
+    },
+    {
+      "id": "TRIAGE-007",
+      "rule": "Escalate HIGH and CRITICAL observations to private disclosure workflow.",
+      "required": true
+    },
+    {
+      "id": "TRIAGE-008",
+      "rule": "When uncertain, classify conservatively and withhold exploit detail.",
+      "required": true
+    }
+  ],
+  "safety_boundary": {
+    "no_real_seed": true,
+    "no_private_key": true,
+    "no_live_funds": true,
+    "no_exploit_payloads": true,
+    "no_public_zero_day_details": true,
+    "non_audit_label_required": true,
+    "sanitized_public_reports": true
+  },
+  "boundary": "This workflow supports responsible handling of security observations. It is not legal advice, an audit, or proof that vulnerabilities exist."
+}

@@ -182,3 +182,30 @@ Next milestone:
 
 WVP-SEC-008 - create private-disclosure and findings-triage workflow
 for security-relevant observations.
+
+
+## WVP-SEC-008
+
+Status: implemented.
+
+Completed:
+
+- private disclosure workflow
+- findings triage policy
+- JSON triage evidence
+- Markdown triage evidence
+- repository security policy
+- finding templates
+- executable triage checker
+- unit tests
+- CI integration
+
+Boundary:
+
+This step creates a disclosure and triage process.
+It is not legal advice, not an audit, and not proof that vulnerabilities exist.
+
+Next milestone:
+
+WVP-SEC-009 - create conformance scoring and public report
+generation for Nightfall evidence packs.
