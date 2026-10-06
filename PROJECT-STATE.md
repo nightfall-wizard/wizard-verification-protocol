@@ -2540,3 +2540,49 @@ The display reads the local collection ledger simulation and shows phone-friendl
 Define AUNEYA Local Collect Command v0.1 so a phone user can record and view a local non-value simulated collection entry with one command.
 <!-- WVP:STEP-34-AUNEYA-LOCAL-COLLECTION-STATUS-DISPLAY-V01:END -->
 
+<!-- WVP:STEP-35-AUNEYA-LOCAL-COLLECT-COMMAND-V01:START -->
+## STEP 35 — AUNEYA Local Collect Command v0.1
+
+Date: 2026-10-06
+
+### Purpose
+
+AUNEYA now has a local collect command.
+
+The command records and displays one local non-value simulated collection entry from a supported lawful public claim key.
+
+### Added
+
+- `tools/auneya/auneya_local_collect.sh`
+- `docs/auneya/AUNEYA-LOCAL-COLLECT-COMMAND-V0.1.md`
+- `fixtures/auneya/local-runner/example-local-collect-command.txt`
+- `fixtures/auneya/local-runner/example-local-collect-ledger.json`
+- `conformance/auneya-local-collect-command-v0.1.sh`
+
+### Verified
+
+- collect command records one local simulated entry
+- collect command displays local collection status
+- collect command supports supported lawful public claim keys
+- invalid claim key is rejected
+- ledger total increases after repeated local collect runs
+- ledger entries are non-transferable
+- ledger entries claim no market value
+- no token, AUNEYA, neya, real reward or mainnet is created
+
+### Explicit non-claims
+
+- No token is created by this step.
+- No AUNEYA is created by this step.
+- No neya is created by this step.
+- No real reward is created by this step.
+- No token sale is offered.
+- No market value is claimed.
+- No return, profit, yield or financial outcome is offered or promised.
+- Legal review is required before any public token launch, listing, sale, transferability or market-value communication.
+
+### Next target
+
+Define AUNEYA Local Collect Session v0.1 so a phone user can run a bounded local non-value simulated collection session with repeated collects and a final status view.
+<!-- WVP:STEP-35-AUNEYA-LOCAL-COLLECT-COMMAND-V01:END -->
+

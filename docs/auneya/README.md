@@ -120,3 +120,13 @@ The local collection ledger simulation persistently counts local non-value simul
 - `../../conformance/auneya-local-collection-status-display-v0.1.sh`
 
 The local collection status display shows local simulated collection totals in a clean Termux view without creating AUNEYA, neya, market value or transferability.
+
+## Local Collect Command
+
+- `AUNEYA-LOCAL-COLLECT-COMMAND-V0.1.md`
+- `../../tools/auneya/auneya_local_collect.sh`
+- `../../fixtures/auneya/local-runner/example-local-collect-command.txt`
+- `../../fixtures/auneya/local-runner/example-local-collect-ledger.json`
+- `../../conformance/auneya-local-collect-command-v0.1.sh`
+
+The local collect command records and displays a local non-value simulated collection entry with one Termux command.

@@ -514,3 +514,44 @@ Explicit non-claims:
 - Legal review is required before any public token launch, listing, sale, transferability or market-value communication.
 <!-- WVP:AUNEYA-LOCAL-COLLECTION-STATUS-DISPLAY-V01:END -->
 
+<!-- WVP:AUNEYA-LOCAL-COLLECT-COMMAND-V01:START -->
+## AUNEYA Local Collect Command v0.1
+
+Record and display one local non-value simulated collection entry from Termux:
+
+`./tools/auneya/auneya_local_collect.sh`
+
+Optional claim key:
+
+`./tools/auneya/auneya_local_collect.sh release-reality`
+
+Supported claim keys:
+
+- `release-reality`
+- `download-integrity`
+- `website-claim-reality`
+
+Self-check:
+
+`./conformance/auneya-local-collect-command-v0.1.sh`
+
+Files:
+
+- `tools/auneya/auneya_local_collect.sh`
+- `docs/auneya/AUNEYA-LOCAL-COLLECT-COMMAND-V0.1.md`
+- `fixtures/auneya/local-runner/example-local-collect-command.txt`
+- `fixtures/auneya/local-runner/example-local-collect-ledger.json`
+- `conformance/auneya-local-collect-command-v0.1.sh`
+
+Explicit non-claims:
+
+- No token is created by this command.
+- No AUNEYA is created by this command.
+- No neya is created by this command.
+- No real reward is created by this command.
+- No market value is claimed.
+- No mainnet is activated.
+- Simulated entries are non-transferable and non-value only.
+- Legal review is required before any public token launch, listing, sale, transferability or market-value communication.
+<!-- WVP:AUNEYA-LOCAL-COLLECT-COMMAND-V01:END -->
+
