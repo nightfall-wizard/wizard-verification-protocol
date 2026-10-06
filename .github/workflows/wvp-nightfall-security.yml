@@ -23,3 +23,4 @@ jobs:
       - run: python3 wvp/nightfall/supply_invariant.py
       - run: python3 wvp/nightfall/negative_vectors.py
       - run: python3 wvp/nightfall/triage_workflow.py
+      - run: python3 wvp/nightfall/conformance_score.py

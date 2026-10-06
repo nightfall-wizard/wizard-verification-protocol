@@ -209,3 +209,28 @@ Next milestone:
 
 WVP-SEC-009 - create conformance scoring and public report
 generation for Nightfall evidence packs.
+
+
+## WVP-SEC-009
+
+Status: implemented.
+
+Completed:
+
+- conformance score report
+- public sanitized report
+- conformance scoring method documentation
+- public report method documentation
+- executable conformance checker
+- unit tests
+- CI integration
+
+Boundary:
+
+This step scores evidence completeness only.
+It is not an audit, not a certification, and not proof of project safety.
+
+Next milestone:
+
+WVP-SEC-010 - create final release-pack builder and
+versioned evidence bundle manifest.
