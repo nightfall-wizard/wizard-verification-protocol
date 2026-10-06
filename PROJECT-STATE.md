@@ -55,3 +55,28 @@ This step binds fixtures to observable paths. It does not prove implementation c
 Next milestone:
 
 WVP-SEC-003 - convert selected bindings into executable semantic regression checks.
+
+
+## WVP-SEC-003
+
+Status: implemented.
+
+Completed:
+
+- semantic regression report
+- executable semantic regression checker
+- semantic regression method documentation
+- JSON evidence artifact
+- Markdown evidence artifact
+- unit tests
+- CI integration
+
+Boundary:
+
+This step creates static semantic regression evidence.
+It does not prove runtime correctness.
+
+Next milestone:
+
+WVP-SEC-004 - generate executable Nightfall command probes
+and capture reproducible command evidence.

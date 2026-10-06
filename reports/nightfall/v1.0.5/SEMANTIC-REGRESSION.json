@@ -1,0 +1,207 @@
+{
+  "id": "WVP-SEC-003",
+  "created_unix": 1791320299,
+  "nightfall_repo": "/data/data/com.termux/files/home/nightfall",
+  "semantic_checks": 8,
+  "passed": 8,
+  "warned": 0,
+  "results": [
+    {
+      "fixture": "thin_air_mint",
+      "status": "PASS",
+      "class": "inflation",
+      "risk": "value creation outside valid accounting",
+      "required_terms": [
+        "supply",
+        "invariant"
+      ],
+      "found_terms": [
+        "invariant",
+        "supply"
+      ],
+      "missing_terms": [],
+      "searched_paths": [
+        "crates/nightfall-consensus/src/lib.rs",
+        "crates/nightfall-core/src/views.rs",
+        "crates/nightfall-ledger/src/lib.rs",
+        "crates/nightfall-ledger/src/utxo.rs",
+        "crates/nightfall-ledger/tests/ledger_flow.rs",
+        "crates/nightfall-node/src/rpc.rs",
+        "crates/nightfall-node/tests/multi_node_reorg.rs",
+        "crates/nightfall-storage/src/lib.rs"
+      ]
+    },
+    {
+      "fixture": "negative_amount_attempt",
+      "status": "PASS",
+      "class": "inflation",
+      "risk": "invalid amount accepted",
+      "required_terms": [
+        "range",
+        "proof"
+      ],
+      "found_terms": [
+        "proof",
+        "range"
+      ],
+      "missing_terms": [],
+      "searched_paths": [
+        "crates/nightfall-crypto/src/commit.rs",
+        "crates/nightfall-crypto/src/rangeproof.rs",
+        "crates/nightfall-ledger/tests/exploit_regression.rs",
+        "crates/nightfall-node/src/rpc.rs",
+        "docs/AUDIT-2026-08-12.md",
+        "docs/AUDIT-2026-08-16.md",
+        "docs/DECISIONS.md",
+        "docs/MAINNET.md"
+      ]
+    },
+    {
+      "fixture": "fake_input_spend",
+      "status": "PASS",
+      "class": "theft",
+      "risk": "spending non-existing or unauthorized input",
+      "required_terms": [
+        "input",
+        "utxo"
+      ],
+      "found_terms": [
+        "input",
+        "utxo"
+      ],
+      "missing_terms": [],
+      "searched_paths": [
+        "crates/nightfall-core/src/views.rs",
+        "crates/nightfall-crypto/src/lib.rs",
+        "crates/nightfall-ledger/src/lib.rs",
+        "crates/nightfall-ledger/src/tx.rs",
+        "crates/nightfall-ledger/tests/exploit_regression.rs",
+        "crates/nightfall-wallet/src/lib.rs",
+        "docs/AUDIT-2026-08-12.md",
+        "docs/AUDIT-2026-08-16.md"
+      ]
+    },
+    {
+      "fixture": "immature_coinbase_spend",
+      "status": "PASS",
+      "class": "consensus",
+      "risk": "spending miner reward too early",
+      "required_terms": [
+        "coinbase",
+        "maturity"
+      ],
+      "found_terms": [
+        "coinbase",
+        "maturity"
+      ],
+      "missing_terms": [],
+      "searched_paths": [
+        "crates/nightfall-wallet/src/lib.rs",
+        "crates/nightfall-consensus/src/lib.rs",
+        "crates/nightfall-core/src/app.rs",
+        "crates/nightfall-core/src/views.rs",
+        "crates/nightfall-core/src/wallet_state.rs",
+        "crates/nightfall-crypto/src/stealth.rs",
+        "crates/nightfall-ledger/src/lib.rs",
+        "crates/nightfall-ledger/src/utxo.rs"
+      ]
+    },
+    {
+      "fixture": "duplicate_input",
+      "status": "PASS",
+      "class": "consensus",
+      "risk": "same input accepted twice",
+      "required_terms": [
+        "duplicate",
+        "input"
+      ],
+      "found_terms": [
+        "duplicate",
+        "input"
+      ],
+      "missing_terms": [],
+      "searched_paths": [
+        "crates/nightfall-consensus/src/lib.rs",
+        "crates/nightfall-consensus/tests/chain_rules.rs",
+        "crates/nightfall-wallet/src/lib.rs",
+        "crates/nightfall-wallet/src/vault.rs",
+        "crates/nightfall-web/src/vault.rs",
+        "docs/SPEC.md",
+        "docs/VAULT-FORMAT.md",
+        "crates/nightfall-core/src/app.rs"
+      ]
+    },
+    {
+      "fixture": "unsorted_block_body",
+      "status": "PASS",
+      "class": "consensus",
+      "risk": "canonical ordering not enforced",
+      "required_terms": [
+        "sort"
+      ],
+      "found_terms": [
+        "sort"
+      ],
+      "missing_terms": [],
+      "searched_paths": [
+        "crates/nightfall-consensus/src/lib.rs",
+        "crates/nightfall-ledger/src/aggregate.rs",
+        "crates/nightfall-ledger/src/utxo.rs",
+        "crates/nightfall-wallet/src/lib.rs",
+        "docs/SPEC.md",
+        "crates/nightfall-consensus/src/difficulty.rs",
+        "crates/nightfall-consensus/tests/chain_rules.rs",
+        "crates/nightfall-core/src/app.rs"
+      ]
+    },
+    {
+      "fixture": "invalid_kernel_excess",
+      "status": "PASS",
+      "class": "inflation",
+      "risk": "hidden value through invalid excess",
+      "required_terms": [
+        "kernel",
+        "excess"
+      ],
+      "found_terms": [
+        "excess",
+        "kernel"
+      ],
+      "missing_terms": [],
+      "searched_paths": [
+        "crates/nightfall-consensus/src/lib.rs",
+        "crates/nightfall-crypto/src/kernel.rs",
+        "crates/nightfall-crypto/src/lib.rs",
+        "crates/nightfall-crypto/src/schnorr.rs",
+        "crates/nightfall-ledger/src/aggregate.rs",
+        "crates/nightfall-ledger/src/lib.rs",
+        "crates/nightfall-ledger/src/tx.rs",
+        "crates/nightfall-ledger/tests/exploit_regression.rs"
+      ]
+    },
+    {
+      "fixture": "block_apply_atomicity_case",
+      "status": "PASS",
+      "class": "consensus",
+      "risk": "rejected block mutates state",
+      "required_terms": [
+        "atomic"
+      ],
+      "found_terms": [
+        "atomic"
+      ],
+      "missing_terms": [],
+      "searched_paths": [
+        "docs/AUDIT-2026-08-12.md",
+        "docs/DECISIONS.md",
+        "crates/nightfall-consensus/src/lib.rs",
+        "crates/nightfall-core/src/app.rs",
+        "crates/nightfall-core/src/vault_ui.rs",
+        "crates/nightfall-core/src/views.rs",
+        "crates/nightfall-core/src/wallet_state.rs",
+        "crates/nightfall-ledger/src/lib.rs"
+      ]
+    }
+  ],
+  "boundary": "Static semantic regression checks. Not an audit."
+}
