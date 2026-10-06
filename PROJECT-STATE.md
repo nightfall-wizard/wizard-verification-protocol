@@ -131,3 +131,29 @@ Next milestone:
 
 WVP-SEC-006 - create supply-invariant evidence map and
 runtime-safe invariant probe scaffolding.
+
+
+## WVP-SEC-006
+
+Status: implemented.
+
+Completed:
+
+- supply invariant evidence map
+- JSON invariant evidence
+- Markdown invariant evidence
+- runtime-safe invariant probes
+- supply invariant method documentation
+- executable supply invariant checker
+- unit tests
+- CI integration
+
+Boundary:
+
+This step maps and probes invariant evidence.
+It does not prove mathematical or consensus correctness.
+
+Next milestone:
+
+WVP-SEC-007 - create fuzzing and negative-vector
+scaffolding for invariant-related failure classes.

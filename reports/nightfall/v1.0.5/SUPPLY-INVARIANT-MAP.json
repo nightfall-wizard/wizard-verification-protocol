@@ -1,0 +1,2974 @@
+{
+  "id": "WVP-SEC-006",
+  "created_unix": 1791320747,
+  "nightfall_repo": "/data/data/com.termux/files/home/nightfall",
+  "source_files_scanned": 119,
+  "claim_count": 9,
+  "claim_pass": 9,
+  "claim_warn": 0,
+  "probe_count": 5,
+  "probe_pass": 5,
+  "probe_warn": 0,
+  "claims": [
+    {
+      "id": "SUPPLY-001",
+      "name": "supply_invariant_declared",
+      "class": "inflation",
+      "must": [
+        "supply",
+        "invariant"
+      ],
+      "risk": "accepted blocks may create value outside accounting",
+      "status": "PASS",
+      "found_terms": [
+        "invariant",
+        "supply"
+      ],
+      "missing_terms": [],
+      "hits": [
+        {
+          "path": "SECURITY.md",
+          "score": 2,
+          "sha256": "70fb360d2cb8f387670818591858abd81ccf90e7f1e2f6775111641c59e4368b",
+          "lines": [
+            {
+              "line": 5,
+              "text": "**Do not open a public issue for anything that affects consensus, the supply"
+            },
+            {
+              "line": 6,
+              "text": "invariant, or user funds.**"
+            }
+          ]
+        },
+        {
+          "path": "crates/nightfall-consensus/src/lib.rs",
+          "score": 2,
+          "sha256": "22c72490e21451167e58966aa60c3091f68a477c9a977a33a849327179b6f315",
+          "lines": [
+            {
+              "line": 13,
+              "text": "    HALVING_INTERVAL_BLOCKS, INITIAL_BLOCK_REWARD_NIGHT, MAX_FUTURE_DRIFT_SECS, MAX_SUPPLY_DARKS,"
+            },
+            {
+              "line": 14,
+              "text": "    MAX_SUPPLY_NIGHT, PROTOCOL_VERSION,"
+            },
+            {
+              "line": 61,
+              "text": "    pub max_supply_darks: u64,"
+            },
+            {
+              "line": 75,
+              "text": "            max_supply_darks: MAX_SUPPLY_DARKS,"
+            },
+            {
+              "line": 93,
+              "text": "        if total_minted_darks >= self.max_supply_darks {"
+            },
+            {
+              "line": 97,
+              "text": "        let room = self.max_supply_darks - total_minted_darks;"
+            }
+          ]
+        },
+        {
+          "path": "crates/nightfall-consensus/tests/chain_rules.rs",
+          "score": 2,
+          "sha256": "ef95c12ebb4c624d794ec489a1e0f2749c54a2697d6427e067beb5974e0dfc91",
+          "lines": [
+            {
+              "line": 28,
+              "text": "    chain.verify_supply().unwrap();"
+            },
+            {
+              "line": 48,
+              "text": "    fast.verify_supply().unwrap();"
+            },
+            {
+              "line": 117,
+              "text": "    short.verify_supply().unwrap();"
+            },
+            {
+              "line": 283,
+              "text": "    ours.verify_supply().unwrap();"
+            },
+            {
+              "line": 309,
+              "text": "    fast.verify_supply().unwrap();"
+            },
+            {
+              "line": 355,
+              "text": "    ours.verify_supply().unwrap();"
+            }
+          ]
+        },
+        {
+          "path": "crates/nightfall-core/src/views.rs",
+          "score": 2,
+          "sha256": "6a18c80638b73dc2ea6bdce77d370f2636fb30ce16e39712070e5760dff0ed29",
+          "lines": [
+            {
+              "line": 11,
+              "text": "    Amount, NetworkId, DARKS_PER_NIGHT, MAX_SUPPLY_NIGHT, TARGET_BLOCK_TIME_SECS,"
+            },
+            {
+              "line": 100,
+              "text": "    let (blocks, peers, mempool, difficulty, supply_ok, minted, burned) = app"
+            },
+            {
+              "line": 109,
+              "text": "                s.supply_ok,"
+            },
+            {
+              "line": 532,
+              "text": "            titled_card(ui, \"Network supply\", |ui| {"
+            },
+            {
+              "line": 544,
+              "text": "                let pct = circulating as f64 / (MAX_SUPPLY_NIGHT as f64 * DARKS_PER_NIGHT as f64);"
+            },
+            {
+              "line": 556,
+              "text": "                        format_int(MAX_SUPPLY_NIGHT),"
+            }
+          ]
+        },
+        {
+          "path": "crates/nightfall-ledger/src/lib.rs",
+          "score": 2,
+          "sha256": "25c6536091d6d83d20b8efa71a6c47edaa8fa39e565ec44c99632acac45a23f4",
+          "lines": [
+            {
+              "line": 5,
+              "text": "//! nullifier set and the supply counters *before* checking the signature and"
+            },
+            {
+              "line": 34,
+              "text": "    pub supply: SupplyState,"
+            },
+            {
+              "line": 51,
+              "text": "            supply: SupplyState::default(),"
+            },
+            {
+              "line": 73,
+              "text": "    /// Cryptographic proof that the supply is exactly what it claims to be."
+            },
+            {
+              "line": 74,
+              "text": "    pub fn verify_supply(&self) -> Result<(), SupplyError> {"
+            },
+            {
+              "line": 75,
+              "text": "        verify_supply_invariant(&self.utxos, &self.kernels, &self.supply)"
+            }
+          ]
+        },
+        {
+          "path": "crates/nightfall-ledger/src/utxo.rs",
+          "score": 2,
+          "sha256": "9ab719d9efe4bfc0081d687389c1f7ec19432a60cee76d93b5ace82aefeea534",
+          "lines": [
+            {
+              "line": 1,
+              "text": "//! The UTXO commitment set and the global supply invariant."
+            },
+            {
+              "line": 3,
+              "text": "//! # The invariant"
+            },
+            {
+              "line": 22,
+              "text": "use nightfall_types::{Hash256, Height, NetworkId, MAX_SUPPLY_DARKS};"
+            },
+            {
+              "line": 61,
+              "text": "    /// commitment, and `verify_supply_invariant` calls it once per block. That"
+            },
+            {
+              "line": 64,
+              "text": "    /// of 2302 stack samples inside `verify_supply_invariant`, 1599 of those"
+            },
+            {
+              "line": 92,
+              "text": "    /// the supply invariant against a sum of zero entries, which is the exact"
+            }
+          ]
+        },
+        {
+          "path": "crates/nightfall-ledger/tests/ledger_flow.rs",
+          "score": 2,
+          "sha256": "73944e383878f3616d9ed519a90babfbdd1ca2d6b7f0b3b693a385a30d472df7",
+          "lines": [
+            {
+              "line": 1,
+              "text": "//! End-to-end ledger behaviour: mine, discover, spend, verify supply."
+            },
+            {
+              "line": 47,
+              "text": "    assert_eq!(ledger.supply.total_minted_darks, reward);"
+            },
+            {
+              "line": 49,
+              "text": "    ledger.verify_supply().expect(\"supply invariant\");"
+            },
+            {
+              "line": 98,
+              "text": "    assert_eq!(ledger.supply.total_burned_darks, fee);"
+            },
+            {
+              "line": 99,
+              "text": "    assert_eq!(ledger.supply.total_minted_darks, 2 * reward);"
+            },
+            {
+              "line": 100,
+              "text": "    assert_eq!(ledger.supply.circulating(), 2 * reward - fee);"
+            }
+          ]
+        },
+        {
+          "path": "crates/nightfall-node/src/rpc.rs",
+          "score": 2,
+          "sha256": "0b43a23f46aa08a860873dd2fe7f1aff661f7a7633649ea925e4ed2ae4410db8",
+          "lines": [
+            {
+              "line": 11,
+              "text": "use nightfall_types::{Amount, MAX_MESSAGE_BYTES, MAX_SUPPLY_NIGHT, TICKER};"
+            },
+            {
+              "line": 146,
+              "text": "            let supply_ok = !loading && chain.verify_supply().is_ok();"
+            },
+            {
+              "line": 181,
+              "text": "                    \"minted\": chain.ledger.supply.total_minted_darks,"
+            },
+            {
+              "line": 182,
+              "text": "                    \"burned_fees\": chain.ledger.supply.total_burned_darks,"
+            },
+            {
+              "line": 183,
+              "text": "                    \"circulating\": chain.ledger.supply.circulating(),"
+            },
+            {
+              "line": 187,
+              "text": "                    \"supply_invariant_ok\": supply_ok,"
+            }
+          ]
+        },
+        {
+          "path": "crates/nightfall-node/tests/multi_node_reorg.rs",
+          "score": 2,
+          "sha256": "8a02970f59fae43c4c2fb639d1d2fd5851eda9c988d7876aaf1f9d4fdca8ddd5",
+          "lines": [
+            {
+              "line": 210,
+              "text": "                assert_eq!(s.minted, expected_minted, \"{name}: minted supply diverged\");"
+            },
+            {
+              "line": 216,
+              "text": "                assert!(s.supply_ok, \"{name}: supply invariant failed\");"
+            }
+          ]
+        },
+        {
+          "path": "crates/nightfall-p2p/src/lib.rs",
+          "score": 2,
+          "sha256": "ded182b11ec2153a7a385cfc0df1b25cf0d9a9bbef8ff854abb2515edbac12c6",
+          "lines": [
+            {
+              "line": 141,
+              "text": "        /// A pruned node validates every new block and proves the supply"
+            },
+            {
+              "line": 142,
+              "text": "        /// invariant exactly like an archive \u2014 but it cannot answer"
+            },
+            {
+              "line": 167,
+              "text": "        /// A pruned node validates every new block and proves the supply"
+            },
+            {
+              "line": 168,
+              "text": "        /// invariant exactly like an archive \u2014 but it cannot answer"
+            }
+          ]
+        },
+        {
+          "path": "crates/nightfall-storage/src/lib.rs",
+          "score": 2,
+          "sha256": "50cbf670ea8f852df238dad019cbc41ba9a73ce1fb70364f8b7cb09902c22119",
+          "lines": [
+            {
+              "line": 356,
+              "text": "    /// Install a snapshot directory and replay it with full PoW + supply"
+            },
+            {
+              "line": 428,
+              "text": "        chain.verify_supply()?;"
+            },
+            {
+              "line": 778,
+              "text": "        // Refuse to start on a chain whose supply does not add up. This is"
+            },
+            {
+              "line": 781,
+              "text": "            .verify_supply()"
+            },
+            {
+              "line": 782,
+              "text": "            .map_err(|e| anyhow::anyhow!(\"stored chain violates the supply invariant: {e}\"))?;"
+            },
+            {
+              "line": 818,
+              "text": "        minted: h.supply.total_minted_darks,"
+            }
+          ]
+        },
+        {
+          "path": "crates/nightfall-wallet/src/main.rs",
+          "score": 2,
+          "sha256": "11fcff7528436ea5f882fdb92386560fbd4173c5f6cbb88fae122ca49ebecfbd",
+          "lines": [
+            {
+              "line": 71,
+              "text": "    /// Ask the node to re-prove the global supply invariant."
+            },
+            {
+              "line": 72,
+              "text": "    VerifySupply,"
+            },
+            {
+              "line": 128,
+              "text": "        Commands::VerifySupply => {"
+            },
+            {
+              "line": 129,
+              "text": "            let res = rpc_call(&rpc, \"verify_supply\", json!({}))?;"
+            },
+            {
+              "line": 269,
+              "text": "        | Commands::VerifySupply"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "SUPPLY-002",
+      "name": "utxo_accounting_surface",
+      "class": "inflation",
+      "must": [
+        "utxo"
+      ],
+      "risk": "supply accounting cannot be tied to spendable outputs",
+      "status": "PASS",
+      "found_terms": [
+        "utxo"
+      ],
+      "missing_terms": [],
+      "hits": [
+        {
+          "path": "SECURITY.md",
+          "score": 1,
+          "sha256": "70fb360d2cb8f387670818591858abd81ccf90e7f1e2f6775111641c59e4368b",
+          "lines": [
+            {
+              "line": 25,
+              "text": "- **Inflation.** Any way to make `\u03a3 UTXO \u2212 \u03a3 kernel_excess = (minted \u2212 burned)\u00b7G` hold while creating value, or any way to mint outside the emission schedule."
+            },
+            {
+              "line": 50,
+              "text": "  design; there are no UTXO snapshots yet."
+            }
+          ]
+        },
+        {
+          "path": "crates/nightfall-consensus/src/lib.rs",
+          "score": 1,
+          "sha256": "22c72490e21451167e58966aa60c3091f68a477c9a977a33a849327179b6f315",
+          "lines": [
+            {
+              "line": 52,
+              "text": "/// the UTXO set stay. Seeds that serve IBD must not prune."
+            },
+            {
+              "line": 109,
+              "text": "    /// Merkle root of the UTXO set after this block."
+            },
+            {
+              "line": 110,
+              "text": "    pub utxo_root: Hash256,"
+            },
+            {
+              "line": 132,
+              "text": "                &self.utxo_root.0,"
+            },
+            {
+              "line": 232,
+              "text": "/// UTXO + headers below the first kept body. Enough to rebuild a pruned"
+            },
+            {
+              "line": 544,
+              "text": "                utxo_root: trial.utxo_root(),"
+            }
+          ]
+        },
+        {
+          "path": "crates/nightfall-consensus/tests/chain_rules.rs",
+          "score": 1,
+          "sha256": "ef95c12ebb4c624d794ec489a1e0f2749c54a2697d6427e067beb5974e0dfc91",
+          "lines": [
+            {
+              "line": 46,
+              "text": "    assert_eq!(fast.ledger.utxo_root(), full.ledger.utxo_root());"
+            },
+            {
+              "line": 307,
+              "text": "    assert_eq!(fast.ledger.utxo_root(), full.ledger.utxo_root());"
+            },
+            {
+              "line": 519,
+              "text": "    let before_utxos = chain.ledger.utxos.len();"
+            },
+            {
+              "line": 546,
+              "text": "    assert_eq!(chain.ledger.utxos.len(), before_utxos);"
+            },
+            {
+              "line": 657,
+              "text": "            utxo_root: Hash256([0; 32]),"
+            },
+            {
+              "line": 986,
+              "text": "fn prune_keeps_count_and_utxo_drops_old_bodies() {"
+            }
+          ]
+        },
+        {
+          "path": "crates/nightfall-core/src/app.rs",
+          "score": 1,
+          "sha256": "ea6462fda5649ad3ef663b761c4a4d703b2cb0bac3638c398be596093f4dea34",
+          "lines": [
+            {
+              "line": 847,
+              "text": "        // Node snapshots include a UTXO commitment and can wait for replay."
+            },
+            {
+              "line": 1332,
+              "text": "                        \"\u03a3 UTXO \u2212 \u03a3 excess = (minted \u2212 burned)\u00b7G\\n\\nEvery node recomputes this \\"
+            },
+            {
+              "line": 1333,
+              "text": "                         over the whole UTXO set and refuses a block that breaks it. One coin \\"
+            }
+          ]
+        },
+        {
+          "path": "crates/nightfall-core/src/vault_ui.rs",
+          "score": 1,
+          "sha256": "ff37278e4a0d1d6dd00b261182be47e86dab0388ad638b30d7e4483e91e32b26",
+          "lines": [
+            {
+              "line": 144,
+              "text": "                            utxo_root: ledger.utxo_root(),"
+            }
+          ]
+        },
+        {
+          "path": "crates/nightfall-core/src/view_layout_tests.rs",
+          "score": 1,
+          "sha256": "23f921db52fd13ba92c51f224f79e8c1a92a1e5473573fc6c4a7828069c560b3",
+          "lines": [
+            {
+              "line": 689,
+              "text": "            utxo_root: ledger.utxo_root(),"
+            }
+          ]
+        },
+        {
+          "path": "crates/nightfall-core/src/views.rs",
+          "score": 1,
+          "sha256": "6a18c80638b73dc2ea6bdce77d370f2636fb30ce16e39712070e5760dff0ed29",
+          "lines": [
+            {
+              "line": 3181,
+              "text": "                    \"UTXOs\","
+            },
+            {
+              "line": 3182,
+              "text": "                    RichText::new(format_int(s.map(|s| s.utxos).unwrap_or(0) as u64)).monospace(),"
+            },
+            {
+              "line": 3191,
+              "text": "                    \"UTXO root\","
+            },
+            {
+              "line": 3193,
+              "text": "                        &s.map(|s| s.utxo_root.clone()).unwrap_or_default(),"
+            },
+            {
+              "line": 3606,
+              "text": "                \"Prune old blocks \u2014 keep UTXO + last 500 bodies\","
+            }
+          ]
+        },
+        {
+          "path": "crates/nightfall-crypto/src/lib.rs",
+          "score": 1,
+          "sha256": "e693874b21963521ba66d59e0559d470d22880886d3fa2ca55a9d27ba00ec7b4",
+          "lines": [
+            {
+              "line": 56,
+              "text": "    pub const UTXO_ROOT: &[u8] = b\"nightfall:utxoroot:v2\";"
+            }
+          ]
+        },
+        {
+          "path": "crates/nightfall-crypto/src/stealth.rs",
+          "score": 1,
+          "sha256": "b555cf153b8aefcef8995c0a8666c7ceafcff594dc5dff00c6f1f4a57ebcede4",
+          "lines": [
+            {
+              "line": 185,
+              "text": "    /// Stable identifier for this output within the UTXO set."
+            }
+          ]
+        },
+        {
+          "path": "crates/nightfall-ledger/Cargo.toml",
+          "score": 1,
+          "sha256": "c1338698892328a608587a4b567fde8e91418f0b5c95761aa6a716769bb90a83",
+          "lines": [
+            {
+              "line": 6,
+              "text": "description = \"UTXO ledger, transactions, kernels\""
+            }
+          ]
+        },
+        {
+          "path": "crates/nightfall-ledger/src/builder.rs",
+          "score": 1,
+          "sha256": "d1e1d484add0e8b038f35a9d1bc75928def91958fe662ae2b07e781fbc2a37b9",
+          "lines": [
+            {
+              "line": 13,
+              "text": "/// An owned UTXO with everything needed to spend it."
+            }
+          ]
+        },
+        {
+          "path": "crates/nightfall-ledger/src/lib.rs",
+          "score": 1,
+          "sha256": "25c6536091d6d83d20b8efa71a6c47edaa8fa39e565ec44c99632acac45a23f4",
+          "lines": [
+            {
+              "line": 12,
+              "text": "mod utxo;"
+            },
+            {
+              "line": 17,
+              "text": "pub use utxo::*;"
+            },
+            {
+              "line": 32,
+              "text": "    pub utxos: UtxoSet,"
+            },
+            {
+              "line": 49,
+              "text": "            utxos: UtxoSet::new(),"
+            },
+            {
+              "line": 65,
+              "text": "    pub fn utxo_root(&self) -> Hash256 {"
+            },
+            {
+              "line": 66,
+              "text": "        self.utxos.root()"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "SUPPLY-003",
+      "name": "kernel_excess_surface",
+      "class": "inflation",
+      "must": [
+        "kernel",
+        "excess"
+      ],
+      "risk": "kernel excess validation may not protect hidden value",
+      "status": "PASS",
+      "found_terms": [
+        "excess",
+        "kernel"
+      ],
+      "missing_terms": [],
+      "hits": [
+        {
+          "path": "SECURITY.md",
+          "score": 2,
+          "sha256": "70fb360d2cb8f387670818591858abd81ccf90e7f1e2f6775111641c59e4368b",
+          "lines": [
+            {
+              "line": 25,
+              "text": "- **Inflation.** Any way to make `\u03a3 UTXO \u2212 \u03a3 kernel_excess = (minted \u2212 burned)\u00b7G` hold while creating value, or any way to mint outside the emission schedule."
+            }
+          ]
+        },
+        {
+          "path": "crates/nightfall-consensus/src/lib.rs",
+          "score": 2,
+          "sha256": "22c72490e21451167e58966aa60c3091f68a477c9a977a33a849327179b6f315",
+          "lines": [
+            {
+              "line": 111,
+              "text": "    /// Running sum of every kernel excess ever accepted, after this block."
+            },
+            {
+              "line": 112,
+              "text": "    pub kernel_sum: Commitment,"
+            },
+            {
+              "line": 133,
+              "text": "                &self.kernel_sum.0,"
+            },
+            {
+              "line": 545,
+              "text": "                kernel_sum: trial.kernel_sum(),"
+            },
+            {
+              "line": 672,
+              "text": "        if block.body.outputs.is_empty() || block.body.kernels.is_empty() {"
+            },
+            {
+              "line": 750,
+              "text": "        if trial.kernel_sum() != block.header.kernel_sum {"
+            }
+          ]
+        },
+        {
+          "path": "crates/nightfall-crypto/src/kernel.rs",
+          "score": 2,
+          "sha256": "19e35aa84f6395d94c10a102050e88e24e50dba6ab2a4f2d4f9a3987a1b75a6a",
+          "lines": [
+            {
+              "line": 1,
+              "text": "//! Transaction kernels \u2014 the object that actually enforces \"no value created\"."
+            },
+            {
+              "line": 8,
+              "text": "//!   \u03a3 outputs \u2212 \u03a3 inputs \u2212 fee\u00b7G  =  excess\u00b7H"
+            },
+            {
+              "line": 14,
+              "text": "//!   \u03a3 outputs \u2212 reward\u00b7G  =  excess\u00b7H"
+            },
+            {
+              "line": 17,
+              "text": "//! The kernel publishes `excess\u00b7H` as a point and a Schnorr signature over"
+            },
+            {
+              "line": 19,
+              "text": "//! log of the excess point **with respect to H**, which is only possible if the"
+            },
+            {
+              "line": 24,
+              "text": "//! The previous `BalanceProof` stored `excess` and a `value_delta_ok_tag`, and"
+            }
+          ]
+        },
+        {
+          "path": "crates/nightfall-crypto/src/lib.rs",
+          "score": 2,
+          "sha256": "e693874b21963521ba66d59e0559d470d22880886d3fa2ca55a9d27ba00ec7b4",
+          "lines": [
+            {
+              "line": 15,
+              "text": "//! | [`kernel`] | Excess signature over `H` \u2014 the actual no-inflation proof |"
+            },
+            {
+              "line": 21,
+              "text": "mod kernel;"
+            },
+            {
+              "line": 30,
+              "text": "pub use kernel::*;"
+            },
+            {
+              "line": 55,
+              "text": "    pub const KERNEL: &[u8] = b\"nightfall:kernel:v2\";"
+            }
+          ]
+        },
+        {
+          "path": "crates/nightfall-crypto/src/schnorr.rs",
+          "score": 2,
+          "sha256": "046ca520de69218b52ff05754f8fe7ccefe1ee21a0484554c8f1ceaa9545f103",
+          "lines": [
+            {
+              "line": 6,
+              "text": "//! * `H` \u2014 used for **kernel excess signatures**. Signing under `H` is what"
+            },
+            {
+              "line": 7,
+              "text": "//!   proves the excess point carries no `G` component, i.e. that the"
+            },
+            {
+              "line": 127,
+              "text": "        // property the excess signature depends on."
+            }
+          ]
+        },
+        {
+          "path": "crates/nightfall-ledger/src/aggregate.rs",
+          "score": 2,
+          "sha256": "75d05ea9c231beef4b6bde71ba0c53f0418e2b571bc04644203a6903caa9716b",
+          "lines": [
+            {
+              "line": 4,
+              "text": "//! set of inputs, one of outputs and one of kernels. Every transaction that"
+            },
+            {
+              "line": 9,
+              "text": "//! An observer sees *n* inputs, *m* outputs and *k* kernels with **no"
+            },
+            {
+              "line": 16,
+              "text": "//! commitment, kernels by identifier \u2014 all of which are effectively random"
+            },
+            {
+              "line": 26,
+              "text": "//! blinding factor, which the kernel already covers."
+            },
+            {
+              "line": 43,
+              "text": "use nightfall_crypto::{domain, hash_multi, Commitment, KernelFeature, Output, TxKernel};"
+            },
+            {
+              "line": 54,
+              "text": "    pub kernels: Vec<TxKernel>,"
+            }
+          ]
+        },
+        {
+          "path": "crates/nightfall-ledger/src/builder.rs",
+          "score": 2,
+          "sha256": "d1e1d484add0e8b038f35a9d1bc75928def91958fe662ae2b07e781fbc2a37b9",
+          "lines": [
+            {
+              "line": 5,
+              "text": "    build_kernel, create_output, create_output_with_features, generator_g, sig, Address,"
+            },
+            {
+              "line": 6,
+              "text": "    Commitment, KernelFeature, WalletKeys,"
+            },
+            {
+              "line": 33,
+              "text": "/// `\u03a3 outputs \u2212 reward\u00b7G = blind\u00b7H`, so the excess secret is simply the"
+            },
+            {
+              "line": 54,
+              "text": "        kernels: vec![],"
+            },
+            {
+              "line": 57,
+              "text": "    // Kernel excess = \u03a3 out_blinds (no inputs)."
+            },
+            {
+              "line": 58,
+              "text": "    // `lock_height` carries the block height, which pins a coinbase kernel to"
+            }
+          ]
+        },
+        {
+          "path": "crates/nightfall-ledger/src/lib.rs",
+          "score": 2,
+          "sha256": "25c6536091d6d83d20b8efa71a6c47edaa8fa39e565ec44c99632acac45a23f4",
+          "lines": [
+            {
+              "line": 19,
+              "text": "use nightfall_crypto::{Commitment, KernelFeature};"
+            },
+            {
+              "line": 25,
+              "text": "pub const MAX_BLOCK_KERNELS: usize = 1_024;"
+            },
+            {
+              "line": 33,
+              "text": "    pub kernels: KernelAccumulator,"
+            },
+            {
+              "line": 50,
+              "text": "            kernels: KernelAccumulator::default(),"
+            },
+            {
+              "line": 69,
+              "text": "    pub fn kernel_sum(&self) -> Commitment {"
+            },
+            {
+              "line": 70,
+              "text": "        self.kernels.sum"
+            }
+          ]
+        },
+        {
+          "path": "crates/nightfall-ledger/src/tx.rs",
+          "score": 2,
+          "sha256": "09ef1238bbc1db946b560ecc4d6290d159c5d95ac4cec8fd2b0673add34801c8",
+          "lines": [
+            {
+              "line": 1,
+              "text": "//! Transactions: inputs, outputs, kernels."
+            },
+            {
+              "line": 11,
+              "text": "//! * **Kernel excess signature** under generator `H`, proving no value was"
+            },
+            {
+              "line": 19,
+              "text": "//! kernels, so any signature over a per-transaction body would stop verifying"
+            },
+            {
+              "line": 29,
+              "text": "    domain, expected_excess, hash_multi, sig, Commitment, KernelFeature, Output, SchnorrSig,"
+            },
+            {
+              "line": 30,
+              "text": "    TxKernel,"
+            },
+            {
+              "line": 52,
+              "text": "    pub kernels: Vec<TxKernel>,"
+            }
+          ]
+        },
+        {
+          "path": "crates/nightfall-ledger/src/utxo.rs",
+          "score": 2,
+          "sha256": "9ab719d9efe4bfc0081d687389c1f7ec19432a60cee76d93b5ace82aefeea534",
+          "lines": [
+            {
+              "line": 8,
+              "text": "//!   \u03a3 UTXO \u2212 \u03a3 kernel_excess  =  (total_minted \u2212 total_burned) \u00b7 G"
+            },
+            {
+              "line": 11,
+              "text": "//! Anyone holding the UTXO set and the kernel set can evaluate this in one pass"
+            },
+            {
+              "line": 239,
+              "text": "/// Running total of every kernel excess ever accepted."
+            },
+            {
+              "line": 241,
+              "text": "pub struct KernelAccumulator {"
+            },
+            {
+              "line": 247,
+              "text": "impl Default for KernelAccumulator {"
+            },
+            {
+              "line": 256,
+              "text": "impl KernelAccumulator {"
+            }
+          ]
+        },
+        {
+          "path": "crates/nightfall-ledger/tests/exploit_regression.rs",
+          "score": 2,
+          "sha256": "34d60bfdcd7e9e03c4252ac5d309a8bc800ac28329a3b3aeec597a8aaf51e7c5",
+          "lines": [
+            {
+              "line": 11,
+              "text": "    build_kernel, create_output, generator_h, scan_output, Commitment, KernelFeature, SchnorrSig,"
+            },
+            {
+              "line": 52,
+              "text": "/// balance check the kernel excess must equal `\u03a3out \u2212 \u03a3in`, which carries a"
+            },
+            {
+              "line": 66,
+              "text": "    // The best excess the attacker can actually sign: \u03a3 out_blinds \u2212 \u03a3 in_blinds."
+            },
+            {
+              "line": 67,
+              "text": "    let excess_secret = secrets.blind - fake_blind;"
+            },
+            {
+              "line": 79,
+              "text": "        kernels: vec![],"
+            },
+            {
+              "line": 81,
+              "text": "    tx.kernels = vec![build_kernel(KernelFeature::Plain, 0, 0, 0, &excess_secret)];"
+            }
+          ]
+        },
+        {
+          "path": "crates/nightfall-node/src/main.rs",
+          "score": 2,
+          "sha256": "6e0e2c421b49edb0ed98d1d4427f46637019649db58964a8bdac201183d9e935",
+          "lines": [
+            {
+              "line": 379,
+              "text": "    println!(\"kernels........ {}\", chain.ledger.kernels.count);"
+            },
+            {
+              "line": 384,
+              "text": "            Ok(()) => \"OK \u2014 \u03a3 UTXO \u2212 \u03a3 excess == circulating\u00b7G\".to_string(),"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "SUPPLY-004",
+      "name": "mint_burn_accounting_surface",
+      "class": "inflation",
+      "must": [
+        "mint",
+        "burn"
+      ],
+      "risk": "minted and burned value may not be traceable",
+      "status": "PASS",
+      "found_terms": [
+        "burn",
+        "mint"
+      ],
+      "missing_terms": [],
+      "hits": [
+        {
+          "path": "SECURITY.md",
+          "score": 2,
+          "sha256": "70fb360d2cb8f387670818591858abd81ccf90e7f1e2f6775111641c59e4368b",
+          "lines": [
+            {
+              "line": 25,
+              "text": "- **Inflation.** Any way to make `\u03a3 UTXO \u2212 \u03a3 kernel_excess = (minted \u2212 burned)\u00b7G` hold while creating value, or any way to mint outside the emission schedule."
+            },
+            {
+              "line": 64,
+              "text": "anyone could have minted unlimited coins; the recipient of every payment was"
+            }
+          ]
+        },
+        {
+          "path": "crates/nightfall-consensus/src/lib.rs",
+          "score": 2,
+          "sha256": "22c72490e21451167e58966aa60c3091f68a477c9a977a33a849327179b6f315",
+          "lines": [
+            {
+              "line": 92,
+              "text": "    pub fn reward_at(&self, height: Height, total_minted_darks: u64) -> Amount {"
+            },
+            {
+              "line": 93,
+              "text": "        if total_minted_darks >= self.max_supply_darks {"
+            },
+            {
+              "line": 97,
+              "text": "        let room = self.max_supply_darks - total_minted_darks;"
+            },
+            {
+              "line": 365,
+              "text": "    pub fn total_minted(&self) -> u64 {"
+            },
+            {
+              "line": 366,
+              "text": "        self.ledger.supply.total_minted_darks"
+            },
+            {
+              "line": 511,
+              "text": "            .reward_at(height, self.ledger.supply.total_minted_darks)"
+            }
+          ]
+        },
+        {
+          "path": "crates/nightfall-core/src/app.rs",
+          "score": 2,
+          "sha256": "ea6462fda5649ad3ef663b761c4a4d703b2cb0bac3638c398be596093f4dea34",
+          "lines": [
+            {
+              "line": 21,
+              "text": "/// Default fee: 0.001 NIGHT. Burned in full."
+            },
+            {
+              "line": 1332,
+              "text": "                        \"\u03a3 UTXO \u2212 \u03a3 excess = (minted \u2212 burned)\u00b7G\\n\\nEvery node recomputes this \\"
+            },
+            {
+              "line": 1334,
+              "text": "                         minted out of nowhere and the equation stops balancing.\","
+            }
+          ]
+        },
+        {
+          "path": "crates/nightfall-core/src/views.rs",
+          "score": 2,
+          "sha256": "6a18c80638b73dc2ea6bdce77d370f2636fb30ce16e39712070e5760dff0ed29",
+          "lines": [
+            {
+              "line": 100,
+              "text": "    let (blocks, peers, mempool, difficulty, supply_ok, minted, burned) = app"
+            },
+            {
+              "line": 110,
+              "text": "                s.minted,"
+            },
+            {
+              "line": 111,
+              "text": "                s.burned_fees,"
+            },
+            {
+              "line": 543,
+              "text": "                let circulating = minted.saturating_sub(burned);"
+            },
+            {
+              "line": 569,
+              "text": "                    RichText::new(night(minted)).monospace().color(TEXT),"
+            },
+            {
+              "line": 573,
+              "text": "                    \"Burned in fees\","
+            }
+          ]
+        },
+        {
+          "path": "crates/nightfall-crypto/src/kernel.rs",
+          "score": 2,
+          "sha256": "19e35aa84f6395d94c10a102050e88e24e50dba6ab2a4f2d4f9a3987a1b75a6a",
+          "lines": [
+            {
+              "line": 43,
+              "text": "    /// Ordinary transfer. `fee` is burned, `reward` must be zero."
+            },
+            {
+              "line": 45,
+              "text": "    /// Block subsidy. `reward` is minted, `fee` must be zero."
+            },
+            {
+              "line": 52,
+              "text": "    /// Burned in full (100% fee burn). Public by design \u2014 it is the one number"
+            },
+            {
+              "line": 53,
+              "text": "    /// that must be auditable to prove the burn actually happened."
+            }
+          ]
+        },
+        {
+          "path": "crates/nightfall-ledger/src/lib.rs",
+          "score": 2,
+          "sha256": "25c6536091d6d83d20b8efa71a6c47edaa8fa39e565ec44c99632acac45a23f4",
+          "lines": [
+            {
+              "line": 115,
+              "text": "        // `expected_reward` is the *subsidy* (newly minted). While it is"
+            },
+            {
+              "line": 116,
+              "text": "        // positive, fees are burned. After the subsidy ends the miner is paid"
+            },
+            {
+              "line": 118,
+              "text": "        // total, nothing is minted, nothing is burned, circulating is unchanged."
+            },
+            {
+              "line": 258,
+              "text": "            self.supply.total_minted_darks = self"
+            },
+            {
+              "line": 260,
+              "text": "                .total_minted_darks"
+            },
+            {
+              "line": 263,
+              "text": "            self.supply.total_burned_darks = self"
+            }
+          ]
+        },
+        {
+          "path": "crates/nightfall-ledger/src/utxo.rs",
+          "score": 2,
+          "sha256": "9ab719d9efe4bfc0081d687389c1f7ec19432a60cee76d93b5ace82aefeea534",
+          "lines": [
+            {
+              "line": 8,
+              "text": "//!   \u03a3 UTXO \u2212 \u03a3 kernel_excess  =  (total_minted \u2212 total_burned) \u00b7 G"
+            },
+            {
+              "line": 15,
+              "text": "//! v4 had no such property. `total_minted_darks` was a plain counter that a"
+            },
+            {
+              "line": 74,
+              "text": "    /// and this one stands between the chain and coins minted out of nowhere."
+            },
+            {
+              "line": 273,
+              "text": "    pub total_minted_darks: u64,"
+            },
+            {
+              "line": 274,
+              "text": "    pub total_burned_darks: u64,"
+            },
+            {
+              "line": 278,
+              "text": "    /// Coins that actually exist: minted minus burned fees."
+            }
+          ]
+        },
+        {
+          "path": "crates/nightfall-ledger/tests/ledger_flow.rs",
+          "score": 2,
+          "sha256": "73944e383878f3616d9ed519a90babfbdd1ca2d6b7f0b3b693a385a30d472df7",
+          "lines": [
+            {
+              "line": 47,
+              "text": "    assert_eq!(ledger.supply.total_minted_darks, reward);"
+            },
+            {
+              "line": 57,
+              "text": "fn full_transfer_flow_with_fee_burn() {"
+            },
+            {
+              "line": 97,
+              "text": "    // Fee was burned, not paid to anyone."
+            },
+            {
+              "line": 98,
+              "text": "    assert_eq!(ledger.supply.total_burned_darks, fee);"
+            },
+            {
+              "line": 99,
+              "text": "    assert_eq!(ledger.supply.total_minted_darks, 2 * reward);"
+            },
+            {
+              "line": 174,
+              "text": "    assert_eq!(ledger.supply.total_minted_darks, reward);"
+            }
+          ]
+        },
+        {
+          "path": "crates/nightfall-node/src/main.rs",
+          "score": 2,
+          "sha256": "6e0e2c421b49edb0ed98d1d4427f46637019649db58964a8bdac201183d9e935",
+          "lines": [
+            {
+              "line": 156,
+              "text": "                \"privacy=default \u00b7 premine=0 \u00b7 max_supply={MAX_SUPPLY_NIGHT} \u00b7 no_tail \u00b7 fee_burn=100%\""
+            },
+            {
+              "line": 187,
+              "text": "                \"chain blocks={} minted={}\","
+            },
+            {
+              "line": 189,
+              "text": "                nightfall_types::Amount(chain.total_minted())"
+            },
+            {
+              "line": 367,
+              "text": "        \"minted......... {}\","
+            },
+            {
+              "line": 368,
+              "text": "        nightfall_types::Amount(chain.total_minted())"
+            },
+            {
+              "line": 371,
+              "text": "        \"burned_fees.... {}\","
+            }
+          ]
+        },
+        {
+          "path": "crates/nightfall-node/src/rpc.rs",
+          "score": 2,
+          "sha256": "0b43a23f46aa08a860873dd2fe7f1aff661f7a7633649ea925e4ed2ae4410db8",
+          "lines": [
+            {
+              "line": 181,
+              "text": "                    \"minted\": chain.ledger.supply.total_minted_darks,"
+            },
+            {
+              "line": 182,
+              "text": "                    \"burned_fees\": chain.ledger.supply.total_burned_darks,"
+            }
+          ]
+        },
+        {
+          "path": "crates/nightfall-node/src/runtime.rs",
+          "score": 2,
+          "sha256": "38c071315d5fb284d2319899ef2292fd1ffb24c3e5c6d4652286c3bcff8658e4",
+          "lines": [
+            {
+              "line": 570,
+              "text": "    pub minted: u64,"
+            },
+            {
+              "line": 571,
+              "text": "    pub burned_fees: u64,"
+            },
+            {
+              "line": 1093,
+              "text": "            minted: g.chain.ledger.supply.total_minted_darks,"
+            },
+            {
+              "line": 1094,
+              "text": "            burned_fees: g.chain.ledger.supply.total_burned_darks,"
+            },
+            {
+              "line": 2278,
+              "text": "        // burn the whole window before anyone had spoken."
+            }
+          ]
+        },
+        {
+          "path": "crates/nightfall-node/tests/multi_node_reorg.rs",
+          "score": 2,
+          "sha256": "8a02970f59fae43c4c2fb639d1d2fd5851eda9c988d7876aaf1f9d4fdca8ddd5",
+          "lines": [
+            {
+              "line": 170,
+              "text": "    let expected_minted = fork_c.minted;"
+            },
+            {
+              "line": 171,
+              "text": "    let expected_burned = fork_c.burned_fees;"
+            },
+            {
+              "line": 210,
+              "text": "                assert_eq!(s.minted, expected_minted, \"{name}: minted supply diverged\");"
+            },
+            {
+              "line": 212,
+              "text": "                    s.burned_fees, expected_burned,"
+            },
+            {
+              "line": 213,
+              "text": "                    \"{name}: burned fees diverged\""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "SUPPLY-005",
+      "name": "coinbase_maturity_surface",
+      "class": "consensus",
+      "must": [
+        "coinbase",
+        "maturity"
+      ],
+      "risk": "miner rewards may become spendable too early",
+      "status": "PASS",
+      "found_terms": [
+        "coinbase",
+        "maturity"
+      ],
+      "missing_terms": [],
+      "hits": [
+        {
+          "path": "crates/nightfall-consensus/src/lib.rs",
+          "score": 2,
+          "sha256": "22c72490e21451167e58966aa60c3091f68a477c9a977a33a849327179b6f315",
+          "lines": [
+            {
+              "line": 10,
+              "text": "use nightfall_ledger::{build_coinbase, BlockBody, LedgerState, Transaction};"
+            },
+            {
+              "line": 491,
+              "text": "        // than mine nothing. A block with only its coinbase is a perfectly"
+            },
+            {
+              "line": 517,
+              "text": "        let coinbase_darks = if subsidy > 0 { subsidy } else { fees };"
+            },
+            {
+              "line": 519,
+              "text": "        let coinbase = build_coinbase(miner, coinbase_darks, height.0, self.proof_ctx())"
+            },
+            {
+              "line": 522,
+              "text": "        let mut txs = vec![coinbase];"
+            },
+            {
+              "line": 550,
+              "text": "                reward_darks: coinbase_darks,"
+            }
+          ]
+        },
+        {
+          "path": "crates/nightfall-core/src/app.rs",
+          "score": 2,
+          "sha256": "ea6462fda5649ad3ef663b761c4a4d703b2cb0bac3638c398be596093f4dea34",
+          "lines": [
+            {
+              "line": 839,
+              "text": "    pub fn maturity(&self) -> u64 {"
+            },
+            {
+              "line": 842,
+              "text": "            .map(|s| s.coinbase_maturity)"
+            }
+          ]
+        },
+        {
+          "path": "crates/nightfall-core/src/views.rs",
+          "score": 2,
+          "sha256": "6a18c80638b73dc2ea6bdce77d370f2636fb30ce16e39712070e5760dff0ed29",
+          "lines": [
+            {
+              "line": 93,
+              "text": "    let maturity = app.maturity();"
+            },
+            {
+              "line": 97,
+              "text": "        .map(|w| w.balances(tip, maturity))"
+            },
+            {
+              "line": 389,
+              "text": "                \"Mining rewards unlock after {maturity} blocks. They are yours already \u2014 just not spendable yet.\""
+            },
+            {
+              "line": 959,
+              "text": "                let maturity = app.maturity();"
+            },
+            {
+              "line": 963,
+              "text": "                    .map(|mut w| w.prepare_air_payment(&intent, maturity));"
+            },
+            {
+              "line": 1322,
+              "text": "    let maturity = app.maturity();"
+            }
+          ]
+        },
+        {
+          "path": "crates/nightfall-core/src/wallet_state.rs",
+          "score": 2,
+          "sha256": "d5aa1f489f283230cf0b2663552e48d0562510b433e4769a86c9757d6afbfd0a",
+          "lines": [
+            {
+              "line": 438,
+              "text": "    pub fn balances(&self, tip_height: u64, maturity: u64) -> Balances {"
+            },
+            {
+              "line": 440,
+              "text": "            .map(|w| w.balances(tip_height, maturity))"
+            },
+            {
+              "line": 466,
+              "text": "        maturity: u64,"
+            },
+            {
+              "line": 469,
+              "text": "        w.pick_commit_hexes_at(target, tip, maturity)"
+            },
+            {
+              "line": 488,
+              "text": "    pub fn blocks_until_mature(&self, o: &OwnedOutput, tip: u64, maturity: u64) -> Option<u64> {"
+            },
+            {
+              "line": 490,
+              "text": "            .and_then(|w| w.blocks_until_mature(o, tip, maturity))"
+            }
+          ]
+        },
+        {
+          "path": "crates/nightfall-crypto/src/stealth.rs",
+          "score": 2,
+          "sha256": "b555cf153b8aefcef8995c0a8666c7ceafcff594dc5dff00c6f1f4a57ebcede4",
+          "lines": [
+            {
+              "line": 121,
+              "text": "/// Public by necessity: coinbase outputs are subject to a maturity delay, and"
+            },
+            {
+              "line": 130,
+              "text": "    Coinbase,"
+            },
+            {
+              "line": 137,
+              "text": "            OutputFeature::Coinbase => 1,"
+            },
+            {
+              "line": 141,
+              "text": "    pub fn is_coinbase(self) -> bool {"
+            },
+            {
+              "line": 142,
+              "text": "        matches!(self, OutputFeature::Coinbase)"
+            },
+            {
+              "line": 149,
+              "text": "    /// Plain or coinbase. Signed, so a miner cannot relabel a subsidy as an"
+            }
+          ]
+        },
+        {
+          "path": "crates/nightfall-ledger/src/lib.rs",
+          "score": 2,
+          "sha256": "25c6536091d6d83d20b8efa71a6c47edaa8fa39e565ec44c99632acac45a23f4",
+          "lines": [
+            {
+              "line": 36,
+              "text": "    /// Blocks a coinbase output must age before it can be spent."
+            },
+            {
+              "line": 37,
+              "text": "    #[serde(default = \"default_maturity\")]"
+            },
+            {
+              "line": 38,
+              "text": "    pub coinbase_maturity: u64,"
+            },
+            {
+              "line": 41,
+              "text": "fn default_maturity() -> u64 {"
+            },
+            {
+              "line": 42,
+              "text": "    COINBASE_MATURITY"
+            },
+            {
+              "line": 53,
+              "text": "            coinbase_maturity: COINBASE_MATURITY,"
+            }
+          ]
+        },
+        {
+          "path": "crates/nightfall-ledger/src/utxo.rs",
+          "score": 2,
+          "sha256": "9ab719d9efe4bfc0081d687389c1f7ec19432a60cee76d93b5ace82aefeea534",
+          "lines": [
+            {
+              "line": 31,
+              "text": "    /// Height at which it was created \u2014 drives coinbase maturity."
+            },
+            {
+              "line": 33,
+              "text": "    /// Coinbase outputs are subject to a maturity delay."
+            },
+            {
+              "line": 34,
+              "text": "    pub is_coinbase: bool,"
+            },
+            {
+              "line": 37,
+              "text": "/// Coinbase outputs cannot be spent until this many blocks have passed."
+            },
+            {
+              "line": 39,
+              "text": "/// Without maturity, a reorg that orphans a block also invalidates every"
+            },
+            {
+              "line": 41,
+              "text": "pub const COINBASE_MATURITY: u64 = 1_440; // ~6 h at 15 s blocks"
+            }
+          ]
+        },
+        {
+          "path": "crates/nightfall-ledger/tests/exploit_regression.rs",
+          "score": 2,
+          "sha256": "34d60bfdcd7e9e03c4252ac5d309a8bc800ac28329a3b3aeec597a8aaf51e7c5",
+          "lines": [
+            {
+              "line": 23,
+              "text": "    let cb = build_coinbase(&miner.address(), reward, 0, CTX).unwrap();"
+            },
+            {
+              "line": 266,
+              "text": "    let cb = build_coinbase(&miner.address(), reward, COINBASE_MATURITY, CTX).unwrap();"
+            },
+            {
+              "line": 270,
+              "text": "            Height(COINBASE_MATURITY),"
+            }
+          ]
+        },
+        {
+          "path": "crates/nightfall-ledger/tests/ledger_flow.rs",
+          "score": 2,
+          "sha256": "73944e383878f3616d9ed519a90babfbdd1ca2d6b7f0b3b693a385a30d472df7",
+          "lines": [
+            {
+              "line": 11,
+              "text": "    let cb = build_coinbase(&miner.address(), reward, height, CTX).unwrap();"
+            },
+            {
+              "line": 40,
+              "text": "fn coinbase_is_credited_and_discoverable() {"
+            },
+            {
+              "line": 63,
+              "text": "    // Mine one block, then enough blocks for the coinbase to mature."
+            },
+            {
+              "line": 65,
+              "text": "    let spend_height = COINBASE_MATURITY;"
+            },
+            {
+              "line": 87,
+              "text": "    let cb2 = build_coinbase(&miner.address(), reward, spend_height, CTX).unwrap();"
+            },
+            {
+              "line": 123,
+              "text": "    // The spent coinbase output is gone from the UTXO set."
+            }
+          ]
+        },
+        {
+          "path": "crates/nightfall-mobile/src/lib.rs",
+          "score": 2,
+          "sha256": "e50967778ec148e0c64e55543a5e7cb404aceeed8a7021b588b6125b80142bc1",
+          "lines": [
+            {
+              "line": 13,
+              "text": "const MATURITY: u64 = 1_440;"
+            },
+            {
+              "line": 254,
+              "text": "                        coinbase: o.get(\"coinbase\").and_then(|v| v.as_bool()).unwrap_or(false),"
+            },
+            {
+              "line": 274,
+              "text": "        let b = w.balances(tip, MATURITY);"
+            },
+            {
+              "line": 328,
+              "text": "                MATURITY,"
+            }
+          ]
+        },
+        {
+          "path": "crates/nightfall-node/src/runtime.rs",
+          "score": 2,
+          "sha256": "38c071315d5fb284d2319899ef2292fd1ffb24c3e5c6d4652286c3bcff8658e4",
+          "lines": [
+            {
+              "line": 580,
+              "text": "    pub coinbase_maturity: u64,"
+            },
+            {
+              "line": 933,
+              "text": "    /// live tip is to throw away the chain file and download it. Coinbase on"
+            },
+            {
+              "line": 1103,
+              "text": "            coinbase_maturity: g.chain.ledger.coinbase_maturity,"
+            }
+          ]
+        },
+        {
+          "path": "crates/nightfall-storage/src/lib.rs",
+          "score": 2,
+          "sha256": "50cbf670ea8f852df238dad019cbc41ba9a73ce1fb70364f8b7cb09902c22119",
+          "lines": [
+            {
+              "line": 801,
+              "text": "    coinbase_maturity: u64,"
+            },
+            {
+              "line": 812,
+              "text": "    is_coinbase: bool,"
+            },
+            {
+              "line": 821,
+              "text": "        coinbase_maturity: h.coinbase_maturity,"
+            },
+            {
+              "line": 832,
+              "text": "                is_coinbase: e.is_coinbase,"
+            },
+            {
+              "line": 852,
+              "text": "                is_coinbase: u.is_coinbase,"
+            },
+            {
+              "line": 870,
+              "text": "        coinbase_maturity: file.coinbase_maturity,"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "SUPPLY-006",
+      "name": "emission_schedule_surface",
+      "class": "monetary_policy",
+      "must": [
+        "emission"
+      ],
+      "risk": "monetary schedule may not be explicitly traceable",
+      "status": "PASS",
+      "found_terms": [
+        "emission"
+      ],
+      "missing_terms": [],
+      "hits": [
+        {
+          "path": "SECURITY.md",
+          "score": 1,
+          "sha256": "70fb360d2cb8f387670818591858abd81ccf90e7f1e2f6775111641c59e4368b",
+          "lines": [
+            {
+              "line": 25,
+              "text": "- **Inflation.** Any way to make `\u03a3 UTXO \u2212 \u03a3 kernel_excess = (minted \u2212 burned)\u00b7G` hold while creating value, or any way to mint outside the emission schedule."
+            }
+          ]
+        },
+        {
+          "path": "crates/nightfall-consensus/Cargo.toml",
+          "score": 1,
+          "sha256": "6676dd57f1932de8b4581d87c0d3cd79e2095d70be781b901aed643c6748f86e",
+          "lines": [
+            {
+              "line": 6,
+              "text": "description = \"Consensus, emission, blocks, mining\""
+            }
+          ]
+        },
+        {
+          "path": "crates/nightfall-consensus/src/lib.rs",
+          "score": 1,
+          "sha256": "22c72490e21451167e58966aa60c3091f68a477c9a977a33a849327179b6f315",
+          "lines": [
+            {
+              "line": 1,
+              "text": "//! Emission, block structure, validation and chain selection."
+            },
+            {
+              "line": 55,
+              "text": "// ---------------------------------------------------------------- emission --"
+            },
+            {
+              "line": 58,
+              "text": "pub struct EmissionSchedule {"
+            },
+            {
+              "line": 64,
+              "text": "impl Default for EmissionSchedule {"
+            },
+            {
+              "line": 70,
+              "text": "impl EmissionSchedule {"
+            },
+            {
+              "line": 249,
+              "text": "    pub emission: EmissionSchedule,"
+            }
+          ]
+        },
+        {
+          "path": "crates/nightfall-consensus/tests/chain_rules.rs",
+          "score": 1,
+          "sha256": "ef95c12ebb4c624d794ec489a1e0f2749c54a2697d6427e067beb5974e0dfc91",
+          "lines": [
+            {
+              "line": 550,
+              "text": "/// Terminal supply actually produced by the emission curve, in darks."
+            },
+            {
+              "line": 557,
+              "text": "fn emission_sums_below_the_cap_and_stops() {"
+            },
+            {
+              "line": 558,
+              "text": "    let e = EmissionSchedule::locked_mainnet();"
+            },
+            {
+              "line": 570,
+              "text": "    assert_eq!(total, TERMINAL_SUPPLY_DARKS, \"emission curve drifted\");"
+            },
+            {
+              "line": 579,
+              "text": "    // Once the cap is reached, the reward is zero \u2014 no tail emission."
+            },
+            {
+              "line": 589,
+              "text": "    let e = EmissionSchedule::locked_mainnet();"
+            }
+          ]
+        },
+        {
+          "path": "docs/ATTRIBUTES.md",
+          "score": 1,
+          "sha256": "e964ff25d85da7cc26160b3d98820af994c103ecf42b300301394c3e632d84b7",
+          "lines": [
+            {
+              "line": 26,
+              "text": "**Max supply:** **90,000,000 NIGHT** (absolute ceiling, no tail emission)"
+            },
+            {
+              "line": 53,
+              "text": "| **Tail emission** | **None** | After last subsidy the reward is 0. Fees then pay the miner. |"
+            },
+            {
+              "line": 54,
+              "text": "| Emission shape | 6 NIGHT, halving every 7,500,000 blocks | 50 % in ~3.6 y, 89 M in ~23.5 y |"
+            },
+            {
+              "line": 137,
+              "text": "| Pre-mainnet emission curve tweak | Allowed if **still sums to \u2264 90M** and **no premine** |"
+            }
+          ]
+        },
+        {
+          "path": "docs/AUDIT-2026-08-12.md",
+          "score": 1,
+          "sha256": "34f99a140056b05e283774291265cdc74c78524b2939f134a9b44dab6b388044",
+          "lines": [
+            {
+              "line": 40,
+              "text": "| **E-01** | Emission truncates 0.2925 NIGHT below the stated cap | **Informational** | Documented |"
+            },
+            {
+              "line": 254,
+              "text": "This is safe \u2014 the invariant is `total_minted \u2264 cap`, and it holds. But `README.md`, `MANIFESTO.md` and `ATTRIBUTES.md` state the supply *equals* 90 M, which is not true. The number is now pinned by a test (`emission_sums_below_the_cap_and_"
+            },
+            {
+              "line": 285,
+              "text": "* `crates/nightfall-consensus/tests/chain_rules.rs` \u2014 work-based fork choice, time-warp resistance, reorg bounds, emission curve."
+            }
+          ]
+        },
+        {
+          "path": "docs/AUDIT-2026-08-16.md",
+          "score": 1,
+          "sha256": "a85094e29d1f0b55c99556c7b38bdc1371d81255daff0313cc9899716389023c",
+          "lines": [
+            {
+              "line": 41,
+              "text": "| C-06 | 90 M cap not enforced | Critical | **Closed.** Emission + invariant. |"
+            },
+            {
+              "line": 113,
+              "text": "### 2.3 Emission is in the header"
+            }
+          ]
+        },
+        {
+          "path": "docs/AUDIT-2026-09-08.md",
+          "score": 1,
+          "sha256": "89c4d600cdbb15238c5aadfb0c5ad2438901b83d11131ecfb7ae22e1660bea0a",
+          "lines": [
+            {
+              "line": 13,
+              "text": "Selected paths inspected: consensus emission, checkpoint/replay and reorg rules;"
+            },
+            {
+              "line": 43,
+              "text": "checkpoint mismatch rejection, validation of untrusted suffixes, emission"
+            },
+            {
+              "line": 135,
+              "text": "Emission now reports unavailable/stale data, supports refresh and era transitions,"
+            },
+            {
+              "line": 136,
+              "text": "and labels node-reported values honestly. check-emission.mjs verifies all 30"
+            }
+          ]
+        },
+        {
+          "path": "docs/DECISIONS.md",
+          "score": 1,
+          "sha256": "1fc4ac05890ff9f7252eade8c38aeb14c459f16a1dbfb4f6b9b7fe9405e32f3f",
+          "lines": [
+            {
+              "line": 57,
+              "text": "| 9 | Coinbase | Shielded miner note bound by emission schedule and Pedersen balance. \u2014 **The binding did not exist.** |"
+            }
+          ]
+        },
+        {
+          "path": "docs/HISTORY.md",
+          "score": 1,
+          "sha256": "9a99dfd9094c6a9ad6bc0ab8e7b4fb9e73ca87efce367bce5415ff1e4a0c2b74",
+          "lines": [
+            {
+              "line": 10,
+              "text": "| **v7** (Aug 2026, ~a week) | `c8614333c0f86a4824df212474632f4b9feecf9bf0593841199d894127f2f9a6` | Emission too front-loaded (89 M of 90 M in 7 years). Two miners held most of the float. Privacy claims outran the code. |"
+            }
+          ]
+        },
+        {
+          "path": "docs/INTERNAL-SWAP-REVIEW-2026-09-13.md",
+          "score": 1,
+          "sha256": "b5c7c7f2df001ffbc11354c5574202957a0cc075782fcdce1ac026ff645330f0",
+          "lines": [
+            {
+              "line": 71,
+              "text": "seeds, emission and genesis were not changed. This is a swap-proof protocol"
+            }
+          ]
+        },
+        {
+          "path": "docs/MAINNET.md",
+          "score": 1,
+          "sha256": "fde08adc31bb893dbcbc349492334619a74be15f0205d0dec19c964ea60fd57e",
+          "lines": [
+            {
+              "line": 290,
+              "text": "| Tail emission | none |"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "SUPPLY-007",
+      "name": "max_supply_cap_surface",
+      "class": "monetary_policy",
+      "must": [
+        "supply",
+        "cap"
+      ],
+      "risk": "maximum supply cap may not be traceable",
+      "status": "PASS",
+      "found_terms": [
+        "cap",
+        "supply"
+      ],
+      "missing_terms": [],
+      "hits": [
+        {
+          "path": "crates/nightfall-consensus/src/lib.rs",
+          "score": 2,
+          "sha256": "22c72490e21451167e58966aa60c3091f68a477c9a977a33a849327179b6f315",
+          "lines": [
+            {
+              "line": 13,
+              "text": "    HALVING_INTERVAL_BLOCKS, INITIAL_BLOCK_REWARD_NIGHT, MAX_FUTURE_DRIFT_SECS, MAX_SUPPLY_DARKS,"
+            },
+            {
+              "line": 14,
+              "text": "    MAX_SUPPLY_NIGHT, PROTOCOL_VERSION,"
+            },
+            {
+              "line": 45,
+              "text": "/// Cap on transactions per block."
+            },
+            {
+              "line": 61,
+              "text": "    pub max_supply_darks: u64,"
+            },
+            {
+              "line": 75,
+              "text": "            max_supply_darks: MAX_SUPPLY_DARKS,"
+            },
+            {
+              "line": 90,
+              "text": "    /// Reward actually payable, clamped so the hard cap can never be breached"
+            }
+          ]
+        },
+        {
+          "path": "crates/nightfall-consensus/tests/chain_rules.rs",
+          "score": 2,
+          "sha256": "ef95c12ebb4c624d794ec489a1e0f2749c54a2697d6427e067beb5974e0dfc91",
+          "lines": [
+            {
+              "line": 28,
+              "text": "    chain.verify_supply().unwrap();"
+            },
+            {
+              "line": 48,
+              "text": "    fast.verify_supply().unwrap();"
+            },
+            {
+              "line": 117,
+              "text": "    short.verify_supply().unwrap();"
+            },
+            {
+              "line": 283,
+              "text": "    ours.verify_supply().unwrap();"
+            },
+            {
+              "line": 309,
+              "text": "    fast.verify_supply().unwrap();"
+            },
+            {
+              "line": 355,
+              "text": "    ours.verify_supply().unwrap();"
+            }
+          ]
+        },
+        {
+          "path": "crates/nightfall-core/src/app.rs",
+          "score": 2,
+          "sha256": "ea6462fda5649ad3ef663b761c4a4d703b2cb0bac3638c398be596093f4dea34",
+          "lines": [
+            {
+              "line": 43,
+              "text": "/// build that escapes cannot be talked into mainnet by an argument, and you"
+            },
+            {
+              "line": 83,
+              "text": "    /// This cap is applied to banners *and* the page together. Capping the"
+            },
+            {
+              "line": 85,
+              "text": "    /// and wrapping Dashboard in the same cap left a dead strip down the right."
+            },
+            {
+              "line": 153,
+              "text": "    /// Dev-only page capture. `None` in every normal run \u2014 see `ui_shots`."
+            },
+            {
+              "line": 1291,
+              "text": "                // Foot of the rail: which network, and whether the supply adds up."
+            },
+            {
+              "line": 1297,
+              "text": "                // block: a rule, the network, the supply state. No fill, because"
+            }
+          ]
+        },
+        {
+          "path": "crates/nightfall-core/src/view_layout_tests.rs",
+          "score": 2,
+          "sha256": "23f921db52fd13ba92c51f224f79e8c1a92a1e5473573fc6c4a7828069c560b3",
+          "lines": [
+            {
+              "line": 308,
+              "text": "/// sat to the *right* of the left edge of \"Network supply\" \u2014 the two cards"
+            },
+            {
+              "line": 811,
+              "text": "/// own width cap, the always-visible scrollbar \u2014 and return the outer rect of"
+            },
+            {
+              "line": 903,
+              "text": "    // is the stress case; 1728 is a 1920 display, where the capped pages have"
+            }
+          ]
+        },
+        {
+          "path": "crates/nightfall-core/src/views.rs",
+          "score": 2,
+          "sha256": "6a18c80638b73dc2ea6bdce77d370f2636fb30ce16e39712070e5760dff0ed29",
+          "lines": [
+            {
+              "line": 11,
+              "text": "    Amount, NetworkId, DARKS_PER_NIGHT, MAX_SUPPLY_NIGHT, TARGET_BLOCK_TIME_SECS,"
+            },
+            {
+              "line": 100,
+              "text": "    let (blocks, peers, mempool, difficulty, supply_ok, minted, burned) = app"
+            },
+            {
+              "line": 109,
+              "text": "                s.supply_ok,"
+            },
+            {
+              "line": 532,
+              "text": "            titled_card(ui, \"Network supply\", |ui| {"
+            },
+            {
+              "line": 544,
+              "text": "                let pct = circulating as f64 / (MAX_SUPPLY_NIGHT as f64 * DARKS_PER_NIGHT as f64);"
+            },
+            {
+              "line": 556,
+              "text": "                        format_int(MAX_SUPPLY_NIGHT),"
+            }
+          ]
+        },
+        {
+          "path": "crates/nightfall-crypto/src/pow.rs",
+          "score": 2,
+          "sha256": "7843262bbc0b59fd9db687ccd0fe4b5583bd501a880f343278425c2dd1f5c96a",
+          "lines": [
+            {
+              "line": 12,
+              "text": "//! must supply that much fast RAM per unit, which is the property that keeps"
+            },
+            {
+              "line": 91,
+              "text": "        let mut pwd = Vec::with_capacity(header_preimage.len() + 8);"
+            }
+          ]
+        },
+        {
+          "path": "crates/nightfall-ledger/src/lib.rs",
+          "score": 2,
+          "sha256": "25c6536091d6d83d20b8efa71a6c47edaa8fa39e565ec44c99632acac45a23f4",
+          "lines": [
+            {
+              "line": 5,
+              "text": "//! nullifier set and the supply counters *before* checking the signature and"
+            },
+            {
+              "line": 34,
+              "text": "    pub supply: SupplyState,"
+            },
+            {
+              "line": 51,
+              "text": "            supply: SupplyState::default(),"
+            },
+            {
+              "line": 73,
+              "text": "    /// Cryptographic proof that the supply is exactly what it claims to be."
+            },
+            {
+              "line": 74,
+              "text": "    pub fn verify_supply(&self) -> Result<(), SupplyError> {"
+            },
+            {
+              "line": 75,
+              "text": "        verify_supply_invariant(&self.utxos, &self.kernels, &self.supply)"
+            }
+          ]
+        },
+        {
+          "path": "crates/nightfall-ledger/src/utxo.rs",
+          "score": 2,
+          "sha256": "9ab719d9efe4bfc0081d687389c1f7ec19432a60cee76d93b5ace82aefeea534",
+          "lines": [
+            {
+              "line": 1,
+              "text": "//! The UTXO commitment set and the global supply invariant."
+            },
+            {
+              "line": 16,
+              "text": "//! forged transaction never touched, and the 90 M cap was checked nowhere in"
+            },
+            {
+              "line": 22,
+              "text": "use nightfall_types::{Hash256, Height, NetworkId, MAX_SUPPLY_DARKS};"
+            },
+            {
+              "line": 61,
+              "text": "    /// commitment, and `verify_supply_invariant` calls it once per block. That"
+            },
+            {
+              "line": 64,
+              "text": "    /// of 2302 stack samples inside `verify_supply_invariant`, 1599 of those"
+            },
+            {
+              "line": 92,
+              "text": "    /// the supply invariant against a sum of zero entries, which is the exact"
+            }
+          ]
+        },
+        {
+          "path": "crates/nightfall-ledger/tests/ledger_flow.rs",
+          "score": 2,
+          "sha256": "73944e383878f3616d9ed519a90babfbdd1ca2d6b7f0b3b693a385a30d472df7",
+          "lines": [
+            {
+              "line": 1,
+              "text": "//! End-to-end ledger behaviour: mine, discover, spend, verify supply."
+            },
+            {
+              "line": 47,
+              "text": "    assert_eq!(ledger.supply.total_minted_darks, reward);"
+            },
+            {
+              "line": 49,
+              "text": "    ledger.verify_supply().expect(\"supply invariant\");"
+            },
+            {
+              "line": 98,
+              "text": "    assert_eq!(ledger.supply.total_burned_darks, fee);"
+            },
+            {
+              "line": 99,
+              "text": "    assert_eq!(ledger.supply.total_minted_darks, 2 * reward);"
+            },
+            {
+              "line": 100,
+              "text": "    assert_eq!(ledger.supply.circulating(), 2 * reward - fee);"
+            }
+          ]
+        },
+        {
+          "path": "crates/nightfall-node/src/main.rs",
+          "score": 2,
+          "sha256": "6e0e2c421b49edb0ed98d1d4427f46637019649db58964a8bdac201183d9e935",
+          "lines": [
+            {
+              "line": 9,
+              "text": "    NetworkId, COIN_NAME, HALVING_INTERVAL_BLOCKS, INITIAL_BLOCK_REWARD_NIGHT, MAX_SUPPLY_NIGHT,"
+            },
+            {
+              "line": 20,
+              "text": "    about = \"NIGHTFALLCOIN full node \u2014 fair launch, 90M cap, privacy by default\","
+            },
+            {
+              "line": 156,
+              "text": "                \"privacy=default \u00b7 premine=0 \u00b7 max_supply={MAX_SUPPLY_NIGHT} \u00b7 no_tail \u00b7 fee_burn=100%\""
+            },
+            {
+              "line": 165,
+              "text": "            println!(\"max_supply..... {MAX_SUPPLY_NIGHT} {TICKER}\");"
+            },
+            {
+              "line": 214,
+              "text": "            println!(\"verify......... importer re-checks PoW and supply\");"
+            },
+            {
+              "line": 240,
+              "text": "            println!(\"verify......... full PoW + supply (not trusted)\");"
+            }
+          ]
+        },
+        {
+          "path": "crates/nightfall-node/src/rpc.rs",
+          "score": 2,
+          "sha256": "0b43a23f46aa08a860873dd2fe7f1aff661f7a7633649ea925e4ed2ae4410db8",
+          "lines": [
+            {
+              "line": 11,
+              "text": "use nightfall_types::{Amount, MAX_MESSAGE_BYTES, MAX_SUPPLY_NIGHT, TICKER};"
+            },
+            {
+              "line": 106,
+              "text": "        let mut buf = Vec::with_capacity(1024);"
+            },
+            {
+              "line": 146,
+              "text": "            let supply_ok = !loading && chain.verify_supply().is_ok();"
+            },
+            {
+              "line": 181,
+              "text": "                    \"minted\": chain.ledger.supply.total_minted_darks,"
+            },
+            {
+              "line": 182,
+              "text": "                    \"burned_fees\": chain.ledger.supply.total_burned_darks,"
+            },
+            {
+              "line": 183,
+              "text": "                    \"circulating\": chain.ledger.supply.circulating(),"
+            }
+          ]
+        },
+        {
+          "path": "crates/nightfall-node/src/runtime.rs",
+          "score": 2,
+          "sha256": "38c071315d5fb284d2319899ef2292fd1ffb24c3e5c6d4652286c3bcff8658e4",
+          "lines": [
+            {
+              "line": 29,
+              "text": "/// Soft cap on live sessions. A seed that sits at this number and then"
+            },
+            {
+              "line": 67,
+              "text": "    /// Keeping those introductions as live sessions is what caps a seed at"
+            },
+            {
+              "line": 222,
+              "text": "    /// without restarting the process. Capped at 64 (32 MiB each)."
+            },
+            {
+              "line": 368,
+              "text": "        let mut ordered: Vec<String> = Vec::with_capacity(all.len());"
+            },
+            {
+              "line": 576,
+              "text": "    pub supply_ok: bool,"
+            },
+            {
+              "line": 1093,
+              "text": "            minted: g.chain.ledger.supply.total_minted_darks,"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "SUPPLY-008",
+      "name": "fee_burn_surface",
+      "class": "monetary_policy",
+      "must": [
+        "fee",
+        "burn"
+      ],
+      "risk": "fee handling may alter supply accounting",
+      "status": "PASS",
+      "found_terms": [
+        "burn",
+        "fee"
+      ],
+      "missing_terms": [],
+      "hits": [
+        {
+          "path": "crates/nightfall-consensus/src/lib.rs",
+          "score": 2,
+          "sha256": "22c72490e21451167e58966aa60c3091f68a477c9a977a33a849327179b6f315",
+          "lines": [
+            {
+              "line": 514,
+              "text": "        let fees: u64 = extra_txs.iter().map(|t| t.total_fee()).sum();"
+            },
+            {
+              "line": 515,
+              "text": "        // After the last subsidy the miner is paid in fees. Those coins are"
+            },
+            {
+              "line": 516,
+              "text": "        // already circulating; they are not minted and they are not burned."
+            },
+            {
+              "line": 517,
+              "text": "        let coinbase_darks = if subsidy > 0 { subsidy } else { fees };"
+            },
+            {
+              "line": 730,
+              "text": "        let fees = block.body.total_fee();"
+            },
+            {
+              "line": 731,
+              "text": "        let coinbase_due = if subsidy > 0 { subsidy } else { fees };"
+            }
+          ]
+        },
+        {
+          "path": "crates/nightfall-core/src/app.rs",
+          "score": 2,
+          "sha256": "ea6462fda5649ad3ef663b761c4a4d703b2cb0bac3638c398be596093f4dea34",
+          "lines": [
+            {
+              "line": 21,
+              "text": "/// Default fee: 0.001 NIGHT. Burned in full."
+            },
+            {
+              "line": 22,
+              "text": "pub const DEFAULT_FEE_DARKS: u64 = DARKS_PER_NIGHT / 1_000;"
+            },
+            {
+              "line": 175,
+              "text": "    pub send_fee: u64,"
+            },
+            {
+              "line": 359,
+              "text": "            send_fee: DEFAULT_FEE_DARKS,"
+            },
+            {
+              "line": 992,
+              "text": "        crate::feedback::play_coin_chime();"
+            },
+            {
+              "line": 1047,
+              "text": "                fee: self.send_fee,"
+            }
+          ]
+        },
+        {
+          "path": "crates/nightfall-core/src/views.rs",
+          "score": 2,
+          "sha256": "6a18c80638b73dc2ea6bdce77d370f2636fb30ce16e39712070e5760dff0ed29",
+          "lines": [
+            {
+              "line": 3,
+              "text": "use crate::app::{parse_amount, App, View, DEFAULT_FEE_DARKS};"
+            },
+            {
+              "line": 100,
+              "text": "    let (blocks, peers, mempool, difficulty, supply_ok, minted, burned) = app"
+            },
+            {
+              "line": 111,
+              "text": "                s.burned_fees,"
+            },
+            {
+              "line": 543,
+              "text": "                let circulating = minted.saturating_sub(burned);"
+            },
+            {
+              "line": 573,
+              "text": "                    \"Burned in fees\","
+            },
+            {
+              "line": 574,
+              "text": "                    RichText::new(night(burned)).monospace().color(WARN),"
+            }
+          ]
+        },
+        {
+          "path": "crates/nightfall-crypto/src/kernel.rs",
+          "score": 2,
+          "sha256": "19e35aa84f6395d94c10a102050e88e24e50dba6ab2a4f2d4f9a3987a1b75a6a",
+          "lines": [
+            {
+              "line": 8,
+              "text": "//!   \u03a3 outputs \u2212 \u03a3 inputs \u2212 fee\u00b7G  =  excess\u00b7H"
+            },
+            {
+              "line": 43,
+              "text": "    /// Ordinary transfer. `fee` is burned, `reward` must be zero."
+            },
+            {
+              "line": 45,
+              "text": "    /// Block subsidy. `reward` is minted, `fee` must be zero."
+            },
+            {
+              "line": 52,
+              "text": "    /// Burned in full (100% fee burn). Public by design \u2014 it is the one number"
+            },
+            {
+              "line": 53,
+              "text": "    /// that must be auditable to prove the burn actually happened."
+            },
+            {
+              "line": 54,
+              "text": "    pub fee_darks: u64,"
+            }
+          ]
+        },
+        {
+          "path": "crates/nightfall-ledger/src/builder.rs",
+          "score": 2,
+          "sha256": "d1e1d484add0e8b038f35a9d1bc75928def91958fe662ae2b07e781fbc2a37b9",
+          "lines": [
+            {
+              "line": 73,
+              "text": "/// Fee is burned in full: it appears only as the public `fee\u00b7G` term in the"
+            },
+            {
+              "line": 79,
+              "text": "    fee_darks: u64,"
+            },
+            {
+              "line": 90,
+              "text": "        .checked_add(fee_darks)"
+            },
+            {
+              "line": 119,
+              "text": "    // \u03a3out \u2212 \u03a3in + fee\u00b7G = excess\u00b7H  \u21d2  excess = \u03a3 out_blinds \u2212 \u03a3 in_blinds"
+            },
+            {
+              "line": 140,
+              "text": "        fee_darks,"
+            }
+          ]
+        },
+        {
+          "path": "crates/nightfall-ledger/src/lib.rs",
+          "score": 2,
+          "sha256": "25c6536091d6d83d20b8efa71a6c47edaa8fa39e565ec44c99632acac45a23f4",
+          "lines": [
+            {
+              "line": 116,
+              "text": "        // positive, fees are burned. After the subsidy ends the miner is paid"
+            },
+            {
+              "line": 117,
+              "text": "        // the block's fees instead: the coinbase kernel then carries the fee"
+            },
+            {
+              "line": 118,
+              "text": "        // total, nothing is minted, nothing is burned, circulating is unchanged."
+            },
+            {
+              "line": 127,
+              "text": "        let fees = body.total_fee();"
+            },
+            {
+              "line": 131,
+              "text": "            fees"
+            },
+            {
+              "line": 214,
+              "text": "            body.total_fee(),"
+            }
+          ]
+        },
+        {
+          "path": "crates/nightfall-ledger/src/utxo.rs",
+          "score": 2,
+          "sha256": "9ab719d9efe4bfc0081d687389c1f7ec19432a60cee76d93b5ace82aefeea534",
+          "lines": [
+            {
+              "line": 8,
+              "text": "//!   \u03a3 UTXO \u2212 \u03a3 kernel_excess  =  (total_minted \u2212 total_burned) \u00b7 G"
+            },
+            {
+              "line": 274,
+              "text": "    pub total_burned_darks: u64,"
+            },
+            {
+              "line": 278,
+              "text": "    /// Coins that actually exist: minted minus burned fees."
+            },
+            {
+              "line": 281,
+              "text": "            .saturating_sub(self.total_burned_darks)"
+            },
+            {
+              "line": 441,
+              "text": "            total_burned_darks: 0,"
+            },
+            {
+              "line": 460,
+              "text": "            total_burned_darks: 0,"
+            }
+          ]
+        },
+        {
+          "path": "crates/nightfall-ledger/tests/ledger_flow.rs",
+          "score": 2,
+          "sha256": "73944e383878f3616d9ed519a90babfbdd1ca2d6b7f0b3b693a385a30d472df7",
+          "lines": [
+            {
+              "line": 57,
+              "text": "fn full_transfer_flow_with_fee_burn() {"
+            },
+            {
+              "line": 68,
+              "text": "    let fee = DARKS_PER_NIGHT / 100; // 0.01 NIGHT"
+            },
+            {
+              "line": 79,
+              "text": "        fee,"
+            },
+            {
+              "line": 97,
+              "text": "    // Fee was burned, not paid to anyone."
+            },
+            {
+              "line": 98,
+              "text": "    assert_eq!(ledger.supply.total_burned_darks, fee);"
+            },
+            {
+              "line": 100,
+              "text": "    assert_eq!(ledger.supply.circulating(), 2 * reward - fee);"
+            }
+          ]
+        },
+        {
+          "path": "crates/nightfall-node/src/main.rs",
+          "score": 2,
+          "sha256": "6e0e2c421b49edb0ed98d1d4427f46637019649db58964a8bdac201183d9e935",
+          "lines": [
+            {
+              "line": 64,
+              "text": "        /// Public phone API (HTTP). Only status/scan_feed/submit_tx."
+            },
+            {
+              "line": 156,
+              "text": "                \"privacy=default \u00b7 premine=0 \u00b7 max_supply={MAX_SUPPLY_NIGHT} \u00b7 no_tail \u00b7 fee_burn=100%\""
+            },
+            {
+              "line": 371,
+              "text": "        \"burned_fees.... {}\","
+            },
+            {
+              "line": 372,
+              "text": "        nightfall_types::Amount(chain.ledger.supply.total_burned_darks)"
+            }
+          ]
+        },
+        {
+          "path": "crates/nightfall-node/src/rpc.rs",
+          "score": 2,
+          "sha256": "0b43a23f46aa08a860873dd2fe7f1aff661f7a7633649ea925e4ed2ae4410db8",
+          "lines": [
+            {
+              "line": 182,
+              "text": "                    \"burned_fees\": chain.ledger.supply.total_burned_darks,"
+            },
+            {
+              "line": 317,
+              "text": "        \"scan_feed\" => {"
+            },
+            {
+              "line": 328,
+              "text": "            ok(scan_feed_snapshot(state, from, limit), id)"
+            },
+            {
+              "line": 497,
+              "text": "/// One page of the light-client feed. Shared by `scan_feed` and the"
+            },
+            {
+              "line": 500,
+              "text": "fn scan_feed_snapshot(state: &SharedState, from: u64, limit: usize) -> serde_json::Value {"
+            },
+            {
+              "line": 541,
+              "text": "/// Push a `scan_feed` page every time the tip moves. The client keeps the"
+            }
+          ]
+        },
+        {
+          "path": "crates/nightfall-node/src/runtime.rs",
+          "score": 2,
+          "sha256": "38c071315d5fb284d2319899ef2292fd1ffb24c3e5c6d4652286c3bcff8658e4",
+          "lines": [
+            {
+              "line": 571,
+              "text": "    pub burned_fees: u64,"
+            },
+            {
+              "line": 1094,
+              "text": "            burned_fees: g.chain.ledger.supply.total_burned_darks,"
+            },
+            {
+              "line": 2081,
+              "text": "                    // peer cannot feed us arbitrary strings to dial."
+            },
+            {
+              "line": 2278,
+              "text": "        // burn the whole window before anyone had spoken."
+            },
+            {
+              "line": 2638,
+              "text": "    // They are behind us. Feed them over the connection we already have, and"
+            }
+          ]
+        },
+        {
+          "path": "crates/nightfall-node/tests/multi_node_reorg.rs",
+          "score": 2,
+          "sha256": "8a02970f59fae43c4c2fb639d1d2fd5851eda9c988d7876aaf1f9d4fdca8ddd5",
+          "lines": [
+            {
+              "line": 171,
+              "text": "    let expected_burned = fork_c.burned_fees;"
+            },
+            {
+              "line": 212,
+              "text": "                    s.burned_fees, expected_burned,"
+            },
+            {
+              "line": 213,
+              "text": "                    \"{name}: burned fees diverged\""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "SUPPLY-009",
+      "name": "range_proof_surface",
+      "class": "inflation",
+      "must": [
+        "range",
+        "proof"
+      ],
+      "risk": "invalid confidential amounts may bypass limits",
+      "status": "PASS",
+      "found_terms": [
+        "proof",
+        "range"
+      ],
+      "missing_terms": [],
+      "hits": [
+        {
+          "path": "crates/nightfall-consensus/src/lib.rs",
+          "score": 2,
+          "sha256": "22c72490e21451167e58966aa60c3091f68a477c9a977a33a849327179b6f315",
+          "lines": [
+            {
+              "line": 123,
+              "text": "    /// Bytes hashed for proof of work. Excludes the nonce, which the PoW"
+            },
+            {
+              "line": 144,
+              "text": "    /// Proof-of-work hash under the given parameters."
+            },
+            {
+              "line": 179,
+              "text": "    /// Verify this block's proof of work."
+            },
+            {
+              "line": 185,
+              "text": "/// A block waiting for proof of work. Handed to the miner so hashing happens"
+            },
+            {
+              "line": 206,
+              "text": "/// hash-walks need the whole chain; the range proofs do not."
+            },
+            {
+              "line": 263,
+              "text": "    /// Exact cumulative proof of work. This, not block count, decides forks."
+            }
+          ]
+        },
+        {
+          "path": "crates/nightfall-crypto/examples/scanbench.rs",
+          "score": 2,
+          "sha256": "c6836ee09ea94319035e1704aea218f0a6d47cde76f07677a8b001a459d131e3",
+          "lines": [
+            {
+              "line": 12,
+              "text": "//! - **A stranger's output.** The overwhelming majority. With a view tag the"
+            },
+            {
+              "line": 22,
+              "text": "//! AEAD payload and re-derives the commitment; a stranger never reached those"
+            },
+            {
+              "line": 30,
+              "text": "    let ctx = NetworkId::Mainnet.proof_context();"
+            },
+            {
+              "line": 34,
+              "text": "    // Building outputs is dominated by Bulletproof generation, which is slow"
+            },
+            {
+              "line": 37,
+              "text": "    const STRANGERS: usize = 400;"
+            },
+            {
+              "line": 41,
+              "text": "    eprint!(\"building {STRANGERS} foreign and {MINE} owned outputs\u2026 \");"
+            }
+          ]
+        },
+        {
+          "path": "crates/nightfall-crypto/src/commit.rs",
+          "score": 2,
+          "sha256": "ea40424e0cf1ea671ff6e4d78404207073f54ef08101639622bd217958d0256a",
+          "lines": [
+            {
+              "line": 5,
+              "text": "//! `G` and `H` are taken from [`bulletproofs::PedersenGens`] so that our"
+            },
+            {
+              "line": 6,
+              "text": "//! commitments are *bit-identical* to the ones Bulletproofs range-proves. That"
+            },
+            {
+              "line": 7,
+              "text": "//! is not cosmetic: a range proof only proves something about a commitment"
+            },
+            {
+              "line": 8,
+              "text": "//! formed with the exact generators the proof system used."
+            },
+            {
+              "line": 21,
+              "text": "use bulletproofs::PedersenGens;"
+            }
+          ]
+        },
+        {
+          "path": "crates/nightfall-crypto/src/lib.rs",
+          "score": 2,
+          "sha256": "e693874b21963521ba66d59e0559d470d22880886d3fa2ca55a9d27ba00ec7b4",
+          "lines": [
+            {
+              "line": 3,
+              "text": "//! Protocol v5 (\"Nightproof-\u03b2\") replaces the v4 `Nightproof-\u03b1` construction,"
+            },
+            {
+              "line": 4,
+              "text": "//! which was unsound: its balance proof was a tautology, it had no range"
+            },
+            {
+              "line": 5,
+              "text": "//! proofs, and it published the recipient of every output in cleartext. The"
+            },
+            {
+              "line": 12,
+              "text": "//! | [`commit`] | Pedersen commitments on Bulletproof-compatible generators |"
+            },
+            {
+              "line": 13,
+              "text": "//! | [`rangeproof`] | Bulletproofs \u2014 every output value is provably in `[0, 2^64)` |"
+            },
+            {
+              "line": 15,
+              "text": "//! | [`kernel`] | Excess signature over `H` \u2014 the actual no-inflation proof |"
+            }
+          ]
+        },
+        {
+          "path": "crates/nightfall-crypto/src/rangeproof.rs",
+          "score": 2,
+          "sha256": "dfaee6518fcac0bd9f7966ed286f4fdba687a3a6b406a0622e19b18659159e14",
+          "lines": [
+            {
+              "line": 1,
+              "text": "//! Bulletproof range proofs."
+            },
+            {
+              "line": 3,
+              "text": "//! Every output commitment must carry a proof that its hidden value lies in"
+            },
+            {
+              "line": 8,
+              "text": "use bulletproofs::{BulletproofGens, RangeProof};"
+            },
+            {
+              "line": 17,
+              "text": "pub const RANGE_BITS: usize = 64;"
+            },
+            {
+              "line": 19,
+              "text": "/// Generator capacity. Must be \u2265 RANGE_BITS and a power of two."
+            },
+            {
+              "line": 24,
+              "text": "const TRANSCRIPT_LABEL: &[u8] = b\"nightfall:rangeproof:v2\";"
+            }
+          ]
+        },
+        {
+          "path": "crates/nightfall-crypto/src/stealth.rs",
+          "score": 2,
+          "sha256": "b555cf153b8aefcef8995c0a8666c7ceafcff594dc5dff00c6f1f4a57ebcede4",
+          "lines": [
+            {
+              "line": 45,
+              "text": "use crate::{hash_multi, rangeproof};"
+            },
+            {
+              "line": 82,
+              "text": "/// chain including the overwhelming majority that belong to strangers."
+            },
+            {
+              "line": 155,
+              "text": "    /// Bulletproof that `v \u2208 [0, 2^64)`."
+            },
+            {
+              "line": 156,
+              "text": "    pub range_proof: rangeproof::RangeProofBytes,"
+            },
+            {
+              "line": 198,
+              "text": "            Vec::with_capacity(1 + 32 + 32 + 32 + self.payload.len() + self.range_proof.0.len());"
+            },
+            {
+              "line": 204,
+              "text": "        v.extend_from_slice(&self.range_proof.0);"
+            }
+          ]
+        },
+        {
+          "path": "crates/nightfall-ledger/src/lib.rs",
+          "score": 2,
+          "sha256": "25c6536091d6d83d20b8efa71a6c47edaa8fa39e565ec44c99632acac45a23f4",
+          "lines": [
+            {
+              "line": 73,
+              "text": "    /// Cryptographic proof that the supply is exactly what it claims to be."
+            },
+            {
+              "line": 161,
+              "text": "        // Outputs: range proof, sender signature, no collisions."
+            },
+            {
+              "line": 167,
+              "text": "            if !nightfall_crypto::rangeproofs::verify(&out.range_proof, &out.commit, ctx) {"
+            },
+            {
+              "line": 168,
+              "text": "                return Err(LedgerError::BadRangeProof);"
+            },
+            {
+              "line": 279,
+              "text": "    /// No range proofs, no signatures, no balance equation, no per-block"
+            },
+            {
+              "line": 432,
+              "text": "    #[error(\"invalid range proof\")]"
+            }
+          ]
+        },
+        {
+          "path": "crates/nightfall-ledger/src/tx.rs",
+          "score": 2,
+          "sha256": "09ef1238bbc1db946b560ecc4d6290d159c5d95ac4cec8fd2b0673add34801c8",
+          "lines": [
+            {
+              "line": 15,
+              "text": "//! sealing the commitment, range proof, one-time key and encrypted payload."
+            },
+            {
+              "line": 24,
+              "text": "//! proof and even `auth_pk` \u2014 so signatures were swappable, txids were"
+            },
+            {
+              "line": 90,
+              "text": "    /// Canonical transaction id, covering the entire body including proofs"
+            },
+            {
+              "line": 171,
+              "text": "    /// Verify range proofs, kernel signatures and the balance equation."
+            },
+            {
+              "line": 178,
+              "text": "        // Every output must carry a valid range proof. Skipping this is what"
+            },
+            {
+              "line": 181,
+              "text": "            if !nightfall_crypto::rangeproofs::verify(&o.range_proof, &o.commit, ctx) {"
+            }
+          ]
+        },
+        {
+          "path": "crates/nightfall-ledger/src/utxo.rs",
+          "score": 2,
+          "sha256": "9ab719d9efe4bfc0081d687389c1f7ec19432a60cee76d93b5ace82aefeea534",
+          "lines": [
+            {
+              "line": 65,
+              "text": "    /// in `CompressedRistretto::decompress`. Proof of work, which the log line"
+            },
+            {
+              "line": 209,
+              "text": "    /// halt within days (audit finding N-04). A Merkle Mountain Range would"
+            },
+            {
+              "line": 362,
+              "text": "            let roll: u8 = rng.gen_range(0..100);"
+            },
+            {
+              "line": 364,
+              "text": "                let c = Commitment::new(rng.gen_range(0..1_000u64), &Scalar::random(&mut rng));"
+            },
+            {
+              "line": 368,
+              "text": "                let i = rng.gen_range(0..live.len());"
+            },
+            {
+              "line": 373,
+              "text": "                let c = live[rng.gen_range(0..live.len())];"
+            }
+          ]
+        },
+        {
+          "path": "crates/nightfall-ledger/tests/exploit_regression.rs",
+          "score": 2,
+          "sha256": "34d60bfdcd7e9e03c4252ac5d309a8bc800ac28329a3b3aeec597a8aaf51e7c5",
+          "lines": [
+            {
+              "line": 3,
+              "text": "//! Each test here is the *inverse* of the proof-of-concept that confirmed the"
+            },
+            {
+              "line": 137,
+              "text": "/// Bulletproofs make a commitment to anything outside `[0, 2^64)` unprovable."
+            },
+            {
+              "line": 139,
+              "text": "fn exploit_2_out_of_range_value_is_rejected() {"
+            },
+            {
+              "line": 164,
+              "text": "        TxError::BadRangeProof,"
+            },
+            {
+              "line": 165,
+              "text": "        \"a commitment outside range must have no valid proof\""
+            }
+          ]
+        },
+        {
+          "path": "crates/nightfall-ledger/tests/ledger_flow.rs",
+          "score": 2,
+          "sha256": "73944e383878f3616d9ed519a90babfbdd1ca2d6b7f0b3b693a385a30d472df7",
+          "lines": [
+            {
+              "line": 102,
+              "text": "    // The invariant is the real proof that nothing was created or lost."
+            },
+            {
+              "line": 316,
+              "text": "// Does a payment reach a stranger's wallet, end to end, through the same"
+            },
+            {
+              "line": 319,
+              "text": "fn a_stranger_can_find_a_payment_sent_to_them() {"
+            },
+            {
+              "line": 324,
+              "text": "    let ctx = NetworkId::Devnet.proof_context();"
+            },
+            {
+              "line": 326,
+              "text": "    let stranger = WalletKeys::generate();"
+            },
+            {
+              "line": 350,
+              "text": "    // 30 NIGHT to the stranger, fee 0.001, change back to the sender."
+            }
+          ]
+        },
+        {
+          "path": "crates/nightfall-node/src/main.rs",
+          "score": 2,
+          "sha256": "6e0e2c421b49edb0ed98d1d4427f46637019649db58964a8bdac201183d9e935",
+          "lines": [
+            {
+              "line": 89,
+              "text": "    /// every hash and range proof as an array of decimal numbers. Storage"
+            },
+            {
+              "line": 382,
+              "text": "        \"supply_proof... {}\","
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "runtime_safe_probes": [
+    {
+      "id": "INV-PROBE-001",
+      "name": "grep_supply_invariant",
+      "cmd": "grep -RniE 'supply.*invariant|invariant.*supply' docs crates SECURITY.md 2>/dev/null | head -80",
+      "cwd": "/data/data/com.termux/files/home/nightfall",
+      "expect": 0,
+      "status": "PASS",
+      "returncode": 0,
+      "stdout": "docs/DECISIONS.md:13:| 3 | Supply verification | Global invariant `\u03a3 UTXO \u2212 \u03a3 kernel_excess = (minted \u2212 burned)\u00b7G`, checked after every block, on startup, and via RPC. Supply is now *provable*, not asserted. |\ndocs/whitepaper-en.json:23:          \"text\": \"The central design choice is to combine private payment amounts with an explicit supply invariant. Nodes check a relationship between unspent commitments, accumulated kernel excesses, issuance and burned fees. That relationship is useful only together with valid range proofs, signatures, authorization and correct state transitions. An equation by itself is not a security proof.\"\ndocs/whitepaper-en.json:255:      \"label\": \"05 / The supply invariant\",\ndocs/SPEC.md:246:- the UTXO set (and the supply invariant)\ndocs/SPEC.md:357:- **the supply invariant still holds**\ndocs/MAINNET.md:100:every block\u2019s PoW and the supply invariant):\ndocs/AUDIT-2026-08-12.md:138:2. A **globally verifiable supply invariant**:\ndocs/AUDIT-2026-08-12.md:254:This is safe \u2014 the invariant is `total_minted \u2264 cap`, and it holds. But `README.md`, `MANIFESTO.md` and `ATTRIBUTES.md` state the supply *equals* 90 M, which is not true. The number is now pinned by a test (`emission_sums_below_the_cap_and_stops`) so it cannot drift silently. Either the docs should say \"just under 90,000,000\" or the final era should be adjusted before mainnet.\ndocs/AUDIT-2026-08-12.md:284:* `crates/nightfall-ledger/tests/ledger_flow.rs` \u2014 coinbase, transfer, fee burn, double-spend, maturity, atomicity, supply invariant.\ndocs/AUDIT-2026-08-12.md:293:End-to-end on devnet: 430 blocks mined, 25 NIGHT sent with an encrypted memo, recipient discovered it by scanning, fee burned, `supply_invariant_ok: true` throughout \u2014 and the RPC stayed responsive during active mining.\ndocs/ATTRIBUTES.md:19:> supply invariant.\ndocs/ATTRIBUTES.md:139:**Locked supply invariant:**  \ncrates/nightfall-node/src/rpc.rs:187:                    \"supply_invariant_ok\": supply_ok,\ncrates/nightfall-node/tests/multi_node_reorg.rs:216:                assert!(s.supply_ok, \"{name}: supply invariant failed\");\ncrates/nightfall-wallet/src/main.rs:71:    /// Ask the node to re-prove the global supply invariant.\ncrates/nightfall-ledger/src/lib.rs:75:        verify_supply_invariant(&self.utxos, &self.kernels, &self.supply)\ncrates/nightfall-ledger/src/utxo.rs:1://! The UTXO commitment set and the global supply invariant.\ncrates/nightfall-ledger/src/utxo.rs:61:    /// commitment, and `verify_supply_invariant` calls it once per block. That\ncrates/nightfall-ledger/src/utxo.rs:64:    /// of 2302 stack samples inside `verify_supply_invariant`, 1599 of those\ncrates/nightfall-ledger/src/utxo.rs:92:    /// the supply invariant against a sum of zero entries, which is the exact\ncrates/nightfall-ledger/src/utxo.rs:294:pub fn verify_supply_invariant(\ncrates/nightfall-ledger/src/utxo.rs:304:        return Err(SupplyError::InvariantViolated);\ncrates/nightfall-ledger/src/utxo.rs:326:    #[error(\"SUPPLY INVARIANT VIOLATED \u2014 coins exist that were never minted\")]\ncrates/nightfall-ledger/src/utxo.rs:393:    /// back as the identity \u2014 a supply invariant computed over zero entries,\ncrates/nightfall-ledger/src/utxo.rs:443:        assert!(verify_supply_invariant(&utxos, &kernels, &supply).is_ok());\ncrates/nightfall-ledger/src/utxo.rs:463:            verify_supply_invariant(&utxos, &kernels, &supply),\ncrates/nightfall-ledger/src/utxo.rs:464:            Err(SupplyError::InvariantViolated),\ncrates/nightfall-ledger/src/utxo.rs:495:        assert!(verify_supply_invariant(&utxos, &kernels, &supply).is_ok());\ncrates/nightfall-ledger/tests/ledger_flow.rs:49:    ledger.verify_supply().expect(\"supply invariant\");\ncrates/nightfall-ledger/tests/ledger_flow.rs:105:        .expect(\"supply invariant after transfer\");\ncrates/nightfall-core/src/views.rs:3200:                    \"Supply invariant\",\ncrates/nightfall-consensus/src/lib.rs:1100:    /// Re-verify the global supply invariant.\ncrates/nightfall-storage/src/lib.rs:782:            .map_err(|e| anyhow::anyhow!(\"stored chain violates the supply invariant: {e}\"))?;\n",
+      "stderr": ""
+    },
+    {
+      "id": "INV-PROBE-002",
+      "name": "grep_utxo_kernel",
+      "cmd": "grep -RniE 'utxo|kernel_excess|kernel excess' docs crates SECURITY.md 2>/dev/null | head -80",
+      "cwd": "/data/data/com.termux/files/home/nightfall",
+      "expect": 0,
+      "status": "PASS",
+      "returncode": 0,
+      "stdout": "docs/DECISIONS.md:13:| 3 | Supply verification | Global invariant `\u03a3 UTXO \u2212 \u03a3 kernel_excess = (minted \u2212 burned)\u00b7G`, checked after every block, on startup, and via RPC. Supply is now *provable*, not asserted. |\ndocs/DECISIONS.md:35:- **UTXO snapshots / headers-first sync** \u2014 initial sync still replays and re-verifies every block, which memory-hard PoW makes expensive.\ndocs/whitepaper-en.json:23:          \"text\": \"The central design choice is to combine private payment amounts with an explicit supply invariant. Nodes check a relationship between unspent commitments, accumulated kernel excesses, issuance and burned fees. That relationship is useful only together with valid range proofs, signatures, authorization and correct state transitions. An equation by itself is not a security proof.\"\ndocs/whitepaper-en.json:167:          \"text\": \"The sender knows the derived offset and blinding factor, but not the recipient's spend secret s. Spending requires authorization under Ko, whose secret is s + o. The input verifier obtains Ko from the existing UTXO entry, not from a replacement key supplied by the spender.\"\ndocs/whitepaper-en.json:262:            \"+ fee G - reward G = sum(kernel excesses)\"\ndocs/whitepaper-en.json:273:            \"sum(UTXO commitments) - sum(all kernel excesses)\",\ndocs/whitepaper-en.json:276:          \"caption\": \"Global invariant. UTXO commitments and kernel excesses are group elements; minted and burned values are integer accounting totals.\"\ndocs/whitepaper-en.json:280:          \"text\": \"Starting from the defined genesis state, accepted transitions preserve this invariant. Range proofs exclude invalid value encodings; input signatures establish spending authority; UTXO checks prevent double spending; emission rules bound coinbase issuance. Removing any of these checks changes the security argument.\"\ndocs/whitepaper-en.json:1137:          \"text\": \"UTXO: an unspent output recorded by the ledger. Commitment: a group element representing a hidden value and blinding factor. Kernel: a signed record of public transaction terms and excess. Range proof: evidence that a committed value is within the allowed interval. Coinbase: the miner's permitted output, subject to maturity. Reorganization: replacement of a suffix of accepted history. Checkpoint: a compiled height/hash constraint. Bootstrap: a delivery format for historical chain data, not a new consensus authority.\"\ndocs/whitepaper-en.json:1183:      \"title\": \"Ledger validation, UTXO authorization and exploit regressions\",\ndocs/MOBILE.md:219:| Methods | all, incl. `mine_one` | `status`, `scan_feed`, `scan_subscribe`, `submit_tx`, `get_utxo_root` |\ndocs/AUDIT-2026-08-16.md:38:| C-03 | Inputs never checked to exist | Critical | **Closed.** Explicit UTXO set. |\ndocs/AUDIT-2026-08-16.md:88:\u03a3 UTXO  \u2212  \u03a3 kernel excess  =  (minted \u2212 burned) \u00b7 G\ndocs/AUDIT-2026-08-16.md:193:Method allowlist: `status`, `scan_feed`, `submit_tx`, `get_utxo_root`,\ndocs/AUDIT-2026-08-16.md:275:The missing 0.75 is not stealable. It is not in the UTXO set.\ndocs/AUDIT-2026-08-16.md:312:- spend a commitment that is not in the UTXO set\ndocs/SPEC.md:19:7. **`\u03a3 UTXO \u2212 \u03a3 kernel_excess = (minted \u2212 burned)\u00b7G`** holds at every height.\ndocs/SPEC.md:86:commit: Commitment    must already exist in the UTXO set\ndocs/SPEC.md:90:The one-time key is read from the UTXO set, never from the transaction.\ndocs/SPEC.md:106:\u03a3 outputs \u2212 \u03a3 inputs + fee\u00b7G \u2212 reward\u00b7G  =  \u03a3 kernel_excess\ndocs/SPEC.md:126:Replaying a captured input signature is useless: the output leaves the UTXO set\ndocs/SPEC.md:139:  utxo_root:    Hash256      Merkle root over the sorted UTXO set\ndocs/SPEC.md:140:  kernel_sum:   Commitment   running \u03a3 of every kernel excess ever accepted\ndocs/SPEC.md:168:| Kernel excess | feature, fee, reward, lock_height, excess | generator `H` |\ndocs/SPEC.md:169:| Input | the commitment being spent | the `Ko` in the UTXO set |\ndocs/SPEC.md:227:re-hashed on replay: linkage, UTXO roots and the pin itself still are.\ndocs/SPEC.md:246:- the UTXO set (and the supply invariant)\ndocs/SPEC.md:263:own disk, not a stranger's UTXO snapshot.\ndocs/SPEC.md:299:**72.3 % less disk**, same tip, same UTXO root, same supply proof.\ndocs/SPEC.md:342:- `\u03a3out \u2212 \u03a3in + fee\u00b7G \u2212 reward\u00b7G == \u03a3 kernel_excess`\ndocs/SPEC.md:355:- every input exists in the UTXO set, is mature, and is correctly signed\ndocs/SPEC.md:356:- `tx_root`, `utxo_root` and `kernel_sum` match after application\ndocs/SPEC.md:395:- **UTXO root is O(n log n) per block.** A Merkle Mountain Range would make it\ndocs/MAINNET.md:322:# supply_proof... OK \u2014 \u03a3 UTXO \u2212 \u03a3 excess == circulating\u00b7G\ndocs/AUDIT-2026-08-12.md:99:**Fix (v5):** the ledger keeps an explicit UTXO set. An input references a commitment that must already be present, and the one-time key is read *from the set*, not from the transaction \u2014 so a spender cannot substitute a key they control.\ndocs/AUDIT-2026-08-12.md:141:   \u03a3 UTXO \u2212 \u03a3 kernel_excess  =  (minted \u2212 burned) \u00b7 G\ndocs/AUDIT-2026-08-12.md:224:| **N-04** | `MerkleTree::root()` cloned every leaf and rebuilt the tree \u2014 called once *per transaction*, giving O(n\u00b2) per block. | UTXO root is a Merkle tree over the sorted set, O(n log n) per block. A Merkle Mountain Range would make it incremental \u2014 that is the next optimisation, not a correctness issue. |\ndocs/AUDIT-2026-08-12.md:274:- **No headers-first sync**, no UTXO snapshots, no pruning.\ndocs/SWAP-SPEC-v0.1-withdrawn.md:54:3. **The kernel excess signature is a plain Schnorr signature** over generator\ndocs/PRIVACY.md:66:| Supply independently proven | **yes** \u2014 `\u03a3 UTXO \u2212 \u03a3 excess = (minted \u2212 burned)\u00b7G` | no (ring-size / decoy assumptions) |\ncrates/nightfall-node/src/main.rs:75:        /// UTXO and headers stay. Cannot rescan from genesis afterwards.\ncrates/nightfall-node/src/main.rs:378:    println!(\"utxos.......... {}\", chain.ledger.utxos.len());\ncrates/nightfall-node/src/main.rs:380:    println!(\"utxo_root...... {}\", chain.ledger.utxo_root());\ncrates/nightfall-node/src/main.rs:384:            Ok(()) => \"OK \u2014 \u03a3 UTXO \u2212 \u03a3 excess == circulating\u00b7G\".to_string(),\ncrates/nightfall-node/src/rpc.rs:184:                    \"utxos\": chain.ledger.utxos.len(),\ncrates/nightfall-node/src/rpc.rs:186:                    \"utxo_root\": chain.ledger.utxo_root().to_hex(),\ncrates/nightfall-node/src/rpc.rs:271:        \"get_utxo_root\" => {\ncrates/nightfall-node/src/rpc.rs:275:                    \"utxo_root\": g.chain.ledger.utxo_root().to_hex(),\ncrates/nightfall-node/src/rpc.rs:391:                    \"utxo_root\": b.header.utxo_root.to_hex(),\ncrates/nightfall-node/src/runtime.rs:76:    /// Drop block bodies older than the reorg window. UTXO and headers stay.\ncrates/nightfall-node/src/runtime.rs:574:    pub utxos: usize,\ncrates/nightfall-node/src/runtime.rs:575:    pub utxo_root: String,\ncrates/nightfall-node/src/runtime.rs:1097:            utxos: g.chain.ledger.utxos.len(),\ncrates/nightfall-node/src/runtime.rs:1098:            utxo_root: g.chain.ledger.utxo_root().to_hex(),\ncrates/nightfall-node/src/mobile.rs:5://! `get_utxo_root`, `banner`, `peers` and `get_headers`.\ncrates/nightfall-node/src/mobile.rs:23:    \"get_utxo_root\",\ncrates/nightfall-node/src/mobile.rs:226:            \"get_utxo_root\",\ncrates/nightfall-node/tests/multi_node_reorg.rs:169:    let expected_utxo_root = fork_c.utxo_root.clone();\ncrates/nightfall-node/tests/multi_node_reorg.rs:207:                    s.utxo_root, expected_utxo_root,\ncrates/nightfall-node/tests/multi_node_reorg.rs:208:                    \"{name}: UTXO root diverged\"\ncrates/nightfall-wallet/src/lib.rs:1997:                    utxo_root: ledger.utxo_root(),\ncrates/nightfall-wallet/src/lib.rs:2060:                utxo_root: ledger.utxo_root(),\ncrates/nightfall-wallet/src/lib.rs:2215:                        utxo_root: ledger.utxo_root(),\ncrates/nightfall-wallet/src/lib.rs:2304:                    utxo_root: ledger.utxo_root(),\ncrates/nightfall-wallet/src/lib.rs:2335:                utxo_root: ledger.utxo_root(),\ncrates/nightfall-wallet/src/lib.rs:2379:                    utxo_root: ledger.utxo_root(),\ncrates/nightfall-wallet/src/lib.rs:2433:                utxo_root: ledger.utxo_root(),\ncrates/nightfall-wallet/src/lib.rs:2484:                        utxo_root: ledger.utxo_root(),\ncrates/nightfall-wallet/src/lib.rs:2553:                    utxo_root: ledger.utxo_root(),\ncrates/nightfall-wallet/src/lib.rs:3041:                utxo_root: ledger.utxo_root(),\ncrates/nightfall-wallet/src/air.rs:952:                utxo_root: ledger.utxo_root(),\ncrates/nightfall-wallet/examples/vault_interop.rs:50:                    utxo_root: ledger.utxo_root(),\ncrates/nightfall-crypto/src/schnorr.rs:6://! * `H` \u2014 used for **kernel excess signatures**. Signing under `H` is what\ncrates/nightfall-crypto/src/lib.rs:56:    pub const UTXO_ROOT: &[u8] = b\"nightfall:utxoroot:v2\";\ncrates/nightfall-crypto/src/stealth.rs:185:    /// Stable identifier for this output within the UTXO set.\ncrates/nightfall-ledger/src/aggregate.rs:141:    /// Sum of every kernel excess in the block.\ncrates/nightfall-ledger/src/aggregate.rs:142:    pub fn kernel_excess_sum(&self) -> Option<Commitment> {\ncrates/nightfall-ledger/src/aggregate.rs:273:            body.kernel_excess_sum().unwrap(),\ncrates/nightfall-ledger/src/lib.rs:12:mod utxo;\ncrates/nightfall-ledger/src/lib.rs:17:pub use utxo::*;\n",
+      "stderr": ""
+    },
+    {
+      "id": "INV-PROBE-003",
+      "name": "grep_mint_burn",
+      "cmd": "grep -RniE 'minted|mint|burned|burn' docs crates SECURITY.md 2>/dev/null | head -80",
+      "cwd": "/data/data/com.termux/files/home/nightfall",
+      "expect": 0,
+      "status": "PASS",
+      "returncode": 0,
+      "stdout": "docs/RESET.md:17:| 89 M minted | ~7 years | **~23.5 years** |\ndocs/RESET.md:19:| Fees while subsidy > 0 | burned | **burned** |\ndocs/RESET.md:20:| Fees after subsidy | burned (miner unpaid) | **paid to the miner**, not minted, not burned |\ndocs/AUDIT-2026-09-08.md:36:C-01 Value authorization: exploit_regression.rs tests thin-air mint rejection,\ndocs/GETTING-NIGHT.md:39:Fees stop being burned and go to the miner once the subsidy runs out.\ndocs/GETTING-NIGHT.md:44:The practical horizon is much nearer: 89 million are minted in about\ndocs/DECISIONS.md:13:| 3 | Supply verification | Global invariant `\u03a3 UTXO \u2212 \u03a3 kernel_excess = (minted \u2212 burned)\u00b7G`, checked after every block, on startup, and via RPC. Supply is now *provable*, not asserted. |\ndocs/DECISIONS.md:21:| 11 | Fee burn | Unchanged: **100 %**. The fee is public in the kernel specifically so the burn is auditable. |\ndocs/DECISIONS.md:51:| 3 | Fee burn | 100 % base fee burn. Miner income = subsidy only. |\ndocs/HISTORY.md:8:| v4 (Nightproof-\u03b1) | discarded | Balance proof was a tautology. Anyone could mint. Full write-up: [AUDIT-2026-08-12.md](AUDIT-2026-08-12.md). |\ndocs/whitepaper-en.json:23:          \"text\": \"The central design choice is to combine private payment amounts with an explicit supply invariant. Nodes check a relationship between unspent commitments, accumulated kernel excesses, issuance and burned fees. That relationship is useful only together with valid range proofs, signatures, authorization and correct state transitions. An equation by itself is not a security proof.\"\ndocs/whitepaper-en.json:274:            \"= (total minted - total burned fees) G\"\ndocs/whitepaper-en.json:276:          \"caption\": \"Global invariant. UTXO commitments and kernel excesses are group elements; minted and burned values are integer accounting totals.\"\ndocs/whitepaper-en.json:351:          \"text\": \"A miner's proposed block must satisfy shape, ordering, parent linkage, timing, difficulty, proof-of-work, authorization, commitment and issuance checks. Rejected transitions must not partially alter ledger state. Transaction selection in the current mempool sorts candidates by fee and skips conflicts; fees are nevertheless burned during subsidy eras.\"\ndocs/whitepaper-en.json:407:              \"Fees are destroyed; circulation decreases by the burned amount.\"\ndocs/whitepaper-en.json:412:              \"Fees fund the miner's coinbase; no additional issuance or fee burn.\"\ndocs/whitepaper-en.json:438:          \"text\": \"Era e covers heights e x 7,500,000 through (e + 1) x 7,500,000 - 1. At height 225,000,000 the scheduled subsidy is zero. Fees burned in earlier eras are not reissued. Actual circulating supply can therefore be lower than the cumulative issuance shown.\"\ndocs/whitepaper-en.json:866:              \"Thin-air mint rejection, authorization, invalid values and payload tampering.\"\ndocs/whitepaper-en.json:969:          \"text\": \"The current monetary construction has no premine, special treasury allocation or administrative mint/freeze credential. That is narrower than saying nobody can influence the system. Maintainers choose releases, operators run infrastructure, miners choose which transactions to include and users choose which software and chain rules to accept.\"\ndocs/CORE_WALLET.md:29:wallet payment fee is 0.001 NIGHT, burned while subsidy remains. An outgoing\ndocs/MOBILE.md:249:behind the next block and always burning radio. One long-lived subscribe is\ndocs/MOBILE.md:278:- **Fees are burned, not paid to a miner.** Worth one line in the UI, because\ndocs/AUDIT-2026-08-16.md:72:| **S-01** | Terminal supply is 89,999,999.25, not 90 M | Info | 0.75 NIGHT never minted. |\ndocs/AUDIT-2026-08-16.md:75:Nothing in the open list lets a stranger mint NIGHT or spend someone\ndocs/AUDIT-2026-08-16.md:88:\u03a3 UTXO  \u2212  \u03a3 kernel excess  =  (minted \u2212 burned) \u00b7 G\ndocs/AUDIT-2026-08-16.md:98:The six v4 exploits \u2014 thin-air mint, negative output, fake input,\ndocs/AUDIT-2026-08-16.md:116:The curve stops at **89,999,999.25**. Fees burn while a subsidy exists.\ndocs/AUDIT-2026-08-16.md:117:After the last reward, fees go to the miner (not minted, not burned).\ndocs/AUDIT-2026-08-16.md:274:89,999,999.25 as the terminal minted amount. The cap is a ceiling.\ndocs/AUDIT-2026-08-16.md:279:v4 was unsound (2026-08-12). v7 minted almost everything in seven\ndocs/AUDIT-2026-08-16.md:309:- mint NIGHT without a coinbase that pays the schedule\ndocs/SPEC.md:16:4. No admin / freeze / mint keys.\ndocs/SPEC.md:17:5. Fees **burned while a subsidy exists**; after the last subsidy they **pay the miner**.\ndocs/SPEC.md:19:7. **`\u03a3 UTXO \u2212 \u03a3 kernel_excess = (minted \u2212 burned)\u00b7G`** holds at every height.\ndocs/SPEC.md:96:fee_darks:   u64        burned in full; public by design so the burn is auditable\ndocs/SPEC.md:326:While the subsidy is positive, `fee_darks` is burned. The miner receives only\ndocs/SPEC.md:328:fee total: nothing is minted, nothing is burned, circulating is unchanged, the\ndocs/SPEC.md:353:- minting would not exceed the cap\ndocs/MAINNET.md:7:**Fee:** 100% burn  \ndocs/MAINNET.md:14:> mint unlimited NIGHT, see [`AUDIT-2026-08-12.md`](./AUDIT-2026-08-12.md). v5\ndocs/MAINNET.md:291:| Fee | 100% burn |\ndocs/AUDIT-2026-08-12.md:6:**Verdict:** **v4 was consensus-broken.** Anyone could mint unlimited NIGHT with roughly thirty lines of code, without mining and without owning a single coin. The privacy properties claimed in `ATTRIBUTES.md` were not implemented.\ndocs/AUDIT-2026-08-12.md:17:| **C-02** | No range proofs \u2014 negative amounts mint value | **Critical** | Fixed |\ndocs/AUDIT-2026-08-12.md:38:| **W-03** | No address checksum \u2014 a typo burns funds | **Medium** | Fixed |\ndocs/AUDIT-2026-08-12.md:73:EXPLOIT 1 CONFIRMED: minted 50000000 NIGHT out of nothing,\ndocs/AUDIT-2026-08-12.md:74:total_minted counter still reads 0\ndocs/AUDIT-2026-08-12.md:133:`ATTRIBUTES.md` locks `total_minted \u2264 90_000_000 NIGHT` as a binding invariant. The ledger contained no such check. `total_minted_darks` was a plain counter incremented with `saturating_add`, and a forged transaction never touched it at all \u2014 the exploit above minted 50 M NIGHT while the counter still read zero.\ndocs/AUDIT-2026-08-12.md:141:   \u03a3 UTXO \u2212 \u03a3 kernel_excess  =  (minted \u2212 burned) \u00b7 G\ndocs/AUDIT-2026-08-12.md:154:permanently burn arbitrary nullifiers on your node for free\ndocs/AUDIT-2026-08-12.md:254:This is safe \u2014 the invariant is `total_minted \u2264 cap`, and it holds. But `README.md`, `MANIFESTO.md` and `ATTRIBUTES.md` state the supply *equals* 90 M, which is not true. The number is now pinned by a test (`emission_sums_below_the_cap_and_stops`) so it cannot drift silently. Either the docs should say \"just under 90,000,000\" or the final era should be adjusted before mainnet.\ndocs/AUDIT-2026-08-12.md:284:* `crates/nightfall-ledger/tests/ledger_flow.rs` \u2014 coinbase, transfer, fee burn, double-spend, maturity, atomicity, supply invariant.\ndocs/AUDIT-2026-08-12.md:293:End-to-end on devnet: 430 blocks mined, 25 NIGHT sent with an encrypted memo, recipient discovered it by scanning, fee burned, `supply_invariant_ok: true` throughout \u2014 and the RPC stayed responsive during active mining.\ndocs/SWAP-SPEC-v0.1-withdrawn.md:335:4. Kernel fees on the pre-signed refund: fees are burned and fixed at signing\ndocs/emission/NIGHTFALL-emission-schedule.html:157:          <th>Minted in era</th>\ndocs/emission/NIGHTFALL-emission-schedule.html:475:      minted.</p>\ndocs/emission/NIGHTFALL-emission-schedule.html:485:      <p>75 % is minted by the end of era 1 and 99 % during era 6. The remaining 1 % takes another\ndocs/emission/NIGHTFALL-emission-schedule.html:490:      <h3>Fees are burned, not paid</h3>\ndocs/emission/NIGHTFALL-emission-schedule.html:492:      subsidy \u2014 so circulating supply is always <i>below</i> the minted figures in this table by\ndocs/emission/NIGHTFALL-emission-schedule.html:493:      the total burned.</p>\ndocs/emission/NIGHTFALL-emission-schedule.html:495:      nothing is minted, nothing is burned, and the miner is paid. That is the whole\ndocs/PRIVACY.md:66:| Supply independently proven | **yes** \u2014 `\u03a3 UTXO \u2212 \u03a3 excess = (minted \u2212 burned)\u00b7G` | no (ring-size / decoy assumptions) |\ndocs/ATTRIBUTES.md:18:> enforced in code, 100 % fee burn, no admin keys, and a globally verifiable\ndocs/ATTRIBUTES.md:55:| Fee model | Burned while a subsidy exists. After that, fees go to the miner (not minted, not burned). | |\ndocs/ATTRIBUTES.md:89:| Governance | Rough consensus + rare hard forks; **no mint authority** |\ndocs/ATTRIBUTES.md:140:`total_minted \u2264 90_000_000 NIGHT` forever. No tail. No emergency mint.\ncrates/nightfall-node/src/main.rs:156:                \"privacy=default \u00b7 premine=0 \u00b7 max_supply={MAX_SUPPLY_NIGHT} \u00b7 no_tail \u00b7 fee_burn=100%\"\ncrates/nightfall-node/src/main.rs:187:                \"chain blocks={} minted={}\",\ncrates/nightfall-node/src/main.rs:189:                nightfall_types::Amount(chain.total_minted())\ncrates/nightfall-node/src/main.rs:367:        \"minted......... {}\",\ncrates/nightfall-node/src/main.rs:368:        nightfall_types::Amount(chain.total_minted())\ncrates/nightfall-node/src/main.rs:371:        \"burned_fees.... {}\",\ncrates/nightfall-node/src/main.rs:372:        nightfall_types::Amount(chain.ledger.supply.total_burned_darks)\ncrates/nightfall-node/src/rpc.rs:181:                    \"minted\": chain.ledger.supply.total_minted_darks,\ncrates/nightfall-node/src/rpc.rs:182:                    \"burned_fees\": chain.ledger.supply.total_burned_darks,\ncrates/nightfall-node/src/runtime.rs:570:    pub minted: u64,\ncrates/nightfall-node/src/runtime.rs:571:    pub burned_fees: u64,\ncrates/nightfall-node/src/runtime.rs:1093:            minted: g.chain.ledger.supply.total_minted_darks,\ncrates/nightfall-node/src/runtime.rs:1094:            burned_fees: g.chain.ledger.supply.total_burned_darks,\ncrates/nightfall-node/src/runtime.rs:2278:        // burn the whole window before anyone had spoken.\ncrates/nightfall-node/tests/multi_node_reorg.rs:170:    let expected_minted = fork_c.minted;\n",
+      "stderr": ""
+    },
+    {
+      "id": "INV-PROBE-004",
+      "name": "grep_coinbase_maturity",
+      "cmd": "grep -RniE 'coinbase|maturity|1440' docs crates SECURITY.md 2>/dev/null | head -80",
+      "cwd": "/data/data/com.termux/files/home/nightfall",
+      "expect": 0,
+      "status": "PASS",
+      "returncode": 0,
+      "stdout": "docs/DECISIONS.md:20:| 10 | Coinbase maturity | 1,440 mainnet / 60 testnet / 10 devnet. v4 had none. |\ndocs/DECISIONS.md:57:| 9 | Coinbase | Shielded miner note bound by emission schedule and Pedersen balance. \u2014 **The binding did not exist.** |\ndocs/whitepaper-en.json:264:          \"caption\": \"Local balance equation. The reward term includes the permitted coinbase value; after subsidy ends, coinbase value is funded by fees rather than new issuance.\"\ndocs/whitepaper-en.json:280:          \"text\": \"Starting from the defined genesis state, accepted transitions preserve this invariant. Range proofs exclude invalid value encodings; input signatures establish spending authority; UTXO checks prevent double spending; emission rules bound coinbase issuance. Removing any of these checks changes the security argument.\"\ndocs/whitepaper-en.json:336:              \"Coinbase maturity\",\ndocs/whitepaper-en.json:412:              \"Fees fund the miner's coinbase; no additional issuance or fee burn.\"\ndocs/whitepaper-en.json:463:              \"Input/output structure, public fees, block timing, coinbase flags and graph information.\"\ndocs/whitepaper-en.json:1110:              \"Target block time / coinbase maturity\",\ndocs/whitepaper-en.json:1137:          \"text\": \"UTXO: an unspent output recorded by the ledger. Commitment: a group element representing a hidden value and blinding factor. Kernel: a signed record of public transaction terms and excess. Range proof: evidence that a committed value is within the allowed interval. Coinbase: the miner's permitted output, subject to maturity. Reorganization: replacement of a suffix of accepted history. Checkpoint: a compiled height/hash constraint. Bootstrap: a delivery format for historical chain data, not a new consensus authority.\"\ndocs/MOBILE.md:264:2. Select coins, excluding immature coinbase outputs. **Mined coins are locked\ndocs/AUDIT-2026-08-16.md:52:| E-02 | No coinbase maturity | Medium | **Closed.** 1,440 mainnet. |\ndocs/AUDIT-2026-08-16.md:147:A reorg deeper than coinbase maturity (1,440 blocks, ~6 hours) can\ndocs/AUDIT-2026-08-16.md:202:one coinbase and nothing else has an anonymity set of one.\ndocs/AUDIT-2026-08-16.md:309:- mint NIGHT without a coinbase that pays the schedule\ndocs/SPEC.md:64:features:     Plain | Coinbase   public; drives maturity\ndocs/SPEC.md:95:feature:     Plain | Coinbase\ndocs/SPEC.md:97:reward_darks:u64        coinbase only\ndocs/SPEC.md:215:### 2.4 Coinbase maturity\ndocs/SPEC.md:327:the subsidy. After the subsidy is zero, the coinbase kernel carries the block's\ndocs/SPEC.md:343:- coinbase kernels carry no fee; plain kernels carry no reward\ndocs/SPEC.md:344:- a coinbase spends no inputs\ndocs/SPEC.md:354:- coinbase is transaction 0 and the only one\ndocs/MAINNET.md:260:Coinbase outputs mature after **1,440 blocks** (~6 h) before they can be spent.\ndocs/MAINNET.md:288:| Coinbase maturity | 1,440 blocks |\ndocs/AUDIT-2026-08-12.md:8:At the time of the audit the live mainnet datadir held 84 blocks, 1,680 NIGHT, exactly one non-coinbase transaction and two distinct recipient keys \u2014 i.e. only the operator's own machine. **The vulnerability had not been exploited.**\ndocs/AUDIT-2026-08-12.md:41:| **E-02** | No coinbase maturity \u2014 reorgs cascade | **Medium** | Fixed |\ndocs/AUDIT-2026-08-12.md:234:| **E-02** | No coinbase maturity, so a reorg orphaning a block invalidated every transaction spending its subsidy, cascading arbitrarily. | 1,440 blocks on mainnet, 60 on testnet, 10 on devnet. |\ndocs/AUDIT-2026-08-12.md:284:* `crates/nightfall-ledger/tests/ledger_flow.rs` \u2014 coinbase, transfer, fee burn, double-spend, maturity, atomicity, supply invariant.\ndocs/DEV-WALLET-1.0.0-dev.2.md:45:3. **Lokale Coins:** Mining starten. Devnet-Coinbase wird nach zehn Bl\u00f6cken\ndocs/DEV-WALLET-1.0.0.md:32:3. Mining starten, um lokale Testcoins zu erzeugen. Coinbase-Ausg\u00e4nge werden\ndocs/emission/NIGHTFALL-emission-schedule.html:494:      <p>Once the subsidy reaches zero the coinbase kernel carries the block's fees instead:\ncrates/nightfall-node/src/rpc.rs:522:                \"coinbase\": out.features.is_coinbase(),\ncrates/nightfall-node/src/runtime.rs:580:    pub coinbase_maturity: u64,\ncrates/nightfall-node/src/runtime.rs:933:    /// live tip is to throw away the chain file and download it. Coinbase on\ncrates/nightfall-node/src/runtime.rs:1103:            coinbase_maturity: g.chain.ledger.coinbase_maturity,\ncrates/nightfall-wallet/src/receipt.rs:305:        let kind = if out.is_coinbase { \"mined\" } else { \"received\" };\ncrates/nightfall-wallet/src/receipt.rs:580:            is_coinbase: false,\ncrates/nightfall-wallet/src/lib.rs:62:    /// Coinbase outputs are subject to a maturity delay before they can be\ncrates/nightfall-wallet/src/lib.rs:66:    pub is_coinbase: bool,\ncrates/nightfall-wallet/src/lib.rs:103:    pub coinbase: bool,\ncrates/nightfall-wallet/src/lib.rs:296:    /// Mined but still inside the coinbase maturity window.\ncrates/nightfall-wallet/src/lib.rs:906:                    is_coinbase: out.coinbase,\ncrates/nightfall-wallet/src/lib.rs:908:                if out.coinbase || !outputs_share_spent_with_us(&spent_commits, &known) {\ncrates/nightfall-wallet/src/lib.rs:910:                        direction: if out.coinbase {\ncrates/nightfall-wallet/src/lib.rs:1036:                    let is_coinbase = out.features.is_coinbase();\ncrates/nightfall-wallet/src/lib.rs:1046:                        is_coinbase,\ncrates/nightfall-wallet/src/lib.rs:1049:                    if is_coinbase || !block_spent_ours {\ncrates/nightfall-wallet/src/lib.rs:1051:                            direction: if is_coinbase {\ncrates/nightfall-wallet/src/lib.rs:1339:    /// `tip_height` and `maturity` come from the node, so the wallet never\ncrates/nightfall-wallet/src/lib.rs:1340:    /// guesses whether a coinbase can be spent yet.\ncrates/nightfall-wallet/src/lib.rs:1341:    pub fn balances(&self, tip_height: u64, maturity: u64) -> Balances {\ncrates/nightfall-wallet/src/lib.rs:1348:            if o.is_coinbase && tip_height < o.height.saturating_add(maturity) {\ncrates/nightfall-wallet/src/lib.rs:1369:        maturity: u64,\ncrates/nightfall-wallet/src/lib.rs:1371:        if !o.is_coinbase {\ncrates/nightfall-wallet/src/lib.rs:1374:        let ready_at = o.height.saturating_add(maturity);\ncrates/nightfall-wallet/src/lib.rs:1483:    /// Spendable outputs, respecting coinbase maturity.\ncrates/nightfall-wallet/src/lib.rs:1484:    pub fn spendable_outputs(&self, tip_height: u64, maturity: u64) -> Vec<&OwnedOutput> {\ncrates/nightfall-wallet/src/lib.rs:1491:            .filter(|o| !o.is_coinbase || tip_height >= o.height.saturating_add(maturity))\ncrates/nightfall-wallet/src/lib.rs:1497:    /// `tip_height`/`maturity` of 0 means \"ignore maturity\" \u2014 used by the CLI,\ncrates/nightfall-wallet/src/lib.rs:1503:        maturity: u64,\ncrates/nightfall-wallet/src/lib.rs:1514:                maturity == 0 || !o.is_coinbase || tip_height >= o.height.saturating_add(maturity)\ncrates/nightfall-wallet/src/lib.rs:1593:        maturity: u64,\ncrates/nightfall-wallet/src/lib.rs:1596:            .select_coins_at(target, tip_height, maturity)?\ncrates/nightfall-wallet/src/lib.rs:1603:    // Explicit chain height and maturity keep reserved-output spending on the\ncrates/nightfall-wallet/src/lib.rs:1614:        maturity: u64,\ncrates/nightfall-wallet/src/lib.rs:1624:            if maturity != 0 && o.is_coinbase && tip_height < o.height.saturating_add(maturity) {\ncrates/nightfall-wallet/src/lib.rs:1625:                bail!(\"a reserved coinbase is still immature\");\ncrates/nightfall-wallet/src/lib.rs:1665:    /// As [`Self::create_payment`], but refuses to select immature coinbase\ncrates/nightfall-wallet/src/lib.rs:1674:        maturity: u64,\ncrates/nightfall-wallet/src/lib.rs:1677:        let inputs = self.select_coins_at(target, tip_height, maturity)?;\ncrates/nightfall-wallet/src/lib.rs:1779:        maturity: u64,\ncrates/nightfall-wallet/src/lib.rs:1806:            maturity,\ncrates/nightfall-wallet/src/lib.rs:1840:    use nightfall_ledger::{build_coinbase, BlockBody, LedgerState};\ncrates/nightfall-wallet/src/lib.rs:1985:            let cb = build_coinbase(owner, reward, height, ctx).unwrap();\ncrates/nightfall-wallet/src/lib.rs:2050:        let cb = build_coinbase(&w.address(), reward, 5, ctx).unwrap();\ncrates/nightfall-wallet/src/lib.rs:2203:                let cb = build_coinbase(&a.address(), reward, height, ctx).unwrap();\ncrates/nightfall-wallet/src/lib.rs:2292:            let cb = build_coinbase(&w.address(), reward, height, ctx).unwrap();\ncrates/nightfall-wallet/src/lib.rs:2325:        let cb = build_coinbase(&stranger.address(), reward, 1, ctx).unwrap();\ncrates/nightfall-wallet/src/lib.rs:2367:            let cb = build_coinbase(&w.address(), reward, height, ctx).unwrap();\ncrates/nightfall-wallet/src/lib.rs:2417:    fn scanning_finds_a_coinbase_and_reports_balance() {\n",
+      "stderr": ""
+    },
+    {
+      "id": "INV-PROBE-005",
+      "name": "grep_emission_cap",
+      "cmd": "grep -RniE 'emission|max supply|supply cap|90,000,000|90000000' docs crates SECURITY.md 2>/dev/null | head -80",
+      "cwd": "/data/data/com.termux/files/home/nightfall",
+      "expect": 0,
+      "status": "PASS",
+      "returncode": 0,
+      "stdout": "docs/RESET.md:3:Decision **B** from the restart draft: new genesis, slower emission, fees\ndocs/RESET.md:23:`2 \u00d7 6 \u00d7 7,500,000 = 90,000,000`. Same ceiling, different clock.\ndocs/AUDIT-2026-09-08.md:13:Selected paths inspected: consensus emission, checkpoint/replay and reorg rules;\ndocs/AUDIT-2026-09-08.md:43:checkpoint mismatch rejection, validation of untrusted suffixes, emission\ndocs/AUDIT-2026-09-08.md:135:Emission now reports unavailable/stale data, supports refresh and era transitions,\ndocs/AUDIT-2026-09-08.md:136:and labels node-reported values honestly. check-emission.mjs verifies all 30\ndocs/SWAP-VAULT-PROGRESS-2026-09-13.md:136:   promise. No consensus/genesis/emission change has been made here.\ndocs/DECISIONS.md:57:| 9 | Coinbase | Shielded miner note bound by emission schedule and Pedersen balance. \u2014 **The binding did not exist.** |\ndocs/HISTORY.md:10:| **v7** (Aug 2026, ~a week) | `c8614333c0f86a4824df212474632f4b9feecf9bf0593841199d894127f2f9a6` | Emission too front-loaded (89 M of 90 M in 7 years). Two miners held most of the float. Privacy claims outran the code. |\ndocs/whitepaper-en.json:280:          \"text\": \"Starting from the defined genesis state, accepted transitions preserve this invariant. Range proofs exclude invalid value encodings; input signatures establish spending authority; UTXO checks prevent double spending; emission rules bound coinbase issuance. Removing any of these checks changes the security argument.\"\ndocs/whitepaper-en.json:374:      \"id\": \"emission\",\ndocs/whitepaper-en.json:377:      \"lead\": \"No premine, no tail emission, and a ceiling that the integer schedule never quite reaches.\",\ndocs/whitepaper-en.json:394:          \"text\": \"The initial subsidy is 6 NIGHT per block. Each paying era contains 7,500,000 blocks. Integer truncation eventually reduces the subsidy to zero: there are 30 paying eras, with total scheduled issuance of 89,999,999.25 NIGHT. The 90,000,000 ceiling is therefore not a promised terminal balance.\"\ndocs/whitepaper-en.json:430:      \"label\": \"08 / Exact emission schedule\",\ndocs/whitepaper-en.json:821:          \"text\": \"The removal is a wallet change: no consensus rule, protocol version, genesis parameter or emission value was altered. The wallet database refuses unknown fields, so the swap journal field and its guards remain defined and a file written by an experimental build still opens. Nothing replaces the feature.\"\ndocs/whitepaper-en.json:870:              \"Emission bounds, fork choice, checkpoint mismatch and rejection without state mutation.\"\ndocs/whitepaper-en.json:995:          \"text\": \"Nightfall has discarded earlier chains. The v4 monetary construction was unsound; later iterations exposed engineering and emission-design problems. The current v8 genesis is a distinct chain. Earlier-genesis balances do not automatically migrate into it. This history should remain discoverable and should make future compatibility decisions more deliberate.\"\ndocs/whitepaper-en.json:1103:              \"90,000,000 / 89,999,999.25 NIGHT\"\ndocs/whitepaper-en.json:1187:      \"title\": \"Consensus, emission, checkpoints, replay and mempool selection\",\ndocs/AUDIT-2026-08-16.md:41:| C-06 | 90 M cap not enforced | Critical | **Closed.** Emission + invariant. |\ndocs/AUDIT-2026-08-16.md:113:### 2.3 Emission is in the header\ndocs/AUDIT-2026-08-16.md:115:6 NIGHT per block, halving every 7,500,000 blocks, hard cap 90,000,000.\ndocs/AUDIT-2026-08-16.md:273:`2 \u00d7 6 \u00d7 7,500,000 = 90,000,000`, but integer halvings leave\ndocs/SPEC.md:13:1. Max supply **90,000,000 NIGHT**, no tail. (Emission terminates at 89,999,999.25 \u2014 \u00a73.)\ndocs/SPEC.md:314:## 3. Emission\ndocs/SPEC.md:317:**90,000,000 NIGHT**, no tail.\ndocs/SPEC.md:352:- reward equals the emission schedule at this height and supply\ndocs/MAINNET.md:5:**Max supply:** 90,000,000 (hard cap, no tail)  \ndocs/MAINNET.md:282:| Max supply | 90,000,000 NIGHT |\ndocs/MAINNET.md:290:| Tail emission | none |\ndocs/AUDIT-2026-08-12.md:40:| **E-01** | Emission truncates 0.2925 NIGHT below the stated cap | **Informational** | Documented |\ndocs/AUDIT-2026-08-12.md:238:## 4. Economics: the supply is not exactly 90,000,000\ndocs/AUDIT-2026-08-12.md:243:2 \u00d7 20 NIGHT \u00d7 2,250,000 blocks = 90,000,000 NIGHT\ndocs/AUDIT-2026-08-12.md:254:This is safe \u2014 the invariant is `total_minted \u2264 cap`, and it holds. But `README.md`, `MANIFESTO.md` and `ATTRIBUTES.md` state the supply *equals* 90 M, which is not true. The number is now pinned by a test (`emission_sums_below_the_cap_and_stops`) so it cannot drift silently. Either the docs should say \"just under 90,000,000\" or the final era should be adjusted before mainnet.\ndocs/AUDIT-2026-08-12.md:285:* `crates/nightfall-consensus/tests/chain_rules.rs` \u2014 work-based fork choice, time-warp resistance, reorg bounds, emission curve.\ndocs/INTERNAL-SWAP-REVIEW-2026-09-13.md:71:seeds, emission and genesis were not changed. This is a swap-proof protocol\ndocs/SWAP-WITHDRAWN.md:144:**No consensus rule, protocol version, genesis parameter or emission schedule\ndocs/emission/NIGHTFALL-emission-schedule.html:6:<title>NIGHTFALLCOIN \u2014 Emission schedule</title>\ndocs/emission/NIGHTFALL-emission-schedule.html:125:    <h1>Emission schedule \u2014 <span>every halving to the last dark</span></h1>\ndocs/emission/NIGHTFALL-emission-schedule.html:126:    <p class=\"lede\">Six NIGHT per block, halving every 7,500,000 blocks, hard cap 90,000,000, no tail\ndocs/emission/NIGHTFALL-emission-schedule.html:127:    emission and no premine. The whole curve is thirty eras long and then the subsidy is zero \u2014\ndocs/emission/NIGHTFALL-emission-schedule.html:134:    <div class=\"card\"><small>Hard cap</small><b>90,000,000</b><p>An upper bound, never actually reached.</p></div>\ndocs/emission/NIGHTFALL-emission-schedule.html:286:        <td class=\"c-blocks\"><span class=\"mono\">90,000,000</span><span class=\"dash\">\u2013</span><span class=\"mono\">97,499,999</span></td>\ndocs/emission/NIGHTFALL-emission-schedule.html:471:      <h3>Why 89,999,999.25 and not 90,000,000</h3>\ndocs/emission/NIGHTFALL-emission-schedule.html:496:      long-term security budget. There is no tail emission.</p>\ndocs/emission/NIGHTFALL-emission-schedule.html:513:    <span class=\"mono\">MAX_SUPPLY_NIGHT&nbsp;=&nbsp;90,000,000</span>,\ndocs/ATTRIBUTES.md:14:> | *Max supply **90,000,000*** | Ceiling. v8 curve terminates at **89,999,999.25** (0.75 NIGHT short). |\ndocs/ATTRIBUTES.md:26:**Max supply:** **90,000,000 NIGHT** (absolute ceiling, no tail emission)\ndocs/ATTRIBUTES.md:52:| **Max supply** | **90,000,000 NIGHT** | Ceiling. Curve terminates at 89,999,999.25. |\ndocs/ATTRIBUTES.md:53:| **Tail emission** | **None** | After last subsidy the reward is 0. Fees then pay the miner. |\ndocs/ATTRIBUTES.md:54:| Emission shape | 6 NIGHT, halving every 7,500,000 blocks | 50 % in ~3.6 y, 89 M in ~23.5 y |\ndocs/ATTRIBUTES.md:137:| Pre-mainnet emission curve tweak | Allowed if **still sums to \u2264 90M** and **no premine** |\ncrates/nightfall-types/src/lib.rs:436:    #[error(\"max supply mismatch\")]\ncrates/nightfall-ledger/src/lib.rs:412:    #[error(\"minting this block would exceed the 90,000,000 NIGHT hard cap\")]\ncrates/nightfall-ledger/src/utxo.rs:328:    #[error(\"total minted exceeds the 90,000,000 NIGHT hard cap\")]\ncrates/nightfall-core/src/views.rs:3672:                \"Max supply\",\ncrates/nightfall-consensus/src/lib.rs:1://! Emission, block structure, validation and chain selection.\ncrates/nightfall-consensus/src/lib.rs:55:// ---------------------------------------------------------------- emission --\ncrates/nightfall-consensus/src/lib.rs:58:pub struct EmissionSchedule {\ncrates/nightfall-consensus/src/lib.rs:64:impl Default for EmissionSchedule {\ncrates/nightfall-consensus/src/lib.rs:70:impl EmissionSchedule {\ncrates/nightfall-consensus/src/lib.rs:249:    pub emission: EmissionSchedule,\ncrates/nightfall-consensus/src/lib.rs:279:            emission: EmissionSchedule::locked_mainnet(),\ncrates/nightfall-consensus/src/lib.rs:510:            .emission\ncrates/nightfall-consensus/src/lib.rs:643:            .emission\ncrates/nightfall-consensus/src/lib.rs:725:        // --- emission ---\ncrates/nightfall-consensus/src/lib.rs:727:            .emission\ncrates/nightfall-consensus/src/lib.rs:782:            let subsidy = self.emission.reward_at(b.header.height, minted).darks();\ncrates/nightfall-consensus/src/lib.rs:1308:    #[error(\"block reward does not match the emission schedule\")]\ncrates/nightfall-consensus/Cargo.toml:6:description = \"Consensus, emission, blocks, mining\"\ncrates/nightfall-consensus/tests/chain_rules.rs:550:/// Terminal supply actually produced by the emission curve, in darks.\ncrates/nightfall-consensus/tests/chain_rules.rs:557:fn emission_sums_below_the_cap_and_stops() {\ncrates/nightfall-consensus/tests/chain_rules.rs:558:    let e = EmissionSchedule::locked_mainnet();\ncrates/nightfall-consensus/tests/chain_rules.rs:570:    assert_eq!(total, TERMINAL_SUPPLY_DARKS, \"emission curve drifted\");\ncrates/nightfall-consensus/tests/chain_rules.rs:579:    // Once the cap is reached, the reward is zero \u2014 no tail emission.\ncrates/nightfall-consensus/tests/chain_rules.rs:589:    let e = EmissionSchedule::locked_mainnet();\nSECURITY.md:25:- **Inflation.** Any way to make `\u03a3 UTXO \u2212 \u03a3 kernel_excess = (minted \u2212 burned)\u00b7G` hold while creating value, or any way to mint outside the emission schedule.\n",
+      "stderr": ""
+    }
+  ],
+  "boundary": "This maps supply-invariant evidence and runs read-only probes. It does not prove the invariant or audit the implementation."
+}
