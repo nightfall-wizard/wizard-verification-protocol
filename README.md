@@ -555,3 +555,43 @@ Explicit non-claims:
 - Legal review is required before any public token launch, listing, sale, transferability or market-value communication.
 <!-- WVP:AUNEYA-LOCAL-COLLECT-COMMAND-V01:END -->
 
+<!-- WVP:AUNEYA-MINIMAL-FAIR-GENESIS-LAUNCH-PATH-V01:START -->
+## AUNEYA Minimal Fair-Genesis Launch Path v0.1
+
+AUNEYA's intended launch path is a decentralized open-source fair-genesis protocol start.
+
+Minimal launch rules:
+
+1. Finish the open-source protocol code.
+2. Do not create coins before final legal mainnet genesis.
+3. Do not sell coins.
+4. Do not manually allocate coins.
+5. Do not request personal data in exchange for coins.
+6. Do not hold wallets, keys or coins for other users.
+7. Do not operate an exchange, broker, custody service or advisory service.
+8. Do not communicate an official price or listing promise.
+9. Publish a Final Genesis Notice before any mainnet genesis.
+10. Start with genesis supply 0.
+11. After final genesis, every user can run the software independently.
+12. Units may arise only automatically from valid post-genesis protocol work.
+
+Files:
+
+- `docs/auneya/AUNEYA-MINIMAL-FAIR-GENESIS-LAUNCH-PATH-V0.1.md`
+- `fixtures/auneya/legal/minimal-fair-genesis-launch-path-v0.1.json`
+- `conformance/auneya-minimal-fair-genesis-launch-path-v0.1.sh`
+
+Explicit non-claims:
+
+- No token is created by this document.
+- No AUNEYA is created by this document.
+- No neya is created by this document.
+- No real reward is created by this document.
+- No token sale is offered.
+- No market value is claimed.
+- No mainnet is activated.
+- Nothing is transferable.
+- Legal review is required before any public token launch, listing, sale, transferability or market-value communication.
+<!-- WVP:AUNEYA-MINIMAL-FAIR-GENESIS-LAUNCH-PATH-V01:END -->
+
+

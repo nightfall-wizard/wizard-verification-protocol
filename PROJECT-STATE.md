@@ -2586,3 +2586,60 @@ The command records and displays one local non-value simulated collection entry 
 Define AUNEYA Local Collect Session v0.1 so a phone user can run a bounded local non-value simulated collection session with repeated collects and a final status view.
 <!-- WVP:STEP-35-AUNEYA-LOCAL-COLLECT-COMMAND-V01:END -->
 
+<!-- WVP:STEP-37-AUNEYA-MINIMAL-FAIR-GENESIS-LAUNCH-PATH-V01:START -->
+## STEP 37 — AUNEYA Minimal Fair-Genesis Launch Path v0.1
+
+Date: 2026-10-06
+
+### Purpose
+
+AUNEYA now has a minimal fair-genesis launch path.
+
+The path defines the intended decentralized open-source start model:
+
+- no coins before final legal mainnet genesis
+- no coin sale
+- no manual allocation
+- no personal data in exchange for coins
+- no maintainer custody
+- no exchange, broker, custody service or advisory service
+- no official price or listing promise
+- Final Genesis Notice before mainnet genesis
+- genesis supply 0
+- every user can run software independently after final genesis
+- units arise only from valid post-genesis protocol work
+
+### Added
+
+- `docs/auneya/AUNEYA-MINIMAL-FAIR-GENESIS-LAUNCH-PATH-V0.1.md`
+- `fixtures/auneya/legal/minimal-fair-genesis-launch-path-v0.1.json`
+- `conformance/auneya-minimal-fair-genesis-launch-path-v0.1.sh`
+
+### Verified
+
+- 12-step launch path exists
+- pre-genesis status remains no mainnet, no AUNEYA, no real neya and no transferable unit
+- genesis supply is fixed at 0 in the policy fixture
+- premine, ICO, sale, manual allocation, official price and listing promise are false
+- users control their own wallets and keys after final genesis
+- units may arise only from valid post-genesis Witness or ledger work
+- maintainer custody, sale and manual distribution are not required
+- legal review is required before final mainnet genesis
+
+### Explicit non-claims
+
+- No token is created by this step.
+- No AUNEYA is created by this step.
+- No neya is created by this step.
+- No real reward is created by this step.
+- No token sale is offered.
+- No market value is claimed.
+- No return, profit, yield or financial outcome is offered or promised.
+- Legal review is required before any public token launch, listing, sale, transferability or market-value communication.
+
+### Next target
+
+Define AUNEYA Final Genesis Notice Draft v0.1 so the future start notice can be reviewed before any mainnet genesis.
+<!-- WVP:STEP-37-AUNEYA-MINIMAL-FAIR-GENESIS-LAUNCH-PATH-V01:END -->
+
+

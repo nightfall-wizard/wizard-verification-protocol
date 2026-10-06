@@ -130,3 +130,11 @@ The local collection status display shows local simulated collection totals in a
 - `../../conformance/auneya-local-collect-command-v0.1.sh`
 
 The local collect command records and displays a local non-value simulated collection entry with one Termux command.
+
+## Minimal Fair-Genesis Launch Path
+
+- `AUNEYA-MINIMAL-FAIR-GENESIS-LAUNCH-PATH-V0.1.md`
+- `../../fixtures/auneya/legal/minimal-fair-genesis-launch-path-v0.1.json`
+- `../../conformance/auneya-minimal-fair-genesis-launch-path-v0.1.sh`
+
+The minimal fair-genesis launch path defines the intended open-source start model: no sale, no premine, no ICO, no official price, no listing promise, genesis supply 0, user-controlled wallets, and units arising only from valid post-genesis protocol work.
