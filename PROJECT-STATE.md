@@ -234,3 +234,30 @@ Next milestone:
 
 WVP-SEC-010 - create final release-pack builder and
 versioned evidence bundle manifest.
+
+
+## WVP-SEC-010
+
+Status: implemented.
+
+Completed:
+
+- release pack manifest
+- markdown bundle manifest
+- deterministic evidence archive
+- SHA-256 checksum file
+- release pack report
+- release pack method documentation
+- executable release pack checker
+- unit tests
+- CI integration
+
+Boundary:
+
+This step builds a versioned evidence bundle.
+It is not an audit, not a certification, and not proof of project safety.
+
+Next milestone:
+
+WVP-SEC-011 - create CI hardening and required-check
+gate documentation for WVP branches.

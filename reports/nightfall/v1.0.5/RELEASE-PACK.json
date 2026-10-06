@@ -1,0 +1,11 @@
+{
+  "id": "WVP-SEC-010",
+  "created_unix": 1791321170,
+  "archive": "release-packs/nightfall/v1.0.5/wvp-nightfall-v1.0.5-evidence-pack.tar.gz",
+  "archive_sha256": "d8736d4d27b56f2a27df109804e989db19a2a5aea8dae3393d764aa6426bb1a6",
+  "checksum_file": "release-packs/nightfall/v1.0.5/SHA256SUMS.txt",
+  "manifest": "release-packs/nightfall/v1.0.5/BUNDLE-MANIFEST.json",
+  "manifest_markdown": "release-packs/nightfall/v1.0.5/BUNDLE-MANIFEST.md",
+  "file_count": 143,
+  "boundary": "Release pack is an evidence bundle, not an audit."
+}
