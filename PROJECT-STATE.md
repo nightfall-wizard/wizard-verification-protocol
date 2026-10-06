@@ -80,3 +80,28 @@ Next milestone:
 
 WVP-SEC-004 - generate executable Nightfall command probes
 and capture reproducible command evidence.
+
+
+## WVP-SEC-004
+
+Status: implemented.
+
+Completed:
+
+- command probe report
+- JSON command evidence
+- Markdown command evidence
+- command probe method documentation
+- executable command probe checker
+- unit tests
+- CI integration
+
+Boundary:
+
+This step captures reproducible local command evidence.
+It does not prove runtime consensus correctness.
+
+Next milestone:
+
+WVP-SEC-005 - create release integrity evidence and
+reproducible artifact verification scaffolding.

@@ -18,3 +18,4 @@ jobs:
       - run: bin/wvp-nightfall-verify --profile consensus-v1 || true
       - run: python3 wvp/nightfall/codepath_binding.py
       - run: python3 wvp/nightfall/semantic_regression.py
+      - run: python3 wvp/nightfall/command_probes.py
