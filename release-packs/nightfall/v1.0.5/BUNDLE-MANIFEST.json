@@ -1,10 +1,10 @@
 {
   "id": "WVP-SEC-010",
-  "created_unix": 1791321473,
+  "created_unix": 1791321686,
   "project": "Nightfall",
   "version": "v1.0.5",
   "pack_name": "wvp-nightfall-v1.0.5-evidence-pack",
-  "file_count": 155,
+  "file_count": 169,
   "files": [
     {
       "path": ".github/workflows/ci.yml",
@@ -23,13 +23,13 @@
     },
     {
       "path": ".github/workflows/wvp-required-checks.yml",
-      "size_bytes": 1554,
-      "sha256": "a7b734ebf9ab47c9794ccd599786b5a78b405c379111842ff7e3c3b0b41ac76c"
+      "size_bytes": 1643,
+      "sha256": "890c2303704fac184a86d9aee10e408a78c46e2282aabd7e965950044fceea12"
     },
     {
       "path": "PROJECT-STATE.md",
-      "size_bytes": 5520,
-      "sha256": "16eeda0e797205ad8a8801ad89dd045c149ebf76c51b6de7b17f79f15a768372"
+      "size_bytes": 6133,
+      "sha256": "1ea0e30e372a822e703dacd8513911985a502a7a61c41aeee57915a0ca02df85"
     },
     {
       "path": "README.md",
@@ -62,14 +62,34 @@
       "sha256": "aa12e7fca81b130b1db4af3980f597015b4c29377fe018b8f8ef2c298af89b4b"
     },
     {
+      "path": "docs/FINAL-ROADMAP.md",
+      "size_bytes": 1136,
+      "sha256": "6fc22cb79e4b4eb5582c5d0ea921739a98ae09911516e744d19af23a2880f721"
+    },
+    {
       "path": "docs/FINDINGS-TRIAGE-METHOD.md",
       "size_bytes": 759,
       "sha256": "8919af18cbcf3ce995febef01d01d705c446f4243ce892dd5e9cc3db0592066c"
     },
     {
+      "path": "docs/MAINTAINER-HANDOFF.md",
+      "size_bytes": 1917,
+      "sha256": "a4bd4df0e0211faf2b48bc59024d6d950f1c1e6bd783983ee2bf712e9538031f"
+    },
+    {
+      "path": "docs/MERGE-READINESS-CHECKLIST.md",
+      "size_bytes": 1239,
+      "sha256": "8d17b76dff90692cb6eb793ee6e8318f1045d79d3978503eb892d51500a38cd7"
+    },
+    {
       "path": "docs/NEGATIVE-VECTOR-METHOD.md",
       "size_bytes": 794,
       "sha256": "c3e07e0648ea0e9c4ee3371596a597b6795f75cbc7680dd919d8b0885a21701f"
+    },
+    {
+      "path": "docs/POST-MERGE-OPERATIONS.md",
+      "size_bytes": 768,
+      "sha256": "961e584670dea3f0309c69d3db4a027aef132ce1a4c66deb788ede2ae11d21c1"
     },
     {
       "path": "docs/PRIVATE-DISCLOSURE-METHOD.md",
@@ -95,6 +115,11 @@
       "path": "docs/REQUIRED-CHECK-GATE-METHOD.md",
       "size_bytes": 890,
       "sha256": "d0a1a4837b041eafe7befa81d42e778589f60be725c16fefc9e707d9c3704f07"
+    },
+    {
+      "path": "docs/REVIEWER-GUIDE.md",
+      "size_bytes": 729,
+      "sha256": "b3774dc99c9ee8b9fe7ac6482b0718b526ff78900ae69d2602eac5bf928362f4"
     },
     {
       "path": "docs/SECURITY-MODEL.md",
@@ -587,6 +612,26 @@
       "sha256": "4645ed96a0d8dc0e6d5ac9945c2b42ce16d23398ee85822c4fe3c5eb2f8d2769"
     },
     {
+      "path": "reports/nightfall/v1.0.5/MAINTAINER-HANDOFF.json",
+      "size_bytes": 2124,
+      "sha256": "fb9808f53e0d782498726199e8cfa122fb760e6e124a274ecb7cd0cf8b4dc0bd"
+    },
+    {
+      "path": "reports/nightfall/v1.0.5/MAINTAINER-HANDOFF.md",
+      "size_bytes": 1365,
+      "sha256": "0b062ef2931dff2fe5f1c1315a56f461840db539891e509625defe14408d917d"
+    },
+    {
+      "path": "reports/nightfall/v1.0.5/MERGE-READINESS.json",
+      "size_bytes": 710,
+      "sha256": "1a5f7e41f5f819b955e4306adadf45a23bd8cae71ba8d8cb57a9ac602bd9c58c"
+    },
+    {
+      "path": "reports/nightfall/v1.0.5/MERGE-READINESS.md",
+      "size_bytes": 292,
+      "sha256": "5e9ab9cbea365b58db391a133d3bb10c7c89dd9f67269f740ab36cdfed3a024c"
+    },
+    {
       "path": "reports/nightfall/v1.0.5/NEGATIVE-VECTORS.json",
       "size_bytes": 4867,
       "sha256": "a391993a6262b4f4ac57750cf705864afae5decdd47c77d5fec2944614b56e2c"
@@ -657,6 +702,21 @@
       "sha256": "6066be24cc50648cc7a9270795d54970700fc2609a85e080f96830d1df288cc6"
     },
     {
+      "path": "templates/handoff/maintainer-review-checklist.md",
+      "size_bytes": 351,
+      "sha256": "56afd1cd5d0ad7a51d3862a6f524e9b761bd3a407a4f778b453335b227b22b1f"
+    },
+    {
+      "path": "templates/handoff/pr-review-comment.md",
+      "size_bytes": 254,
+      "sha256": "6dd6493e478c3cbd2b24b18a0f056acdf50fae858456371ed8815fb6e423b20a"
+    },
+    {
+      "path": "templates/handoff/release-note.md",
+      "size_bytes": 241,
+      "sha256": "fd90be9c094bbb124ef97a331ba55b7b3ae2f80efcc51b1c4cddbdf1956a0a6e"
+    },
+    {
       "path": "templates/security/finding-record.json",
       "size_bytes": 459,
       "sha256": "1313e209a1a92b74807ebf24900554f4cf38ad9bba51f4adaac55c24b02d703e"
@@ -690,6 +750,11 @@
       "path": "tests/test_conformance_score.py",
       "size_bytes": 1521,
       "sha256": "0c84a5de686b8c9293962dce8bdf8e36bb0b099d13df5714037ed8b467c063c7"
+    },
+    {
+      "path": "tests/test_handoff_readiness.py",
+      "size_bytes": 1768,
+      "sha256": "2c901820eb6e6e35841aac9f685881c394a4cea615aefc8a8784d811125d683d"
     },
     {
       "path": "tests/test_negative_vectors.py",
@@ -745,6 +810,11 @@
       "path": "wvp/nightfall/conformance_score.py",
       "size_bytes": 1975,
       "sha256": "175f1d22cc2eb5483ba0bd199fbd63288ef0bf43551cfc23e8aabf82601de5dc"
+    },
+    {
+      "path": "wvp/nightfall/handoff_readiness.py",
+      "size_bytes": 2737,
+      "sha256": "e474f9c7ca9e7745a2674b9dc30027e421678b5afeb34771be5133315b073d86"
     },
     {
       "path": "wvp/nightfall/negative_vectors.py",

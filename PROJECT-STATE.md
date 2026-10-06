@@ -285,3 +285,32 @@ It does not itself enable GitHub branch protection and does not prove project sa
 Next milestone:
 
 WVP-SEC-012 - create maintainer handoff, final roadmap, and merge-readiness checklist.
+
+
+## WVP-SEC-012
+
+Status: implemented.
+
+Completed:
+
+- maintainer handoff documentation
+- merge-readiness checklist
+- final roadmap
+- post-merge operations guide
+- reviewer guide
+- handoff templates
+- handoff readiness report
+- merge-readiness report
+- executable handoff readiness checker
+- unit tests
+- CI integration
+- release-pack refresh
+
+Boundary:
+
+This step makes the project maintainable and locally merge-ready.
+It does not merge PRs, enable GitHub branch protection, provide independent review, or prove project safety.
+
+Next milestone:
+
+WVP-SEC-013 - external review preparation and issue-quality gate.

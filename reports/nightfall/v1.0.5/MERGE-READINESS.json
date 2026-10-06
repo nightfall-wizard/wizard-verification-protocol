@@ -1,0 +1,27 @@
+{
+  "id": "WVP-SEC-012-MERGE-READINESS",
+  "created_unix": 1791321686,
+  "required_checks": [
+    "unit tests",
+    "nightfall verifier",
+    "codepath binding",
+    "semantic regression",
+    "command probes",
+    "release integrity",
+    "supply invariant",
+    "negative vectors",
+    "triage workflow",
+    "conformance score",
+    "release pack",
+    "CI hardening",
+    "handoff readiness"
+  ],
+  "merge_ready_local": true,
+  "requires_external_github_action": [
+    "open PR",
+    "wait for GitHub Actions",
+    "enable branch protection manually if not already enabled",
+    "merge after review"
+  ],
+  "boundary": "Local merge readiness is not the same as merged, reviewed, or protected on GitHub."
+}

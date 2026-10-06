@@ -1,12 +1,12 @@
 {
   "id": "WVP-SEC-010",
-  "created_unix": 1791321473,
+  "created_unix": 1791321686,
   "archive": "release-packs/nightfall/v1.0.5/wvp-nightfall-v1.0.5-evidence-pack.tar.gz",
-  "archive_sha256": "07e17f70e71c758a44259e0e050eede2e10d8dafd98d051513feb860e6e27851",
+  "archive_sha256": "08b28bf2b7ab627bc8fdc457316c41a040ee407f8d588b3cb9cfdeec93c40610",
   "checksum_file": "release-packs/nightfall/v1.0.5/SHA256SUMS.txt",
   "manifest": "release-packs/nightfall/v1.0.5/BUNDLE-MANIFEST.json",
   "manifest_markdown": "release-packs/nightfall/v1.0.5/BUNDLE-MANIFEST.md",
-  "file_count": 155,
+  "file_count": 169,
   "excluded_self_referential_files": [
     "release-packs/nightfall/v1.0.5/BUNDLE-MANIFEST.json",
     "release-packs/nightfall/v1.0.5/BUNDLE-MANIFEST.md",

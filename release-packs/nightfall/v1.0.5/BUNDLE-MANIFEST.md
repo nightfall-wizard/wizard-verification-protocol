@@ -6,7 +6,7 @@ Boundary: this release pack is not an audit and not a certification.
 
 Pack name: `wvp-nightfall-v1.0.5-evidence-pack`
 
-Files: 155
+Files: 169
 
 ## Safety boundary
 
@@ -33,21 +33,26 @@ Files: 155
 | `.github/workflows/ci.yml` | 8591 | `955e3415045a65556f1414e372c5ce39440f3bc53def7bf78b918cdbfa02ce7d` |
 | `.github/workflows/wvp-nightfall-security.yml` | 890 | `0eb7611c860176b2b41532de5de3147e934602c9e5bf6739d3e10d451cd826e8` |
 | `.github/workflows/wvp-release-reality-check.yml` | 2176 | `a2d094fedd28a4a4044a6686d85ccf4b2a03953b3fe8baf1fc001cb72ad2703a` |
-| `.github/workflows/wvp-required-checks.yml` | 1554 | `a7b734ebf9ab47c9794ccd599786b5a78b405c379111842ff7e3c3b0b41ac76c` |
-| `PROJECT-STATE.md` | 5520 | `16eeda0e797205ad8a8801ad89dd045c149ebf76c51b6de7b17f79f15a768372` |
+| `.github/workflows/wvp-required-checks.yml` | 1643 | `890c2303704fac184a86d9aee10e408a78c46e2282aabd7e965950044fceea12` |
+| `PROJECT-STATE.md` | 6133 | `1ea0e30e372a822e703dacd8513911985a502a7a61c41aeee57915a0ca02df85` |
 | `README.md` | 18647 | `1762535e1f9eb0c5803ee4c76e3c4cfbf92fa77ad1c08de513ddf0687d3b06b0` |
 | `SECURITY.md` | 658 | `9dc600cc35d5ac66a512601a4c17629f1b853d7e502875f6a310155bced1f451` |
 | `docs/CI-HARDENING-METHOD.md` | 824 | `15d7d44a6c6810cedb998d8c7814bd68f99568c5a96759b5ca5a25e74a35e853` |
 | `docs/CODEPATH-BINDING-METHOD.md` | 666 | `b966ec2c332aa21420eacc823eaa1e03458c0e1c4c28b8ed38ceef7073ea8d90` |
 | `docs/COMMAND-PROBE-METHOD.md` | 814 | `59ee9c78ad19bce09cf90fe8b121a0d9f6f35706a2becc573753c8c7416408fc` |
 | `docs/CONFORMANCE-SCORING-METHOD.md` | 754 | `aa12e7fca81b130b1db4af3980f597015b4c29377fe018b8f8ef2c298af89b4b` |
+| `docs/FINAL-ROADMAP.md` | 1136 | `6fc22cb79e4b4eb5582c5d0ea921739a98ae09911516e744d19af23a2880f721` |
 | `docs/FINDINGS-TRIAGE-METHOD.md` | 759 | `8919af18cbcf3ce995febef01d01d705c446f4243ce892dd5e9cc3db0592066c` |
+| `docs/MAINTAINER-HANDOFF.md` | 1917 | `a4bd4df0e0211faf2b48bc59024d6d950f1c1e6bd783983ee2bf712e9538031f` |
+| `docs/MERGE-READINESS-CHECKLIST.md` | 1239 | `8d17b76dff90692cb6eb793ee6e8318f1045d79d3978503eb892d51500a38cd7` |
 | `docs/NEGATIVE-VECTOR-METHOD.md` | 794 | `c3e07e0648ea0e9c4ee3371596a597b6795f75cbc7680dd919d8b0885a21701f` |
+| `docs/POST-MERGE-OPERATIONS.md` | 768 | `961e584670dea3f0309c69d3db4a027aef132ce1a4c66deb788ede2ae11d21c1` |
 | `docs/PRIVATE-DISCLOSURE-METHOD.md` | 1077 | `2132fb092f75e0ce532092c877d7515f1df3986faf88b21dd277906281fff30d` |
 | `docs/PUBLIC-REPORT-METHOD.md` | 443 | `62ed91e74829f3a2f6acc6eb34d182fe2ef409849c8ce115e3661c68d2368c54` |
 | `docs/RELEASE-INTEGRITY-METHOD.md` | 790 | `b1be17d8d4fae810c9031aa751c0620582f11c506bd912cf2cd302ed475a4d43` |
 | `docs/RELEASE-PACK-METHOD.md` | 1060 | `6587fb5098d3e37888ee8e4f3361a7f1ed98399ca2c15dac9e7ec856429e37bb` |
 | `docs/REQUIRED-CHECK-GATE-METHOD.md` | 890 | `d0a1a4837b041eafe7befa81d42e778589f60be725c16fefc9e707d9c3704f07` |
+| `docs/REVIEWER-GUIDE.md` | 729 | `b3774dc99c9ee8b9fe7ac6482b0718b526ff78900ae69d2602eac5bf928362f4` |
 | `docs/SECURITY-MODEL.md` | 600 | `aa7791f6af51315671c5e413448f5da23793984dd6642d17364eb4d8128daada` |
 | `docs/SEMANTIC-REGRESSION-METHOD.md` | 799 | `f74e9584ec44a1ddb72244a3fb39580df9d7f5bd8358f5b3d1b9882c7b00e790` |
 | `docs/SUPPLY-INVARIANT-METHOD.md` | 1060 | `f2cab69df71546bc0dd6913b3b77ff7faa9d3c9c6bf07082a15a6ccc8553cfc7` |
@@ -146,6 +151,10 @@ Files: 155
 | `reports/nightfall/v1.0.5/FINDINGS-TRIAGE.md` | 2707 | `af2c0931473818544f5e867546d0038f062bf6480c885da0afa72d80d61b72a9` |
 | `reports/nightfall/v1.0.5/FINDINGS.md` | 672 | `9c3e7c60e54d5bf3c91c3a5ac024fc5872358224618d80d11ae6371fabe39d5b` |
 | `reports/nightfall/v1.0.5/LIMITATIONS.md` | 484 | `4645ed96a0d8dc0e6d5ac9945c2b42ce16d23398ee85822c4fe3c5eb2f8d2769` |
+| `reports/nightfall/v1.0.5/MAINTAINER-HANDOFF.json` | 2124 | `fb9808f53e0d782498726199e8cfa122fb760e6e124a274ecb7cd0cf8b4dc0bd` |
+| `reports/nightfall/v1.0.5/MAINTAINER-HANDOFF.md` | 1365 | `0b062ef2931dff2fe5f1c1315a56f461840db539891e509625defe14408d917d` |
+| `reports/nightfall/v1.0.5/MERGE-READINESS.json` | 710 | `1a5f7e41f5f819b955e4306adadf45a23bd8cae71ba8d8cb57a9ac602bd9c58c` |
+| `reports/nightfall/v1.0.5/MERGE-READINESS.md` | 292 | `5e9ab9cbea365b58db391a133d3bb10c7c89dd9f67269f740ab36cdfed3a024c` |
 | `reports/nightfall/v1.0.5/NEGATIVE-VECTORS.json` | 4867 | `a391993a6262b4f4ac57750cf705864afae5decdd47c77d5fec2944614b56e2c` |
 | `reports/nightfall/v1.0.5/NEGATIVE-VECTORS.md` | 3511 | `5bc448c1f0ac112073b740e067f3201d94fe4d972d1bf1da5e8dd257872a1adb` |
 | `reports/nightfall/v1.0.5/PUBLIC-REPORT.md` | 1537 | `383664d405bb3a5ac6a95bfe20cc4d3af985af09f24142fad95a28153a7d372a` |
@@ -160,6 +169,9 @@ Files: 155
 | `reports/nightfall/v1.0.5/TRACEABILITY.md` | 835 | `8d8465260c9f5c30a9f4d1deab473f61cbaffd2e59af60dbaf2d90c0fb7c97ca` |
 | `templates/github/branch-protection-required-checks.json` | 501 | `567e3cf6dca470b0a84153d9abb4617834cc3ba6b8b1a7ab81db9735b9c85c1c` |
 | `templates/github/required-checks.md` | 238 | `6066be24cc50648cc7a9270795d54970700fc2609a85e080f96830d1df288cc6` |
+| `templates/handoff/maintainer-review-checklist.md` | 351 | `56afd1cd5d0ad7a51d3862a6f524e9b761bd3a407a4f778b453335b227b22b1f` |
+| `templates/handoff/pr-review-comment.md` | 254 | `6dd6493e478c3cbd2b24b18a0f056acdf50fae858456371ed8815fb6e423b20a` |
+| `templates/handoff/release-note.md` | 241 | `fd90be9c094bbb124ef97a331ba55b7b3ae2f80efcc51b1c4cddbdf1956a0a6e` |
 | `templates/security/finding-record.json` | 459 | `1313e209a1a92b74807ebf24900554f4cf38ad9bba51f4adaac55c24b02d703e` |
 | `templates/security/private-disclosure-checklist.md` | 461 | `a868cacf2c3babebe3f41682e51a470914d1bd73b09f0d0921daaa0975f96b01` |
 | `templates/security/sanitized-finding.md` | 490 | `3a5fd065a013a693666649c5e8c0e4131aa8a881b2b76df6e1c0794487abe57c` |
@@ -167,6 +179,7 @@ Files: 155
 | `tests/test_codepath_bindings.py` | 927 | `0269dc46c111664272d3f6ea219327c87992ebfdca612e3a20f85831b38c3ed3` |
 | `tests/test_command_probes.py` | 1022 | `33f915f4bc7981ae0bb41dd4b68169ecc15e813e926de6993970c4ef4c5ade15` |
 | `tests/test_conformance_score.py` | 1521 | `0c84a5de686b8c9293962dce8bdf8e36bb0b099d13df5714037ed8b467c063c7` |
+| `tests/test_handoff_readiness.py` | 1768 | `2c901820eb6e6e35841aac9f685881c394a4cea615aefc8a8784d811125d683d` |
 | `tests/test_negative_vectors.py` | 1598 | `178b5de878468b6c93b66e5000dd725d6e6e16850a23515f8829d44af3cef411` |
 | `tests/test_nightfall_verifier.py` | 1144 | `230efced57b370d0542bf09c24ad2636e54460f77e409d2acb5c7adbf0a42f3a` |
 | `tests/test_release_integrity.py` | 1347 | `89a6561ad5890c08181eaa22e17c6a991dba3818db79973081e16c6f47d203da` |
@@ -178,6 +191,7 @@ Files: 155
 | `wvp/nightfall/codepath_binding.py` | 803 | `cf2e9b659994a10f2f8b883e5a9eea5e93c563e46e02f54d958f3ccdb8deb35a` |
 | `wvp/nightfall/command_probes.py` | 947 | `778c0a4314fe3a934b45c9b0b2d829f67e53c128ff7e28d1b755641e5e7877d3` |
 | `wvp/nightfall/conformance_score.py` | 1975 | `175f1d22cc2eb5483ba0bd199fbd63288ef0bf43551cfc23e8aabf82601de5dc` |
+| `wvp/nightfall/handoff_readiness.py` | 2737 | `e474f9c7ca9e7745a2674b9dc30027e421678b5afeb34771be5133315b073d86` |
 | `wvp/nightfall/negative_vectors.py` | 2170 | `64a2134c9a6b0f5ae5d9f40d9e4daf927fb462707f825f2adc5faf3b69c5ee5b` |
 | `wvp/nightfall/release_integrity.py` | 1265 | `651f6f9963b0aa3c1feb0dca3d3b90158963bd155e3276176e8cfde8b9c10fce` |
 | `wvp/nightfall/release_pack.py` | 2373 | `8acffa2e4fef38ae92a08c60db917023d458c6e7467656551dc0a0bb5e0d38a2` |

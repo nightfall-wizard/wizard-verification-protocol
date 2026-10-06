@@ -66,3 +66,6 @@ jobs:
 
       - name: CI hardening
         run: python3 wvp/nightfall/ci_hardening.py
+
+      - name: Handoff readiness
+        run: python3 wvp/nightfall/handoff_readiness.py
