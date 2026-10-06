@@ -1,0 +1,109 @@
+{
+  "schema_version": "auneya-pulse-flow-v0.1",
+  "flow_id": "auneya_flow_local_runner_001",
+  "flow_type": "phone_witness_loop",
+  "claim_ref": {
+    "claim_id": "auneya_claim_release_reality_001",
+    "claim_schema_version": "auneya-claim-v0.1",
+    "claim_hash": "sha256:63c401c6dc8e4a0ea8a7340f02d8598f32e0fbb411aa323505ffb927dc4e6a62"
+  },
+  "witness": {
+    "witness_id": "witness_android_termux_local_001",
+    "device_class": "android_termux",
+    "environment_class": "phone_safe",
+    "software_name": "wvp",
+    "software_version": "local-runner-v0.1"
+  },
+  "cadence": {
+    "pulse_interval_seconds": 1,
+    "micro_proof_every_pulses": 2,
+    "prooflet_every_micro_proofs": 2,
+    "max_duration_seconds": 60
+  },
+  "pulses": [
+    {
+      "pulse_index": 1,
+      "pulse_type": "http_status",
+      "target_locator": "https://github.com/nightfall-wizard/wizard-verification-protocol/releases",
+      "observed_status": "observed",
+      "evidence_hint": "local non-value observation for http_status",
+      "observed_at": "2026-10-06T00:08:00Z"
+    },
+    {
+      "pulse_index": 2,
+      "pulse_type": "release_metadata",
+      "target_locator": "https://github.com/nightfall-wizard/wizard-verification-protocol/releases",
+      "observed_status": "observed",
+      "evidence_hint": "local non-value observation for release_metadata",
+      "observed_at": "2026-10-06T00:08:01Z"
+    },
+    {
+      "pulse_index": 3,
+      "pulse_type": "http_status",
+      "target_locator": "https://github.com/nightfall-wizard/wizard-verification-protocol/releases",
+      "observed_status": "observed",
+      "evidence_hint": "local non-value observation for http_status",
+      "observed_at": "2026-10-06T00:08:02Z"
+    },
+    {
+      "pulse_index": 4,
+      "pulse_type": "http_status",
+      "target_locator": "https://github.com/nightfall-wizard/wizard-verification-protocol/releases",
+      "observed_status": "observed",
+      "evidence_hint": "local non-value observation for http_status",
+      "observed_at": "2026-10-06T00:08:03Z"
+    }
+  ],
+  "micro_proofs": [
+    {
+      "micro_proof_id": "auneya_micro_proof_local_001",
+      "pulse_indexes": [
+        1,
+        2
+      ],
+      "micro_proof_hash": "sha256:44c4863e5ab76d07d96051c555c5c78d2b274bb153a23c08640530fc27c00285",
+      "observed_status": "observed",
+      "created_at": "2026-10-06T00:08:02Z"
+    },
+    {
+      "micro_proof_id": "auneya_micro_proof_local_002",
+      "pulse_indexes": [
+        3,
+        4
+      ],
+      "micro_proof_hash": "sha256:f3a79fa9ccb8a5cd7e4c0815806a1a9d0e5816516fab75d6df4fdba095b8f9d5",
+      "observed_status": "observed",
+      "created_at": "2026-10-06T00:08:04Z"
+    }
+  ],
+  "prooflet": {
+    "prooflet_id": "auneya_prooflet_local_001",
+    "claim_id": "auneya_claim_release_reality_001",
+    "micro_proof_ids": [
+      "auneya_micro_proof_local_001",
+      "auneya_micro_proof_local_002"
+    ],
+    "observed_status": "observed",
+    "prooflet_hash": "sha256:dbf118f2f46bdb7a1efbed980dea6ec1a261aba60178a44bceb6c56a88ba35f1",
+    "created_at": "2026-10-06T00:08:05Z"
+  },
+  "lawful_boundary_confirmation": {
+    "public_or_authorized_target": true,
+    "no_private_data_accessed": true,
+    "no_hacked_data_used": true,
+    "no_paywall_bypass_used": true,
+    "no_credentials_used": true,
+    "no_surveillance_performed": true,
+    "notes": "Local runner used only lawful public or authorized claim fixture metadata."
+  },
+  "simulated_reward_entry": {
+    "entry_type": "non_value_simulation",
+    "unit": "simulated_neya",
+    "amount": 18420,
+    "transferable": false,
+    "market_value_claimed": false,
+    "notes": "Local simulation-only entry with no transferability and no market value."
+  },
+  "created_at": "2026-10-06T00:08:06Z",
+  "non_value_notice": "This local witness report is protocol research and does not create a token, real reward or market value."
+}

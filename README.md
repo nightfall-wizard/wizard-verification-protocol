@@ -261,3 +261,34 @@ Explicit non-claims:
 - Legal review is required before any public token launch, listing, sale, transferability or market-value communication.
 <!-- WVP:AUNEYA-PULSE-FLOW-V01:END -->
 
+<!-- WVP:AUNEYA-LOCAL-WITNESS-RUNNER-V01:START -->
+## AUNEYA Local Witness Runner v0.1
+
+AUNEYA Local Witness Runner v0.1 generates a local non-value pulse-flow report from a lawful public claim fixture.
+
+It defines:
+
+- Termux-local witness execution
+- lawful claim rejection
+- Pulse generation
+- Micro-Proof generation
+- Prooflet generation
+- non-value simulated reward entry generation
+
+Files:
+
+- `tools/auneya/auneya_local_witness_runner.py`
+- `docs/auneya/AUNEYA-LOCAL-WITNESS-RUNNER-V0.1.md`
+- `fixtures/auneya/local-runner/example-local-witness-flow.json`
+- `conformance/auneya-local-witness-runner-v0.1.sh`
+
+Explicit non-claims:
+
+- No token is created by this runner.
+- No real reward is created by this runner.
+- No market value is claimed.
+- No mainnet is activated.
+- Simulated reward entries are non-transferable and non-value only.
+- Legal review is required before any public token launch, listing, sale, transferability or market-value communication.
+<!-- WVP:AUNEYA-LOCAL-WITNESS-RUNNER-V01:END -->
+

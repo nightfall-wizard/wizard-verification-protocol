@@ -2230,3 +2230,46 @@ This defines how a lawful public claim can be processed by a phone witness as Pu
 Define AUNEYA Local Witness Runner v0.1 so Termux can generate a local non-value pulse-flow report from public claim fixtures.
 <!-- WVP:STEP-27-AUNEYA-PULSE-FLOW-V01:END -->
 
+<!-- WVP:STEP-28-AUNEYA-LOCAL-WITNESS-RUNNER-V01:START -->
+## STEP 28 — AUNEYA Local Witness Runner v0.1
+
+Date: 2026-10-06
+
+### Purpose
+
+AUNEYA now has its first local Termux-compatible witness runner.
+
+The runner reads a lawful public AUNEYA claim fixture and emits a local non-value AUNEYA Pulse and Prooflet Flow v0.1 report.
+
+### Added
+
+- `tools/auneya/auneya_local_witness_runner.py`
+- `docs/auneya/AUNEYA-LOCAL-WITNESS-RUNNER-V0.1.md`
+- `fixtures/auneya/local-runner/example-local-witness-flow.json`
+- `conformance/auneya-local-witness-runner-v0.1.sh`
+
+### Verified
+
+- valid public release-reality claim produces a local pulse-flow report
+- invalid private-data claim is rejected
+- generated local report has four one-second Pulses
+- generated local report has two Micro-Proofs
+- generated local report has one Prooflet
+- simulated reward entry is non-transferable
+- simulated reward entry claims no market value
+- runner performs no mainnet activation and creates no token
+
+### Explicit non-claims
+
+- No token is created by this step.
+- No real reward is created by this step.
+- No token sale is offered.
+- No market value is claimed.
+- No return, profit, yield or financial outcome is offered or promised.
+- Legal review is required before any public token launch, listing, sale, transferability or market-value communication.
+
+### Next target
+
+Define AUNEYA Local Witness CLI Display v0.1 so Termux can show a clean phone-first live-style report from the local runner output.
+<!-- WVP:STEP-28-AUNEYA-LOCAL-WITNESS-RUNNER-V01:END -->
+

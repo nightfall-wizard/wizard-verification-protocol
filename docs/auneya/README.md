@@ -55,3 +55,11 @@ The event schema defines how multiple lawful witness proofs for the same claim f
 - `../../conformance/auneya-pulse-flow-v0.1.sh`
 
 The pulse flow defines the first phone-first witness loop: Pulse -> Micro-Proof -> Prooflet.
+
+## Local Witness Runner
+
+- `AUNEYA-LOCAL-WITNESS-RUNNER-V0.1.md`
+- `../../tools/auneya/auneya_local_witness_runner.py`
+- `../../conformance/auneya-local-witness-runner-v0.1.sh`
+
+The local witness runner generates a local non-value pulse-flow report from a lawful public claim fixture.
