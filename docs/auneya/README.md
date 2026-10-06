@@ -99,3 +99,14 @@ The local demo quickstart explains how to run the one-command local AUNEYA demo 
 - `../../conformance/auneya-local-claim-selection-v0.1.sh`
 
 The local claim selector lets a Termux user choose between supported lawful public claim fixtures before running the local demo.
+
+## Local Collection Ledger Simulation
+
+- `AUNEYA-LOCAL-COLLECTION-LEDGER-SIMULATION-V0.1.md`
+- `../../tools/auneya/auneya_local_collection_ledger.py`
+- `../../fixtures/auneya/local-runner/example-local-collection-ledger.json`
+- `../../fixtures/auneya/local-runner/example-local-collection-ledger-record.txt`
+- `../../fixtures/auneya/local-runner/example-local-collection-ledger-show.txt`
+- `../../conformance/auneya-local-collection-ledger-simulation-v0.1.sh`
+
+The local collection ledger simulation persistently counts local non-value simulated entries without creating AUNEYA, neya, market value or transferability.

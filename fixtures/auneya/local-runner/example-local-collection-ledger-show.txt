@@ -1,0 +1,16 @@
+AUNEYA LOCAL COLLECTION LEDGER SIMULATION v0.1
+ledger: .tmp/auneya-local-collection-ledger/example/local-collection-ledger.json
+total_simulated_entries: 2
+total_simulated_neya_counted: 36840
+unit: simulated_neya
+Token created: false
+AUNEYA created: false
+neya created: false
+Real reward created: false
+Market value claimed: false
+Transferable: false
+Mainnet: not active
+
+Entries:
+- #1 release-reality 18420 simulated_neya auneya_claim_release_reality_001
+- #2 download-integrity 18420 simulated_neya auneya_claim_download_integrity_001

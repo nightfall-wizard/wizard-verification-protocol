@@ -2446,3 +2446,51 @@ A phone user can list and choose between supported lawful public claim fixtures 
 Define AUNEYA Local Collection Ledger Simulation v0.1 so local non-value entries can be counted persistently without creating AUNEYA, neya, market value or transferability.
 <!-- WVP:STEP-32-AUNEYA-LOCAL-CLAIM-SELECTION-V01:END -->
 
+<!-- WVP:STEP-33-AUNEYA-LOCAL-COLLECTION-LEDGER-SIMULATION-V01:START -->
+## STEP 33 — AUNEYA Local Collection Ledger Simulation v0.1
+
+Date: 2026-10-06
+
+### Purpose
+
+AUNEYA now has a local collection ledger simulation.
+
+The ledger persistently counts local non-value simulated entries from lawful public claim runs.
+
+### Added
+
+- `tools/auneya/auneya_local_collection_ledger.py`
+- `docs/auneya/AUNEYA-LOCAL-COLLECTION-LEDGER-SIMULATION-V0.1.md`
+- `fixtures/auneya/local-runner/example-local-collection-ledger.json`
+- `fixtures/auneya/local-runner/example-local-collection-ledger-record.txt`
+- `fixtures/auneya/local-runner/example-local-collection-ledger-show.txt`
+- `conformance/auneya-local-collection-ledger-simulation-v0.1.sh`
+
+### Verified
+
+- ledger can be reset
+- ledger records local non-value simulated entries
+- ledger shows total simulated entries
+- ledger shows total simulated_neya counted
+- ledger supports selected lawful public claim keys
+- invalid claim key is rejected
+- ledger entries are non-transferable
+- ledger entries claim no market value
+- no token, AUNEYA, neya, real reward or mainnet is created
+
+### Explicit non-claims
+
+- No token is created by this step.
+- No AUNEYA is created by this step.
+- No neya is created by this step.
+- No real reward is created by this step.
+- No token sale is offered.
+- No market value is claimed.
+- No return, profit, yield or financial outcome is offered or promised.
+- Legal review is required before any public token launch, listing, sale, transferability or market-value communication.
+
+### Next target
+
+Define AUNEYA Local Collection Status Display v0.1 so a phone user can see local simulated collection totals in a clean Termux view.
+<!-- WVP:STEP-33-AUNEYA-LOCAL-COLLECTION-LEDGER-SIMULATION-V01:END -->
+

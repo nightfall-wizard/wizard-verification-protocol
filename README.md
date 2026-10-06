@@ -439,3 +439,43 @@ Explicit non-claims:
 - Legal review is required before any public token launch, listing, sale, transferability or market-value communication.
 <!-- WVP:AUNEYA-LOCAL-CLAIM-SELECTION-V01:END -->
 
+<!-- WVP:AUNEYA-LOCAL-COLLECTION-LEDGER-SIMULATION-V01:START -->
+## AUNEYA Local Collection Ledger Simulation v0.1
+
+Record a local non-value simulated entry from Termux:
+
+`python3 tools/auneya/auneya_local_collection_ledger.py --record --claim-key release-reality`
+
+Show the local simulated ledger:
+
+`python3 tools/auneya/auneya_local_collection_ledger.py --show`
+
+Reset the local simulated ledger:
+
+`python3 tools/auneya/auneya_local_collection_ledger.py --reset`
+
+Self-check:
+
+`./conformance/auneya-local-collection-ledger-simulation-v0.1.sh`
+
+Files:
+
+- `tools/auneya/auneya_local_collection_ledger.py`
+- `docs/auneya/AUNEYA-LOCAL-COLLECTION-LEDGER-SIMULATION-V0.1.md`
+- `fixtures/auneya/local-runner/example-local-collection-ledger.json`
+- `fixtures/auneya/local-runner/example-local-collection-ledger-record.txt`
+- `fixtures/auneya/local-runner/example-local-collection-ledger-show.txt`
+- `conformance/auneya-local-collection-ledger-simulation-v0.1.sh`
+
+Explicit non-claims:
+
+- No token is created by this ledger.
+- No AUNEYA is created by this ledger.
+- No neya is created by this ledger.
+- No real reward is created by this ledger.
+- No market value is claimed.
+- No mainnet is activated.
+- Simulated entries are non-transferable and non-value only.
+- Legal review is required before any public token launch, listing, sale, transferability or market-value communication.
+<!-- WVP:AUNEYA-LOCAL-COLLECTION-LEDGER-SIMULATION-V01:END -->
+
