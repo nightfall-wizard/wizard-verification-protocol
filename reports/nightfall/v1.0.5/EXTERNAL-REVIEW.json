@@ -1,0 +1,100 @@
+{
+  "id": "WVP-SEC-013",
+  "created_unix": 1791321823,
+  "purpose": "External review preparation and issue-quality gate",
+  "review_item_count": 13,
+  "review_item_pass": 13,
+  "review_item_warn": 0,
+  "items": [
+    {
+      "id": "EXT-001",
+      "name": "external_review_preparation_doc",
+      "status": "PASS",
+      "path": "docs/EXTERNAL-REVIEW-PREPARATION.md"
+    },
+    {
+      "id": "EXT-002",
+      "name": "issue_quality_gate_method",
+      "status": "PASS",
+      "path": "docs/ISSUE-QUALITY-GATE-METHOD.md"
+    },
+    {
+      "id": "EXT-003",
+      "name": "external_review_request",
+      "status": "PASS",
+      "path": "docs/EXTERNAL-REVIEW-REQUEST.md"
+    },
+    {
+      "id": "EXT-004",
+      "name": "review_scope",
+      "status": "PASS",
+      "path": "docs/REVIEW-SCOPE.md"
+    },
+    {
+      "id": "EXT-005",
+      "name": "reviewer_response_log",
+      "status": "PASS",
+      "path": "docs/REVIEWER-RESPONSE-LOG.md"
+    },
+    {
+      "id": "EXT-006",
+      "name": "evidence_gap_template",
+      "status": "PASS",
+      "path": "templates/issues/evidence-gap.md"
+    },
+    {
+      "id": "EXT-007",
+      "name": "reviewer_question_template",
+      "status": "PASS",
+      "path": "templates/issues/reviewer-question.md"
+    },
+    {
+      "id": "EXT-008",
+      "name": "sanitized_security_observation_template",
+      "status": "PASS",
+      "path": "templates/issues/sanitized-security-observation.md"
+    },
+    {
+      "id": "EXT-009",
+      "name": "external_review_request_template",
+      "status": "PASS",
+      "path": "templates/review/external-review-request.md"
+    },
+    {
+      "id": "EXT-010",
+      "name": "reviewer_response_log_template",
+      "status": "PASS",
+      "path": "templates/review/reviewer-response-log.md"
+    },
+    {
+      "id": "EXT-011",
+      "name": "review_scope_confirmation_template",
+      "status": "PASS",
+      "path": "templates/review/review-scope-confirmation.md"
+    },
+    {
+      "id": "EXT-012",
+      "name": "non_audit_boundary",
+      "status": "PASS",
+      "path": "docs/EXTERNAL-REVIEW-PREPARATION.md"
+    },
+    {
+      "id": "EXT-013",
+      "name": "private_disclosure_boundary",
+      "status": "PASS",
+      "path": "docs/EXTERNAL-REVIEW-REQUEST.md"
+    }
+  ],
+  "recommended_next_milestone": "WVP-SEC-014 runtime test-harness expansion for safe local toy inputs",
+  "safety_boundary": {
+    "no_real_seed": true,
+    "no_private_key": true,
+    "no_wallet_file": true,
+    "no_live_funds": true,
+    "no_exploit_payloads": true,
+    "no_weaponized_reproduction": true,
+    "public_report_sanitized": true,
+    "non_audit_boundary_required": true
+  },
+  "boundary": "This prepares external review and issue hygiene. It is not an audit, not a certification, and not proof that Nightfall is safe."
+}

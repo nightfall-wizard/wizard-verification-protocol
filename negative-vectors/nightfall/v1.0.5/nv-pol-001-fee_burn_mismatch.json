@@ -1,0 +1,18 @@
+{
+  "id": "NV-POL-001",
+  "fixture": "fee_burn_mismatch",
+  "class": "monetary_policy",
+  "expected_result": "reject_or_warn",
+  "safety": "abstract_only",
+  "contains_secret": false,
+  "contains_live_funds": false,
+  "mutation_target": "fee_burn_accounting_mismatch",
+  "description": "Abstract vector for fee accounting mismatch around burn logic.",
+  "schema": "wvp.negative_vector.v1",
+  "created_by": "WVP-SEC-007",
+  "payload": {
+    "kind": "non_executable_placeholder",
+    "note": "This vector is intentionally abstract and safe. It contains no exploit payload, key, seed, or live fund reference."
+  },
+  "sha256": "c55817bc987ab89bdd478dab62c0e85676b34893c080948886e98b12cf4d1a69"
+}

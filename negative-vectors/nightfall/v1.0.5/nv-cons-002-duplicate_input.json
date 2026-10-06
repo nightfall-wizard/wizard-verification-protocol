@@ -1,0 +1,18 @@
+{
+  "id": "NV-CONS-002",
+  "fixture": "duplicate_input",
+  "class": "consensus",
+  "expected_result": "reject",
+  "safety": "abstract_only",
+  "contains_secret": false,
+  "contains_live_funds": false,
+  "mutation_target": "same_input_twice",
+  "description": "Abstract vector for duplicate input use inside one validation surface.",
+  "schema": "wvp.negative_vector.v1",
+  "created_by": "WVP-SEC-007",
+  "payload": {
+    "kind": "non_executable_placeholder",
+    "note": "This vector is intentionally abstract and safe. It contains no exploit payload, key, seed, or live fund reference."
+  },
+  "sha256": "d1554856583912857ca0e7e07c8724107f08864b90b6dd31da0a9c4dc2dccad2"
+}

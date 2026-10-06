@@ -1,0 +1,121 @@
+{
+  "id": "WVP-SEC-015",
+  "created_unix": 1791322101,
+  "purpose": "Repository governance and versioned release process",
+  "control_count": 15,
+  "control_pass": 15,
+  "control_warn": 0,
+  "controls": [
+    {
+      "id": "GOV-001",
+      "name": "governance_doc",
+      "status": "PASS",
+      "path": "docs/GOVERNANCE.md"
+    },
+    {
+      "id": "GOV-002",
+      "name": "versioning_policy",
+      "status": "PASS",
+      "path": "docs/VERSIONING-POLICY.md"
+    },
+    {
+      "id": "GOV-003",
+      "name": "release_process",
+      "status": "PASS",
+      "path": "docs/RELEASE-PROCESS.md"
+    },
+    {
+      "id": "GOV-004",
+      "name": "changelog_policy",
+      "status": "PASS",
+      "path": "docs/CHANGELOG-POLICY.md"
+    },
+    {
+      "id": "GOV-005",
+      "name": "evidence_refresh_cadence",
+      "status": "PASS",
+      "path": "docs/EVIDENCE-REFRESH-CADENCE.md"
+    },
+    {
+      "id": "GOV-006",
+      "name": "maintainer_roles",
+      "status": "PASS",
+      "path": "docs/MAINTAINER-ROLES.md"
+    },
+    {
+      "id": "GOV-007",
+      "name": "changelog",
+      "status": "PASS",
+      "path": "CHANGELOG.md"
+    },
+    {
+      "id": "GOV-008",
+      "name": "release_checklist_template",
+      "status": "PASS",
+      "path": "templates/governance/release-checklist.md"
+    },
+    {
+      "id": "GOV-009",
+      "name": "versioned_release_note_template",
+      "status": "PASS",
+      "path": "templates/governance/versioned-release-note.md"
+    },
+    {
+      "id": "GOV-010",
+      "name": "evidence_refresh_issue_template",
+      "status": "PASS",
+      "path": "templates/governance/evidence-refresh-issue.md"
+    },
+    {
+      "id": "GOV-011",
+      "name": "maintainer_decision_record_template",
+      "status": "PASS",
+      "path": "templates/governance/maintainer-decision-record.md"
+    },
+    {
+      "id": "GOV-012",
+      "name": "governance_review_comment_template",
+      "status": "PASS",
+      "path": "templates/governance/governance-review-comment.md"
+    },
+    {
+      "id": "GOV-013",
+      "name": "non_audit_boundary",
+      "status": "PASS",
+      "path": "docs/GOVERNANCE.md"
+    },
+    {
+      "id": "GOV-014",
+      "name": "external_completion_boundary",
+      "status": "PASS",
+      "path": "docs/RELEASE-PROCESS.md"
+    },
+    {
+      "id": "GOV-015",
+      "name": "safety_boundary",
+      "status": "PASS",
+      "path": "templates/governance/release-checklist.md"
+    }
+  ],
+  "local_completion_percent_after_success": 98,
+  "remaining_external_completion_percent": 2,
+  "remaining_external_actions": [
+    "open pull requests",
+    "run GitHub Actions",
+    "merge accepted PRs",
+    "enable or verify GitHub branch protection",
+    "obtain independent external review or maintainer feedback",
+    "maintain recurring evidence refresh history"
+  ],
+  "safety_boundary": {
+    "no_real_seed": true,
+    "no_private_key": true,
+    "no_wallet_file": true,
+    "no_live_funds": true,
+    "no_exploit_payloads": true,
+    "no_weaponized_reproduction": true,
+    "public_report_sanitized": true,
+    "non_audit_boundary_required": true
+  },
+  "boundary": "This creates repository governance and a versioned release process. It does not merge PRs, enable GitHub settings, obtain independent review, or prove Nightfall safety."
+}

@@ -1,0 +1,18 @@
+{
+  "id": "NV-CONS-003",
+  "fixture": "unsorted_block_body",
+  "class": "consensus",
+  "expected_result": "reject",
+  "safety": "abstract_only",
+  "contains_secret": false,
+  "contains_live_funds": false,
+  "mutation_target": "noncanonical_ordering",
+  "description": "Abstract vector for non-canonical ordering of block body elements.",
+  "schema": "wvp.negative_vector.v1",
+  "created_by": "WVP-SEC-007",
+  "payload": {
+    "kind": "non_executable_placeholder",
+    "note": "This vector is intentionally abstract and safe. It contains no exploit payload, key, seed, or live fund reference."
+  },
+  "sha256": "53a2ab82ac8372bda5c60fc45eee98c6f085b9d9f1c9684f094ebd252c81186a"
+}

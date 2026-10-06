@@ -1,0 +1,16 @@
+{
+  "schema": "wvp.finding_record.v1",
+  "id": "WVP-FINDING-XXXX",
+  "project": "Nightfall",
+  "version": "v1.0.5",
+  "security_class": "TBD",
+  "severity": "TBD",
+  "status": "observed",
+  "private_default": true,
+  "contains_secret": false,
+  "contains_live_funds": false,
+  "contains_exploit_payload": false,
+  "public_summary": "Sanitized summary only.",
+  "private_notes_location": "Do not commit private exploit detail.",
+  "non_audit_boundary": true
+}

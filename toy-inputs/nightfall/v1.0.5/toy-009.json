@@ -1,0 +1,9 @@
+{
+  "id": "TOY-009",
+  "class": "issue_quality_hold",
+  "description": "Toy issue with sensitive marker must be routed to HOLD.",
+  "issue_type": "sanitized security observation",
+  "contains_sensitive_detail": true,
+  "expected": "HOLD",
+  "safe": true
+}

@@ -1,0 +1,268 @@
+{
+  "id": "WVP-SEC-009",
+  "created_unix": 1791321071,
+  "project": "Nightfall",
+  "version": "v1.0.5",
+  "score_percent": 100.0,
+  "grade": "A",
+  "verdict": "LIMITED CONFORMANCE PASS",
+  "total_weight": 100,
+  "earned_weight": 100.0,
+  "requirements": [
+    {
+      "id": "CONF-001",
+      "name": "security_model",
+      "weight": 6,
+      "points": 6.0,
+      "status": "PASS",
+      "existing": [
+        "docs/SECURITY-MODEL.md",
+        "docs/VERIFICATION-PROFILES.md"
+      ],
+      "missing": []
+    },
+    {
+      "id": "CONF-002",
+      "name": "verification_pack",
+      "weight": 8,
+      "points": 8.0,
+      "status": "PASS",
+      "existing": [
+        "reports/nightfall/v1.0.5/SECURITY-REVIEW-PLAN.md",
+        "reports/nightfall/v1.0.5/TRACEABILITY.md",
+        "reports/nightfall/v1.0.5/FINDINGS.md",
+        "reports/nightfall/v1.0.5/LIMITATIONS.md",
+        "reports/nightfall/v1.0.5/RUNBOOK.md"
+      ],
+      "missing": []
+    },
+    {
+      "id": "CONF-003",
+      "name": "codepath_bindings",
+      "weight": 10,
+      "points": 10.0,
+      "status": "PASS",
+      "existing": [
+        "reports/nightfall/v1.0.5/CODEPATH-BINDINGS.json",
+        "reports/nightfall/v1.0.5/CODEPATH-BINDINGS.md",
+        "docs/CODEPATH-BINDING-METHOD.md"
+      ],
+      "missing": []
+    },
+    {
+      "id": "CONF-004",
+      "name": "semantic_regression",
+      "weight": 10,
+      "points": 10.0,
+      "status": "PASS",
+      "existing": [
+        "reports/nightfall/v1.0.5/SEMANTIC-REGRESSION.json",
+        "reports/nightfall/v1.0.5/SEMANTIC-REGRESSION.md",
+        "docs/SEMANTIC-REGRESSION-METHOD.md"
+      ],
+      "missing": []
+    },
+    {
+      "id": "CONF-005",
+      "name": "command_probes",
+      "weight": 10,
+      "points": 10.0,
+      "status": "PASS",
+      "existing": [
+        "reports/nightfall/v1.0.5/COMMAND-PROBES.json",
+        "reports/nightfall/v1.0.5/COMMAND-PROBES.md",
+        "docs/COMMAND-PROBE-METHOD.md"
+      ],
+      "missing": []
+    },
+    {
+      "id": "CONF-006",
+      "name": "release_integrity",
+      "weight": 10,
+      "points": 10.0,
+      "status": "PASS",
+      "existing": [
+        "reports/nightfall/v1.0.5/RELEASE-INTEGRITY.json",
+        "reports/nightfall/v1.0.5/RELEASE-INTEGRITY.md",
+        "docs/RELEASE-INTEGRITY-METHOD.md"
+      ],
+      "missing": []
+    },
+    {
+      "id": "CONF-007",
+      "name": "supply_invariant",
+      "weight": 12,
+      "points": 12.0,
+      "status": "PASS",
+      "existing": [
+        "reports/nightfall/v1.0.5/SUPPLY-INVARIANT-MAP.json",
+        "reports/nightfall/v1.0.5/SUPPLY-INVARIANT-MAP.md",
+        "docs/SUPPLY-INVARIANT-METHOD.md"
+      ],
+      "missing": []
+    },
+    {
+      "id": "CONF-008",
+      "name": "negative_vectors",
+      "weight": 10,
+      "points": 10.0,
+      "status": "PASS",
+      "existing": [
+        "reports/nightfall/v1.0.5/NEGATIVE-VECTORS.json",
+        "reports/nightfall/v1.0.5/NEGATIVE-VECTORS.md",
+        "docs/NEGATIVE-VECTOR-METHOD.md",
+        "fuzz/nightfall/v1.0.5/README.md"
+      ],
+      "missing": []
+    },
+    {
+      "id": "CONF-009",
+      "name": "disclosure_triage",
+      "weight": 10,
+      "points": 10.0,
+      "status": "PASS",
+      "existing": [
+        "reports/nightfall/v1.0.5/FINDINGS-TRIAGE.json",
+        "reports/nightfall/v1.0.5/FINDINGS-TRIAGE.md",
+        "docs/PRIVATE-DISCLOSURE-METHOD.md",
+        "docs/FINDINGS-TRIAGE-METHOD.md",
+        "SECURITY.md"
+      ],
+      "missing": []
+    },
+    {
+      "id": "CONF-010",
+      "name": "automation_checks",
+      "weight": 14,
+      "points": 14.0,
+      "status": "PASS",
+      "existing": [
+        "wvp/nightfall/verifier.py",
+        "wvp/nightfall/codepath_binding.py",
+        "wvp/nightfall/semantic_regression.py",
+        "wvp/nightfall/command_probes.py",
+        "wvp/nightfall/release_integrity.py",
+        "wvp/nightfall/supply_invariant.py",
+        "wvp/nightfall/negative_vectors.py",
+        "wvp/nightfall/triage_workflow.py",
+        ".github/workflows/wvp-nightfall-security.yml"
+      ],
+      "missing": []
+    }
+  ],
+  "json_summaries": {
+    "CODEPATH-BINDINGS": {
+      "path": "reports/nightfall/v1.0.5/CODEPATH-BINDINGS.json",
+      "id": "WVP-SEC-002",
+      "keys": [
+        "binding_count",
+        "bindings",
+        "bound",
+        "created_unix",
+        "id",
+        "nightfall_repo",
+        "target_files_scanned",
+        "unbound",
+        "wvp_repo"
+      ]
+    },
+    "SEMANTIC-REGRESSION": {
+      "path": "reports/nightfall/v1.0.5/SEMANTIC-REGRESSION.json",
+      "id": "WVP-SEC-003",
+      "keys": [
+        "boundary",
+        "created_unix",
+        "id",
+        "nightfall_repo",
+        "passed",
+        "results",
+        "semantic_checks",
+        "warned"
+      ]
+    },
+    "COMMAND-PROBES": {
+      "path": "reports/nightfall/v1.0.5/COMMAND-PROBES.json",
+      "id": "WVP-SEC-004",
+      "keys": [
+        "boundary",
+        "created_unix",
+        "id",
+        "nightfall_repo",
+        "passed",
+        "probe_count",
+        "results",
+        "warned"
+      ]
+    },
+    "RELEASE-INTEGRITY": {
+      "path": "reports/nightfall/v1.0.5/RELEASE-INTEGRITY.json",
+      "id": "WVP-SEC-005",
+      "keys": [
+        "boundary",
+        "created_unix",
+        "evidence_count",
+        "hashes",
+        "id",
+        "nightfall_repo",
+        "passed",
+        "results",
+        "warned"
+      ]
+    },
+    "SUPPLY-INVARIANT-MAP": {
+      "path": "reports/nightfall/v1.0.5/SUPPLY-INVARIANT-MAP.json",
+      "id": "WVP-SEC-006",
+      "keys": [
+        "boundary",
+        "claim_count",
+        "claim_pass",
+        "claim_warn",
+        "claims",
+        "created_unix",
+        "id",
+        "nightfall_repo",
+        "probe_count",
+        "probe_pass",
+        "probe_warn",
+        "runtime_safe_probes",
+        "source_files_scanned"
+      ]
+    },
+    "NEGATIVE-VECTORS": {
+      "path": "reports/nightfall/v1.0.5/NEGATIVE-VECTORS.json",
+      "id": "WVP-SEC-007",
+      "keys": [
+        "classes",
+        "created_unix",
+        "id",
+        "project",
+        "safety_boundary",
+        "vector_count",
+        "vectors",
+        "version"
+      ]
+    },
+    "FINDINGS-TRIAGE": {
+      "path": "reports/nightfall/v1.0.5/FINDINGS-TRIAGE.json",
+      "id": "WVP-SEC-008",
+      "keys": [
+        "boundary",
+        "class_count",
+        "created_unix",
+        "id",
+        "purpose",
+        "safety_boundary",
+        "security_classes",
+        "severity_count",
+        "severity_levels",
+        "triage_rule_count",
+        "triage_rules",
+        "workflow_state_count",
+        "workflow_states"
+      ]
+    }
+  },
+  "non_audit_boundary": true,
+  "public_report_sanitized": true,
+  "boundary": "This conformance score measures WVP evidence completeness. It does not prove that Nightfall is safe, correct, audited, or free of vulnerabilities."
+}

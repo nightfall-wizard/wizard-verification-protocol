@@ -1,0 +1,425 @@
+{
+  "id": "WVP-SEC-002",
+  "created_unix": 1791320145,
+  "wvp_repo": "/data/data/com.termux/files/home/wizard-verification-protocol",
+  "nightfall_repo": "/data/data/com.termux/files/home/nightfall",
+  "target_files_scanned": 118,
+  "binding_count": 8,
+  "bound": 8,
+  "unbound": 0,
+  "bindings": [
+    {
+      "fixture": "thin_air_mint",
+      "terms": [
+        "supply",
+        "invariant",
+        "mint",
+        "burn",
+        "kernel"
+      ],
+      "status": "bound",
+      "matches": [
+        {
+          "path": "crates/nightfall-consensus/src/lib.rs",
+          "score": 5,
+          "sha256": "22c72490e21451167e58966aa60c3091f68a477c9a977a33a849327179b6f315"
+        },
+        {
+          "path": "crates/nightfall-core/src/views.rs",
+          "score": 5,
+          "sha256": "6a18c80638b73dc2ea6bdce77d370f2636fb30ce16e39712070e5760dff0ed29"
+        },
+        {
+          "path": "crates/nightfall-ledger/src/lib.rs",
+          "score": 5,
+          "sha256": "25c6536091d6d83d20b8efa71a6c47edaa8fa39e565ec44c99632acac45a23f4"
+        },
+        {
+          "path": "crates/nightfall-ledger/src/utxo.rs",
+          "score": 5,
+          "sha256": "9ab719d9efe4bfc0081d687389c1f7ec19432a60cee76d93b5ace82aefeea534"
+        },
+        {
+          "path": "crates/nightfall-ledger/tests/ledger_flow.rs",
+          "score": 5,
+          "sha256": "73944e383878f3616d9ed519a90babfbdd1ca2d6b7f0b3b693a385a30d472df7"
+        },
+        {
+          "path": "crates/nightfall-node/src/rpc.rs",
+          "score": 5,
+          "sha256": "0b43a23f46aa08a860873dd2fe7f1aff661f7a7633649ea925e4ed2ae4410db8"
+        },
+        {
+          "path": "crates/nightfall-node/tests/multi_node_reorg.rs",
+          "score": 5,
+          "sha256": "8a02970f59fae43c4c2fb639d1d2fd5851eda9c988d7876aaf1f9d4fdca8ddd5"
+        },
+        {
+          "path": "crates/nightfall-storage/src/lib.rs",
+          "score": 5,
+          "sha256": "50cbf670ea8f852df238dad019cbc41ba9a73ce1fb70364f8b7cb09902c22119"
+        }
+      ]
+    },
+    {
+      "fixture": "negative_amount_attempt",
+      "terms": [
+        "range",
+        "proof",
+        "amount",
+        "bulletproof"
+      ],
+      "status": "bound",
+      "matches": [
+        {
+          "path": "crates/nightfall-crypto/src/commit.rs",
+          "score": 4,
+          "sha256": "ea40424e0cf1ea671ff6e4d78404207073f54ef08101639622bd217958d0256a"
+        },
+        {
+          "path": "crates/nightfall-crypto/src/rangeproof.rs",
+          "score": 4,
+          "sha256": "dfaee6518fcac0bd9f7966ed286f4fdba687a3a6b406a0622e19b18659159e14"
+        },
+        {
+          "path": "crates/nightfall-ledger/tests/exploit_regression.rs",
+          "score": 4,
+          "sha256": "34d60bfdcd7e9e03c4252ac5d309a8bc800ac28329a3b3aeec597a8aaf51e7c5"
+        },
+        {
+          "path": "crates/nightfall-node/src/rpc.rs",
+          "score": 4,
+          "sha256": "0b43a23f46aa08a860873dd2fe7f1aff661f7a7633649ea925e4ed2ae4410db8"
+        },
+        {
+          "path": "docs/AUDIT-2026-08-12.md",
+          "score": 4,
+          "sha256": "34f99a140056b05e283774291265cdc74c78524b2939f134a9b44dab6b388044"
+        },
+        {
+          "path": "docs/AUDIT-2026-08-16.md",
+          "score": 4,
+          "sha256": "a85094e29d1f0b55c99556c7b38bdc1371d81255daff0313cc9899716389023c"
+        },
+        {
+          "path": "docs/DECISIONS.md",
+          "score": 4,
+          "sha256": "1fc4ac05890ff9f7252eade8c38aeb14c459f16a1dbfb4f6b9b7fe9405e32f3f"
+        },
+        {
+          "path": "docs/MAINNET.md",
+          "score": 4,
+          "sha256": "fde08adc31bb893dbcbc349492334619a74be15f0205d0dec19c964ea60fd57e"
+        }
+      ]
+    },
+    {
+      "fixture": "fake_input_spend",
+      "terms": [
+        "input",
+        "utxo",
+        "spend",
+        "signature"
+      ],
+      "status": "bound",
+      "matches": [
+        {
+          "path": "crates/nightfall-core/src/views.rs",
+          "score": 4,
+          "sha256": "6a18c80638b73dc2ea6bdce77d370f2636fb30ce16e39712070e5760dff0ed29"
+        },
+        {
+          "path": "crates/nightfall-crypto/src/lib.rs",
+          "score": 4,
+          "sha256": "e693874b21963521ba66d59e0559d470d22880886d3fa2ca55a9d27ba00ec7b4"
+        },
+        {
+          "path": "crates/nightfall-ledger/src/lib.rs",
+          "score": 4,
+          "sha256": "25c6536091d6d83d20b8efa71a6c47edaa8fa39e565ec44c99632acac45a23f4"
+        },
+        {
+          "path": "crates/nightfall-ledger/src/tx.rs",
+          "score": 4,
+          "sha256": "09ef1238bbc1db946b560ecc4d6290d159c5d95ac4cec8fd2b0673add34801c8"
+        },
+        {
+          "path": "crates/nightfall-ledger/tests/exploit_regression.rs",
+          "score": 4,
+          "sha256": "34d60bfdcd7e9e03c4252ac5d309a8bc800ac28329a3b3aeec597a8aaf51e7c5"
+        },
+        {
+          "path": "crates/nightfall-wallet/src/lib.rs",
+          "score": 4,
+          "sha256": "7e2c643063c03005e070cf8694ab184bb31c5a1ef67b287edcb48b97a3488ce1"
+        },
+        {
+          "path": "docs/AUDIT-2026-08-12.md",
+          "score": 4,
+          "sha256": "34f99a140056b05e283774291265cdc74c78524b2939f134a9b44dab6b388044"
+        },
+        {
+          "path": "docs/AUDIT-2026-08-16.md",
+          "score": 4,
+          "sha256": "a85094e29d1f0b55c99556c7b38bdc1371d81255daff0313cc9899716389023c"
+        }
+      ]
+    },
+    {
+      "fixture": "immature_coinbase_spend",
+      "terms": [
+        "coinbase",
+        "maturity",
+        "1440"
+      ],
+      "status": "bound",
+      "matches": [
+        {
+          "path": "crates/nightfall-wallet/src/lib.rs",
+          "score": 3,
+          "sha256": "7e2c643063c03005e070cf8694ab184bb31c5a1ef67b287edcb48b97a3488ce1"
+        },
+        {
+          "path": "crates/nightfall-consensus/src/lib.rs",
+          "score": 2,
+          "sha256": "22c72490e21451167e58966aa60c3091f68a477c9a977a33a849327179b6f315"
+        },
+        {
+          "path": "crates/nightfall-core/src/app.rs",
+          "score": 2,
+          "sha256": "ea6462fda5649ad3ef663b761c4a4d703b2cb0bac3638c398be596093f4dea34"
+        },
+        {
+          "path": "crates/nightfall-core/src/views.rs",
+          "score": 2,
+          "sha256": "6a18c80638b73dc2ea6bdce77d370f2636fb30ce16e39712070e5760dff0ed29"
+        },
+        {
+          "path": "crates/nightfall-core/src/wallet_state.rs",
+          "score": 2,
+          "sha256": "d5aa1f489f283230cf0b2663552e48d0562510b433e4769a86c9757d6afbfd0a"
+        },
+        {
+          "path": "crates/nightfall-crypto/src/stealth.rs",
+          "score": 2,
+          "sha256": "b555cf153b8aefcef8995c0a8666c7ceafcff594dc5dff00c6f1f4a57ebcede4"
+        },
+        {
+          "path": "crates/nightfall-ledger/src/lib.rs",
+          "score": 2,
+          "sha256": "25c6536091d6d83d20b8efa71a6c47edaa8fa39e565ec44c99632acac45a23f4"
+        },
+        {
+          "path": "crates/nightfall-ledger/src/utxo.rs",
+          "score": 2,
+          "sha256": "9ab719d9efe4bfc0081d687389c1f7ec19432a60cee76d93b5ace82aefeea534"
+        }
+      ]
+    },
+    {
+      "fixture": "duplicate_input",
+      "terms": [
+        "duplicate",
+        "input",
+        "reject"
+      ],
+      "status": "bound",
+      "matches": [
+        {
+          "path": "crates/nightfall-consensus/src/lib.rs",
+          "score": 3,
+          "sha256": "22c72490e21451167e58966aa60c3091f68a477c9a977a33a849327179b6f315"
+        },
+        {
+          "path": "crates/nightfall-consensus/tests/chain_rules.rs",
+          "score": 3,
+          "sha256": "ef95c12ebb4c624d794ec489a1e0f2749c54a2697d6427e067beb5974e0dfc91"
+        },
+        {
+          "path": "crates/nightfall-wallet/src/lib.rs",
+          "score": 3,
+          "sha256": "7e2c643063c03005e070cf8694ab184bb31c5a1ef67b287edcb48b97a3488ce1"
+        },
+        {
+          "path": "crates/nightfall-wallet/src/vault.rs",
+          "score": 3,
+          "sha256": "a21b7bde34deda42db0db98b8eb3cd0198cc8770b3ad43cf356a2c9c5da59162"
+        },
+        {
+          "path": "crates/nightfall-web/src/vault.rs",
+          "score": 3,
+          "sha256": "05189ea76106367e491908e930067c0bf30cb999478098cf4d8c9e216bc8a070"
+        },
+        {
+          "path": "docs/SPEC.md",
+          "score": 3,
+          "sha256": "97e757ec526baed68d87cd4649c4ee0cb1fd32e829a72283688a2002f177550b"
+        },
+        {
+          "path": "docs/VAULT-FORMAT.md",
+          "score": 3,
+          "sha256": "4d9fc09d87ad4c29db6fe0ddc5fd83933f6214fe6526015bee6a5769a0d96500"
+        },
+        {
+          "path": "crates/nightfall-core/src/app.rs",
+          "score": 2,
+          "sha256": "ea6462fda5649ad3ef663b761c4a4d703b2cb0bac3638c398be596093f4dea34"
+        }
+      ]
+    },
+    {
+      "fixture": "unsorted_block_body",
+      "terms": [
+        "sort",
+        "canonical",
+        "order"
+      ],
+      "status": "bound",
+      "matches": [
+        {
+          "path": "crates/nightfall-consensus/src/lib.rs",
+          "score": 3,
+          "sha256": "22c72490e21451167e58966aa60c3091f68a477c9a977a33a849327179b6f315"
+        },
+        {
+          "path": "crates/nightfall-ledger/src/aggregate.rs",
+          "score": 3,
+          "sha256": "75d05ea9c231beef4b6bde71ba0c53f0418e2b571bc04644203a6903caa9716b"
+        },
+        {
+          "path": "crates/nightfall-ledger/src/utxo.rs",
+          "score": 3,
+          "sha256": "9ab719d9efe4bfc0081d687389c1f7ec19432a60cee76d93b5ace82aefeea534"
+        },
+        {
+          "path": "crates/nightfall-wallet/src/lib.rs",
+          "score": 3,
+          "sha256": "7e2c643063c03005e070cf8694ab184bb31c5a1ef67b287edcb48b97a3488ce1"
+        },
+        {
+          "path": "docs/SPEC.md",
+          "score": 3,
+          "sha256": "97e757ec526baed68d87cd4649c4ee0cb1fd32e829a72283688a2002f177550b"
+        },
+        {
+          "path": "crates/nightfall-consensus/src/difficulty.rs",
+          "score": 2,
+          "sha256": "4cf77872a0ccd0fc802091119eb3985ea41f274babf268fdc35004610e40f116"
+        },
+        {
+          "path": "crates/nightfall-consensus/tests/chain_rules.rs",
+          "score": 2,
+          "sha256": "ef95c12ebb4c624d794ec489a1e0f2749c54a2697d6427e067beb5974e0dfc91"
+        },
+        {
+          "path": "crates/nightfall-core/src/app.rs",
+          "score": 2,
+          "sha256": "ea6462fda5649ad3ef663b761c4a4d703b2cb0bac3638c398be596093f4dea34"
+        }
+      ]
+    },
+    {
+      "fixture": "invalid_kernel_excess",
+      "terms": [
+        "kernel",
+        "excess",
+        "signature"
+      ],
+      "status": "bound",
+      "matches": [
+        {
+          "path": "crates/nightfall-consensus/src/lib.rs",
+          "score": 3,
+          "sha256": "22c72490e21451167e58966aa60c3091f68a477c9a977a33a849327179b6f315"
+        },
+        {
+          "path": "crates/nightfall-crypto/src/kernel.rs",
+          "score": 3,
+          "sha256": "19e35aa84f6395d94c10a102050e88e24e50dba6ab2a4f2d4f9a3987a1b75a6a"
+        },
+        {
+          "path": "crates/nightfall-crypto/src/lib.rs",
+          "score": 3,
+          "sha256": "e693874b21963521ba66d59e0559d470d22880886d3fa2ca55a9d27ba00ec7b4"
+        },
+        {
+          "path": "crates/nightfall-crypto/src/schnorr.rs",
+          "score": 3,
+          "sha256": "046ca520de69218b52ff05754f8fe7ccefe1ee21a0484554c8f1ceaa9545f103"
+        },
+        {
+          "path": "crates/nightfall-ledger/src/aggregate.rs",
+          "score": 3,
+          "sha256": "75d05ea9c231beef4b6bde71ba0c53f0418e2b571bc04644203a6903caa9716b"
+        },
+        {
+          "path": "crates/nightfall-ledger/src/lib.rs",
+          "score": 3,
+          "sha256": "25c6536091d6d83d20b8efa71a6c47edaa8fa39e565ec44c99632acac45a23f4"
+        },
+        {
+          "path": "crates/nightfall-ledger/src/tx.rs",
+          "score": 3,
+          "sha256": "09ef1238bbc1db946b560ecc4d6290d159c5d95ac4cec8fd2b0673add34801c8"
+        },
+        {
+          "path": "crates/nightfall-ledger/tests/exploit_regression.rs",
+          "score": 3,
+          "sha256": "34d60bfdcd7e9e03c4252ac5d309a8bc800ac28329a3b3aeec597a8aaf51e7c5"
+        }
+      ]
+    },
+    {
+      "fixture": "block_apply_atomicity_case",
+      "terms": [
+        "atomic",
+        "staged",
+        "commit",
+        "reject"
+      ],
+      "status": "bound",
+      "matches": [
+        {
+          "path": "docs/AUDIT-2026-08-12.md",
+          "score": 4,
+          "sha256": "34f99a140056b05e283774291265cdc74c78524b2939f134a9b44dab6b388044"
+        },
+        {
+          "path": "docs/DECISIONS.md",
+          "score": 4,
+          "sha256": "1fc4ac05890ff9f7252eade8c38aeb14c459f16a1dbfb4f6b9b7fe9405e32f3f"
+        },
+        {
+          "path": "crates/nightfall-consensus/src/lib.rs",
+          "score": 3,
+          "sha256": "22c72490e21451167e58966aa60c3091f68a477c9a977a33a849327179b6f315"
+        },
+        {
+          "path": "crates/nightfall-core/src/app.rs",
+          "score": 3,
+          "sha256": "ea6462fda5649ad3ef663b761c4a4d703b2cb0bac3638c398be596093f4dea34"
+        },
+        {
+          "path": "crates/nightfall-core/src/vault_ui.rs",
+          "score": 3,
+          "sha256": "ff37278e4a0d1d6dd00b261182be47e86dab0388ad638b30d7e4483e91e32b26"
+        },
+        {
+          "path": "crates/nightfall-core/src/views.rs",
+          "score": 3,
+          "sha256": "6a18c80638b73dc2ea6bdce77d370f2636fb30ce16e39712070e5760dff0ed29"
+        },
+        {
+          "path": "crates/nightfall-core/src/wallet_state.rs",
+          "score": 3,
+          "sha256": "d5aa1f489f283230cf0b2663552e48d0562510b433e4769a86c9757d6afbfd0a"
+        },
+        {
+          "path": "crates/nightfall-ledger/src/lib.rs",
+          "score": 3,
+          "sha256": "25c6536091d6d83d20b8efa71a6c47edaa8fa39e565ec44c99632acac45a23f4"
+        }
+      ]
+    }
+  ]
+}

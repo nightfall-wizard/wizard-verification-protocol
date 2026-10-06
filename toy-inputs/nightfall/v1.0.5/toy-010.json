@@ -1,0 +1,9 @@
+{
+  "id": "TOY-010",
+  "class": "issue_quality_pass",
+  "description": "Toy documentation gap issue is public-safe.",
+  "issue_type": "documentation gap",
+  "contains_sensitive_detail": false,
+  "expected": "PASS",
+  "safe": true
+}

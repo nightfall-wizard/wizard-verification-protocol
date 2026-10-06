@@ -1,0 +1,146 @@
+{
+  "id": "WVP-SEC-007",
+  "created_unix": 1791320839,
+  "project": "Nightfall",
+  "version": "v1.0.5",
+  "vector_count": 11,
+  "safety_boundary": {
+    "no_real_seed": true,
+    "no_private_key": true,
+    "no_live_funds": true,
+    "no_undisclosed_exploit_detail": true,
+    "no_network_mutation": true,
+    "no_node_state_mutation": true
+  },
+  "classes": [
+    "consensus",
+    "display_integrity",
+    "inflation",
+    "monetary_policy",
+    "release_integrity",
+    "theft"
+  ],
+  "vectors": [
+    {
+      "id": "NV-INF-001",
+      "fixture": "thin_air_mint",
+      "class": "inflation",
+      "expected_result": "reject",
+      "safety": "abstract_only",
+      "contains_secret": false,
+      "contains_live_funds": false,
+      "mutation_target": "minted_without_valid_source",
+      "description": "Abstract vector for value creation without valid accounting source."
+    },
+    {
+      "id": "NV-INF-002",
+      "fixture": "negative_amount_attempt",
+      "class": "inflation",
+      "expected_result": "reject",
+      "safety": "abstract_only",
+      "contains_secret": false,
+      "contains_live_funds": false,
+      "mutation_target": "invalid_confidential_amount",
+      "description": "Abstract vector for invalid amount encoding or invalid range-proof surface."
+    },
+    {
+      "id": "NV-THEFT-001",
+      "fixture": "fake_input_spend",
+      "class": "theft",
+      "expected_result": "reject",
+      "safety": "abstract_only",
+      "contains_secret": false,
+      "contains_live_funds": false,
+      "mutation_target": "spend_nonexistent_input",
+      "description": "Abstract vector for attempting to spend an input not present in the UTXO set."
+    },
+    {
+      "id": "NV-CONS-001",
+      "fixture": "immature_coinbase_spend",
+      "class": "consensus",
+      "expected_result": "reject",
+      "safety": "abstract_only",
+      "contains_secret": false,
+      "contains_live_funds": false,
+      "mutation_target": "spend_coinbase_before_maturity",
+      "description": "Abstract vector for miner reward spend before configured maturity."
+    },
+    {
+      "id": "NV-CONS-002",
+      "fixture": "duplicate_input",
+      "class": "consensus",
+      "expected_result": "reject",
+      "safety": "abstract_only",
+      "contains_secret": false,
+      "contains_live_funds": false,
+      "mutation_target": "same_input_twice",
+      "description": "Abstract vector for duplicate input use inside one validation surface."
+    },
+    {
+      "id": "NV-CONS-003",
+      "fixture": "unsorted_block_body",
+      "class": "consensus",
+      "expected_result": "reject",
+      "safety": "abstract_only",
+      "contains_secret": false,
+      "contains_live_funds": false,
+      "mutation_target": "noncanonical_ordering",
+      "description": "Abstract vector for non-canonical ordering of block body elements."
+    },
+    {
+      "id": "NV-INF-003",
+      "fixture": "invalid_kernel_excess",
+      "class": "inflation",
+      "expected_result": "reject",
+      "safety": "abstract_only",
+      "contains_secret": false,
+      "contains_live_funds": false,
+      "mutation_target": "kernel_excess_mismatch",
+      "description": "Abstract vector for kernel excess mismatch against accounting equation."
+    },
+    {
+      "id": "NV-CONS-004",
+      "fixture": "block_apply_atomicity_case",
+      "class": "consensus",
+      "expected_result": "reject_without_state_mutation",
+      "safety": "abstract_only",
+      "contains_secret": false,
+      "contains_live_funds": false,
+      "mutation_target": "partial_state_apply_after_reject",
+      "description": "Abstract vector for rejected block mutating state partially."
+    },
+    {
+      "id": "NV-POL-001",
+      "fixture": "fee_burn_mismatch",
+      "class": "monetary_policy",
+      "expected_result": "reject_or_warn",
+      "safety": "abstract_only",
+      "contains_secret": false,
+      "contains_live_funds": false,
+      "mutation_target": "fee_burn_accounting_mismatch",
+      "description": "Abstract vector for fee accounting mismatch around burn logic."
+    },
+    {
+      "id": "NV-REL-001",
+      "fixture": "release_digest_missing",
+      "class": "release_integrity",
+      "expected_result": "warn",
+      "safety": "abstract_only",
+      "contains_secret": false,
+      "contains_live_funds": false,
+      "mutation_target": "missing_release_digest",
+      "description": "Abstract vector for missing release checksum or digest evidence."
+    },
+    {
+      "id": "NV-WALLET-001",
+      "fixture": "light_client_lie",
+      "class": "display_integrity",
+      "expected_result": "documented_limitation",
+      "safety": "abstract_only",
+      "contains_secret": false,
+      "contains_live_funds": false,
+      "mutation_target": "untrusted_node_display_state",
+      "description": "Abstract vector for light-client display state controlled by an untrusted node."
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "id": "TOY-003",
+  "class": "duplicate_input_reject",
+  "description": "Duplicate toy input ID must be rejected.",
+  "inputs": [
+    "toy-a",
+    "toy-b",
+    "toy-a"
+  ],
+  "expected": "REJECT",
+  "safe": true
+}

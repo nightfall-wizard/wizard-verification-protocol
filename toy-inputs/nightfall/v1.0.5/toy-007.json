@@ -1,0 +1,9 @@
+{
+  "id": "TOY-007",
+  "class": "release_digest_present",
+  "description": "Toy release artifact has digest.",
+  "artifact": "toy-release.tar.gz",
+  "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+  "expected": "PASS",
+  "safe": true
+}

@@ -1,0 +1,7 @@
+{
+  "id": "immature_coinbase_spend",
+  "name": "immature_coinbase_spend",
+  "class": "consensus",
+  "expected_result": "reject",
+  "contains_secret": false
+}

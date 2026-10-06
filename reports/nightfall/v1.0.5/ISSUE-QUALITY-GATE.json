@@ -1,0 +1,101 @@
+{
+  "id": "WVP-SEC-013-ISSUE-QUALITY-GATE",
+  "created_unix": 1791321823,
+  "purpose": "Public issue quality and safety gate",
+  "gate_rule_count": 14,
+  "gate_rule_pass": 14,
+  "gate_rule_warn": 0,
+  "rules": [
+    {
+      "id": "GATE-001",
+      "name": "issue_type_present",
+      "decision": "PASS"
+    },
+    {
+      "id": "GATE-002",
+      "name": "affected_area_present",
+      "decision": "PASS"
+    },
+    {
+      "id": "GATE-003",
+      "name": "expected_behavior_present",
+      "decision": "PASS"
+    },
+    {
+      "id": "GATE-004",
+      "name": "observed_behavior_present",
+      "decision": "PASS"
+    },
+    {
+      "id": "GATE-005",
+      "name": "reproduction_boundary_present",
+      "decision": "PASS"
+    },
+    {
+      "id": "GATE-006",
+      "name": "safety_boundary_present",
+      "decision": "PASS"
+    },
+    {
+      "id": "GATE-007",
+      "name": "non_audit_boundary_present",
+      "decision": "PASS"
+    },
+    {
+      "id": "GATE-008",
+      "name": "no_private_key",
+      "decision": "PASS"
+    },
+    {
+      "id": "GATE-009",
+      "name": "no_seed",
+      "decision": "PASS"
+    },
+    {
+      "id": "GATE-010",
+      "name": "no_wallet_file",
+      "decision": "PASS"
+    },
+    {
+      "id": "GATE-011",
+      "name": "no_live_funds",
+      "decision": "PASS"
+    },
+    {
+      "id": "GATE-012",
+      "name": "no_exploit_payload",
+      "decision": "PASS"
+    },
+    {
+      "id": "GATE-013",
+      "name": "no_weaponized_reproduction",
+      "decision": "PASS"
+    },
+    {
+      "id": "GATE-014",
+      "name": "private_disclosure_for_sensitive_detail",
+      "decision": "PASS"
+    }
+  ],
+  "allowed_public_issue_types": [
+    "documentation gap",
+    "evidence gap",
+    "checker failure",
+    "release-pack drift",
+    "unclear limitation",
+    "reviewer question",
+    "sanitized security observation",
+    "CI or workflow issue",
+    "template improvement"
+  ],
+  "hold_conditions": [
+    "possible exploit detail",
+    "possible theft path",
+    "possible inflation path",
+    "possible consensus split",
+    "possible privacy break",
+    "possible key recovery",
+    "contains non-public vulnerability detail"
+  ],
+  "boundary": "The issue-quality gate controls publication hygiene. It does not prove project safety."
+}

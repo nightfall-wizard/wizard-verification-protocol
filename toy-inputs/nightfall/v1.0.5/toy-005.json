@@ -1,0 +1,10 @@
+{
+  "id": "TOY-005",
+  "class": "coinbase_maturity_reject",
+  "description": "Toy coinbase spend before maturity must be rejected.",
+  "coinbase_height": 100,
+  "spend_height": 1539,
+  "maturity": 1440,
+  "expected": "REJECT",
+  "safe": true
+}

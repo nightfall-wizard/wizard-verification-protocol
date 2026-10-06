@@ -1,0 +1,106 @@
+{
+  "id": "WVP-SEC-011",
+  "created_unix": 1791321473,
+  "purpose": "CI hardening and required-check gate documentation",
+  "control_count": 12,
+  "control_pass": 12,
+  "control_warn": 0,
+  "controls": [
+    {
+      "id": "CI-001",
+      "name": "least_privilege_permissions",
+      "status": "PASS",
+      "evidence": ".github/workflows/wvp-required-checks.yml uses permissions: contents: read",
+      "risk": "Overbroad CI token permissions increase supply-chain blast radius."
+    },
+    {
+      "id": "CI-002",
+      "name": "checkout_credentials_not_persisted",
+      "status": "PASS",
+      "evidence": "actions/checkout uses persist-credentials: false",
+      "risk": "Persisted credentials can be abused by later steps."
+    },
+    {
+      "id": "CI-003",
+      "name": "job_timeout_defined",
+      "status": "PASS",
+      "evidence": "required job has timeout-minutes",
+      "risk": "Missing timeout can allow CI resource exhaustion."
+    },
+    {
+      "id": "CI-004",
+      "name": "concurrency_defined",
+      "status": "PASS",
+      "evidence": "workflow defines concurrency and cancel-in-progress",
+      "risk": "Unbounded concurrent runs waste resources and obscure signal."
+    },
+    {
+      "id": "CI-005",
+      "name": "unit_tests_required",
+      "status": "PASS",
+      "evidence": "workflow runs python3 -m unittest discover -s tests -v",
+      "risk": "Missing test gate allows broken evidence artifacts."
+    },
+    {
+      "id": "CI-006",
+      "name": "security_checkers_required",
+      "status": "PASS",
+      "evidence": "workflow runs all WVP Nightfall checkers",
+      "risk": "Missing checker steps reduce verification coverage."
+    },
+    {
+      "id": "CI-007",
+      "name": "release_pack_required",
+      "status": "PASS",
+      "evidence": "workflow runs wvp/nightfall/release_pack.py",
+      "risk": "Evidence bundle can drift from manifest."
+    },
+    {
+      "id": "CI-008",
+      "name": "ci_hardening_self_check_required",
+      "status": "PASS",
+      "evidence": "workflow runs wvp/nightfall/ci_hardening.py",
+      "risk": "CI hardening policy can silently regress."
+    },
+    {
+      "id": "CI-009",
+      "name": "branch_protection_template_exists",
+      "status": "PASS",
+      "evidence": "templates/github/branch-protection-required-checks.json",
+      "risk": "Required checks may not be configured consistently."
+    },
+    {
+      "id": "CI-010",
+      "name": "required_check_documentation_exists",
+      "status": "PASS",
+      "evidence": "docs/REQUIRED-CHECK-GATE-METHOD.md",
+      "risk": "Maintainers may not know which check must be required."
+    },
+    {
+      "id": "CI-011",
+      "name": "non_audit_boundary_preserved",
+      "status": "PASS",
+      "evidence": "CI hardening reports include non-audit boundary",
+      "risk": "Evidence checks may be misrepresented as audit certification."
+    },
+    {
+      "id": "CI-012",
+      "name": "no_secret_or_live_fund_dependency",
+      "status": "PASS",
+      "evidence": "workflow does not require secrets, seeds, private keys, wallets, or live funds",
+      "risk": "CI should remain safe for public forks and pull requests."
+    }
+  ],
+  "required_workflow": ".github/workflows/wvp-required-checks.yml",
+  "required_job": "required",
+  "recommended_required_check_name": "WVP Required Checks / required",
+  "safety_boundary": {
+    "no_real_seed": true,
+    "no_private_key": true,
+    "no_live_funds": true,
+    "no_exploit_payloads": true,
+    "no_write_token_required": true,
+    "non_audit_boundary_required": true
+  },
+  "boundary": "This creates CI hardening evidence and branch-protection guidance. It does not itself enable GitHub branch protection, merge PRs, or prove project safety."
+}

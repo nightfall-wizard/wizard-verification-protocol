@@ -1,0 +1,6 @@
+{
+  "id": "unsigned_binary_limit",
+  "class": "release_integrity",
+  "expected_result": "warn",
+  "contains_secret": false
+}

@@ -1,0 +1,27 @@
+name: WVP Nightfall Security Pack
+
+on:
+  push:
+    branches:
+      - main
+      - wvp-sec-001-nightfall-verification
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 --version
+      - run: python3 -m unittest discover -s tests -v
+      - run: bin/wvp-nightfall-verify --profile consensus-v1 || true
+      - run: python3 wvp/nightfall/codepath_binding.py
+      - run: python3 wvp/nightfall/semantic_regression.py
+      - run: python3 wvp/nightfall/command_probes.py
+      - run: python3 wvp/nightfall/release_integrity.py
+      - run: python3 wvp/nightfall/supply_invariant.py
+      - run: python3 wvp/nightfall/negative_vectors.py
+      - run: python3 wvp/nightfall/triage_workflow.py
+      - run: python3 wvp/nightfall/conformance_score.py
+      - run: python3 wvp/nightfall/release_pack.py

@@ -1,0 +1,129 @@
+{
+  "id": "WVP-SEC-016",
+  "created_unix": 1791322237,
+  "purpose": "External completion checklist and branch-protection verification",
+  "control_count": 14,
+  "control_pass": 14,
+  "control_warn": 0,
+  "controls": [
+    {
+      "id": "EXTC-001",
+      "name": "external_completion_checklist",
+      "status": "PASS",
+      "path": "docs/EXTERNAL-COMPLETION-CHECKLIST.md"
+    },
+    {
+      "id": "EXTC-002",
+      "name": "pr_merge_workflow",
+      "status": "PASS",
+      "path": "docs/PR-MERGE-WORKFLOW.md"
+    },
+    {
+      "id": "EXTC-003",
+      "name": "branch_protection_verification",
+      "status": "PASS",
+      "path": "docs/BRANCH-PROTECTION-VERIFICATION.md"
+    },
+    {
+      "id": "EXTC-004",
+      "name": "ci_history_verification",
+      "status": "PASS",
+      "path": "docs/CI-HISTORY-VERIFICATION.md"
+    },
+    {
+      "id": "EXTC-005",
+      "name": "independent_review_tracker",
+      "status": "PASS",
+      "path": "docs/INDEPENDENT-REVIEW-TRACKER.md"
+    },
+    {
+      "id": "EXTC-006",
+      "name": "final_completion_boundary",
+      "status": "PASS",
+      "path": "docs/FINAL-COMPLETION-BOUNDARY.md"
+    },
+    {
+      "id": "EXTC-007",
+      "name": "final_completion_record_template",
+      "status": "PASS",
+      "path": "templates/external/final-completion-record.md"
+    },
+    {
+      "id": "EXTC-008",
+      "name": "pr_merge_record_template",
+      "status": "PASS",
+      "path": "templates/external/pr-merge-record.md"
+    },
+    {
+      "id": "EXTC-009",
+      "name": "branch_protection_record_template",
+      "status": "PASS",
+      "path": "templates/external/branch-protection-record.md"
+    },
+    {
+      "id": "EXTC-010",
+      "name": "ci_run_record_template",
+      "status": "PASS",
+      "path": "templates/external/ci-run-record.md"
+    },
+    {
+      "id": "EXTC-011",
+      "name": "external_review_record_template",
+      "status": "PASS",
+      "path": "templates/external/external-review-record.md"
+    },
+    {
+      "id": "EXTC-012",
+      "name": "non_audit_boundary",
+      "status": "PASS",
+      "path": "docs/FINAL-COMPLETION-BOUNDARY.md"
+    },
+    {
+      "id": "EXTC-013",
+      "name": "termux_100_percent_boundary",
+      "status": "PASS",
+      "path": "docs/FINAL-COMPLETION-BOUNDARY.md"
+    },
+    {
+      "id": "EXTC-014",
+      "name": "external_actions_defined",
+      "status": "PASS",
+      "path": "reports/nightfall/v1.0.5/EXTERNAL-COMPLETION.json"
+    }
+  ],
+  "local_completion_percent_after_success": 99,
+  "remaining_external_completion_percent": 1,
+  "termux_can_set_true_100_percent": false,
+  "remaining_external_actions": [
+    "open pull requests on GitHub",
+    "wait for GitHub Actions",
+    "merge accepted PRs",
+    "verify branch protection on main",
+    "verify required status check is enforced",
+    "record reviewer or maintainer feedback",
+    "record recurring evidence refresh history"
+  ],
+  "conditions_for_true_100_percent": [
+    "all intended PRs merged",
+    "required GitHub Actions checks green on merged commits",
+    "branch protection verified",
+    "force pushes blocked",
+    "branch deletion blocked",
+    "external review or maintainer feedback recorded",
+    "evidence refresh cadence recorded"
+  ],
+  "safety_boundary": {
+    "no_real_seed": true,
+    "no_private_key": true,
+    "no_wallet_file": true,
+    "no_live_funds": true,
+    "no_exploit_payloads": true,
+    "no_weaponized_reproduction": true,
+    "public_report_sanitized": true,
+    "non_audit_boundary_required": true
+  },
+  "boundary": "This creates the external completion checklist and verification templates. It does not perform GitHub UI actions, merge PRs, enable branch protection, obtain independent review, or prove Nightfall safety.",
+  "updated_unix": 1791322301,
+  "exact_safety_phrase_verified": true,
+  "exact_safety_phrase": "no real seed"
+}
