@@ -94,14 +94,14 @@ mod tests {
     }
 
     #[test]
-    fn signature_failure_fails() {
+    fn status_fails_when_signature_verification_fails() {
         let mut meta = clean_live_meta();
         meta.signature_verification_passed = Some(false);
         assert_eq!(status_for(true, Some(&meta)), Status::Fail);
     }
 
     #[test]
-    fn missing_signature_warns() {
+    fn status_warns_when_signature_asset_exists_but_not_verified() {
         let mut meta = clean_live_meta();
         meta.signature_asset_count = Some(0);
         meta.signature_verification_attempted = Some(false);
@@ -110,7 +110,7 @@ mod tests {
     }
 
     #[test]
-    fn checksum_and_signature_pass_is_info() {
+    fn status_info_when_checksum_and_signature_verification_pass() {
         let meta = clean_live_meta();
         assert_eq!(status_for(true, Some(&meta)), Status::Info);
     }
