@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://wvp.local/schemas/wvp-release-reality-check-v0.1.schema.json",
+  "title": "WVP Release-Reality Check v0.1",
+  "description": "Public GitHub release evidence with explicit non-claims.",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "checked_at",
+    "target",
+    "release_evidence",
+    "repository_evidence",
+    "claim_status",
+    "risk_level",
+    "explicit_non_claims"
+  ],
+  "properties": {
+    "schema_version": { "const": "wvp-release-reality-check/v0.1" },
+    "checked_at": { "type": "string" },
+    "target": { "type": "object" },
+    "release_evidence": { "type": "object" },
+    "repository_evidence": { "type": "object" },
+    "claim_status": {
+      "type": "object",
+      "required": [
+        "checksum_validation",
+        "signature_validation",
+        "source_to_binary_correspondence",
+        "reproducible_build",
+        "binary_safety",
+        "protocol_security",
+        "audit_status",
+        "legal_clearance",
+        "investment_quality",
+        "custody_safety"
+      ]
+    },
+    "risk_level": { "type": "string" },
+    "explicit_non_claims": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  }
+}

@@ -1,0 +1,35 @@
+name: WVP Release-Reality Check
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  release-reality-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check shell syntax
+        run: bash -n tools/wvp-release-reality-check.sh
+      - name: Run self-check without committing report
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p /tmp/wvp-report
+          tools/wvp-release-reality-check.sh "${GITHUB_REPOSITORY}" --out /tmp/wvp-report/self.json
+          jq -e '.schema_version == "wvp-release-reality-check/v0.1"' /tmp/wvp-report/self.json
+          jq -e '
+            .claim_status.audit_status == "not_proven" and
+            .claim_status.legal_clearance == "not_proven" and
+            .claim_status.investment_quality == "not_proven" and
+            .claim_status.custody_safety == "not_proven" and
+            .claim_status.binary_safety == "not_proven" and
+            .claim_status.source_to_binary_correspondence == "not_proven" and
+            .claim_status.reproducible_build == "not_proven" and
+            .claim_status.protocol_security == "not_proven"
+          ' /tmp/wvp-report/self.json
