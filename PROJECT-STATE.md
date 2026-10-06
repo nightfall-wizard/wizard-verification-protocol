@@ -2011,3 +2011,45 @@ Boundaries:
 Interpretation:
 STEP 22F turns the release-reality checker subsystem into a documented capability surface that can be reviewed, linked, versioned and defended without overclaiming.
 <!-- WVP:STEP-22F-CAPABILITY-INDEX:END -->
+
+<!-- WVP:STEP-23-AUNEYA-PROTOCOL-CHARTER:START -->
+## STEP 23 — AUNEYA Protocol Charter
+
+Date: 2026-10-06
+
+### Purpose
+
+WVP is now explicitly anchored as the technical verification core for the AUNEYA working architecture.
+
+AUNEYA is defined as an open-source, phone-first network for witnessing the provable web.
+
+### Added
+
+- `docs/auneya/README.md`
+- `docs/auneya/AUNEYA-PROTOCOL-CHARTER.md`
+- `docs/auneya/AUNEYA-PROVABLE-WEB-SCOPE.md`
+- `docs/auneya/AUNEYA-NON-VALUE-SIMULATION-NOTICE.md`
+
+### Core interpretation
+
+WVP remains the verification protocol.
+
+AUNEYA is the long-term working architecture.
+
+The initial work remains legal, open-source, non-custodial and non-value simulation.
+
+### Explicit non-claims
+
+- No token is created by this step.
+- No token sale is offered.
+- No market value is claimed.
+- No return, profit, yield or financial outcome is offered or promised.
+- No custody, broker, exchange or paid-report service is created.
+- AUNEYA is a working name pending trademark clearance.
+- Legal review is required before any public token launch, listing, sale, transferability or market-value communication.
+
+### Next target
+
+Define the first AUNEYA claim schema for the provable web using WVP release-reality as Claim Type 001.
+<!-- WVP:STEP-23-AUNEYA-PROTOCOL-CHARTER:END -->
+

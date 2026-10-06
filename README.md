@@ -116,3 +116,27 @@ Explicit non-claims:
 - This is not a custody, broker, exchange, or paid-report function.
 <!-- WVP:V040-PUBLIC-STATUS:END -->
 
+<!-- WVP:AUNEYA-PROTOCOL-CHARTER:START -->
+## AUNEYA Protocol Charter
+
+AUNEYA is the working architecture for a phone-first witness network for the provable web.
+
+WVP remains the technical verification core.
+
+AUNEYA is currently documented as non-value protocol research and simulation only.
+
+Documents:
+
+- `docs/auneya/AUNEYA-PROTOCOL-CHARTER.md`
+- `docs/auneya/AUNEYA-PROVABLE-WEB-SCOPE.md`
+- `docs/auneya/AUNEYA-NON-VALUE-SIMULATION-NOTICE.md`
+
+Explicit non-claims:
+
+- No token is created by this step.
+- No token sale is offered.
+- No market value is claimed.
+- No return, profit, yield or financial outcome is offered or promised.
+- Legal review is required before any public token launch, listing, sale, transferability or market-value communication.
+<!-- WVP:AUNEYA-PROTOCOL-CHARTER:END -->
+
