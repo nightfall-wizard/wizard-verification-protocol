@@ -1,0 +1,20 @@
+{
+  "id": "AUNEYA-LEGAL-BOUNDARY-V1",
+  "status": "research-and-simulation-only",
+  "jurisdiction_context": "Germany/EU",
+  "legal_advice_provided": false,
+  "requires_qualified_legal_review_before_value_language": true,
+  "creates_token": false,
+  "offers_token_sale": false,
+  "makes_public_offer": false,
+  "seeks_admission_to_trading": false,
+  "claims_market_value": false,
+  "offers_return_profit_yield": false,
+  "launches_production_network": false,
+  "provides_wallet_or_custody": false,
+  "provides_payment_service": false,
+  "provides_crypto_asset_service": false,
+  "claims_regulatory_approval": false,
+  "claims_legal_compliance": false,
+  "completion_after_this_step": "approximately 80-88 percent for AUNEYA legal-boundary evidence; not 100 percent"
+}

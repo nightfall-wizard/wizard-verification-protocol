@@ -1,0 +1,27 @@
+name: AUNEYA Legal Boundary Guard
+
+on:
+  pull_request:
+    paths:
+      - "docs/auneya/**"
+      - "conformance/auneya-legal-boundary-guard.sh"
+      - "reports/auneya/**"
+      - ".github/workflows/auneya-legal-boundary.yml"
+      - "README.md"
+  push:
+    branches:
+      - main
+    paths:
+      - "docs/auneya/**"
+      - "conformance/auneya-legal-boundary-guard.sh"
+      - "reports/auneya/**"
+      - ".github/workflows/auneya-legal-boundary.yml"
+      - "README.md"
+
+jobs:
+  auneya-legal-boundary:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run AUNEYA legal boundary guard
+        run: ./conformance/auneya-legal-boundary-guard.sh
