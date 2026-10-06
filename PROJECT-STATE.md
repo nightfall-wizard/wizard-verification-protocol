@@ -1935,3 +1935,43 @@ Progress interpretation after successful CI:
 - Overall WVP system: not 100%.
 <!-- WVP:STEP-21U-CAPABILITIES-AND-USAGE:END -->
 
+
+<!-- WVP:STEP-22E-POST-MERGE-VERIFICATION:START -->
+## STEP 22E — Release-Reality Post-Merge Verification
+
+Status: implemented
+
+Purpose:
+Verify that the merged WVP Release-Reality Check v0.1 stack is complete on `main` and protected by CI-backed gates.
+
+Implemented verification:
+- release-reality checker exists and is executable;
+- schema file exists;
+- documentation exists;
+- release-reality workflow exists;
+- schema/output alignment gate exists and runs;
+- deterministic fixture gate exists and runs;
+- exactly eight deterministic release-reality fixtures exist;
+- live self-check still produces WVP v0.1 output;
+- unverified claims remain `not_proven`;
+- explicit non-claims remain present.
+
+Covered gates:
+- `conformance/wvp-release-reality-schema-output-alignment.sh`
+- `conformance/wvp-release-reality-deterministic-fixture-gate.sh`
+- `conformance/wvp-release-reality-post-merge-verification.sh`
+
+Boundaries:
+- no audit claim is made;
+- no legal-clearance claim is made;
+- no investment-quality claim is made;
+- no custody-safety claim is made;
+- no binary-safety claim is made;
+- no source-to-binary proof is claimed;
+- no reproducible-build proof is claimed;
+- no protocol-security proof is claimed;
+- no private key, seed phrase, wallet secret, API token, custody data, or user-funds data is read, printed, uploaded, or committed.
+
+Interpretation:
+STEP 22E turns the release-reality checker work from a successful merged feature into a verified main-branch subsystem with persistent CI-backed regression protection.
+<!-- WVP:STEP-22E-POST-MERGE-VERIFICATION:END -->
