@@ -2643,3 +2643,27 @@ Define AUNEYA Final Genesis Notice Draft v0.1 so the future start notice can be 
 <!-- WVP:STEP-37-AUNEYA-MINIMAL-FAIR-GENESIS-LAUNCH-PATH-V01:END -->
 
 
+
+<!-- WVP:PR19-ADVERSARIAL-CLASSIFICATION-INVARIANTS:START -->
+## PR19 — Adversarial Classification Invariant Gate
+
+Status: `implemented locally; pending PR review`
+
+Purpose:
+
+- harden release-check classification so `INFO` requires complete positive evidence;
+- add adversarial integration tests for incomplete, duplicate, failed and missing evidence;
+- add property-based invariant coverage around classification behavior;
+- preserve explicit non-claims around audit status, binary safety, reproducible builds, source-to-release proof, legal compliance, wallet safety and investment suitability.
+
+Files:
+
+- `reference/rust/wvp-release-check/src/classify.rs`
+- `reference/rust/wvp-release-check/tests/adversarial_classification.rs`
+- `docs/release-check/WVP-ADVERSARIAL-CLASSIFICATION-INVARIANTS.md`
+- `.github/workflows/ci.yml`
+
+Interpretation:
+
+This is a security-boundary hardening step. It does not add broad feature scope. It reduces the risk of false-positive release-integrity classification.
+<!-- WVP:PR19-ADVERSARIAL-CLASSIFICATION-INVARIANTS:END -->
