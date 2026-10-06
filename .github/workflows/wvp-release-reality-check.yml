@@ -16,6 +16,12 @@ jobs:
       - uses: actions/checkout@v4
       - name: Check shell syntax
         run: bash -n tools/wvp-release-reality-check.sh
+      - name: Run schema/output alignment gate
+        env:
+          GH_TOKEN: ${{ github.token }}
+          WVP_CHECKED_AT: "2026-10-06T00:00:00Z"
+        run: conformance/wvp-release-reality-schema-output-alignment.sh
+
       - name: Run self-check without committing report
         env:
           GH_TOKEN: ${{ github.token }}
