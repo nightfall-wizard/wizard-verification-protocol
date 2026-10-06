@@ -78,3 +78,6 @@ jobs:
 
       - name: Governance release
         run: python3 wvp/nightfall/governance_release.py
+
+      - name: External completion
+        run: python3 wvp/nightfall/external_completion.py

@@ -414,3 +414,37 @@ Remaining external work:
 Next milestone:
 
 External completion checklist, PR merge workflow, and branch-protection verification.
+
+
+## WVP-SEC-016
+
+Status: implemented.
+
+Completed:
+
+- external completion checklist
+- PR merge workflow
+- branch-protection verification method
+- CI history verification method
+- independent review tracker
+- final completion boundary
+- external completion templates
+- external completion report
+- executable external completion checker
+- unit tests
+- CI integration
+- release-pack refresh
+
+Boundary:
+
+This step documents and checks external completion readiness.
+It does not open PRs, merge PRs, enable GitHub branch protection, obtain independent review, or prove project safety.
+
+Progress:
+
+Local evidence/project completion after this milestone: 99%.
+Remaining external completion: 1%.
+
+100 percent rule:
+
+Only mark the project 100 percent complete after merged PRs, green GitHub Actions, verified branch protection, reviewer or maintainer feedback, and recurring maintenance evidence are recorded.

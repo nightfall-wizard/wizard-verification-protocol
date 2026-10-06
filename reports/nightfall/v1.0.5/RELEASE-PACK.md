@@ -4,10 +4,10 @@ This report records the generated Nightfall WVP evidence release pack.
 
 Archive: `release-packs/nightfall/v1.0.5/wvp-nightfall-v1.0.5-evidence-pack.tar.gz`
 
-SHA-256: `9d156161c8847365cf028fc4dd16ca9233edf2bf303c7207ab9e5941f8671803`
+SHA-256: `add935fd1aafd7573ed6109d718e07d2a0222a8b7b83729e5ae3713962280470`
 
 Manifest: `release-packs/nightfall/v1.0.5/BUNDLE-MANIFEST.json`
 
-Files in manifest: 221
+Files in manifest: 236
 
 Boundary: this is an evidence bundle, not an audit.
