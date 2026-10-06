@@ -105,3 +105,29 @@ Next milestone:
 
 WVP-SEC-005 - create release integrity evidence and
 reproducible artifact verification scaffolding.
+
+
+## WVP-SEC-005
+
+Status: implemented.
+
+Completed:
+
+- release integrity report
+- JSON release evidence
+- Markdown release evidence
+- key file hashes
+- release integrity method documentation
+- executable release integrity checker
+- unit tests
+- CI integration
+
+Boundary:
+
+This step captures local release-integrity evidence.
+It does not prove signed or reproducible binaries.
+
+Next milestone:
+
+WVP-SEC-006 - create supply-invariant evidence map and
+runtime-safe invariant probe scaffolding.

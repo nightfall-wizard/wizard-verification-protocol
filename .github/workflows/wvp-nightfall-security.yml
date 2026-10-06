@@ -19,3 +19,4 @@ jobs:
       - run: python3 wvp/nightfall/codepath_binding.py
       - run: python3 wvp/nightfall/semantic_regression.py
       - run: python3 wvp/nightfall/command_probes.py
+      - run: python3 wvp/nightfall/release_integrity.py
