@@ -325,3 +325,39 @@ Explicit non-claims:
 - Legal review is required before any public token launch, listing, sale, transferability or market-value communication.
 <!-- WVP:AUNEYA-LOCAL-WITNESS-CLI-DISPLAY-V01:END -->
 
+<!-- WVP:AUNEYA-ONE-COMMAND-LOCAL-DEMO-V01:START -->
+## AUNEYA One-Command Local Demo v0.1
+
+AUNEYA One-Command Local Demo v0.1 runs the local witness runner and local witness CLI display in one Termux-compatible command.
+
+It shows:
+
+- local non-value simulation mode
+- local claim processing
+- Pulse generation
+- Micro-Proof generation
+- Prooflet generation
+- local display output
+- explicit non-value boundaries
+
+Command:
+
+`./tools/auneya/auneya_one_command_local_demo.sh`
+
+Files:
+
+- `tools/auneya/auneya_one_command_local_demo.sh`
+- `docs/auneya/AUNEYA-ONE-COMMAND-LOCAL-DEMO-V0.1.md`
+- `fixtures/auneya/local-runner/example-one-command-local-demo.txt`
+- `conformance/auneya-one-command-local-demo-v0.1.sh`
+
+Explicit non-claims:
+
+- No token is created by this demo.
+- No real reward is created by this demo.
+- No market value is claimed.
+- No mainnet is activated.
+- Simulated entries are non-transferable and non-value only.
+- Legal review is required before any public token launch, listing, sale, transferability or market-value communication.
+<!-- WVP:AUNEYA-ONE-COMMAND-LOCAL-DEMO-V01:END -->
+

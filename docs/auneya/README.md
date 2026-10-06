@@ -72,3 +72,12 @@ The local witness runner generates a local non-value pulse-flow report from a la
 - `../../conformance/auneya-local-witness-display-v0.1.sh`
 
 The local witness CLI display prints a clean Termux status view from a local non-value pulse-flow report.
+
+## One-Command Local Demo
+
+- `AUNEYA-ONE-COMMAND-LOCAL-DEMO-V0.1.md`
+- `../../tools/auneya/auneya_one_command_local_demo.sh`
+- `../../fixtures/auneya/local-runner/example-one-command-local-demo.txt`
+- `../../conformance/auneya-one-command-local-demo-v0.1.sh`
+
+The one-command local demo runs the local witness runner and CLI display in one Termux-compatible command.

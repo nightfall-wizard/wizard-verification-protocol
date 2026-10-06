@@ -2314,3 +2314,46 @@ The display reads a local non-value AUNEYA Pulse and Prooflet Flow v0.1 report a
 Define AUNEYA One-Command Local Demo v0.1 so Termux can run the local runner and display in one command.
 <!-- WVP:STEP-29-AUNEYA-LOCAL-WITNESS-CLI-DISPLAY-V01:END -->
 
+<!-- WVP:STEP-30-AUNEYA-ONE-COMMAND-LOCAL-DEMO-V01:START -->
+## STEP 30 — AUNEYA One-Command Local Demo v0.1
+
+Date: 2026-10-06
+
+### Purpose
+
+AUNEYA now has its first one-command local Termux demo.
+
+The demo runs the local witness runner and local witness CLI display in one command.
+
+### Added
+
+- `tools/auneya/auneya_one_command_local_demo.sh`
+- `docs/auneya/AUNEYA-ONE-COMMAND-LOCAL-DEMO-V0.1.md`
+- `fixtures/auneya/local-runner/example-one-command-local-demo.txt`
+- `conformance/auneya-one-command-local-demo-v0.1.sh`
+
+### Verified
+
+- one command creates a local pulse-flow report
+- one command prints the local witness display
+- one command writes local flow, full display and compact display outputs
+- valid public claim fixture passes
+- private-data claim fixture is rejected
+- simulated entry is non-transferable
+- simulated entry claims no market value
+- demo states no token, no real reward, no mainnet and no market value
+
+### Explicit non-claims
+
+- No token is created by this step.
+- No real reward is created by this step.
+- No token sale is offered.
+- No market value is claimed.
+- No return, profit, yield or financial outcome is offered or promised.
+- Legal review is required before any public token launch, listing, sale, transferability or market-value communication.
+
+### Next target
+
+Define AUNEYA Local Demo Quickstart v0.1 so a new phone user can run the local demo from README-level instructions.
+<!-- WVP:STEP-30-AUNEYA-ONE-COMMAND-LOCAL-DEMO-V01:END -->
+
