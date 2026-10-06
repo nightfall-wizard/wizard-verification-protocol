@@ -361,4 +361,40 @@ Explicit non-claims:
 - Legal review is required before any public token launch, listing, sale, transferability or market-value communication.
 <!-- WVP:AUNEYA-ONE-COMMAND-LOCAL-DEMO-V01:END -->
 
+<!-- WVP:AUNEYA-LOCAL-DEMO-QUICKSTART-V01:START -->
+## AUNEYA Local Demo Quickstart v0.1
+
+Run the local AUNEYA demo from Termux:
+
+`./tools/auneya/auneya_one_command_local_demo.sh`
+
+This runs:
+
+- local claim fixture processing
+- local Pulse generation
+- local Micro-Proof generation
+- local Prooflet generation
+- local CLI display output
+
+Self-check:
+
+`./conformance/auneya-local-demo-quickstart-v0.1.sh`
+
+Files:
+
+- `docs/auneya/AUNEYA-LOCAL-DEMO-QUICKSTART-V0.1.md`
+- `fixtures/auneya/local-runner/example-local-demo-quickstart.txt`
+- `conformance/auneya-local-demo-quickstart-v0.1.sh`
+
+Explicit non-claims:
+
+- No token is created by this quickstart.
+- No AUNEYA is created by this quickstart.
+- No neya is created by this quickstart.
+- No real reward is created by this quickstart.
+- No market value is claimed.
+- No mainnet is activated.
+- Simulated entries are non-transferable and non-value only.
+- Legal review is required before any public token launch, listing, sale, transferability or market-value communication.
+<!-- WVP:AUNEYA-LOCAL-DEMO-QUICKSTART-V01:END -->
 

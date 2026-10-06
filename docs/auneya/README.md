@@ -81,3 +81,11 @@ The local witness CLI display prints a clean Termux status view from a local non
 - `../../conformance/auneya-one-command-local-demo-v0.1.sh`
 
 The one-command local demo runs the local witness runner and CLI display in one Termux-compatible command.
+
+## Local Demo Quickstart
+
+- `AUNEYA-LOCAL-DEMO-QUICKSTART-V0.1.md`
+- `../../fixtures/auneya/local-runner/example-local-demo-quickstart.txt`
+- `../../conformance/auneya-local-demo-quickstart-v0.1.sh`
+
+The local demo quickstart explains how to run the one-command local AUNEYA demo from Termux.

@@ -2357,4 +2357,46 @@ The demo runs the local witness runner and local witness CLI display in one comm
 Define AUNEYA Local Demo Quickstart v0.1 so a new phone user can run the local demo from README-level instructions.
 <!-- WVP:STEP-30-AUNEYA-ONE-COMMAND-LOCAL-DEMO-V01:END -->
 
+<!-- WVP:STEP-31-AUNEYA-LOCAL-DEMO-QUICKSTART-V01:START -->
+## STEP 31 — AUNEYA Local Demo Quickstart v0.1
+
+Date: 2026-10-06
+
+### Purpose
+
+AUNEYA now has a Termux-focused quickstart for the one-command local demo.
+
+This gives a new phone user a direct README-level path to run the local non-value demo.
+
+### Added
+
+- `docs/auneya/AUNEYA-LOCAL-DEMO-QUICKSTART-V0.1.md`
+- `fixtures/auneya/local-runner/example-local-demo-quickstart.txt`
+- `conformance/auneya-local-demo-quickstart-v0.1.sh`
+
+### Verified
+
+- quickstart document exists
+- quickstart contains the one-command local demo command
+- quickstart states token, market-value, transferability and mainnet boundaries
+- quickstart demo produces local flow, display and compact display outputs
+- private-data claim fixture is rejected
+- simulated entry is non-transferable
+- simulated entry claims no market value
+
+### Explicit non-claims
+
+- No token is created by this step.
+- No AUNEYA is created by this step.
+- No neya is created by this step.
+- No real reward is created by this step.
+- No token sale is offered.
+- No market value is claimed.
+- No return, profit, yield or financial outcome is offered or promised.
+- Legal review is required before any public token launch, listing, sale, transferability or market-value communication.
+
+### Next target
+
+Define AUNEYA Local Claim Selection v0.1 so a phone user can choose between supported lawful public claim fixtures before local collecting simulation begins.
+<!-- WVP:STEP-31-AUNEYA-LOCAL-DEMO-QUICKSTART-V01:END -->
 
