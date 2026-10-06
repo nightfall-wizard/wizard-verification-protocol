@@ -1,0 +1,99 @@
+{
+  "schema_version": "wvp-release-reality-capability-index/v0.1",
+  "subsystem": "wvp-release-reality-check",
+  "subsystem_version": "v0.1",
+  "status": "implemented",
+  "purpose": "Record public GitHub repository and release metadata while preserving strict non-claim boundaries.",
+  "capabilities": [
+    {
+      "id": "repository_metadata_visibility",
+      "status": "implemented"
+    },
+    {
+      "id": "release_metadata_visibility",
+      "status": "implemented"
+    },
+    {
+      "id": "tag_reference_presence",
+      "status": "implemented"
+    },
+    {
+      "id": "checksum_asset_presence",
+      "status": "implemented"
+    },
+    {
+      "id": "signature_asset_presence",
+      "status": "implemented"
+    },
+    {
+      "id": "public_verification_key_asset_presence",
+      "status": "implemented"
+    },
+    {
+      "id": "repository_hygiene_metadata",
+      "status": "implemented"
+    },
+    {
+      "id": "schema_output_alignment_gate",
+      "status": "implemented"
+    },
+    {
+      "id": "deterministic_fixture_gate",
+      "status": "implemented"
+    },
+    {
+      "id": "post_merge_verification_gate",
+      "status": "implemented"
+    }
+  ],
+  "explicit_non_capabilities": [
+    "audit_status_proof",
+    "legal_clearance_proof",
+    "investment_quality_assessment",
+    "custody_safety_proof",
+    "binary_safety_proof",
+    "source_to_binary_correspondence_proof",
+    "reproducible_build_proof",
+    "protocol_security_proof",
+    "checksum_validation",
+    "signature_validation",
+    "official_project_status_proof",
+    "malware_analysis",
+    "financial_recommendation",
+    "custody_or_transaction_handling"
+  ],
+  "gates": [
+    "conformance/wvp-release-reality-schema-output-alignment.sh",
+    "conformance/wvp-release-reality-deterministic-fixture-gate.sh",
+    "conformance/wvp-release-reality-post-merge-verification.sh",
+    "conformance/wvp-release-reality-capability-index-gate.sh"
+  ],
+  "fixtures": [
+    "fixtures/release-reality/RR-001-repo-with-release/input.json",
+    "fixtures/release-reality/RR-002-repo-without-release/input.json",
+    "fixtures/release-reality/RR-003-checksum-no-signature/input.json",
+    "fixtures/release-reality/RR-004-signature-no-checksum/input.json",
+    "fixtures/release-reality/RR-005-public-key-no-signature/input.json",
+    "fixtures/release-reality/RR-006-missing-security-md/input.json",
+    "fixtures/release-reality/RR-007-invalid-repo-format/input.json",
+    "fixtures/release-reality/RR-008-release-api-not-verifiable/input.json"
+  ],
+  "hard_rules": [
+    "public_verification_key_is_not_detached_signature",
+    "metadata_presence_is_not_validation",
+    "release_presence_is_not_audit",
+    "signature_asset_presence_is_not_signature_validation",
+    "checksum_asset_presence_is_not_checksum_validation",
+    "repository_hygiene_is_not_protocol_security",
+    "no_private_keys_or_seeds",
+    "no_wallet_or_custody_data",
+    "no_investment_or_legal_advice"
+  ],
+  "claim_status_values": [
+    "proven",
+    "not_enough_evidence",
+    "not_verifiable",
+    "not_proven"
+  ],
+  "release_readiness_interpretation": "This is not a release approval, audit, legal review, investment recommendation or custody safety statement."
+}

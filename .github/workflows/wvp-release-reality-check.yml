@@ -16,6 +16,11 @@ jobs:
       - uses: actions/checkout@v4
       - name: Check shell syntax
         run: bash -n tools/wvp-release-reality-check.sh
+      - name: Run capability index gate
+        run: |
+          bash -n conformance/wvp-release-reality-capability-index-gate.sh
+          conformance/wvp-release-reality-capability-index-gate.sh
+
       - name: Run post-merge verification gate
         env:
           GH_TOKEN: ${{ github.token }}
