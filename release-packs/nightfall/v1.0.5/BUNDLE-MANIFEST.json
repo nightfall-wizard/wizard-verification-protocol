@@ -1,10 +1,10 @@
 {
   "id": "WVP-SEC-010",
-  "created_unix": 1791321170,
+  "created_unix": 1791321345,
   "project": "Nightfall",
   "version": "v1.0.5",
   "pack_name": "wvp-nightfall-v1.0.5-evidence-pack",
-  "file_count": 143,
+  "file_count": 146,
   "files": [
     {
       "path": ".github/workflows/ci.yml",
@@ -13,8 +13,8 @@
     },
     {
       "path": ".github/workflows/wvp-nightfall-security.yml",
-      "size_bytes": 839,
-      "sha256": "dcdf8c1b4c4d76c4df5f6ce89188c2e142fe602d755ebc4ed08c9e08064a7662"
+      "size_bytes": 890,
+      "sha256": "0eb7611c860176b2b41532de5de3147e934602c9e5bf6739d3e10d451cd826e8"
     },
     {
       "path": ".github/workflows/wvp-release-reality-check.yml",
@@ -23,8 +23,8 @@
     },
     {
       "path": "PROJECT-STATE.md",
-      "size_bytes": 4512,
-      "sha256": "f2b54f1771971dd4434e225c4570386dbc602b683bfba1d91af8f2f3ea7014e5"
+      "size_bytes": 5034,
+      "sha256": "e21ad7cb34d63fdd0374e60002fc19a424cf3b9f6826bb50a6e0203bfc8b79b6"
     },
     {
       "path": "README.md",
@@ -75,6 +75,11 @@
       "path": "docs/RELEASE-INTEGRITY-METHOD.md",
       "size_bytes": 790,
       "sha256": "b1be17d8d4fae810c9031aa751c0620582f11c506bd912cf2cd302ed475a4d43"
+    },
+    {
+      "path": "docs/RELEASE-PACK-METHOD.md",
+      "size_bytes": 1060,
+      "sha256": "6587fb5098d3e37888ee8e4f3361a7f1ed98399ca2c15dac9e7ec856429e37bb"
     },
     {
       "path": "docs/SECURITY-MODEL.md",
@@ -662,6 +667,11 @@
       "sha256": "89a6561ad5890c08181eaa22e17c6a991dba3818db79973081e16c6f47d203da"
     },
     {
+      "path": "tests/test_release_pack.py",
+      "size_bytes": 1676,
+      "sha256": "e3e21f064996206718fa87eead624fc8880b2415250191645cd2fa60f786b3d7"
+    },
+    {
       "path": "tests/test_semantic_regression.py",
       "size_bytes": 1122,
       "sha256": "68fc701f884cb77eca865ee9bb5938977fd3b972908c68b78d8b7ceca93ef1e3"
@@ -702,6 +712,11 @@
       "sha256": "651f6f9963b0aa3c1feb0dca3d3b90158963bd155e3276176e8cfde8b9c10fce"
     },
     {
+      "path": "wvp/nightfall/release_pack.py",
+      "size_bytes": 2373,
+      "sha256": "8acffa2e4fef38ae92a08c60db917023d458c6e7467656551dc0a0bb5e0d38a2"
+    },
+    {
       "path": "wvp/nightfall/semantic_regression.py",
       "size_bytes": 993,
       "sha256": "edfc083ade5e3cc8482a458f5b84a80757ece989d577170e4fef26c82d50caae"
@@ -721,6 +736,14 @@
       "size_bytes": 3250,
       "sha256": "e8e84c59c184c62a7ffd5f1c4a3fe26de3f92fd41fa3051bd827700b638378dc"
     }
+  ],
+  "excluded_self_referential_files": [
+    "release-packs/nightfall/v1.0.5/BUNDLE-MANIFEST.json",
+    "release-packs/nightfall/v1.0.5/BUNDLE-MANIFEST.md",
+    "release-packs/nightfall/v1.0.5/SHA256SUMS.txt",
+    "release-packs/nightfall/v1.0.5/wvp-nightfall-v1.0.5-evidence-pack.tar.gz",
+    "reports/nightfall/v1.0.5/RELEASE-PACK.json",
+    "reports/nightfall/v1.0.5/RELEASE-PACK.md"
   ],
   "safety_boundary": {
     "no_real_seed": true,

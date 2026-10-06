@@ -1,3 +1,4 @@
+
 # WVP Release Pack Method
 
 WVP-SEC-010 creates a versioned evidence bundle.
@@ -16,6 +17,16 @@ The release pack includes:
 - CI workflow references
 - bundle manifest
 - archive checksum
+
+Self-referential release-pack outputs are excluded from the manifest:
+
+- RELEASE-PACK.json
+- RELEASE-PACK.md
+- generated release-pack archive
+- generated checksum file
+- generated bundle manifest
+
+This avoids circular hash instability.
 
 The release pack is deterministic at the archive metadata level:
 

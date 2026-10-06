@@ -6,7 +6,7 @@ Boundary: this release pack is not an audit and not a certification.
 
 Pack name: `wvp-nightfall-v1.0.5-evidence-pack`
 
-Files: 143
+Files: 146
 
 ## Safety boundary
 
@@ -17,14 +17,23 @@ Files: 143
 - sanitized_public_report_included: `True`
 - non_audit_boundary_required: `True`
 
+## Excluded self-referential files
+
+- `release-packs/nightfall/v1.0.5/BUNDLE-MANIFEST.json`
+- `release-packs/nightfall/v1.0.5/BUNDLE-MANIFEST.md`
+- `release-packs/nightfall/v1.0.5/SHA256SUMS.txt`
+- `release-packs/nightfall/v1.0.5/wvp-nightfall-v1.0.5-evidence-pack.tar.gz`
+- `reports/nightfall/v1.0.5/RELEASE-PACK.json`
+- `reports/nightfall/v1.0.5/RELEASE-PACK.md`
+
 ## Bundle file list
 
 | Path | Size | SHA-256 |
 |---|---:|---|
 | `.github/workflows/ci.yml` | 8591 | `955e3415045a65556f1414e372c5ce39440f3bc53def7bf78b918cdbfa02ce7d` |
-| `.github/workflows/wvp-nightfall-security.yml` | 839 | `dcdf8c1b4c4d76c4df5f6ce89188c2e142fe602d755ebc4ed08c9e08064a7662` |
+| `.github/workflows/wvp-nightfall-security.yml` | 890 | `0eb7611c860176b2b41532de5de3147e934602c9e5bf6739d3e10d451cd826e8` |
 | `.github/workflows/wvp-release-reality-check.yml` | 2176 | `a2d094fedd28a4a4044a6686d85ccf4b2a03953b3fe8baf1fc001cb72ad2703a` |
-| `PROJECT-STATE.md` | 4512 | `f2b54f1771971dd4434e225c4570386dbc602b683bfba1d91af8f2f3ea7014e5` |
+| `PROJECT-STATE.md` | 5034 | `e21ad7cb34d63fdd0374e60002fc19a424cf3b9f6826bb50a6e0203bfc8b79b6` |
 | `README.md` | 18647 | `1762535e1f9eb0c5803ee4c76e3c4cfbf92fa77ad1c08de513ddf0687d3b06b0` |
 | `SECURITY.md` | 658 | `9dc600cc35d5ac66a512601a4c17629f1b853d7e502875f6a310155bced1f451` |
 | `docs/CODEPATH-BINDING-METHOD.md` | 666 | `b966ec2c332aa21420eacc823eaa1e03458c0e1c4c28b8ed38ceef7073ea8d90` |
@@ -35,6 +44,7 @@ Files: 143
 | `docs/PRIVATE-DISCLOSURE-METHOD.md` | 1077 | `2132fb092f75e0ce532092c877d7515f1df3986faf88b21dd277906281fff30d` |
 | `docs/PUBLIC-REPORT-METHOD.md` | 443 | `62ed91e74829f3a2f6acc6eb34d182fe2ef409849c8ce115e3661c68d2368c54` |
 | `docs/RELEASE-INTEGRITY-METHOD.md` | 790 | `b1be17d8d4fae810c9031aa751c0620582f11c506bd912cf2cd302ed475a4d43` |
+| `docs/RELEASE-PACK-METHOD.md` | 1060 | `6587fb5098d3e37888ee8e4f3361a7f1ed98399ca2c15dac9e7ec856429e37bb` |
 | `docs/SECURITY-MODEL.md` | 600 | `aa7791f6af51315671c5e413448f5da23793984dd6642d17364eb4d8128daada` |
 | `docs/SEMANTIC-REGRESSION-METHOD.md` | 799 | `f74e9584ec44a1ddb72244a3fb39580df9d7f5bd8358f5b3d1b9882c7b00e790` |
 | `docs/SUPPLY-INVARIANT-METHOD.md` | 1060 | `f2cab69df71546bc0dd6913b3b77ff7faa9d3c9c6bf07082a15a6ccc8553cfc7` |
@@ -152,6 +162,7 @@ Files: 143
 | `tests/test_negative_vectors.py` | 1598 | `178b5de878468b6c93b66e5000dd725d6e6e16850a23515f8829d44af3cef411` |
 | `tests/test_nightfall_verifier.py` | 1144 | `230efced57b370d0542bf09c24ad2636e54460f77e409d2acb5c7adbf0a42f3a` |
 | `tests/test_release_integrity.py` | 1347 | `89a6561ad5890c08181eaa22e17c6a991dba3818db79973081e16c6f47d203da` |
+| `tests/test_release_pack.py` | 1676 | `e3e21f064996206718fa87eead624fc8880b2415250191645cd2fa60f786b3d7` |
 | `tests/test_semantic_regression.py` | 1122 | `68fc701f884cb77eca865ee9bb5938977fd3b972908c68b78d8b7ceca93ef1e3` |
 | `tests/test_supply_invariant.py` | 1311 | `bf0b508121cd0a8c227d08740b374a1a27a90cfff85791f20287609c7bca26e4` |
 | `tests/test_triage_workflow.py` | 1904 | `f5dcfefd85403342dcfcdc4e82546dc3a6961e836c5b3219c08f60482a064311` |
@@ -160,6 +171,7 @@ Files: 143
 | `wvp/nightfall/conformance_score.py` | 1975 | `175f1d22cc2eb5483ba0bd199fbd63288ef0bf43551cfc23e8aabf82601de5dc` |
 | `wvp/nightfall/negative_vectors.py` | 2170 | `64a2134c9a6b0f5ae5d9f40d9e4daf927fb462707f825f2adc5faf3b69c5ee5b` |
 | `wvp/nightfall/release_integrity.py` | 1265 | `651f6f9963b0aa3c1feb0dca3d3b90158963bd155e3276176e8cfde8b9c10fce` |
+| `wvp/nightfall/release_pack.py` | 2373 | `8acffa2e4fef38ae92a08c60db917023d458c6e7467656551dc0a0bb5e0d38a2` |
 | `wvp/nightfall/semantic_regression.py` | 993 | `edfc083ade5e3cc8482a458f5b84a80757ece989d577170e4fef26c82d50caae` |
 | `wvp/nightfall/supply_invariant.py` | 1495 | `b43e930025b8da84c8a8407bd61739d38df87e9e6f2b7a2d1b9679fb81a21ea7` |
 | `wvp/nightfall/triage_workflow.py` | 2416 | `551966288817b13c1e025701f265fe9ac2e3fd229cf3f77017342fa27dba2c8d` |
