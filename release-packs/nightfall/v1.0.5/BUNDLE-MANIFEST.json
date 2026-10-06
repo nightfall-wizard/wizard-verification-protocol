@@ -1,10 +1,10 @@
 {
   "id": "WVP-SEC-010",
-  "created_unix": 1791321956,
+  "created_unix": 1791322102,
   "project": "Nightfall",
   "version": "v1.0.5",
   "pack_name": "wvp-nightfall-v1.0.5-evidence-pack",
-  "file_count": 205,
+  "file_count": 221,
   "files": [
     {
       "path": ".github/workflows/ci.yml",
@@ -23,13 +23,18 @@
     },
     {
       "path": ".github/workflows/wvp-required-checks.yml",
-      "size_bytes": 1831,
-      "sha256": "ad81c198b0c24afd9f652795fbfd4784253c9897927f32a3cfb3e5fef8055d48"
+      "size_bytes": 1922,
+      "sha256": "d7c8f4812641c8a04c7ca4adde263e0dec60ae0d5c8f85bc99e2838dc1224ffa"
+    },
+    {
+      "path": "CHANGELOG.md",
+      "size_bytes": 443,
+      "sha256": "8c3081f5bd894ea130e0266c734453da8442867e6a2431f1ba58c808896a96af"
     },
     {
       "path": "PROJECT-STATE.md",
-      "size_bytes": 7381,
-      "sha256": "c92e4b923ef18dbc1222a39bd0475e7b005d75888b8d2a43d91acad7990e4d9b"
+      "size_bytes": 8355,
+      "sha256": "39db3904358730a21d0573a1b7cdf08968e828ab08cbbf0e5e7188d8a301bbf8"
     },
     {
       "path": "README.md",
@@ -40,6 +45,11 @@
       "path": "SECURITY.md",
       "size_bytes": 658,
       "sha256": "9dc600cc35d5ac66a512601a4c17629f1b853d7e502875f6a310155bced1f451"
+    },
+    {
+      "path": "docs/CHANGELOG-POLICY.md",
+      "size_bytes": 626,
+      "sha256": "1f2bc07d132124e38668827b2435a341e4704ac938855e645e4dcfb3a71e8ff7"
     },
     {
       "path": "docs/CI-HARDENING-METHOD.md",
@@ -62,6 +72,11 @@
       "sha256": "aa12e7fca81b130b1db4af3980f597015b4c29377fe018b8f8ef2c298af89b4b"
     },
     {
+      "path": "docs/EVIDENCE-REFRESH-CADENCE.md",
+      "size_bytes": 765,
+      "sha256": "abbe368e49bdca9be3c7e6e4204b33fa188263ddd2329cfeab94d2dcdb049e8a"
+    },
+    {
       "path": "docs/EXTERNAL-REVIEW-PREPARATION.md",
       "size_bytes": 1370,
       "sha256": "21826c1e0c774f221afc384e758b6dfcd23425c2c6f7a121c591e6605dc80621"
@@ -82,6 +97,11 @@
       "sha256": "8919af18cbcf3ce995febef01d01d705c446f4243ce892dd5e9cc3db0592066c"
     },
     {
+      "path": "docs/GOVERNANCE.md",
+      "size_bytes": 994,
+      "sha256": "b9d81114c6154b05b8afa99f605984849245bbaf4363320a249d9d35719b30dc"
+    },
+    {
       "path": "docs/ISSUE-QUALITY-GATE-METHOD.md",
       "size_bytes": 1088,
       "sha256": "7738d954e9f301cdcab96a6e12032d061b7beaf9225bf11aff1069e4e2b6e67b"
@@ -90,6 +110,11 @@
       "path": "docs/MAINTAINER-HANDOFF.md",
       "size_bytes": 1917,
       "sha256": "a4bd4df0e0211faf2b48bc59024d6d950f1c1e6bd783983ee2bf712e9538031f"
+    },
+    {
+      "path": "docs/MAINTAINER-ROLES.md",
+      "size_bytes": 521,
+      "sha256": "62d7052c0c77141065cd76b7e9278be8071ce056363a1970e621acf10ac897de"
     },
     {
       "path": "docs/MERGE-READINESS-CHECKLIST.md",
@@ -125,6 +150,11 @@
       "path": "docs/RELEASE-PACK-METHOD.md",
       "size_bytes": 1060,
       "sha256": "6587fb5098d3e37888ee8e4f3361a7f1ed98399ca2c15dac9e7ec856429e37bb"
+    },
+    {
+      "path": "docs/RELEASE-PROCESS.md",
+      "size_bytes": 1415,
+      "sha256": "2f4311ac11863fb911ce4ca47a86165f12cfe2dc734f3a8fe104c5e6fe11288b"
     },
     {
       "path": "docs/REQUIRED-CHECK-GATE-METHOD.md",
@@ -185,6 +215,11 @@
       "path": "docs/VERIFICATION-PROFILES.md",
       "size_bytes": 462,
       "sha256": "a445d5e8bcb05ca53be7351d336de82aba36633c7724d03a8d5d067282385d69"
+    },
+    {
+      "path": "docs/VERSIONING-POLICY.md",
+      "size_bytes": 788,
+      "sha256": "c57076103cd7a184571cbb452657f6dfdd4b423186b3a3ac9fae99fab2af7487"
     },
     {
       "path": "docs/WVP-RELEASE-REALITY-CAPABILITY-INDEX-V0.1.md",
@@ -657,6 +692,16 @@
       "sha256": "9c3e7c60e54d5bf3c91c3a5ac024fc5872358224618d80d11ae6371fabe39d5b"
     },
     {
+      "path": "reports/nightfall/v1.0.5/GOVERNANCE-RELEASE.json",
+      "size_bytes": 3284,
+      "sha256": "6e85c3b9ef0ce7ebee24bbe8e6cdcfd58bf128d31d5fede6beb880040dc08efb"
+    },
+    {
+      "path": "reports/nightfall/v1.0.5/GOVERNANCE-RELEASE.md",
+      "size_bytes": 2285,
+      "sha256": "f4bd5efa2d26f890f15517a4e95aec934182780e3b40eb15a75ca1ce3885fc66"
+    },
+    {
       "path": "reports/nightfall/v1.0.5/ISSUE-QUALITY-GATE.json",
       "size_bytes": 2271,
       "sha256": "bb4e212b423d07b1dd1f03c0e71c289a37b97d70186c92507a8253b3ab1822eb"
@@ -772,6 +817,31 @@
       "sha256": "6066be24cc50648cc7a9270795d54970700fc2609a85e080f96830d1df288cc6"
     },
     {
+      "path": "templates/governance/evidence-refresh-issue.md",
+      "size_bytes": 566,
+      "sha256": "6ae361e8d75c027c95b1aea5cff19e2aac0dcf2a2c3be6e8cd88e62693abdece"
+    },
+    {
+      "path": "templates/governance/governance-review-comment.md",
+      "size_bytes": 270,
+      "sha256": "b7b50afda367c91fef7077914d9d686b82eb2e4da11a3f4764aa26d0df779a4c"
+    },
+    {
+      "path": "templates/governance/maintainer-decision-record.md",
+      "size_bytes": 260,
+      "sha256": "73358159af5bf9ee3a140f51b08248f0b8ad9ba06ccc4813426723eb8e5b29c4"
+    },
+    {
+      "path": "templates/governance/release-checklist.md",
+      "size_bytes": 551,
+      "sha256": "16768f8618a448542d016530bd7715f31e03ce954737467541110a00e09fa2ce"
+    },
+    {
+      "path": "templates/governance/versioned-release-note.md",
+      "size_bytes": 391,
+      "sha256": "52755604bd57e8fdf564b0754867ba1623a772a3b271c0e14f90e26b74a379d5"
+    },
+    {
       "path": "templates/handoff/maintainer-review-checklist.md",
       "size_bytes": 351,
       "sha256": "56afd1cd5d0ad7a51d3862a6f524e9b761bd3a407a4f778b453335b227b22b1f"
@@ -865,6 +935,11 @@
       "path": "tests/test_external_review_gate.py",
       "size_bytes": 2209,
       "sha256": "3e043180d0fc5b077938c38c18db106c2d19e077af0850a0d6c6f831c673c5d6"
+    },
+    {
+      "path": "tests/test_governance_release.py",
+      "size_bytes": 2574,
+      "sha256": "9256fe6036e3469f6986603e41969ba7acfd9841c50fd8be34787692235cfeda"
     },
     {
       "path": "tests/test_handoff_readiness.py",
@@ -985,6 +1060,11 @@
       "path": "wvp/nightfall/external_review_gate.py",
       "size_bytes": 3337,
       "sha256": "6fb6419cc68bdfdf101261099e5cecb28fbf11a89972d6a99e6d132804c7d8fe"
+    },
+    {
+      "path": "wvp/nightfall/governance_release.py",
+      "size_bytes": 3332,
+      "sha256": "b015d4b6b15746c39767a53adbfcd8275377d0deeb40b882d43575a882647689"
     },
     {
       "path": "wvp/nightfall/handoff_readiness.py",

@@ -75,3 +75,6 @@ jobs:
 
       - name: Runtime toy harness
         run: python3 wvp/nightfall/runtime_toy_harness.py
+
+      - name: Governance release
+        run: python3 wvp/nightfall/governance_release.py

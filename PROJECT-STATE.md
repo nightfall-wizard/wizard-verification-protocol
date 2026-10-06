@@ -371,3 +371,46 @@ It does not execute real Nightfall consensus, mutate live node state, use funds,
 Next milestone:
 
 WVP-SEC-015 - repository governance and versioned release process.
+
+
+## WVP-SEC-015
+
+Status: implemented.
+
+Completed:
+
+- governance documentation
+- versioning policy
+- release process
+- changelog policy
+- evidence refresh cadence
+- maintainer roles
+- governance templates
+- governance release report
+- executable governance release checker
+- unit tests
+- CI integration
+- release-pack refresh
+
+Boundary:
+
+This step creates repository governance and a versioned release process.
+It does not merge PRs, enable GitHub branch protection, obtain independent external review, or prove project safety.
+
+Progress:
+
+Local evidence/project completion after this milestone: 98%.
+Remaining external completion: 2%.
+
+Remaining external work:
+
+- open and review PRs
+- run GitHub Actions
+- merge accepted PRs
+- enable or verify branch protection
+- obtain independent external review or maintainer feedback
+- maintain recurring evidence refresh history
+
+Next milestone:
+
+External completion checklist, PR merge workflow, and branch-protection verification.
