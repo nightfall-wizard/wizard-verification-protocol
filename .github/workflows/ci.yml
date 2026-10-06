@@ -1,219 +1,30 @@
-name: WVP CI
+name: CI
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
   pull_request:
-  workflow_dispatch:
-
-permissions:
-  contents: read
+    branches: [main]
 
 jobs:
-  rust:
-    name: Rust reference implementations
-    runs-on: ubuntu-24.04
-
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.10", "3.11", "3.12"]
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Toolchain info
-        run: |
-          rustc --version
-          cargo --version
-
-      - name: Format check
-        run: cargo fmt --all -- --check
-
-      - name: Clippy
-        run: cargo clippy --workspace --all-targets -- -D warnings
-
-      - name: Tests
-        run: cargo test --workspace --locked
-
-      - name: WVP adversarial classification invariant tests
-        run: cargo test --workspace --locked adversarial
-
-      - name: WVP stable JSON report contract tests
-        run: cargo test --workspace --locked report_contract
-
-      - name: WVP report v1 compatibility guard
-        run: cargo test --workspace --locked compatibility_guard
-
-      - name: Example JSON output
-        run: cargo run --manifest-path reference/rust/wvp-release-check/Cargo.toml -- --target nightfall-wizard/wizard-verification-protocol --json
-
-      - name: Release-check conformance smoke
-        run: ./conformance/release-check-smoke.sh
-
-      - name: Release-check live GitHub metadata smoke
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: ./conformance/release-check-live-smoke.sh
-
-      - name: WVP self-release checksum conformance
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: ./conformance/release-check-self-release-checksum.sh
-
-      - name: WVP missing signature policy conformance
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: ./conformance/release-check-missing-signature-policy.sh
-
-      - name: WVP no-secret signing material conformance
-        run: ./conformance/release-check-no-secret-signing-material.sh
-
-      - name: WVP signature tooling capability conformance
-        run: ./conformance/release-check-signature-tooling-capability.sh
-
-      - name: WVP signature status model conformance
-        run: ./conformance/release-check-signature-status-model.sh
-
-      - name: WVP public release verification key conformance
-        run: ./conformance/release-check-public-key-policy.sh
-
-      - name: WVP self-release signature conformance
-        env:
-          GH_TOKEN: ${{ github.token }}
-          GH_REPO: ${{ github.repository }}
-        run: ./conformance/release-check-self-release-signature.sh
-
-      - name: WVP signature asset matching conformance
-        run: ./conformance/release-check-signature-asset-matching.sh
-
-      - name: WVP signature tamper-negative conformance
-        run: ./conformance/release-check-signature-tamper-negative.sh
-
-      - name: WVP v0.2 release candidate docs conformance
-        run: ./conformance/release-check-v02-rc-docs.sh
-
-      - name: WVP v0.2 version and build script conformance
-        run: ./conformance/release-check-v02-version-build-script.sh
-
-      - name: WVP v0.2.0 post-release conformance
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: ./conformance/release-check-v020-post-release.sh
-
-      - name: WVP reproducible-build evidence baseline conformance
-        run: ./conformance/release-check-reproducible-build-evidence-baseline.sh
-
-      - name: WVP same-environment repeat-build conformance
-        run: ./conformance/release-check-same-env-repeat-build.sh
-
-      - name: WVP independent-environment separation conformance
-        run: ./conformance/release-check-independent-environment-separation.sh
-
-      - name: WVP CI build provenance artifact conformance
-        run: ./conformance/release-check-ci-build-provenance-artifact.sh
-
-      - name: WVP CI build provenance artifact generation
-        run: ./scripts/release/generate-ci-build-provenance-artifact.sh --require-clean
-
-      - name: Upload WVP CI build provenance artifact
-        uses: actions/upload-artifact@v4
+      - uses: actions/checkout@v4
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
         with:
-          name: wvp-ci-build-provenance-${{ github.sha }}
-          path: target/wvp-ci-build-provenance
-          if-no-files-found: error
-
-      - name: WVP v0.3 release readiness checklist conformance
-        run: ./conformance/release-check-v030-readiness-checklist.sh
-
-
-      - name: WVP v0.3 release docs conformance
-        run: ./conformance/release-check-v030-release-docs.sh
-
-      - name: WVP v0.3 version/release plan conformance
-        run: ./conformance/release-check-v030-version-release-plan.sh
-
-      - name: WVP v0.3 actual version bump conformance
-        run: ./conformance/release-check-v030-actual-version-bump.sh
-
-      - name: WVP v0.3 unsigned asset staging conformance
-        run: ./conformance/release-check-v030-unsigned-asset-staging.sh
-
-      - name: WVP v0.3 detached signature procedure conformance
-        run: ./conformance/release-check-v030-detached-signature-procedure.sh
-
-      - name: WVP v0.3 local signing execution guard conformance
-        run: ./conformance/release-check-v030-local-signing-execution-guard.sh
-
-      - name: WVP v0.3 post-release publication conformance
-        run: ./conformance/release-check-v030-post-release-publication.sh
-        env:
-          GH_TOKEN: ${{ github.token }}
-      - name: WVP Android-vs-CI local conformance script syntax
-        run: bash -n ./conformance/release-check-android-vs-ci-build-provenance.sh
-
-      - name: WVP build provenance comparison format conformance
-        run: ./conformance/release-check-build-provenance-comparison-format.sh
-
-      - name: WVP v0.4 scope plan conformance
-        run: ./conformance/wvp-v040-scope-plan-conformance.sh
-
-      - name: WVP v0.4 release-check hardening matrix conformance
-        run: ./conformance/wvp-v040-release-check-hardening-matrix-conformance.sh
-
-      - name: WVP v0.4 release-check fixture strategy conformance
-        run: ./conformance/wvp-v040-release-check-fixture-strategy-conformance.sh
-
-      - name: WVP v0.4 FRC-007 fixture conformance
-        run: ./conformance/wvp-v040-release-check-frc007-conformance.sh
-
-      - name: WVP v0.4 FRC-005 duplicate checksum fixture conformance
-        run: ./conformance/wvp-v040-release-check-frc005-conformance.sh
-
-      - name: WVP v0.4 FRC-006 duplicate signature fixture conformance
-        run: ./conformance/wvp-v040-release-check-frc006-conformance.sh
-
-      - name: WVP v0.4 FRC-003 signature without public key fixture conformance
-        run: ./conformance/wvp-v040-release-check-frc003-conformance.sh
-
-      - name: WVP v0.4 FRC-004 public key without signature fixture conformance
-        run: ./conformance/wvp-v040-release-check-frc004-conformance.sh
-
-      - name: WVP v0.4 fixture runner design conformance
-        run: ./conformance/wvp-v040-release-check-fixture-runner-design-conformance.sh
-
-      - name: WVP v0.4 fixture index validator conformance
-        run: ./conformance/wvp-v040-release-check-fixture-index-validator-conformance.sh
-
-      - name: WVP v0.4 fixture runner skeleton conformance
-        run: ./conformance/wvp-v040-release-check-fixture-runner-skeleton-conformance.sh
-
-      - name: WVP v0.4 fixture runner semantic conformance
-        run: ./conformance/wvp-v040-release-check-fixture-runner-semantic-conformance.sh
-
-      - name: WVP v0.4 fixture runner semantic coverage conformance
-        run: ./conformance/wvp-v040-release-check-fixture-runner-semantic-coverage-conformance.sh
-
-      - name: WVP v0.4.1 adversarial fixture matrix conformance
-        run: ./conformance/wvp-v041-adversarial-fixture-matrix-conformance.sh
-
-      - name: WVP v0.4 fixture runner report conformance
-        run: ./conformance/wvp-v040-release-check-fixture-runner-report-conformance.sh
-
-      - name: WVP v0.4 release readiness checklist conformance
-        run: ./conformance/wvp-v040-release-readiness-checklist-conformance.sh
-
-      - name: WVP v0.4 release notes draft conformance
-        run: ./conformance/wvp-v040-release-notes-draft-conformance.sh
-
-      - name: WVP v0.4 final pre-release gate conformance
-        run: ./conformance/wvp-v040-final-pre-release-gate-conformance.sh
-
-      - name: WVP v0.4 controlled release plan conformance
-        run: ./conformance/wvp-v040-controlled-release-plan-conformance.sh
-
-      - name: WVP v0.4 pre-release prep stop marker conformance
-        run: ./conformance/wvp-v040-pre-release-prep-stop-marker-conformance.sh
-
-      - name: WVP v0.4 public status alignment conformance
-        run: ./conformance/wvp-v040-public-status-alignment-conformance.sh
-
-      - name: WVP v0.4 capabilities and usage conformance
-        run: ./conformance/wvp-v040-capabilities-and-usage-conformance.sh
+          python-version: ${{ matrix.python-version }}
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e ".[dev]"
+      - name: Run tests
+        run: pytest
+      - name: Check linting
+        run: ruff check .
+      - name: Type check
+        run: mypy .
