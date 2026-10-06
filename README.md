@@ -292,3 +292,36 @@ Explicit non-claims:
 - Legal review is required before any public token launch, listing, sale, transferability or market-value communication.
 <!-- WVP:AUNEYA-LOCAL-WITNESS-RUNNER-V01:END -->
 
+<!-- WVP:AUNEYA-LOCAL-WITNESS-CLI-DISPLAY-V01:START -->
+## AUNEYA Local Witness CLI Display v0.1
+
+AUNEYA Local Witness CLI Display v0.1 prints a clean Termux status view from a local non-value pulse-flow report.
+
+It shows:
+
+- local non-value simulation mode
+- claim identity
+- witness identity
+- pulse count
+- micro-proof count
+- prooflet identity
+- simulated non-value entry
+- legal boundary confirmations
+
+Files:
+
+- `tools/auneya/auneya_local_witness_display.py`
+- `docs/auneya/AUNEYA-LOCAL-WITNESS-CLI-DISPLAY-V0.1.md`
+- `fixtures/auneya/local-runner/example-local-witness-display.txt`
+- `conformance/auneya-local-witness-display-v0.1.sh`
+
+Explicit non-claims:
+
+- No token is created by this display.
+- No real reward is created by this display.
+- No market value is claimed.
+- No mainnet is activated.
+- Simulated entries are non-transferable and non-value only.
+- Legal review is required before any public token launch, listing, sale, transferability or market-value communication.
+<!-- WVP:AUNEYA-LOCAL-WITNESS-CLI-DISPLAY-V01:END -->
+

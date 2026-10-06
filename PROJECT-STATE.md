@@ -2273,3 +2273,44 @@ The runner reads a lawful public AUNEYA claim fixture and emits a local non-valu
 Define AUNEYA Local Witness CLI Display v0.1 so Termux can show a clean phone-first live-style report from the local runner output.
 <!-- WVP:STEP-28-AUNEYA-LOCAL-WITNESS-RUNNER-V01:END -->
 
+<!-- WVP:STEP-29-AUNEYA-LOCAL-WITNESS-CLI-DISPLAY-V01:START -->
+## STEP 29 — AUNEYA Local Witness CLI Display v0.1
+
+Date: 2026-10-06
+
+### Purpose
+
+AUNEYA now has its first local Termux-style witness display.
+
+The display reads a local non-value AUNEYA Pulse and Prooflet Flow v0.1 report and prints a phone-first status view.
+
+### Added
+
+- `tools/auneya/auneya_local_witness_display.py`
+- `docs/auneya/AUNEYA-LOCAL-WITNESS-CLI-DISPLAY-V0.1.md`
+- `fixtures/auneya/local-runner/example-local-witness-display.txt`
+- `conformance/auneya-local-witness-display-v0.1.sh`
+
+### Verified
+
+- display reads local runner output
+- display prints local non-value mode
+- display prints claim, witness, pulse, micro-proof and prooflet fields
+- display shows simulated_neya as non-transferable
+- display rejects value/transferability violation fixtures
+- display states no token, no real reward, no mainnet and no market value
+
+### Explicit non-claims
+
+- No token is created by this step.
+- No real reward is created by this step.
+- No token sale is offered.
+- No market value is claimed.
+- No return, profit, yield or financial outcome is offered or promised.
+- Legal review is required before any public token launch, listing, sale, transferability or market-value communication.
+
+### Next target
+
+Define AUNEYA One-Command Local Demo v0.1 so Termux can run the local runner and display in one command.
+<!-- WVP:STEP-29-AUNEYA-LOCAL-WITNESS-CLI-DISPLAY-V01:END -->
+

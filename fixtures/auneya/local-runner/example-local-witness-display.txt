@@ -1,0 +1,55 @@
+AUNEYA LOCAL WITNESS
+======================
+Mode:                      local non-value simulation
+Network:                   none
+Mainnet:                   not active
+Token created:             false
+Market value claimed:      false
+Transferable:              false
+
+CLAIM
+----------------------
+Claim ID:                  auneya_claim_release_reality_001
+Claim schema:              auneya-claim-v0.1
+Claim hash:                sha256:63c401c6dc8e4a0ea...
+
+WITNESS
+----------------------
+Witness ID:                witness_android_termux_local_001
+Device:                    android_termux
+Environment:               phone_safe
+Software:                  wvp local-runner-v0.1
+
+FLOW
+----------------------
+Pulse interval:            1s
+Pulses:                    4
+Observed:                  4
+Unverifiable:              0
+Stale:                     0
+Dangerous:                 0
+Micro-Proofs:              2
+Prooflet:                  auneya_prooflet_local_001
+Latest pulse:              http_status
+Latest time:               2026-10-06T00:10:03Z
+
+SIMULATED ENTRY
+----------------------
+Unit:                      simulated_neya
+Amount:                    18420
+Transferable:              false
+Market value:              false
+
+BOUNDARY
+----------------------
+Private data:              not accessed
+Hacked data:               not used
+Paywall bypass:            not used
+Credentials:               not used
+Surveillance:              not performed
+
+NOTICE
+----------------------
+This is local protocol research.
+No token, real reward, mainnet or market value is created.
+Legal review is required before any public token launch, listing, sale, transferability or market-value communication.

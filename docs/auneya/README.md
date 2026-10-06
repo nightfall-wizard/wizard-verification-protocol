@@ -63,3 +63,12 @@ The pulse flow defines the first phone-first witness loop: Pulse -> Micro-Proof 
 - `../../conformance/auneya-local-witness-runner-v0.1.sh`
 
 The local witness runner generates a local non-value pulse-flow report from a lawful public claim fixture.
+
+## Local Witness CLI Display
+
+- `AUNEYA-LOCAL-WITNESS-CLI-DISPLAY-V0.1.md`
+- `../../tools/auneya/auneya_local_witness_display.py`
+- `../../fixtures/auneya/local-runner/example-local-witness-display.txt`
+- `../../conformance/auneya-local-witness-display-v0.1.sh`
+
+The local witness CLI display prints a clean Termux status view from a local non-value pulse-flow report.
