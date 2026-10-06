@@ -2185,3 +2185,48 @@ This turns multiple lawful witness proofs for the same public claim into an Aune
 Define AUNEYA Pulse and Prooflet Flow v0.1 so the phone-first witness loop can be simulated without value, token or mainnet activation.
 <!-- WVP:STEP-26-AUNEYA-EVENT-SCHEMA-V01:END -->
 
+<!-- WVP:STEP-27-AUNEYA-PULSE-FLOW-V01:START -->
+## STEP 27 — AUNEYA Pulse and Prooflet Flow v0.1
+
+Date: 2026-10-06
+
+### Purpose
+
+AUNEYA now has its first phone-first witness loop model.
+
+This defines how a lawful public claim can be processed by a phone witness as Pulses, Micro-Proofs and a Prooflet before later becoming a Witness Proof or Auneya Event.
+
+### Added
+
+- `schemas/auneya-pulse-flow-v0.1.schema.json`
+- `docs/auneya/AUNEYA-PULSE-AND-PROOFLET-FLOW-V0.1.md`
+- `fixtures/auneya/pulse-flow/valid-phone-release-reality-flow.json`
+- `fixtures/auneya/pulse-flow/invalid-private-target-flow.json`
+- `fixtures/auneya/pulse-flow/invalid-value-reward-flow.json`
+- `conformance/auneya-pulse-flow-v0.1.sh`
+
+### Verified
+
+- valid phone release-reality flow passes
+- private-target flow is rejected
+- transferable or market-value reward flow is rejected
+- pulse indexes must be sequential
+- pulse cadence must be one second in v0.1
+- micro-proofs must reference existing pulses
+- prooflets must reference existing micro-proofs
+- simulated reward entries must be non-transferable and non-value only
+
+### Explicit non-claims
+
+- No token is created by this step.
+- No real reward is created by this step.
+- No token sale is offered.
+- No market value is claimed.
+- No return, profit, yield or financial outcome is offered or promised.
+- Legal review is required before any public token launch, listing, sale, transferability or market-value communication.
+
+### Next target
+
+Define AUNEYA Local Witness Runner v0.1 so Termux can generate a local non-value pulse-flow report from public claim fixtures.
+<!-- WVP:STEP-27-AUNEYA-PULSE-FLOW-V01:END -->
+

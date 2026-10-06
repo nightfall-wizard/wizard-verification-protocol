@@ -1,0 +1,71 @@
+{
+  "schema_version": "auneya-pulse-flow-v0.1",
+  "flow_id": "auneya_flow_invalid_value_reward_001",
+  "flow_type": "phone_witness_loop",
+  "claim_ref": {
+    "claim_id": "auneya_claim_release_reality_001",
+    "claim_schema_version": "auneya-claim-v0.1",
+    "claim_hash": "sha256:1111111111111111111111111111111111111111111111111111111111111111"
+  },
+  "witness": {
+    "witness_id": "witness_android_termux_001",
+    "device_class": "android_termux",
+    "environment_class": "phone_safe",
+    "software_name": "wvp",
+    "software_version": "research-v0.1"
+  },
+  "cadence": {
+    "pulse_interval_seconds": 1,
+    "micro_proof_every_pulses": 1,
+    "prooflet_every_micro_proofs": 1,
+    "max_duration_seconds": 60
+  },
+  "pulses": [
+    {
+      "pulse_index": 1,
+      "pulse_type": "http_status",
+      "target_locator": "https://github.com/nightfall-wizard/wizard-verification-protocol/releases",
+      "observed_status": "observed",
+      "evidence_hint": "public release endpoint reachable",
+      "observed_at": "2026-10-06T00:07:00Z"
+    }
+  ],
+  "micro_proofs": [
+    {
+      "micro_proof_id": "auneya_micro_proof_invalid_value_001",
+      "pulse_indexes": [1],
+      "micro_proof_hash": "sha256:abababababababababababababababababababababababababababababababab",
+      "observed_status": "observed",
+      "created_at": "2026-10-06T00:07:01Z"
+    }
+  ],
+  "prooflet": {
+    "prooflet_id": "auneya_prooflet_invalid_value_001",
+    "claim_id": "auneya_claim_release_reality_001",
+    "micro_proof_ids": [
+      "auneya_micro_proof_invalid_value_001"
+    ],
+    "observed_status": "observed",
+    "prooflet_hash": "sha256:cdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd",
+    "created_at": "2026-10-06T00:07:02Z"
+  },
+  "lawful_boundary_confirmation": {
+    "public_or_authorized_target": true,
+    "no_private_data_accessed": true,
+    "no_hacked_data_used": true,
+    "no_paywall_bypass_used": true,
+    "no_credentials_used": true,
+    "no_surveillance_performed": true,
+    "notes": "Public release metadata target only."
+  },
+  "simulated_reward_entry": {
+    "entry_type": "non_value_simulation",
+    "unit": "simulated_neya",
+    "amount": 18420,
+    "transferable": true,
+    "market_value_claimed": true,
+    "notes": "This fixture must fail because it claims transferability and market value."
+  },
+  "created_at": "2026-10-06T00:07:03Z",
+  "non_value_notice": "This invalid fixture is for conformance testing only."
+}

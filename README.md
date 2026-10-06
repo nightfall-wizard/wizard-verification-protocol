@@ -232,3 +232,32 @@ Explicit non-claims:
 - Legal review is required before any public token launch, listing, sale, transferability or market-value communication.
 <!-- WVP:AUNEYA-EVENT-SCHEMA-V01:END -->
 
+<!-- WVP:AUNEYA-PULSE-FLOW-V01:START -->
+## AUNEYA Pulse and Prooflet Flow v0.1
+
+AUNEYA Pulse and Prooflet Flow v0.1 defines the first phone-first witness loop.
+
+It defines:
+
+- one-second Pulse cadence
+- Micro-Proof grouping
+- Prooflet creation
+- lawful public boundary checks
+- non-value simulated reward entries
+
+Files:
+
+- `schemas/auneya-pulse-flow-v0.1.schema.json`
+- `docs/auneya/AUNEYA-PULSE-AND-PROOFLET-FLOW-V0.1.md`
+- `fixtures/auneya/pulse-flow/`
+- `conformance/auneya-pulse-flow-v0.1.sh`
+
+Explicit non-claims:
+
+- No token is created by this schema.
+- No real reward is created by this schema.
+- No market value is claimed.
+- Simulated reward entries are non-transferable and non-value only.
+- Legal review is required before any public token launch, listing, sale, transferability or market-value communication.
+<!-- WVP:AUNEYA-PULSE-FLOW-V01:END -->
+

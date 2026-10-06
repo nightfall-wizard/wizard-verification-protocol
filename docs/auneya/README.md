@@ -47,3 +47,11 @@ The witness proof schema defines the first machine-readable AUNEYA proof format 
 - `../../conformance/auneya-event-schema-v0.1.sh`
 
 The event schema defines how multiple lawful witness proofs for the same claim form an Auneya Event.
+
+## Pulse and Prooflet Flow
+
+- `AUNEYA-PULSE-AND-PROOFLET-FLOW-V0.1.md`
+- `../../schemas/auneya-pulse-flow-v0.1.schema.json`
+- `../../conformance/auneya-pulse-flow-v0.1.sh`
+
+The pulse flow defines the first phone-first witness loop: Pulse -> Micro-Proof -> Prooflet.
