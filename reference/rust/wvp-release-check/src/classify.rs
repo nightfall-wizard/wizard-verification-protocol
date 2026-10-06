@@ -21,34 +21,76 @@ pub fn status_for(live: bool, metadata: Option<&ReleaseObservation>) -> Status {
     if !live {
         return Status::Warn;
     }
+
     let Some(meta) = metadata else {
         return Status::Warn;
     };
-    if meta.repository_found == Some(false) || !meta.errors.is_empty() {
+
+    if !meta.errors.is_empty() {
         return Status::Fail;
     }
+
+    if meta.repository_found == Some(false) {
+        return Status::Fail;
+    }
+
+    if meta.repository_found != Some(true) {
+        return Status::Warn;
+    }
+
+    if !matches!(meta.release_count, Some(count) if count > 0) {
+        return Status::Warn;
+    }
+
+    if meta.latest_release_found != Some(true) {
+        return Status::Warn;
+    }
+
+    if meta
+        .latest_release_tag
+        .as_deref()
+        .map(str::is_empty)
+        .unwrap_or(true)
+    {
+        return Status::Warn;
+    }
+
     if meta.checksum_verification_passed == Some(false)
         && meta.checksum_verification_attempted == Some(true)
     {
         return Status::Fail;
     }
+
     if meta.signature_verification_passed == Some(false)
         && meta.signature_verification_attempted == Some(true)
     {
         return Status::Fail;
     }
-    if meta.release_count == Some(0) {
+
+    if meta.checksum_asset_count != Some(1) {
         return Status::Warn;
     }
-    if meta.checksum_asset_count == Some(0) || meta.signature_asset_count == Some(0) {
+
+    if meta.signature_asset_count != Some(1) {
         return Status::Warn;
     }
+
+    if meta.checksum_verification_attempted != Some(true) {
+        return Status::Warn;
+    }
+
+    if meta.signature_verification_attempted != Some(true) {
+        return Status::Warn;
+    }
+
     if meta.checksum_verification_passed != Some(true) {
         return Status::Warn;
     }
+
     if meta.signature_verification_passed != Some(true) {
         return Status::Warn;
     }
+
     Status::Info
 }
 
