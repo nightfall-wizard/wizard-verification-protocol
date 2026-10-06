@@ -1,0 +1,33 @@
+{
+  "schema_version": "wvp-release-reality-fixture/v0.1",
+  "target": {
+    "repository": "example/api-not-verifiable"
+  },
+  "repository": {
+    "found": true,
+    "default_branch": "main",
+    "visibility": "public",
+    "archived": false,
+    "fork": false,
+    "security_md": true,
+    "readme": true,
+    "license": true,
+    "github_workflow": true
+  },
+  "release": {
+    "api_verifiable": false,
+    "found": false,
+    "tag_name": "",
+    "release_name": "",
+    "draft": false,
+    "prerelease": false,
+    "tag_ref_found": false,
+    "assets": []
+  },
+  "expected": {
+    "repository_found": true,
+    "release_found": false,
+    "checksum_asset_found": false,
+    "signature_asset_found": false
+  }
+}
