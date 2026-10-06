@@ -314,3 +314,33 @@ It does not merge PRs, enable GitHub branch protection, provide independent revi
 Next milestone:
 
 WVP-SEC-013 - external review preparation and issue-quality gate.
+
+
+## WVP-SEC-013
+
+Status: implemented.
+
+Completed:
+
+- external review preparation documentation
+- issue-quality gate method
+- external review request document
+- review scope document
+- reviewer response log
+- public issue templates
+- review request templates
+- external review report
+- issue-quality gate report
+- executable external-review gate checker
+- unit tests
+- CI integration
+- release-pack refresh
+
+Boundary:
+
+This step prepares external review and improves issue hygiene.
+It does not provide independent review, merge PRs, enable branch protection, or prove project safety.
+
+Next milestone:
+
+WVP-SEC-014 - runtime test-harness expansion for safe local toy inputs.

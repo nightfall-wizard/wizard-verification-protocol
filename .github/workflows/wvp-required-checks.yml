@@ -69,3 +69,6 @@ jobs:
 
       - name: Handoff readiness
         run: python3 wvp/nightfall/handoff_readiness.py
+
+      - name: External review gate
+        run: python3 wvp/nightfall/external_review_gate.py

@@ -1,10 +1,10 @@
 {
   "id": "WVP-SEC-010",
-  "created_unix": 1791321686,
+  "created_unix": 1791321823,
   "project": "Nightfall",
   "version": "v1.0.5",
   "pack_name": "wvp-nightfall-v1.0.5-evidence-pack",
-  "file_count": 169,
+  "file_count": 186,
   "files": [
     {
       "path": ".github/workflows/ci.yml",
@@ -23,13 +23,13 @@
     },
     {
       "path": ".github/workflows/wvp-required-checks.yml",
-      "size_bytes": 1643,
-      "sha256": "890c2303704fac184a86d9aee10e408a78c46e2282aabd7e965950044fceea12"
+      "size_bytes": 1738,
+      "sha256": "761a99b2e8f8ccd4253f52df8fa350f7739c8f7805ff286b3f6799df521ae5f4"
     },
     {
       "path": "PROJECT-STATE.md",
-      "size_bytes": 6133,
-      "sha256": "1ea0e30e372a822e703dacd8513911985a502a7a61c41aeee57915a0ca02df85"
+      "size_bytes": 6807,
+      "sha256": "84c1499c30522b960cb9ab8b44c8c3a2e5852e0b9ce0b8cbef6615c0a0c4563b"
     },
     {
       "path": "README.md",
@@ -62,6 +62,16 @@
       "sha256": "aa12e7fca81b130b1db4af3980f597015b4c29377fe018b8f8ef2c298af89b4b"
     },
     {
+      "path": "docs/EXTERNAL-REVIEW-PREPARATION.md",
+      "size_bytes": 1370,
+      "sha256": "21826c1e0c774f221afc384e758b6dfcd23425c2c6f7a121c591e6605dc80621"
+    },
+    {
+      "path": "docs/EXTERNAL-REVIEW-REQUEST.md",
+      "size_bytes": 1212,
+      "sha256": "6be251cd3bc1c1d511338e0cd4890b8baa90d33de4df87a2b6c073114a62fbad"
+    },
+    {
       "path": "docs/FINAL-ROADMAP.md",
       "size_bytes": 1136,
       "sha256": "6fc22cb79e4b4eb5582c5d0ea921739a98ae09911516e744d19af23a2880f721"
@@ -70,6 +80,11 @@
       "path": "docs/FINDINGS-TRIAGE-METHOD.md",
       "size_bytes": 759,
       "sha256": "8919af18cbcf3ce995febef01d01d705c446f4243ce892dd5e9cc3db0592066c"
+    },
+    {
+      "path": "docs/ISSUE-QUALITY-GATE-METHOD.md",
+      "size_bytes": 1088,
+      "sha256": "7738d954e9f301cdcab96a6e12032d061b7beaf9225bf11aff1069e4e2b6e67b"
     },
     {
       "path": "docs/MAINTAINER-HANDOFF.md",
@@ -117,9 +132,19 @@
       "sha256": "d0a1a4837b041eafe7befa81d42e778589f60be725c16fefc9e707d9c3704f07"
     },
     {
+      "path": "docs/REVIEW-SCOPE.md",
+      "size_bytes": 892,
+      "sha256": "d9826920c534d9d3530cbafa75c273de35b46c169e14031eab0f25a8fa97dc1c"
+    },
+    {
       "path": "docs/REVIEWER-GUIDE.md",
       "size_bytes": 729,
       "sha256": "b3774dc99c9ee8b9fe7ac6482b0718b526ff78900ae69d2602eac5bf928362f4"
+    },
+    {
+      "path": "docs/REVIEWER-RESPONSE-LOG.md",
+      "size_bytes": 493,
+      "sha256": "e2319a71b21ee2f8954eaf6df3a4eb994272ee383617a8b99635e5e73625da9a"
     },
     {
       "path": "docs/SECURITY-MODEL.md",
@@ -592,6 +617,16 @@
       "sha256": "c31e5312b991669a8140c3a98028e836227512c41b7f9df093f89f9753ea4f6c"
     },
     {
+      "path": "reports/nightfall/v1.0.5/EXTERNAL-REVIEW.json",
+      "size_bytes": 2790,
+      "sha256": "6e7b4d269bfd3cb55ff4f574bb7bc7582b43dca1e07de67903cb08f1389b56dd"
+    },
+    {
+      "path": "reports/nightfall/v1.0.5/EXTERNAL-REVIEW.md",
+      "size_bytes": 1862,
+      "sha256": "d8bf952b6d8378cbbcaf91c3c040168f3b3bf3de267c45eef05ea3006d31f203"
+    },
+    {
       "path": "reports/nightfall/v1.0.5/FINDINGS-TRIAGE.json",
       "size_bytes": 4898,
       "sha256": "8d78504d6c18aef0135a27a4a46f6ac5e2e9765cfa2307abbf8e67a96ea53c9e"
@@ -605,6 +640,16 @@
       "path": "reports/nightfall/v1.0.5/FINDINGS.md",
       "size_bytes": 672,
       "sha256": "9c3e7c60e54d5bf3c91c3a5ac024fc5872358224618d80d11ae6371fabe39d5b"
+    },
+    {
+      "path": "reports/nightfall/v1.0.5/ISSUE-QUALITY-GATE.json",
+      "size_bytes": 2271,
+      "sha256": "bb4e212b423d07b1dd1f03c0e71c289a37b97d70186c92507a8253b3ab1822eb"
+    },
+    {
+      "path": "reports/nightfall/v1.0.5/ISSUE-QUALITY-GATE.md",
+      "size_bytes": 1138,
+      "sha256": "4b72f746471e62eb44f4fd2e9492c3ec19df7937cde137f4b8b96f4c0ab39034"
     },
     {
       "path": "reports/nightfall/v1.0.5/LIMITATIONS.md",
@@ -717,6 +762,36 @@
       "sha256": "fd90be9c094bbb124ef97a331ba55b7b3ae2f80efcc51b1c4cddbdf1956a0a6e"
     },
     {
+      "path": "templates/issues/evidence-gap.md",
+      "size_bytes": 605,
+      "sha256": "c8eb90e24b0ae1367f695cfa3ddd1633da9044d8809bb8c78f730aba83905efe"
+    },
+    {
+      "path": "templates/issues/reviewer-question.md",
+      "size_bytes": 566,
+      "sha256": "ca3ae1573d8ffca42fb6c4106cb61fe20690d649069ac41804d060ebe30621e4"
+    },
+    {
+      "path": "templates/issues/sanitized-security-observation.md",
+      "size_bytes": 763,
+      "sha256": "153b96dad478bd2f56b3c2dc2d8398487efb42b07b8f3b3a47de96921dc3c3a9"
+    },
+    {
+      "path": "templates/review/external-review-request.md",
+      "size_bytes": 557,
+      "sha256": "c95c408a1d009c30012feea9aa66b3a0cce1bf76da7cedc1001703b9324b0850"
+    },
+    {
+      "path": "templates/review/review-scope-confirmation.md",
+      "size_bytes": 370,
+      "sha256": "4f94462983f88741cd073a811f4cb35c1892ef071e8f7275027493401e1cebf8"
+    },
+    {
+      "path": "templates/review/reviewer-response-log.md",
+      "size_bytes": 265,
+      "sha256": "4d01db8044a6968ee3313c548056f6a433a10f5be266fa06d8abfb272bcb057f"
+    },
+    {
       "path": "templates/security/finding-record.json",
       "size_bytes": 459,
       "sha256": "1313e209a1a92b74807ebf24900554f4cf38ad9bba51f4adaac55c24b02d703e"
@@ -750,6 +825,11 @@
       "path": "tests/test_conformance_score.py",
       "size_bytes": 1521,
       "sha256": "0c84a5de686b8c9293962dce8bdf8e36bb0b099d13df5714037ed8b467c063c7"
+    },
+    {
+      "path": "tests/test_external_review_gate.py",
+      "size_bytes": 2209,
+      "sha256": "3e043180d0fc5b077938c38c18db106c2d19e077af0850a0d6c6f831c673c5d6"
     },
     {
       "path": "tests/test_handoff_readiness.py",
@@ -810,6 +890,11 @@
       "path": "wvp/nightfall/conformance_score.py",
       "size_bytes": 1975,
       "sha256": "175f1d22cc2eb5483ba0bd199fbd63288ef0bf43551cfc23e8aabf82601de5dc"
+    },
+    {
+      "path": "wvp/nightfall/external_review_gate.py",
+      "size_bytes": 3337,
+      "sha256": "6fb6419cc68bdfdf101261099e5cecb28fbf11a89972d6a99e6d132804c7d8fe"
     },
     {
       "path": "wvp/nightfall/handoff_readiness.py",

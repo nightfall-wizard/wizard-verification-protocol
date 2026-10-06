@@ -6,7 +6,7 @@ Boundary: this release pack is not an audit and not a certification.
 
 Pack name: `wvp-nightfall-v1.0.5-evidence-pack`
 
-Files: 169
+Files: 186
 
 ## Safety boundary
 
@@ -33,16 +33,19 @@ Files: 169
 | `.github/workflows/ci.yml` | 8591 | `955e3415045a65556f1414e372c5ce39440f3bc53def7bf78b918cdbfa02ce7d` |
 | `.github/workflows/wvp-nightfall-security.yml` | 890 | `0eb7611c860176b2b41532de5de3147e934602c9e5bf6739d3e10d451cd826e8` |
 | `.github/workflows/wvp-release-reality-check.yml` | 2176 | `a2d094fedd28a4a4044a6686d85ccf4b2a03953b3fe8baf1fc001cb72ad2703a` |
-| `.github/workflows/wvp-required-checks.yml` | 1643 | `890c2303704fac184a86d9aee10e408a78c46e2282aabd7e965950044fceea12` |
-| `PROJECT-STATE.md` | 6133 | `1ea0e30e372a822e703dacd8513911985a502a7a61c41aeee57915a0ca02df85` |
+| `.github/workflows/wvp-required-checks.yml` | 1738 | `761a99b2e8f8ccd4253f52df8fa350f7739c8f7805ff286b3f6799df521ae5f4` |
+| `PROJECT-STATE.md` | 6807 | `84c1499c30522b960cb9ab8b44c8c3a2e5852e0b9ce0b8cbef6615c0a0c4563b` |
 | `README.md` | 18647 | `1762535e1f9eb0c5803ee4c76e3c4cfbf92fa77ad1c08de513ddf0687d3b06b0` |
 | `SECURITY.md` | 658 | `9dc600cc35d5ac66a512601a4c17629f1b853d7e502875f6a310155bced1f451` |
 | `docs/CI-HARDENING-METHOD.md` | 824 | `15d7d44a6c6810cedb998d8c7814bd68f99568c5a96759b5ca5a25e74a35e853` |
 | `docs/CODEPATH-BINDING-METHOD.md` | 666 | `b966ec2c332aa21420eacc823eaa1e03458c0e1c4c28b8ed38ceef7073ea8d90` |
 | `docs/COMMAND-PROBE-METHOD.md` | 814 | `59ee9c78ad19bce09cf90fe8b121a0d9f6f35706a2becc573753c8c7416408fc` |
 | `docs/CONFORMANCE-SCORING-METHOD.md` | 754 | `aa12e7fca81b130b1db4af3980f597015b4c29377fe018b8f8ef2c298af89b4b` |
+| `docs/EXTERNAL-REVIEW-PREPARATION.md` | 1370 | `21826c1e0c774f221afc384e758b6dfcd23425c2c6f7a121c591e6605dc80621` |
+| `docs/EXTERNAL-REVIEW-REQUEST.md` | 1212 | `6be251cd3bc1c1d511338e0cd4890b8baa90d33de4df87a2b6c073114a62fbad` |
 | `docs/FINAL-ROADMAP.md` | 1136 | `6fc22cb79e4b4eb5582c5d0ea921739a98ae09911516e744d19af23a2880f721` |
 | `docs/FINDINGS-TRIAGE-METHOD.md` | 759 | `8919af18cbcf3ce995febef01d01d705c446f4243ce892dd5e9cc3db0592066c` |
+| `docs/ISSUE-QUALITY-GATE-METHOD.md` | 1088 | `7738d954e9f301cdcab96a6e12032d061b7beaf9225bf11aff1069e4e2b6e67b` |
 | `docs/MAINTAINER-HANDOFF.md` | 1917 | `a4bd4df0e0211faf2b48bc59024d6d950f1c1e6bd783983ee2bf712e9538031f` |
 | `docs/MERGE-READINESS-CHECKLIST.md` | 1239 | `8d17b76dff90692cb6eb793ee6e8318f1045d79d3978503eb892d51500a38cd7` |
 | `docs/NEGATIVE-VECTOR-METHOD.md` | 794 | `c3e07e0648ea0e9c4ee3371596a597b6795f75cbc7680dd919d8b0885a21701f` |
@@ -52,7 +55,9 @@ Files: 169
 | `docs/RELEASE-INTEGRITY-METHOD.md` | 790 | `b1be17d8d4fae810c9031aa751c0620582f11c506bd912cf2cd302ed475a4d43` |
 | `docs/RELEASE-PACK-METHOD.md` | 1060 | `6587fb5098d3e37888ee8e4f3361a7f1ed98399ca2c15dac9e7ec856429e37bb` |
 | `docs/REQUIRED-CHECK-GATE-METHOD.md` | 890 | `d0a1a4837b041eafe7befa81d42e778589f60be725c16fefc9e707d9c3704f07` |
+| `docs/REVIEW-SCOPE.md` | 892 | `d9826920c534d9d3530cbafa75c273de35b46c169e14031eab0f25a8fa97dc1c` |
 | `docs/REVIEWER-GUIDE.md` | 729 | `b3774dc99c9ee8b9fe7ac6482b0718b526ff78900ae69d2602eac5bf928362f4` |
+| `docs/REVIEWER-RESPONSE-LOG.md` | 493 | `e2319a71b21ee2f8954eaf6df3a4eb994272ee383617a8b99635e5e73625da9a` |
 | `docs/SECURITY-MODEL.md` | 600 | `aa7791f6af51315671c5e413448f5da23793984dd6642d17364eb4d8128daada` |
 | `docs/SEMANTIC-REGRESSION-METHOD.md` | 799 | `f74e9584ec44a1ddb72244a3fb39580df9d7f5bd8358f5b3d1b9882c7b00e790` |
 | `docs/SUPPLY-INVARIANT-METHOD.md` | 1060 | `f2cab69df71546bc0dd6913b3b77ff7faa9d3c9c6bf07082a15a6ccc8553cfc7` |
@@ -147,9 +152,13 @@ Files: 169
 | `reports/nightfall/v1.0.5/COMMAND-PROBES.md` | 14739 | `2f124bf442c0b6915d2e522e1612c142f7efe9379c9d3b066310a6bf84a4273a` |
 | `reports/nightfall/v1.0.5/CONFORMANCE-SCORE.json` | 6862 | `e1b7d197c529063eba41ad0bd68589f49fe7f4f55da97b76c6fb10e7c05e6d1b` |
 | `reports/nightfall/v1.0.5/CONFORMANCE-SCORE.md` | 1206 | `c31e5312b991669a8140c3a98028e836227512c41b7f9df093f89f9753ea4f6c` |
+| `reports/nightfall/v1.0.5/EXTERNAL-REVIEW.json` | 2790 | `6e7b4d269bfd3cb55ff4f574bb7bc7582b43dca1e07de67903cb08f1389b56dd` |
+| `reports/nightfall/v1.0.5/EXTERNAL-REVIEW.md` | 1862 | `d8bf952b6d8378cbbcaf91c3c040168f3b3bf3de267c45eef05ea3006d31f203` |
 | `reports/nightfall/v1.0.5/FINDINGS-TRIAGE.json` | 4898 | `8d78504d6c18aef0135a27a4a46f6ac5e2e9765cfa2307abbf8e67a96ea53c9e` |
 | `reports/nightfall/v1.0.5/FINDINGS-TRIAGE.md` | 2707 | `af2c0931473818544f5e867546d0038f062bf6480c885da0afa72d80d61b72a9` |
 | `reports/nightfall/v1.0.5/FINDINGS.md` | 672 | `9c3e7c60e54d5bf3c91c3a5ac024fc5872358224618d80d11ae6371fabe39d5b` |
+| `reports/nightfall/v1.0.5/ISSUE-QUALITY-GATE.json` | 2271 | `bb4e212b423d07b1dd1f03c0e71c289a37b97d70186c92507a8253b3ab1822eb` |
+| `reports/nightfall/v1.0.5/ISSUE-QUALITY-GATE.md` | 1138 | `4b72f746471e62eb44f4fd2e9492c3ec19df7937cde137f4b8b96f4c0ab39034` |
 | `reports/nightfall/v1.0.5/LIMITATIONS.md` | 484 | `4645ed96a0d8dc0e6d5ac9945c2b42ce16d23398ee85822c4fe3c5eb2f8d2769` |
 | `reports/nightfall/v1.0.5/MAINTAINER-HANDOFF.json` | 2124 | `fb9808f53e0d782498726199e8cfa122fb760e6e124a274ecb7cd0cf8b4dc0bd` |
 | `reports/nightfall/v1.0.5/MAINTAINER-HANDOFF.md` | 1365 | `0b062ef2931dff2fe5f1c1315a56f461840db539891e509625defe14408d917d` |
@@ -172,6 +181,12 @@ Files: 169
 | `templates/handoff/maintainer-review-checklist.md` | 351 | `56afd1cd5d0ad7a51d3862a6f524e9b761bd3a407a4f778b453335b227b22b1f` |
 | `templates/handoff/pr-review-comment.md` | 254 | `6dd6493e478c3cbd2b24b18a0f056acdf50fae858456371ed8815fb6e423b20a` |
 | `templates/handoff/release-note.md` | 241 | `fd90be9c094bbb124ef97a331ba55b7b3ae2f80efcc51b1c4cddbdf1956a0a6e` |
+| `templates/issues/evidence-gap.md` | 605 | `c8eb90e24b0ae1367f695cfa3ddd1633da9044d8809bb8c78f730aba83905efe` |
+| `templates/issues/reviewer-question.md` | 566 | `ca3ae1573d8ffca42fb6c4106cb61fe20690d649069ac41804d060ebe30621e4` |
+| `templates/issues/sanitized-security-observation.md` | 763 | `153b96dad478bd2f56b3c2dc2d8398487efb42b07b8f3b3a47de96921dc3c3a9` |
+| `templates/review/external-review-request.md` | 557 | `c95c408a1d009c30012feea9aa66b3a0cce1bf76da7cedc1001703b9324b0850` |
+| `templates/review/review-scope-confirmation.md` | 370 | `4f94462983f88741cd073a811f4cb35c1892ef071e8f7275027493401e1cebf8` |
+| `templates/review/reviewer-response-log.md` | 265 | `4d01db8044a6968ee3313c548056f6a433a10f5be266fa06d8abfb272bcb057f` |
 | `templates/security/finding-record.json` | 459 | `1313e209a1a92b74807ebf24900554f4cf38ad9bba51f4adaac55c24b02d703e` |
 | `templates/security/private-disclosure-checklist.md` | 461 | `a868cacf2c3babebe3f41682e51a470914d1bd73b09f0d0921daaa0975f96b01` |
 | `templates/security/sanitized-finding.md` | 490 | `3a5fd065a013a693666649c5e8c0e4131aa8a881b2b76df6e1c0794487abe57c` |
@@ -179,6 +194,7 @@ Files: 169
 | `tests/test_codepath_bindings.py` | 927 | `0269dc46c111664272d3f6ea219327c87992ebfdca612e3a20f85831b38c3ed3` |
 | `tests/test_command_probes.py` | 1022 | `33f915f4bc7981ae0bb41dd4b68169ecc15e813e926de6993970c4ef4c5ade15` |
 | `tests/test_conformance_score.py` | 1521 | `0c84a5de686b8c9293962dce8bdf8e36bb0b099d13df5714037ed8b467c063c7` |
+| `tests/test_external_review_gate.py` | 2209 | `3e043180d0fc5b077938c38c18db106c2d19e077af0850a0d6c6f831c673c5d6` |
 | `tests/test_handoff_readiness.py` | 1768 | `2c901820eb6e6e35841aac9f685881c394a4cea615aefc8a8784d811125d683d` |
 | `tests/test_negative_vectors.py` | 1598 | `178b5de878468b6c93b66e5000dd725d6e6e16850a23515f8829d44af3cef411` |
 | `tests/test_nightfall_verifier.py` | 1144 | `230efced57b370d0542bf09c24ad2636e54460f77e409d2acb5c7adbf0a42f3a` |
@@ -191,6 +207,7 @@ Files: 169
 | `wvp/nightfall/codepath_binding.py` | 803 | `cf2e9b659994a10f2f8b883e5a9eea5e93c563e46e02f54d958f3ccdb8deb35a` |
 | `wvp/nightfall/command_probes.py` | 947 | `778c0a4314fe3a934b45c9b0b2d829f67e53c128ff7e28d1b755641e5e7877d3` |
 | `wvp/nightfall/conformance_score.py` | 1975 | `175f1d22cc2eb5483ba0bd199fbd63288ef0bf43551cfc23e8aabf82601de5dc` |
+| `wvp/nightfall/external_review_gate.py` | 3337 | `6fb6419cc68bdfdf101261099e5cecb28fbf11a89972d6a99e6d132804c7d8fe` |
 | `wvp/nightfall/handoff_readiness.py` | 2737 | `e474f9c7ca9e7745a2674b9dc30027e421678b5afeb34771be5133315b073d86` |
 | `wvp/nightfall/negative_vectors.py` | 2170 | `64a2134c9a6b0f5ae5d9f40d9e4daf927fb462707f825f2adc5faf3b69c5ee5b` |
 | `wvp/nightfall/release_integrity.py` | 1265 | `651f6f9963b0aa3c1feb0dca3d3b90158963bd155e3276176e8cfde8b9c10fce` |
