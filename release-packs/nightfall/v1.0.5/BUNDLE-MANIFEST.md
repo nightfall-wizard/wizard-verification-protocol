@@ -6,7 +6,7 @@ Boundary: this release pack is not an audit and not a certification.
 
 Pack name: `wvp-nightfall-v1.0.5-evidence-pack`
 
-Files: 186
+Files: 205
 
 ## Safety boundary
 
@@ -33,8 +33,8 @@ Files: 186
 | `.github/workflows/ci.yml` | 8591 | `955e3415045a65556f1414e372c5ce39440f3bc53def7bf78b918cdbfa02ce7d` |
 | `.github/workflows/wvp-nightfall-security.yml` | 890 | `0eb7611c860176b2b41532de5de3147e934602c9e5bf6739d3e10d451cd826e8` |
 | `.github/workflows/wvp-release-reality-check.yml` | 2176 | `a2d094fedd28a4a4044a6686d85ccf4b2a03953b3fe8baf1fc001cb72ad2703a` |
-| `.github/workflows/wvp-required-checks.yml` | 1738 | `761a99b2e8f8ccd4253f52df8fa350f7739c8f7805ff286b3f6799df521ae5f4` |
-| `PROJECT-STATE.md` | 6807 | `84c1499c30522b960cb9ab8b44c8c3a2e5852e0b9ce0b8cbef6615c0a0c4563b` |
+| `.github/workflows/wvp-required-checks.yml` | 1831 | `ad81c198b0c24afd9f652795fbfd4784253c9897927f32a3cfb3e5fef8055d48` |
+| `PROJECT-STATE.md` | 7381 | `c92e4b923ef18dbc1222a39bd0475e7b005d75888b8d2a43d91acad7990e4d9b` |
 | `README.md` | 18647 | `1762535e1f9eb0c5803ee4c76e3c4cfbf92fa77ad1c08de513ddf0687d3b06b0` |
 | `SECURITY.md` | 658 | `9dc600cc35d5ac66a512601a4c17629f1b853d7e502875f6a310155bced1f451` |
 | `docs/CI-HARDENING-METHOD.md` | 824 | `15d7d44a6c6810cedb998d8c7814bd68f99568c5a96759b5ca5a25e74a35e853` |
@@ -58,10 +58,13 @@ Files: 186
 | `docs/REVIEW-SCOPE.md` | 892 | `d9826920c534d9d3530cbafa75c273de35b46c169e14031eab0f25a8fa97dc1c` |
 | `docs/REVIEWER-GUIDE.md` | 729 | `b3774dc99c9ee8b9fe7ac6482b0718b526ff78900ae69d2602eac5bf928362f4` |
 | `docs/REVIEWER-RESPONSE-LOG.md` | 493 | `e2319a71b21ee2f8954eaf6df3a4eb994272ee383617a8b99635e5e73625da9a` |
+| `docs/RUNTIME-HARNESS-LIMITATIONS.md` | 475 | `b0f13e26a766e9cfe4b123ac1eec0391a6381b1dd710a9a89d8c4e9945c457fc` |
+| `docs/RUNTIME-TOY-HARNESS-METHOD.md` | 1249 | `9033b42e2401f842a7f5287cb0e701f47ee799007b0b5e7eb38cf72aaa6bd938` |
 | `docs/SECURITY-MODEL.md` | 600 | `aa7791f6af51315671c5e413448f5da23793984dd6642d17364eb4d8128daada` |
 | `docs/SEMANTIC-REGRESSION-METHOD.md` | 799 | `f74e9584ec44a1ddb72244a3fb39580df9d7f5bd8358f5b3d1b9882c7b00e790` |
 | `docs/SUPPLY-INVARIANT-METHOD.md` | 1060 | `f2cab69df71546bc0dd6913b3b77ff7faa9d3c9c6bf07082a15a6ccc8553cfc7` |
 | `docs/TERMUX-WORKFLOW.md` | 535 | `ec3ee5ec1d437e5513e51eec0e57173f1d5a8bafa4069ae9c4c58bccdbd64661` |
+| `docs/TOY-INPUT-SAFETY-BOUNDARY.md` | 514 | `52d81b4ef25c040694212343585fb12311401e8e5fdfc447e4e775f52642efae` |
 | `docs/VERIFICATION-PROFILES.md` | 462 | `a445d5e8bcb05ca53be7351d336de82aba36633c7724d03a8d5d067282385d69` |
 | `docs/WVP-RELEASE-REALITY-CAPABILITY-INDEX-V0.1.md` | 2205 | `3c820612168c9e4cc94c416c24b1983e7d74c8decb24c0d68c0c50778377e88c` |
 | `docs/WVP-RELEASE-REALITY-CHECK-V0.1.md` | 1737 | `13de50601233c1066664ebed1b2f1be2a4c01e5df5c19e4d8132c6fc5a3f7a22` |
@@ -170,6 +173,8 @@ Files: 186
 | `reports/nightfall/v1.0.5/RELEASE-INTEGRITY.json` | 37684 | `90a1791615caee71cc0f73d2136406413b5024cde1ae5a1c4d58974fb00885fe` |
 | `reports/nightfall/v1.0.5/RELEASE-INTEGRITY.md` | 14833 | `0e5ebabc32801ff83d1f76e5387486acb10db99093930e1e78b92e30919c08a0` |
 | `reports/nightfall/v1.0.5/RUNBOOK.md` | 236 | `acd91aae50a096547193b3f70cd0210d0cf2f968a27a2de97b5b88d4b15c9714` |
+| `reports/nightfall/v1.0.5/RUNTIME-TOY-HARNESS.json` | 2524 | `fbd10b38b48c7d3b929b5b5a4dee41ce94fb65dd2aaa4114e848b569aaf4014b` |
+| `reports/nightfall/v1.0.5/RUNTIME-TOY-HARNESS.md` | 1288 | `7bd00ff11cf52d486ae11b472c1a9242e6493856c6191a03e6a68e5e0cc27703` |
 | `reports/nightfall/v1.0.5/SECURITY-REVIEW-PLAN.md` | 568 | `43b99dbd30c3b40da831fc46de8ec3961664b4bb64e6f1f91b8eedc09a705219` |
 | `reports/nightfall/v1.0.5/SEMANTIC-REGRESSION.json` | 5960 | `db81aab0662569f3a9e7b5102c2e8fa22bce0b261d5502a2b03c8421e21948d3` |
 | `reports/nightfall/v1.0.5/SEMANTIC-REGRESSION.md` | 4536 | `5fba988f9e3091b900b4487fbf40617b6dcda9999bd2af034fa4a3927abdf9f3` |
@@ -187,6 +192,8 @@ Files: 186
 | `templates/review/external-review-request.md` | 557 | `c95c408a1d009c30012feea9aa66b3a0cce1bf76da7cedc1001703b9324b0850` |
 | `templates/review/review-scope-confirmation.md` | 370 | `4f94462983f88741cd073a811f4cb35c1892ef071e8f7275027493401e1cebf8` |
 | `templates/review/reviewer-response-log.md` | 265 | `4d01db8044a6968ee3313c548056f6a433a10f5be266fa06d8abfb272bcb057f` |
+| `templates/runtime/toy-harness-result.md` | 318 | `26e4915d0195433581cfcf8b77bd0781ae336ca535e1a98f3b0600d14f3d9c20` |
+| `templates/runtime/toy-vector-template.json` | 325 | `83f2d3792fb55d5ad1a6471a62eb9cb8c69a4543572f8daff6261ff52cbbd31c` |
 | `templates/security/finding-record.json` | 459 | `1313e209a1a92b74807ebf24900554f4cf38ad9bba51f4adaac55c24b02d703e` |
 | `templates/security/private-disclosure-checklist.md` | 461 | `a868cacf2c3babebe3f41682e51a470914d1bd73b09f0d0921daaa0975f96b01` |
 | `templates/security/sanitized-finding.md` | 490 | `3a5fd065a013a693666649c5e8c0e4131aa8a881b2b76df6e1c0794487abe57c` |
@@ -200,9 +207,20 @@ Files: 186
 | `tests/test_nightfall_verifier.py` | 1144 | `230efced57b370d0542bf09c24ad2636e54460f77e409d2acb5c7adbf0a42f3a` |
 | `tests/test_release_integrity.py` | 1347 | `89a6561ad5890c08181eaa22e17c6a991dba3818db79973081e16c6f47d203da` |
 | `tests/test_release_pack.py` | 1676 | `e3e21f064996206718fa87eead624fc8880b2415250191645cd2fa60f786b3d7` |
+| `tests/test_runtime_toy_harness.py` | 1931 | `db5ef9042af9dc93c77c990de115e74eacc13956bda12c6513d9007caab7b5c8` |
 | `tests/test_semantic_regression.py` | 1122 | `68fc701f884cb77eca865ee9bb5938977fd3b972908c68b78d8b7ceca93ef1e3` |
 | `tests/test_supply_invariant.py` | 1311 | `bf0b508121cd0a8c227d08740b374a1a27a90cfff85791f20287609c7bca26e4` |
 | `tests/test_triage_workflow.py` | 1904 | `f5dcfefd85403342dcfcdc4e82546dc3a6961e836c5b3219c08f60482a064311` |
+| `toy-inputs/nightfall/v1.0.5/toy-001.json` | 244 | `256eaebb7845064f69c616ab61e99b834e09768d243c98404b242dde9afeb946` |
+| `toy-inputs/nightfall/v1.0.5/toy-002.json` | 235 | `df2fc473b915c879c91509337648621a38a4e391ffd592dabaa16da5848ad7c3` |
+| `toy-inputs/nightfall/v1.0.5/toy-003.json` | 217 | `91fd39ed6d3e13669a21933e0319136e529f8d12857e80bd9024b0d2c74199d4` |
+| `toy-inputs/nightfall/v1.0.5/toy-004.json` | 267 | `ab92f5eb17ec36d73aa3082f02ef293adc796dcb8552e82d06a10673776aa497` |
+| `toy-inputs/nightfall/v1.0.5/toy-005.json` | 244 | `3432846f30560849b0f9b09a4eb5b8241f1fd19dddae322cfb1157affb58c60e` |
+| `toy-inputs/nightfall/v1.0.5/toy-006.json` | 240 | `e8a7505601b8c677b87d04e294cb55b2a2ccc6b872f04281f8c0ca1ec8e056a5` |
+| `toy-inputs/nightfall/v1.0.5/toy-007.json` | 266 | `a6b28ab73ef80d5bbad1f1ca19087920e2aeb500101f6ce32da9486b7983af35` |
+| `toy-inputs/nightfall/v1.0.5/toy-008.json` | 251 | `a6f5de0f53787e876c78076b69ca02230c6ebffffa0c9eb218099df93b356f93` |
+| `toy-inputs/nightfall/v1.0.5/toy-009.json` | 256 | `c79628181768a2fb5b5b3814760b252c59c8f422363ae83204579330b47d35f9` |
+| `toy-inputs/nightfall/v1.0.5/toy-010.json` | 232 | `4c5165868b43ad0e53f7bf833a0d0224b2f29e95a0ff3015f15542db090d543f` |
 | `wvp/nightfall/ci_hardening.py` | 2919 | `e3c29e56be31d6bfacc03c78fb38a597a4b6a325970cf0381ab5337b9e9c523a` |
 | `wvp/nightfall/codepath_binding.py` | 803 | `cf2e9b659994a10f2f8b883e5a9eea5e93c563e46e02f54d958f3ccdb8deb35a` |
 | `wvp/nightfall/command_probes.py` | 947 | `778c0a4314fe3a934b45c9b0b2d829f67e53c128ff7e28d1b755641e5e7877d3` |
@@ -212,6 +230,7 @@ Files: 186
 | `wvp/nightfall/negative_vectors.py` | 2170 | `64a2134c9a6b0f5ae5d9f40d9e4daf927fb462707f825f2adc5faf3b69c5ee5b` |
 | `wvp/nightfall/release_integrity.py` | 1265 | `651f6f9963b0aa3c1feb0dca3d3b90158963bd155e3276176e8cfde8b9c10fce` |
 | `wvp/nightfall/release_pack.py` | 2373 | `8acffa2e4fef38ae92a08c60db917023d458c6e7467656551dc0a0bb5e0d38a2` |
+| `wvp/nightfall/runtime_toy_harness.py` | 5340 | `7a8e3d55e993a83c3f286e7b5793c2147734f21f67853afdd2a8ab5b6e95268f` |
 | `wvp/nightfall/semantic_regression.py` | 993 | `edfc083ade5e3cc8482a458f5b84a80757ece989d577170e4fef26c82d50caae` |
 | `wvp/nightfall/supply_invariant.py` | 1495 | `b43e930025b8da84c8a8407bd61739d38df87e9e6f2b7a2d1b9679fb81a21ea7` |
 | `wvp/nightfall/triage_workflow.py` | 2416 | `551966288817b13c1e025701f265fe9ac2e3fd229cf3f77017342fa27dba2c8d` |

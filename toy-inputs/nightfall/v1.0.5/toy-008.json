@@ -1,0 +1,8 @@
+{
+  "id": "TOY-008",
+  "class": "public_report_sanitized",
+  "description": "Toy public report contains no forbidden detail.",
+  "public_text": "Sanitized summary only. Not an audit. No seeds. No private keys.",
+  "expected": "PASS",
+  "safe": true
+}

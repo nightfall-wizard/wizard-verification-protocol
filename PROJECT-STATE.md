@@ -344,3 +344,30 @@ It does not provide independent review, merge PRs, enable branch protection, or 
 Next milestone:
 
 WVP-SEC-014 - runtime test-harness expansion for safe local toy inputs.
+
+
+## WVP-SEC-014
+
+Status: implemented.
+
+Completed:
+
+- runtime toy harness method documentation
+- toy input safety boundary
+- runtime harness limitations
+- 10 safe local toy vectors
+- runtime toy harness report
+- runtime toy harness checker
+- runtime templates
+- unit tests
+- CI integration
+- release-pack refresh
+
+Boundary:
+
+This step executes safe local toy inputs only.
+It does not execute real Nightfall consensus, mutate live node state, use funds, use seeds, or prove project safety.
+
+Next milestone:
+
+WVP-SEC-015 - repository governance and versioned release process.

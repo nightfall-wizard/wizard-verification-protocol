@@ -1,0 +1,17 @@
+{
+  "id": "TOY-004",
+  "class": "canonical_ordering",
+  "description": "Toy IDs must sort deterministically.",
+  "items": [
+    "zeta",
+    "alpha",
+    "beta"
+  ],
+  "expected_order": [
+    "alpha",
+    "beta",
+    "zeta"
+  ],
+  "expected": "PASS",
+  "safe": true
+}

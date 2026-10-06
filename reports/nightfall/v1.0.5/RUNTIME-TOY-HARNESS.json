@@ -1,0 +1,103 @@
+{
+  "id": "WVP-SEC-014",
+  "created_unix": 1791321956,
+  "purpose": "Runtime test-harness expansion for safe local toy inputs",
+  "toy_vector_count": 10,
+  "toy_vector_pass": 10,
+  "toy_vector_fail": 0,
+  "results": [
+    {
+      "id": "TOY-001",
+      "class": "supply_neutral_transfer",
+      "expected": "PASS",
+      "observed": "PASS",
+      "status": "PASS",
+      "safe": true
+    },
+    {
+      "id": "TOY-002",
+      "class": "supply_inflation_reject",
+      "expected": "REJECT",
+      "observed": "REJECT",
+      "status": "PASS",
+      "safe": true
+    },
+    {
+      "id": "TOY-003",
+      "class": "duplicate_input_reject",
+      "expected": "REJECT",
+      "observed": "REJECT",
+      "status": "PASS",
+      "safe": true
+    },
+    {
+      "id": "TOY-004",
+      "class": "canonical_ordering",
+      "expected": "PASS",
+      "observed": "PASS",
+      "status": "PASS",
+      "safe": true
+    },
+    {
+      "id": "TOY-005",
+      "class": "coinbase_maturity_reject",
+      "expected": "REJECT",
+      "observed": "REJECT",
+      "status": "PASS",
+      "safe": true
+    },
+    {
+      "id": "TOY-006",
+      "class": "coinbase_maturity_accept",
+      "expected": "PASS",
+      "observed": "PASS",
+      "status": "PASS",
+      "safe": true
+    },
+    {
+      "id": "TOY-007",
+      "class": "release_digest_present",
+      "expected": "PASS",
+      "observed": "PASS",
+      "status": "PASS",
+      "safe": true
+    },
+    {
+      "id": "TOY-008",
+      "class": "public_report_sanitized",
+      "expected": "PASS",
+      "observed": "PASS",
+      "status": "PASS",
+      "safe": true
+    },
+    {
+      "id": "TOY-009",
+      "class": "issue_quality_hold",
+      "expected": "HOLD",
+      "observed": "HOLD",
+      "status": "PASS",
+      "safe": true
+    },
+    {
+      "id": "TOY-010",
+      "class": "issue_quality_pass",
+      "expected": "PASS",
+      "observed": "PASS",
+      "status": "PASS",
+      "safe": true
+    }
+  ],
+  "toy_input_root": "toy-inputs/nightfall/v1.0.5",
+  "recommended_next_milestone": "WVP-SEC-015 repository governance and versioned release process",
+  "safety_boundary": {
+    "no_real_seed": true,
+    "no_private_key": true,
+    "no_wallet_file": true,
+    "no_live_funds": true,
+    "no_live_rpc_mutation": true,
+    "no_exploit_payloads": true,
+    "no_weaponized_reproduction": true,
+    "non_audit_boundary_required": true
+  },
+  "boundary": "This harness executes safe toy inputs only. It is not an audit, not a certification, and not proof that Nightfall is safe."
+}

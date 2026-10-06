@@ -1,0 +1,10 @@
+{
+  "id": "TOY-006",
+  "class": "coinbase_maturity_accept",
+  "description": "Toy coinbase spend at maturity boundary must pass.",
+  "coinbase_height": 100,
+  "spend_height": 1540,
+  "maturity": 1440,
+  "expected": "PASS",
+  "safe": true
+}

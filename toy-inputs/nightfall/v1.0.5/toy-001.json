@@ -1,0 +1,11 @@
+{
+  "id": "TOY-001",
+  "class": "supply_neutral_transfer",
+  "description": "Inputs equal outputs plus fee plus burn in toy arithmetic.",
+  "input_sum": 1000,
+  "output_sum": 990,
+  "fee": 5,
+  "burn": 5,
+  "expected": "PASS",
+  "safe": true
+}

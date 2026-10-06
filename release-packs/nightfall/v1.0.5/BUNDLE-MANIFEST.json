@@ -1,10 +1,10 @@
 {
   "id": "WVP-SEC-010",
-  "created_unix": 1791321823,
+  "created_unix": 1791321956,
   "project": "Nightfall",
   "version": "v1.0.5",
   "pack_name": "wvp-nightfall-v1.0.5-evidence-pack",
-  "file_count": 186,
+  "file_count": 205,
   "files": [
     {
       "path": ".github/workflows/ci.yml",
@@ -23,13 +23,13 @@
     },
     {
       "path": ".github/workflows/wvp-required-checks.yml",
-      "size_bytes": 1738,
-      "sha256": "761a99b2e8f8ccd4253f52df8fa350f7739c8f7805ff286b3f6799df521ae5f4"
+      "size_bytes": 1831,
+      "sha256": "ad81c198b0c24afd9f652795fbfd4784253c9897927f32a3cfb3e5fef8055d48"
     },
     {
       "path": "PROJECT-STATE.md",
-      "size_bytes": 6807,
-      "sha256": "84c1499c30522b960cb9ab8b44c8c3a2e5852e0b9ce0b8cbef6615c0a0c4563b"
+      "size_bytes": 7381,
+      "sha256": "c92e4b923ef18dbc1222a39bd0475e7b005d75888b8d2a43d91acad7990e4d9b"
     },
     {
       "path": "README.md",
@@ -147,6 +147,16 @@
       "sha256": "e2319a71b21ee2f8954eaf6df3a4eb994272ee383617a8b99635e5e73625da9a"
     },
     {
+      "path": "docs/RUNTIME-HARNESS-LIMITATIONS.md",
+      "size_bytes": 475,
+      "sha256": "b0f13e26a766e9cfe4b123ac1eec0391a6381b1dd710a9a89d8c4e9945c457fc"
+    },
+    {
+      "path": "docs/RUNTIME-TOY-HARNESS-METHOD.md",
+      "size_bytes": 1249,
+      "sha256": "9033b42e2401f842a7f5287cb0e701f47ee799007b0b5e7eb38cf72aaa6bd938"
+    },
+    {
       "path": "docs/SECURITY-MODEL.md",
       "size_bytes": 600,
       "sha256": "aa7791f6af51315671c5e413448f5da23793984dd6642d17364eb4d8128daada"
@@ -165,6 +175,11 @@
       "path": "docs/TERMUX-WORKFLOW.md",
       "size_bytes": 535,
       "sha256": "ec3ee5ec1d437e5513e51eec0e57173f1d5a8bafa4069ae9c4c58bccdbd64661"
+    },
+    {
+      "path": "docs/TOY-INPUT-SAFETY-BOUNDARY.md",
+      "size_bytes": 514,
+      "sha256": "52d81b4ef25c040694212343585fb12311401e8e5fdfc447e4e775f52642efae"
     },
     {
       "path": "docs/VERIFICATION-PROFILES.md",
@@ -707,6 +722,16 @@
       "sha256": "acd91aae50a096547193b3f70cd0210d0cf2f968a27a2de97b5b88d4b15c9714"
     },
     {
+      "path": "reports/nightfall/v1.0.5/RUNTIME-TOY-HARNESS.json",
+      "size_bytes": 2524,
+      "sha256": "fbd10b38b48c7d3b929b5b5a4dee41ce94fb65dd2aaa4114e848b569aaf4014b"
+    },
+    {
+      "path": "reports/nightfall/v1.0.5/RUNTIME-TOY-HARNESS.md",
+      "size_bytes": 1288,
+      "sha256": "7bd00ff11cf52d486ae11b472c1a9242e6493856c6191a03e6a68e5e0cc27703"
+    },
+    {
       "path": "reports/nightfall/v1.0.5/SECURITY-REVIEW-PLAN.md",
       "size_bytes": 568,
       "sha256": "43b99dbd30c3b40da831fc46de8ec3961664b4bb64e6f1f91b8eedc09a705219"
@@ -792,6 +817,16 @@
       "sha256": "4d01db8044a6968ee3313c548056f6a433a10f5be266fa06d8abfb272bcb057f"
     },
     {
+      "path": "templates/runtime/toy-harness-result.md",
+      "size_bytes": 318,
+      "sha256": "26e4915d0195433581cfcf8b77bd0781ae336ca535e1a98f3b0600d14f3d9c20"
+    },
+    {
+      "path": "templates/runtime/toy-vector-template.json",
+      "size_bytes": 325,
+      "sha256": "83f2d3792fb55d5ad1a6471a62eb9cb8c69a4543572f8daff6261ff52cbbd31c"
+    },
+    {
       "path": "templates/security/finding-record.json",
       "size_bytes": 459,
       "sha256": "1313e209a1a92b74807ebf24900554f4cf38ad9bba51f4adaac55c24b02d703e"
@@ -857,6 +892,11 @@
       "sha256": "e3e21f064996206718fa87eead624fc8880b2415250191645cd2fa60f786b3d7"
     },
     {
+      "path": "tests/test_runtime_toy_harness.py",
+      "size_bytes": 1931,
+      "sha256": "db5ef9042af9dc93c77c990de115e74eacc13956bda12c6513d9007caab7b5c8"
+    },
+    {
       "path": "tests/test_semantic_regression.py",
       "size_bytes": 1122,
       "sha256": "68fc701f884cb77eca865ee9bb5938977fd3b972908c68b78d8b7ceca93ef1e3"
@@ -870,6 +910,56 @@
       "path": "tests/test_triage_workflow.py",
       "size_bytes": 1904,
       "sha256": "f5dcfefd85403342dcfcdc4e82546dc3a6961e836c5b3219c08f60482a064311"
+    },
+    {
+      "path": "toy-inputs/nightfall/v1.0.5/toy-001.json",
+      "size_bytes": 244,
+      "sha256": "256eaebb7845064f69c616ab61e99b834e09768d243c98404b242dde9afeb946"
+    },
+    {
+      "path": "toy-inputs/nightfall/v1.0.5/toy-002.json",
+      "size_bytes": 235,
+      "sha256": "df2fc473b915c879c91509337648621a38a4e391ffd592dabaa16da5848ad7c3"
+    },
+    {
+      "path": "toy-inputs/nightfall/v1.0.5/toy-003.json",
+      "size_bytes": 217,
+      "sha256": "91fd39ed6d3e13669a21933e0319136e529f8d12857e80bd9024b0d2c74199d4"
+    },
+    {
+      "path": "toy-inputs/nightfall/v1.0.5/toy-004.json",
+      "size_bytes": 267,
+      "sha256": "ab92f5eb17ec36d73aa3082f02ef293adc796dcb8552e82d06a10673776aa497"
+    },
+    {
+      "path": "toy-inputs/nightfall/v1.0.5/toy-005.json",
+      "size_bytes": 244,
+      "sha256": "3432846f30560849b0f9b09a4eb5b8241f1fd19dddae322cfb1157affb58c60e"
+    },
+    {
+      "path": "toy-inputs/nightfall/v1.0.5/toy-006.json",
+      "size_bytes": 240,
+      "sha256": "e8a7505601b8c677b87d04e294cb55b2a2ccc6b872f04281f8c0ca1ec8e056a5"
+    },
+    {
+      "path": "toy-inputs/nightfall/v1.0.5/toy-007.json",
+      "size_bytes": 266,
+      "sha256": "a6b28ab73ef80d5bbad1f1ca19087920e2aeb500101f6ce32da9486b7983af35"
+    },
+    {
+      "path": "toy-inputs/nightfall/v1.0.5/toy-008.json",
+      "size_bytes": 251,
+      "sha256": "a6f5de0f53787e876c78076b69ca02230c6ebffffa0c9eb218099df93b356f93"
+    },
+    {
+      "path": "toy-inputs/nightfall/v1.0.5/toy-009.json",
+      "size_bytes": 256,
+      "sha256": "c79628181768a2fb5b5b3814760b252c59c8f422363ae83204579330b47d35f9"
+    },
+    {
+      "path": "toy-inputs/nightfall/v1.0.5/toy-010.json",
+      "size_bytes": 232,
+      "sha256": "4c5165868b43ad0e53f7bf833a0d0224b2f29e95a0ff3015f15542db090d543f"
     },
     {
       "path": "wvp/nightfall/ci_hardening.py",
@@ -915,6 +1005,11 @@
       "path": "wvp/nightfall/release_pack.py",
       "size_bytes": 2373,
       "sha256": "8acffa2e4fef38ae92a08c60db917023d458c6e7467656551dc0a0bb5e0d38a2"
+    },
+    {
+      "path": "wvp/nightfall/runtime_toy_harness.py",
+      "size_bytes": 5340,
+      "sha256": "7a8e3d55e993a83c3f286e7b5793c2147734f21f67853afdd2a8ab5b6e95268f"
     },
     {
       "path": "wvp/nightfall/semantic_regression.py",

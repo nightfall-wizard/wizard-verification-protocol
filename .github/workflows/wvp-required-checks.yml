@@ -72,3 +72,6 @@ jobs:
 
       - name: External review gate
         run: python3 wvp/nightfall/external_review_gate.py
+
+      - name: Runtime toy harness
+        run: python3 wvp/nightfall/runtime_toy_harness.py

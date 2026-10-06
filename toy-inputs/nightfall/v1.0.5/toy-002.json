@@ -1,0 +1,11 @@
+{
+  "id": "TOY-002",
+  "class": "supply_inflation_reject",
+  "description": "Toy output exceeds input and must be rejected.",
+  "input_sum": 1000,
+  "output_sum": 1001,
+  "fee": 0,
+  "burn": 0,
+  "expected": "REJECT",
+  "safe": true
+}
