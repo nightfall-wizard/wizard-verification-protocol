@@ -1,0 +1,18 @@
+{
+  "id": "NV-INF-002",
+  "fixture": "negative_amount_attempt",
+  "class": "inflation",
+  "expected_result": "reject",
+  "safety": "abstract_only",
+  "contains_secret": false,
+  "contains_live_funds": false,
+  "mutation_target": "invalid_confidential_amount",
+  "description": "Abstract vector for invalid amount encoding or invalid range-proof surface.",
+  "schema": "wvp.negative_vector.v1",
+  "created_by": "WVP-SEC-007",
+  "payload": {
+    "kind": "non_executable_placeholder",
+    "note": "This vector is intentionally abstract and safe. It contains no exploit payload, key, seed, or live fund reference."
+  },
+  "sha256": "282fc1ec96205b6c4bec20628f247a90994765ea8fbccff4c9dee1bbfe10faf0"
+}

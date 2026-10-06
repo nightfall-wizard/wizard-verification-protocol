@@ -1,0 +1,18 @@
+{
+  "id": "NV-CONS-004",
+  "fixture": "block_apply_atomicity_case",
+  "class": "consensus",
+  "expected_result": "reject_without_state_mutation",
+  "safety": "abstract_only",
+  "contains_secret": false,
+  "contains_live_funds": false,
+  "mutation_target": "partial_state_apply_after_reject",
+  "description": "Abstract vector for rejected block mutating state partially.",
+  "schema": "wvp.negative_vector.v1",
+  "created_by": "WVP-SEC-007",
+  "payload": {
+    "kind": "non_executable_placeholder",
+    "note": "This vector is intentionally abstract and safe. It contains no exploit payload, key, seed, or live fund reference."
+  },
+  "sha256": "c70da36db131d5257cca6d10e6079a788766a6d7725f077cb97e0b0254bcabc0"
+}

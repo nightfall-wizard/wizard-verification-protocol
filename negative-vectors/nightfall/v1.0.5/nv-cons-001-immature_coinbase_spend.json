@@ -1,0 +1,18 @@
+{
+  "id": "NV-CONS-001",
+  "fixture": "immature_coinbase_spend",
+  "class": "consensus",
+  "expected_result": "reject",
+  "safety": "abstract_only",
+  "contains_secret": false,
+  "contains_live_funds": false,
+  "mutation_target": "spend_coinbase_before_maturity",
+  "description": "Abstract vector for miner reward spend before configured maturity.",
+  "schema": "wvp.negative_vector.v1",
+  "created_by": "WVP-SEC-007",
+  "payload": {
+    "kind": "non_executable_placeholder",
+    "note": "This vector is intentionally abstract and safe. It contains no exploit payload, key, seed, or live fund reference."
+  },
+  "sha256": "dc2b1b79b57de24fc0e3260f99a76266c0ca2df1a5051ee5016a459269705a7e"
+}

@@ -21,3 +21,4 @@ jobs:
       - run: python3 wvp/nightfall/command_probes.py
       - run: python3 wvp/nightfall/release_integrity.py
       - run: python3 wvp/nightfall/supply_invariant.py
+      - run: python3 wvp/nightfall/negative_vectors.py

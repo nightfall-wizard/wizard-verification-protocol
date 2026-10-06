@@ -1,0 +1,18 @@
+{
+  "id": "NV-INF-001",
+  "fixture": "thin_air_mint",
+  "class": "inflation",
+  "expected_result": "reject",
+  "safety": "abstract_only",
+  "contains_secret": false,
+  "contains_live_funds": false,
+  "mutation_target": "minted_without_valid_source",
+  "description": "Abstract vector for value creation without valid accounting source.",
+  "schema": "wvp.negative_vector.v1",
+  "created_by": "WVP-SEC-007",
+  "payload": {
+    "kind": "non_executable_placeholder",
+    "note": "This vector is intentionally abstract and safe. It contains no exploit payload, key, seed, or live fund reference."
+  },
+  "sha256": "07c2fd021f26a042b3b384a31e2b7c532ea845ddaa2797f89a81f03e4b91c023"
+}

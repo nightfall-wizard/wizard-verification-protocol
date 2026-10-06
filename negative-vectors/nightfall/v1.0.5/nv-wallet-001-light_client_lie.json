@@ -1,0 +1,18 @@
+{
+  "id": "NV-WALLET-001",
+  "fixture": "light_client_lie",
+  "class": "display_integrity",
+  "expected_result": "documented_limitation",
+  "safety": "abstract_only",
+  "contains_secret": false,
+  "contains_live_funds": false,
+  "mutation_target": "untrusted_node_display_state",
+  "description": "Abstract vector for light-client display state controlled by an untrusted node.",
+  "schema": "wvp.negative_vector.v1",
+  "created_by": "WVP-SEC-007",
+  "payload": {
+    "kind": "non_executable_placeholder",
+    "note": "This vector is intentionally abstract and safe. It contains no exploit payload, key, seed, or live fund reference."
+  },
+  "sha256": "b3a6ce5a12298b2f9abc509544665e7ba649deb1acc3d93f4f7ee173fed9043e"
+}

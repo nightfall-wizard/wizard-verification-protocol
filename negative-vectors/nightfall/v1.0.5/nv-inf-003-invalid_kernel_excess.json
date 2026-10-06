@@ -1,0 +1,18 @@
+{
+  "id": "NV-INF-003",
+  "fixture": "invalid_kernel_excess",
+  "class": "inflation",
+  "expected_result": "reject",
+  "safety": "abstract_only",
+  "contains_secret": false,
+  "contains_live_funds": false,
+  "mutation_target": "kernel_excess_mismatch",
+  "description": "Abstract vector for kernel excess mismatch against accounting equation.",
+  "schema": "wvp.negative_vector.v1",
+  "created_by": "WVP-SEC-007",
+  "payload": {
+    "kind": "non_executable_placeholder",
+    "note": "This vector is intentionally abstract and safe. It contains no exploit payload, key, seed, or live fund reference."
+  },
+  "sha256": "45027ad564c07045cc9502dee573813b7e239c46120366200e3edd6e713cc024"
+}

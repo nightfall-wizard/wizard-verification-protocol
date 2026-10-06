@@ -157,3 +157,28 @@ Next milestone:
 
 WVP-SEC-007 - create fuzzing and negative-vector
 scaffolding for invariant-related failure classes.
+
+
+## WVP-SEC-007
+
+Status: implemented.
+
+Completed:
+
+- negative vector report
+- safe abstract negative vector files
+- fuzzing scaffold directory
+- negative vector method documentation
+- executable negative vector checker
+- unit tests
+- CI integration
+
+Boundary:
+
+This step creates defensive scaffolding only.
+It does not publish exploit payloads and does not prove runtime rejection.
+
+Next milestone:
+
+WVP-SEC-008 - create private-disclosure and findings-triage workflow
+for security-relevant observations.
