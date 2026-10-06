@@ -33,3 +33,25 @@ Scaffold implemented.
 ## Next milestone
 
 WVP-SEC-002 - bind fixtures to executable tests.
+
+
+## WVP-SEC-002
+
+Status: implemented.
+
+Completed:
+
+- codepath binding report
+- JSON binding evidence
+- markdown binding evidence
+- binding method documentation
+- binding checker
+- unit tests
+
+Boundary:
+
+This step binds fixtures to observable paths. It does not prove implementation correctness.
+
+Next milestone:
+
+WVP-SEC-003 - convert selected bindings into executable semantic regression checks.
