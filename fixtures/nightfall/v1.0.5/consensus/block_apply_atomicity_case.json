@@ -1,0 +1,7 @@
+{
+  "id": "block_apply_atomicity_case",
+  "name": "block_apply_atomicity_case",
+  "class": "consensus",
+  "expected_result": "reject",
+  "contains_secret": false
+}

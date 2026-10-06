@@ -1,0 +1,6 @@
+{
+  "id": "light_client_lie",
+  "class": "display_integrity",
+  "expected_result": "documented_limitation",
+  "contains_secret": false
+}

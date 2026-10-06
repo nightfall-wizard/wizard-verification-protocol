@@ -1,0 +1,7 @@
+{
+  "id": "fake_input_spend",
+  "name": "fake_input_spend",
+  "class": "theft",
+  "expected_result": "reject",
+  "contains_secret": false
+}

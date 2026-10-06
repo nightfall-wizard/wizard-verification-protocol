@@ -1,0 +1,7 @@
+{
+  "id": "invalid_kernel_excess",
+  "name": "invalid_kernel_excess",
+  "class": "inflation",
+  "expected_result": "reject",
+  "contains_secret": false
+}

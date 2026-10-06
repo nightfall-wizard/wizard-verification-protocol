@@ -1,0 +1,7 @@
+{
+  "id": "negative_amount_attempt",
+  "name": "negative_amount_attempt",
+  "class": "inflation",
+  "expected_result": "reject",
+  "contains_secret": false
+}

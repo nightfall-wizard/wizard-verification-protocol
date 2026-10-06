@@ -1,0 +1,7 @@
+{
+  "id": "duplicate_input",
+  "name": "duplicate_input",
+  "class": "consensus",
+  "expected_result": "reject",
+  "contains_secret": false
+}

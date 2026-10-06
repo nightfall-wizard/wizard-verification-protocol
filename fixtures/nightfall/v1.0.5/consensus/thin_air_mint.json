@@ -1,0 +1,7 @@
+{
+  "id": "thin_air_mint",
+  "name": "thin_air_mint",
+  "class": "inflation",
+  "expected_result": "reject",
+  "contains_secret": false
+}

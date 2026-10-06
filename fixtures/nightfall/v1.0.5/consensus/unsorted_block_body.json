@@ -1,0 +1,7 @@
+{
+  "id": "unsorted_block_body",
+  "name": "unsorted_block_body",
+  "class": "consensus",
+  "expected_result": "reject",
+  "contains_secret": false
+}
