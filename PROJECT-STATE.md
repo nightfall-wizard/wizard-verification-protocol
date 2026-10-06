@@ -261,3 +261,27 @@ Next milestone:
 
 WVP-SEC-011 - create CI hardening and required-check
 gate documentation for WVP branches.
+
+
+## WVP-SEC-011
+
+Status: implemented.
+
+Completed:
+
+- CI hardening report
+- required-check workflow
+- branch protection template
+- required-check gate documentation
+- executable CI hardening checker
+- unit tests
+- CI integration guidance
+
+Boundary:
+
+This step documents and checks CI hardening.
+It does not itself enable GitHub branch protection and does not prove project safety.
+
+Next milestone:
+
+WVP-SEC-012 - create maintainer handoff, final roadmap, and merge-readiness checklist.

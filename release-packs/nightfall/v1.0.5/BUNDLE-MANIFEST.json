@@ -1,10 +1,10 @@
 {
   "id": "WVP-SEC-010",
-  "created_unix": 1791321345,
+  "created_unix": 1791321473,
   "project": "Nightfall",
   "version": "v1.0.5",
   "pack_name": "wvp-nightfall-v1.0.5-evidence-pack",
-  "file_count": 146,
+  "file_count": 155,
   "files": [
     {
       "path": ".github/workflows/ci.yml",
@@ -22,9 +22,14 @@
       "sha256": "a2d094fedd28a4a4044a6686d85ccf4b2a03953b3fe8baf1fc001cb72ad2703a"
     },
     {
+      "path": ".github/workflows/wvp-required-checks.yml",
+      "size_bytes": 1554,
+      "sha256": "a7b734ebf9ab47c9794ccd599786b5a78b405c379111842ff7e3c3b0b41ac76c"
+    },
+    {
       "path": "PROJECT-STATE.md",
-      "size_bytes": 5034,
-      "sha256": "e21ad7cb34d63fdd0374e60002fc19a424cf3b9f6826bb50a6e0203bfc8b79b6"
+      "size_bytes": 5520,
+      "sha256": "16eeda0e797205ad8a8801ad89dd045c149ebf76c51b6de7b17f79f15a768372"
     },
     {
       "path": "README.md",
@@ -35,6 +40,11 @@
       "path": "SECURITY.md",
       "size_bytes": 658,
       "sha256": "9dc600cc35d5ac66a512601a4c17629f1b853d7e502875f6a310155bced1f451"
+    },
+    {
+      "path": "docs/CI-HARDENING-METHOD.md",
+      "size_bytes": 824,
+      "sha256": "15d7d44a6c6810cedb998d8c7814bd68f99568c5a96759b5ca5a25e74a35e853"
     },
     {
       "path": "docs/CODEPATH-BINDING-METHOD.md",
@@ -80,6 +90,11 @@
       "path": "docs/RELEASE-PACK-METHOD.md",
       "size_bytes": 1060,
       "sha256": "6587fb5098d3e37888ee8e4f3361a7f1ed98399ca2c15dac9e7ec856429e37bb"
+    },
+    {
+      "path": "docs/REQUIRED-CHECK-GATE-METHOD.md",
+      "size_bytes": 890,
+      "sha256": "d0a1a4837b041eafe7befa81d42e778589f60be725c16fefc9e707d9c3704f07"
     },
     {
       "path": "docs/SECURITY-MODEL.md",
@@ -512,6 +527,16 @@
       "sha256": "b441735d7d772e249738e15e77de90cb05e61e331598915e8e83104090282595"
     },
     {
+      "path": "reports/nightfall/v1.0.5/CI-HARDENING.json",
+      "size_bytes": 3719,
+      "sha256": "97c0485a0e1335e356d1215bdddbf4b6985a194f04134640ba0cb213973dc9c0"
+    },
+    {
+      "path": "reports/nightfall/v1.0.5/CI-HARDENING.md",
+      "size_bytes": 2106,
+      "sha256": "be51670a1b4b1bc8adb33cc050cf8dc3f6fbda6e360158041c1d0fa9f52779b0"
+    },
+    {
       "path": "reports/nightfall/v1.0.5/CODEPATH-BINDINGS.json",
       "size_bytes": 13782,
       "sha256": "2d513989b09d59e83b64abc7362713e3307c280f281cd82a5e152719e7dec3a3"
@@ -622,6 +647,16 @@
       "sha256": "8d8465260c9f5c30a9f4d1deab473f61cbaffd2e59af60dbaf2d90c0fb7c97ca"
     },
     {
+      "path": "templates/github/branch-protection-required-checks.json",
+      "size_bytes": 501,
+      "sha256": "567e3cf6dca470b0a84153d9abb4617834cc3ba6b8b1a7ab81db9735b9c85c1c"
+    },
+    {
+      "path": "templates/github/required-checks.md",
+      "size_bytes": 238,
+      "sha256": "6066be24cc50648cc7a9270795d54970700fc2609a85e080f96830d1df288cc6"
+    },
+    {
       "path": "templates/security/finding-record.json",
       "size_bytes": 459,
       "sha256": "1313e209a1a92b74807ebf24900554f4cf38ad9bba51f4adaac55c24b02d703e"
@@ -635,6 +670,11 @@
       "path": "templates/security/sanitized-finding.md",
       "size_bytes": 490,
       "sha256": "3a5fd065a013a693666649c5e8c0e4131aa8a881b2b76df6e1c0794487abe57c"
+    },
+    {
+      "path": "tests/test_ci_hardening.py",
+      "size_bytes": 2010,
+      "sha256": "c910b177b184f793bf26c095ad0a380ef89f4767ba821bed5bddd41bc816356a"
     },
     {
       "path": "tests/test_codepath_bindings.py",
@@ -685,6 +725,11 @@
       "path": "tests/test_triage_workflow.py",
       "size_bytes": 1904,
       "sha256": "f5dcfefd85403342dcfcdc4e82546dc3a6961e836c5b3219c08f60482a064311"
+    },
+    {
+      "path": "wvp/nightfall/ci_hardening.py",
+      "size_bytes": 2919,
+      "sha256": "e3c29e56be31d6bfacc03c78fb38a597a4b6a325970cf0381ab5337b9e9c523a"
     },
     {
       "path": "wvp/nightfall/codepath_binding.py",

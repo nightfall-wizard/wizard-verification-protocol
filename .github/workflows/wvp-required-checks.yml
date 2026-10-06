@@ -1,0 +1,68 @@
+name: WVP Required Checks
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+      - "wvp-sec-*"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: wvp-required-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  required:
+    name: required
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Unit tests
+        run: python3 -m unittest discover -s tests -v
+
+      - name: Nightfall verifier
+        run: python3 wvp/nightfall/verifier.py
+
+      - name: Codepath binding
+        run: python3 wvp/nightfall/codepath_binding.py
+
+      - name: Semantic regression
+        run: python3 wvp/nightfall/semantic_regression.py
+
+      - name: Command probes
+        run: python3 wvp/nightfall/command_probes.py
+
+      - name: Release integrity
+        run: python3 wvp/nightfall/release_integrity.py
+
+      - name: Supply invariant
+        run: python3 wvp/nightfall/supply_invariant.py
+
+      - name: Negative vectors
+        run: python3 wvp/nightfall/negative_vectors.py
+
+      - name: Triage workflow
+        run: python3 wvp/nightfall/triage_workflow.py
+
+      - name: Conformance score
+        run: python3 wvp/nightfall/conformance_score.py
+
+      - name: Release pack
+        run: python3 wvp/nightfall/release_pack.py
+
+      - name: CI hardening
+        run: python3 wvp/nightfall/ci_hardening.py
