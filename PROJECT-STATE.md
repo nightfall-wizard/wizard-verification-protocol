@@ -2053,3 +2053,46 @@ The initial work remains legal, open-source, non-custodial and non-value simulat
 Define the first AUNEYA claim schema for the provable web using WVP release-reality as Claim Type 001.
 <!-- WVP:STEP-23-AUNEYA-PROTOCOL-CHARTER:END -->
 
+<!-- WVP:STEP-24-AUNEYA-CLAIM-SCHEMA-V01:START -->
+## STEP 24 — AUNEYA Claim Schema v0.1
+
+Date: 2026-10-06
+
+### Purpose
+
+AUNEYA now has its first machine-readable claim format for the provable web.
+
+This turns the AUNEYA architecture from a documented vision into a concrete technical object that can be validated by conformance.
+
+### Added
+
+- `schemas/auneya-claim-v0.1.schema.json`
+- `docs/auneya/AUNEYA-CLAIM-SCHEMA-V0.1.md`
+- `fixtures/auneya/claims/valid-release-reality.json`
+- `fixtures/auneya/claims/valid-download-integrity.json`
+- `fixtures/auneya/claims/valid-website-claim-reality.json`
+- `fixtures/auneya/claims/invalid-private-data-claim.json`
+- `conformance/auneya-claim-schema-v0.1.sh`
+
+### Verified
+
+- valid public release-reality claim passes
+- valid public download-integrity claim passes
+- valid public website-claim-reality claim passes
+- invalid private-data claim is rejected
+- legal boundary requires private-data, hacked-data, paywall-bypass, credential-use and surveillance prohibitions
+
+### Explicit non-claims
+
+- No token is created by this step.
+- No reward is created by this step.
+- No token sale is offered.
+- No market value is claimed.
+- No return, profit, yield or financial outcome is offered or promised.
+- Legal review is required before any public token launch, listing, sale, transferability or market-value communication.
+
+### Next target
+
+Define AUNEYA Witness Proof Schema v0.1 so a lawful claim can produce a structured witness proof.
+<!-- WVP:STEP-24-AUNEYA-CLAIM-SCHEMA-V01:END -->
+

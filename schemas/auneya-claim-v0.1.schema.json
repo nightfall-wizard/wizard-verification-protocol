@@ -1,0 +1,255 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://wvp.local/schemas/auneya-claim-v0.1.schema.json",
+  "title": "AUNEYA Claim Schema v0.1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "claim_id",
+    "claim_type",
+    "title",
+    "asserted_statement",
+    "target",
+    "public_access",
+    "evidence_requirements",
+    "expiry_policy",
+    "legal_boundary",
+    "status",
+    "created_at"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "auneya-claim-v0.1"
+    },
+    "claim_id": {
+      "type": "string",
+      "pattern": "^auneya_claim_[a-z0-9_\\-]{8,80}$"
+    },
+    "claim_type": {
+      "type": "string",
+      "enum": [
+        "release_reality",
+        "build_provenance",
+        "download_integrity",
+        "website_claim_reality",
+        "domain_dns_tls_reality",
+        "audit_claim_reality",
+        "blockchain_claim_reality",
+        "app_store_reality",
+        "ai_model_reality",
+        "media_file_origin_reality"
+      ]
+    },
+    "title": {
+      "type": "string",
+      "minLength": 8,
+      "maxLength": 160
+    },
+    "asserted_statement": {
+      "type": "string",
+      "minLength": 16,
+      "maxLength": 1000
+    },
+    "target": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "locator"
+      ],
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": [
+            "git_repository",
+            "release",
+            "download_url",
+            "web_url",
+            "domain",
+            "dns_record",
+            "tls_certificate",
+            "audit_document",
+            "blockchain_contract",
+            "app_store_entry",
+            "ai_model_file",
+            "media_file"
+          ]
+        },
+        "locator": {
+          "type": "string",
+          "minLength": 4,
+          "maxLength": 1000
+        },
+        "expected_hash": {
+          "type": "string",
+          "maxLength": 200
+        },
+        "expected_signature": {
+          "type": "string",
+          "maxLength": 500
+        },
+        "expected_publisher": {
+          "type": "string",
+          "maxLength": 200
+        },
+        "expected_version": {
+          "type": "string",
+          "maxLength": 100
+        }
+      }
+    },
+    "public_access": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "access_type",
+        "lawful_basis",
+        "requires_authentication",
+        "requires_payment",
+        "contains_personal_data"
+      ],
+      "properties": {
+        "access_type": {
+          "type": "string",
+          "enum": [
+            "public_web",
+            "public_repository",
+            "public_blockchain",
+            "publisher_provided",
+            "owner_authorized"
+          ]
+        },
+        "lawful_basis": {
+          "type": "string",
+          "enum": [
+            "publicly_accessible",
+            "owner_authorized",
+            "publisher_provided"
+          ]
+        },
+        "requires_authentication": {
+          "type": "boolean"
+        },
+        "requires_payment": {
+          "type": "boolean"
+        },
+        "contains_personal_data": {
+          "type": "boolean"
+        }
+      }
+    },
+    "evidence_requirements": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 20,
+      "items": {
+        "type": "string",
+        "enum": [
+          "http_status",
+          "content_hash",
+          "detached_signature",
+          "checksum_file",
+          "release_metadata",
+          "commit_reference",
+          "build_metadata",
+          "dns_record",
+          "tls_certificate",
+          "page_snapshot_hash",
+          "publisher_identity",
+          "version_metadata",
+          "contract_verification",
+          "supply_evidence",
+          "audit_scope",
+          "file_metadata"
+        ]
+      }
+    },
+    "expiry_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "mode",
+        "max_age_seconds",
+        "recheck_trigger"
+      ],
+      "properties": {
+        "mode": {
+          "type": "string",
+          "enum": [
+            "time_window",
+            "state_change",
+            "version_change"
+          ]
+        },
+        "max_age_seconds": {
+          "type": "integer",
+          "minimum": 60,
+          "maximum": 2592000
+        },
+        "recheck_trigger": {
+          "type": "string",
+          "minLength": 3,
+          "maxLength": 200
+        }
+      }
+    },
+    "legal_boundary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "private_data_prohibited",
+        "hacked_data_prohibited",
+        "paywall_bypass_prohibited",
+        "credential_use_prohibited",
+        "surveillance_prohibited",
+        "notes"
+      ],
+      "properties": {
+        "private_data_prohibited": {
+          "type": "boolean",
+          "const": true
+        },
+        "hacked_data_prohibited": {
+          "type": "boolean",
+          "const": true
+        },
+        "paywall_bypass_prohibited": {
+          "type": "boolean",
+          "const": true
+        },
+        "credential_use_prohibited": {
+          "type": "boolean",
+          "const": true
+        },
+        "surveillance_prohibited": {
+          "type": "boolean",
+          "const": true
+        },
+        "notes": {
+          "type": "string",
+          "minLength": 8,
+          "maxLength": 500
+        }
+      }
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "ready_for_witnessing",
+        "out_of_scope",
+        "retired"
+      ]
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "non_value_notice": {
+      "type": "string",
+      "maxLength": 500
+    }
+  }
+}

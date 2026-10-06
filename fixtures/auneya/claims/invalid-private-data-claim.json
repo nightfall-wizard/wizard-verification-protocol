@@ -1,0 +1,38 @@
+{
+  "schema_version": "auneya-claim-v0.1",
+  "claim_id": "auneya_claim_invalid_private_001",
+  "claim_type": "website_claim_reality",
+  "title": "Invalid private account claim",
+  "asserted_statement": "This invalid example would require private account access and must be rejected.",
+  "target": {
+    "kind": "web_url",
+    "locator": "https://example.com/private-account"
+  },
+  "public_access": {
+    "access_type": "public_web",
+    "lawful_basis": "publicly_accessible",
+    "requires_authentication": true,
+    "requires_payment": false,
+    "contains_personal_data": true
+  },
+  "evidence_requirements": [
+    "http_status",
+    "page_snapshot_hash"
+  ],
+  "expiry_policy": {
+    "mode": "time_window",
+    "max_age_seconds": 21600,
+    "recheck_trigger": "private content should never be checked"
+  },
+  "legal_boundary": {
+    "private_data_prohibited": true,
+    "hacked_data_prohibited": true,
+    "paywall_bypass_prohibited": true,
+    "credential_use_prohibited": true,
+    "surveillance_prohibited": true,
+    "notes": "This fixture must fail because it requires authentication and contains personal data."
+  },
+  "status": "draft",
+  "created_at": "2026-10-06T00:00:00Z",
+  "non_value_notice": "This invalid fixture is for conformance testing only."
+}

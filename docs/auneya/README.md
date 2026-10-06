@@ -23,3 +23,11 @@ No market value is claimed.
 No return, profit, yield or financial outcome is offered or promised.
 
 Legal review is required before any public token launch, listing, sale, transferability or market-value communication.
+
+## Claim Schema
+
+- `AUNEYA-CLAIM-SCHEMA-V0.1.md`
+- `../../schemas/auneya-claim-v0.1.schema.json`
+- `../../conformance/auneya-claim-schema-v0.1.sh`
+
+The claim schema defines the first machine-readable AUNEYA claim format for the provable web.
