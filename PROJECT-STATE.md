@@ -2400,3 +2400,49 @@ This gives a new phone user a direct README-level path to run the local non-valu
 Define AUNEYA Local Claim Selection v0.1 so a phone user can choose between supported lawful public claim fixtures before local collecting simulation begins.
 <!-- WVP:STEP-31-AUNEYA-LOCAL-DEMO-QUICKSTART-V01:END -->
 
+<!-- WVP:STEP-32-AUNEYA-LOCAL-CLAIM-SELECTION-V01:START -->
+## STEP 32 — AUNEYA Local Claim Selection v0.1
+
+Date: 2026-10-06
+
+### Purpose
+
+AUNEYA now has local claim selection for the Termux demo.
+
+A phone user can list and choose between supported lawful public claim fixtures before running the local non-value demo.
+
+### Added
+
+- `tools/auneya/auneya_local_claim_select.py`
+- `docs/auneya/AUNEYA-LOCAL-CLAIM-SELECTION-V0.1.md`
+- `fixtures/auneya/local-runner/example-local-claim-selection-list.txt`
+- `fixtures/auneya/local-runner/example-local-claim-selection-demo.txt`
+- `conformance/auneya-local-claim-selection-v0.1.sh`
+
+### Verified
+
+- selector lists supported lawful public claim fixtures
+- selector supports release-reality, download-integrity and website-claim-reality
+- selector prints selected claim path
+- selector runs the one-command local demo with a selected claim
+- invalid claim key is rejected
+- demo output remains non-transferable
+- demo output claims no market value
+- no AUNEYA or neya is created by selection
+
+### Explicit non-claims
+
+- No token is created by this step.
+- No AUNEYA is created by this step.
+- No neya is created by this step.
+- No real reward is created by this step.
+- No token sale is offered.
+- No market value is claimed.
+- No return, profit, yield or financial outcome is offered or promised.
+- Legal review is required before any public token launch, listing, sale, transferability or market-value communication.
+
+### Next target
+
+Define AUNEYA Local Collection Ledger Simulation v0.1 so local non-value entries can be counted persistently without creating AUNEYA, neya, market value or transferability.
+<!-- WVP:STEP-32-AUNEYA-LOCAL-CLAIM-SELECTION-V01:END -->
+

@@ -89,3 +89,13 @@ The one-command local demo runs the local witness runner and CLI display in one 
 - `../../conformance/auneya-local-demo-quickstart-v0.1.sh`
 
 The local demo quickstart explains how to run the one-command local AUNEYA demo from Termux.
+
+## Local Claim Selection
+
+- `AUNEYA-LOCAL-CLAIM-SELECTION-V0.1.md`
+- `../../tools/auneya/auneya_local_claim_select.py`
+- `../../fixtures/auneya/local-runner/example-local-claim-selection-list.txt`
+- `../../fixtures/auneya/local-runner/example-local-claim-selection-demo.txt`
+- `../../conformance/auneya-local-claim-selection-v0.1.sh`
+
+The local claim selector lets a Termux user choose between supported lawful public claim fixtures before running the local demo.

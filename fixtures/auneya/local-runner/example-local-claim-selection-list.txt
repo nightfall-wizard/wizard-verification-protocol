@@ -1,0 +1,32 @@
+AUNEYA LOCAL CLAIM SELECTION v0.1
+Mode: local non-value simulation
+Network: none
+Mainnet: not active
+Token created: false
+Market value claimed: false
+Transferable: false
+
+Supported lawful public claim fixtures:
+1. key=release-reality
+   claim_id=auneya_claim_release_reality_001
+   path=fixtures/auneya/claims/valid-release-reality.json
+   label=Public release reality claim
+
+2. key=download-integrity
+   claim_id=auneya_claim_download_integrity_001
+   path=fixtures/auneya/claims/valid-download-integrity.json
+   label=Public download integrity claim
+
+3. key=website-claim-reality
+   claim_id=auneya_claim_website_reality_001
+   path=fixtures/auneya/claims/valid-website-claim-reality.json
+   label=Public website claim reality claim
+
+Boundary:
+- no token
+- no AUNEYA
+- no neya
+- no real reward
+- no market value
+- no mainnet
+- lawful public or owner-authorized fixtures only

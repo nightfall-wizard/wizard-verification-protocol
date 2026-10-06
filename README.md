@@ -398,3 +398,44 @@ Explicit non-claims:
 - Legal review is required before any public token launch, listing, sale, transferability or market-value communication.
 <!-- WVP:AUNEYA-LOCAL-DEMO-QUICKSTART-V01:END -->
 
+<!-- WVP:AUNEYA-LOCAL-CLAIM-SELECTION-V01:START -->
+## AUNEYA Local Claim Selection v0.1
+
+Choose a supported lawful public claim fixture from Termux:
+
+`python3 tools/auneya/auneya_local_claim_select.py --list`
+
+Run the local demo with a selected claim:
+
+`python3 tools/auneya/auneya_local_claim_select.py --claim-key release-reality --run-demo`
+
+Supported local claim keys:
+
+- `release-reality`
+- `download-integrity`
+- `website-claim-reality`
+
+Self-check:
+
+`./conformance/auneya-local-claim-selection-v0.1.sh`
+
+Files:
+
+- `tools/auneya/auneya_local_claim_select.py`
+- `docs/auneya/AUNEYA-LOCAL-CLAIM-SELECTION-V0.1.md`
+- `fixtures/auneya/local-runner/example-local-claim-selection-list.txt`
+- `fixtures/auneya/local-runner/example-local-claim-selection-demo.txt`
+- `conformance/auneya-local-claim-selection-v0.1.sh`
+
+Explicit non-claims:
+
+- No token is created by this selector.
+- No AUNEYA is created by this selector.
+- No neya is created by this selector.
+- No real reward is created by this selector.
+- No market value is claimed.
+- No mainnet is activated.
+- Simulated entries are non-transferable and non-value only.
+- Legal review is required before any public token launch, listing, sale, transferability or market-value communication.
+<!-- WVP:AUNEYA-LOCAL-CLAIM-SELECTION-V01:END -->
+
