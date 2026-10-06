@@ -1975,3 +1975,39 @@ Boundaries:
 Interpretation:
 STEP 22E turns the release-reality checker work from a successful merged feature into a verified main-branch subsystem with persistent CI-backed regression protection.
 <!-- WVP:STEP-22E-POST-MERGE-VERIFICATION:END -->
+
+<!-- WVP:STEP-22F-CAPABILITY-INDEX:START -->
+## STEP 22F — Release-Reality Capability Index
+
+Status: implemented
+
+Purpose:
+Add a machine-readable capability index for the WVP Release-Reality Check v0.1 subsystem.
+
+Implemented artifacts:
+- `capabilities/wvp-release-reality-capability-index-v0.1.json`
+- `docs/WVP-RELEASE-REALITY-CAPABILITY-INDEX-V0.1.md`
+- `conformance/wvp-release-reality-capability-index-gate.sh`
+
+The capability index records:
+- implemented checker capabilities;
+- explicit non-capabilities;
+- CI-backed gates;
+- deterministic fixture inventory;
+- hard safety and claim-boundary rules;
+- accepted claim-status vocabulary.
+
+Boundaries:
+- not a release approval;
+- not an audit;
+- not legal clearance;
+- not investment advice;
+- not custody safety proof;
+- not binary safety proof;
+- not source-to-binary proof;
+- not reproducible-build proof;
+- not protocol security proof.
+
+Interpretation:
+STEP 22F turns the release-reality checker subsystem into a documented capability surface that can be reviewed, linked, versioned and defended without overclaiming.
+<!-- WVP:STEP-22F-CAPABILITY-INDEX:END -->
