@@ -18,6 +18,7 @@ for required in \
   "tools/check_security_threat_model.sh" \
   "tools/check_rust_defensive_code.sh" \
   "tools/check_cargo_supply_chain.sh" \
+  "tools/check_dependency_inventory.sh" \
   "cargo fmt --all -- --check" \
   "cargo test --all"
 do
@@ -41,10 +42,13 @@ bash tools/check_rust_defensive_code.sh
 echo "=== Gate 5: Cargo supply-chain reproducibility ==="
 bash tools/check_cargo_supply_chain.sh
 
-echo "=== Gate 6: Rust formatting ==="
+echo "=== Gate 6: Cargo dependency inventory ==="
+bash tools/check_dependency_inventory.sh
+
+echo "=== Gate 7: Rust formatting ==="
 cargo fmt --all -- --check
 
-echo "=== Gate 7: full Rust test suite ==="
+echo "=== Gate 8: full Rust test suite ==="
 cargo test --all
 
 echo "PASS: release quality gate passed"
