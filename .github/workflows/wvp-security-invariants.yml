@@ -21,5 +21,8 @@ jobs:
       - name: Check security threat model
         run: bash tools/check_security_threat_model.sh
 
+      - name: Check Rust defensive-code baseline
+        run: bash tools/check_rust_defensive_code.sh
+
       - name: Run Rust test suite
         run: cargo test --all

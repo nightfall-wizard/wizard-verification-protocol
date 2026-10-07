@@ -1,0 +1,11 @@
+unwrap_calls=17
+dot_unwrap_calls=17
+expect_calls=5
+dot_expect_calls=5
+panic_calls=0
+todo_calls=0
+unimplemented_calls=0
+dbg_calls=0
+unsafe_markers=0
+allow_unused=0
+allow_dead_code=0
