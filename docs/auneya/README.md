@@ -9,6 +9,7 @@ WVP remains the technical verification core.
 - `AUNEYA-PROTOCOL-CHARTER.md`
 - `AUNEYA-PROVABLE-WEB-SCOPE.md`
 - `AUNEYA-NON-VALUE-SIMULATION-NOTICE.md`
+- `docs/auneya/AUNEYA-L1-LEGAL-BOUNDARY-V0.1.md`
 
 ## Legal Status
 

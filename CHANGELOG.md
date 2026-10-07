@@ -1,3 +1,7 @@
+## Unreleased
+
+- Add AUNEYA L1 Legal Boundary v0.1 and conformance gate.
+
 
 # Changelog
 
