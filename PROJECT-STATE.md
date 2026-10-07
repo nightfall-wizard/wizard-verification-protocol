@@ -474,3 +474,28 @@ Next milestone:
 
 AUNEYA external review readiness and public documentation quality gate.
 
+
+## AUNEYA-EXTERNAL-REVIEW-READY-001
+
+Status: implemented.
+
+Completed:
+
+- external review readiness document
+- public documentation quality gate
+- machine-checkable readiness report
+- JSON evidence report
+- Markdown evidence report
+- public boundary validation
+- reviewer checklist validation
+- CI-compatible conformance script
+
+Boundary:
+
+This step checks AUNEYA documentation readiness for external review.
+It does not create AUNEYA, neya, a token, market value, transferability, mainnet activity, legal clearance, financial claims or investment advice.
+
+Next milestone:
+
+AUNEYA external reviewer packet and issue-template workflow.
+

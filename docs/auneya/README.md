@@ -149,3 +149,14 @@ The minimal fair-genesis launch path defines the intended open-source start mode
 
 The local simulation evidence pack binds the existing AUNEYA local simulation stack into one reproducible non-value evidence report.
 
+## External Review Readiness
+
+- `AUNEYA-EXTERNAL-REVIEW-READINESS-V0.1.md`
+- `AUNEYA-PUBLIC-DOCUMENTATION-QUALITY-GATE-V0.1.md`
+- `../../tools/auneya/auneya_external_review_readiness.py`
+- `../../conformance/auneya-external-review-readiness-v0.1.sh`
+- `../../reports/auneya/external-review-readiness-v0.1/AUNEYA-EXTERNAL-REVIEW-READINESS-v0.1.json`
+- `../../reports/auneya/external-review-readiness-v0.1/AUNEYA-EXTERNAL-REVIEW-READINESS-v0.1.md`
+
+This gate checks whether AUNEYA is externally reviewable as public documentation and local non-value simulation evidence.
+
