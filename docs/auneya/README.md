@@ -196,3 +196,14 @@ This step records the initial zero-intake state and defines how future AUNEYA ex
 
 This step adds a recurring evidence refresh process and external feedback trail without inventing external review feedback.
 
+## Local Ledger + Wallet Simulator
+
+- `AUNEYA-LOCAL-LEDGER-WALLET-V0.1.md`
+- `../../tools/auneya/auneya_local_ledger_wallet.py`
+- `../../conformance/auneya-local-ledger-wallet-v0.1.sh`
+- `../../reports/auneya/local-ledger-wallet-v0.1/AUNEYA-LOCAL-LEDGER-WALLET-v0.1.json`
+- `../../reports/auneya/local-ledger-wallet-v0.1/AUNEYA-LOCAL-LEDGER-WALLET-v0.1.md`
+- `../../reports/auneya/local-ledger-wallet-v0.1/AUNEYA-LOCAL-WALLET-VIEW-v0.1.txt`
+
+This step adds a tangible local ledger and local wallet simulator with visible balance, history and export artifacts. It remains a local non-value simulation only.
+

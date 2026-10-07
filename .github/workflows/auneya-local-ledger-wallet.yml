@@ -1,0 +1,27 @@
+name: AUNEYA Local Ledger Wallet
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - "docs/auneya/AUNEYA-LOCAL-LEDGER-WALLET-V0.1.md"
+      - "tools/auneya/auneya_local_ledger_wallet.py"
+      - "conformance/auneya-local-ledger-wallet-v0.1.sh"
+      - "reports/auneya/local-ledger-wallet-v0.1/**"
+      - ".github/workflows/auneya-local-ledger-wallet.yml"
+
+jobs:
+  local-ledger-wallet:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Run AUNEYA local ledger wallet conformance
+        run: bash conformance/auneya-local-ledger-wallet-v0.1.sh
+
