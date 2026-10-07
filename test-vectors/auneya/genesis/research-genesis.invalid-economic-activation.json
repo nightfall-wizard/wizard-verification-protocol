@@ -1,0 +1,14 @@
+{
+  "chain_id": "auneya-research-phone-witness-v1",
+  "environment_label": "research",
+  "genesis_hash": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+  "protocol_version": "0.1.0",
+  "created_at": "2026-10-07T00:00:00Z",
+  "consensus_profile": "research-only",
+  "signature_domain": "auneya-research-phone-witness-v1:signature",
+  "witness_domain": "auneya-research-phone-witness-v1:witness",
+  "replay_domain": "auneya-research-phone-witness-v1:replay",
+  "research_mode_enabled": true,
+  "economic_activation_enabled": true,
+  "legal_boundary_reference": "AUNEYA L1 Legal Boundary v0.1"
+}
