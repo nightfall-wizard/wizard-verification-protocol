@@ -12,8 +12,8 @@ WVP v0.5-RC1 is a release-candidate evidence bundle for the Rust release-check r
 |---|---|
 | Release candidate | WVP v0.5-RC1 |
 | Branch | `wvp-incident-001-nightfall-040-043-20261007-062725` |
-| Evidence commit | `0f1e8b3` |
-| Evidence generated | `2026-10-07T08:50:46Z` |
+| Evidence commit | `86139d4` |
+| Evidence generated | `2026-10-07T08:53:21Z` |
 | Primary crate | `reference/rust/wvp-release-check` |
 
 ## Required Gates
