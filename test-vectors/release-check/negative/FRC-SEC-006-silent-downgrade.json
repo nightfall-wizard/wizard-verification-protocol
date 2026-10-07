@@ -1,0 +1,11 @@
+{
+  "case_id": "FRC-SEC-006",
+  "description": "Reject silent downgrade from signature verification to checksum-only verification",
+  "expected": "reject",
+  "invariant": "WVP-INV-006",
+  "verification": {
+    "required_mode": "signature+checksum",
+    "performed_mode": "checksum-only",
+    "downgrade_reported": false
+  }
+}

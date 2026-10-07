@@ -1,0 +1,16 @@
+name: WVP Security Invariants
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  security-invariants:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Check security invariants and negative fixtures
+        run: bash tools/check_security_invariants.sh

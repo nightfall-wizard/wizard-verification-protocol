@@ -1,0 +1,11 @@
+{
+  "case_id": "FRC-SEC-001",
+  "description": "Reject release manifest with missing digest material",
+  "expected": "reject",
+  "invariant": "WVP-INV-001",
+  "artifact": {
+    "name": "nightfall-wallet",
+    "version": "0.0.1",
+    "digest": ""
+  }
+}

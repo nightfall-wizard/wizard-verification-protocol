@@ -1,0 +1,12 @@
+{
+  "case_id": "FRC-SEC-007",
+  "description": "Reject release artifact with ambiguous network context",
+  "expected": "reject",
+  "invariant": "WVP-INV-007",
+  "artifact": {
+    "name": "nightfall-wallet",
+    "version": "0.0.1",
+    "network": "mainnet-or-testnet",
+    "digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+  }
+}

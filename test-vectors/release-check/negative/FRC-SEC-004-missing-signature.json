@@ -1,0 +1,13 @@
+{
+  "case_id": "FRC-SEC-004",
+  "description": "Reject artifact marked verified without signature material",
+  "expected": "reject",
+  "invariant": "WVP-INV-004",
+  "artifact": {
+    "name": "nightfall-wallet",
+    "version": "0.0.1",
+    "digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "signature": "",
+    "claimed_status": "verified"
+  }
+}
