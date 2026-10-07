@@ -12,8 +12,8 @@ WVP v0.5-RC1 is a release-candidate evidence bundle for the Rust release-check r
 |---|---|
 | Release candidate | WVP v0.5-RC1 |
 | Branch | `wvp-incident-001-nightfall-040-043-20261007-062725` |
-| Evidence commit | `86139d4` |
-| Evidence generated | `2026-10-07T08:53:21Z` |
+| Evidence base commit | `a573149` |
+| Evidence generated | `2026-10-07T08:55:22Z` |
 | Primary crate | `reference/rust/wvp-release-check` |
 
 ## Required Gates
@@ -29,6 +29,7 @@ Required checks:
 - `tools/check_cargo_supply_chain.sh`
 - `tools/check_dependency_inventory.sh`
 - `tools/check_release_evidence_bundle.sh`
+- `tools/check_public_verification_guide.sh`
 - `tools/check_security_artifact_manifest.sh`
 - `cargo fmt --all -- --check`
 - `cargo test --all`
@@ -45,6 +46,8 @@ Required checks:
 | Defensive Rust baseline | Covered |
 | Cargo supply-chain reproducibility | Covered |
 | Cargo dependency inventory | Covered |
+| Release evidence bundle | Covered |
+| Public verification guide | Covered |
 | Security artifact manifest | Covered |
 | Central release quality gate | Covered |
 | Rust formatting | Covered |
@@ -61,8 +64,10 @@ WVP v0.5-RC1 has internal controls for:
 5. defensive-code drift prevention,
 6. dependency reproducibility,
 7. dependency inventory drift detection,
-8. security artifact hash control,
-9. centralized release-readiness enforcement.
+8. release evidence verification,
+9. public reviewer verification guidance,
+10. security artifact hash control,
+11. centralized release-readiness enforcement.
 
 ## Non-Goals
 
@@ -76,4 +81,4 @@ WVP v0.5-RC1 proves only that WVP's internal release-readiness evidence is compl
 
 ## Release Rule
 
-A release candidate is incomplete unless this document, the central release quality gate, and all security-controlled artifacts pass together.
+A release candidate is incomplete unless this document, the public verification guide, the central release quality gate, and all security-controlled artifacts pass together.

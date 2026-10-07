@@ -4,7 +4,7 @@
 
 This document defines the minimum quality gate for WVP release-readiness.
 
-A change is not considered release-ready unless it passes all security, evidence, threat-model, defensive-code, supply-chain, dependency-inventory, release-evidence, artifact-manifest, formatting, and test gates.
+A change is not considered release-ready unless it passes all security, evidence, threat-model, defensive-code, supply-chain, dependency-inventory, release-evidence, public-verification, artifact-manifest, formatting, and test gates.
 
 ## Required Gates
 
@@ -17,6 +17,7 @@ A change is not considered release-ready unless it passes all security, evidence
 | Cargo supply-chain reproducibility | `tools/check_cargo_supply_chain.sh` |
 | Cargo dependency inventory | `tools/check_dependency_inventory.sh` |
 | Release evidence bundle | `tools/check_release_evidence_bundle.sh` |
+| Public verification guide | `tools/check_public_verification_guide.sh` |
 | Security artifact manifest | `tools/check_security_artifact_manifest.sh` |
 | Rust formatting | `cargo fmt --all -- --check` |
 | Rust test suite | `cargo test --all` |

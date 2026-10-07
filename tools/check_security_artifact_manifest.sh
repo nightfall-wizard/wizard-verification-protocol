@@ -30,6 +30,7 @@ required_files=(
   "docs/security/CARGO-DEPENDENCY-INVENTORY.md"
   "docs/security/SECURITY-ARTIFACT-MANIFEST.md"
   "docs/releases/WVP-v0.5-RC1.md"
+  "docs/releases/WVP-v0.5-VERIFY.md"
   "docs/RELEASE-QUALITY-GATE.md"
   "tools/check_security_invariants.sh"
   "tools/check_security_evidence_matrix.sh"
@@ -38,6 +39,7 @@ required_files=(
   "tools/check_cargo_supply_chain.sh"
   "tools/check_dependency_inventory.sh"
   "tools/check_release_evidence_bundle.sh"
+  "tools/check_public_verification_guide.sh"
   "tools/check_security_artifact_manifest.sh"
   "tools/check_release_quality_gate.sh"
   "security-baselines/rust-risk-patterns.baseline"
@@ -66,7 +68,9 @@ grep -q "Controlled Artifact Classes" "$DOC" || fail "manifest document missing 
 grep -q "Maintenance Rule" "$DOC" || fail "manifest document missing maintenance rule"
 
 grep -q "check_security_artifact_manifest.sh" "$QUALITY_DOC" || fail "release quality document does not list artifact manifest gate"
+grep -q "check_public_verification_guide.sh" "$QUALITY_DOC" || fail "release quality document does not list public verification gate"
 grep -q "check_security_artifact_manifest.sh" "$RELEASE_GATE" || fail "release gate does not run artifact manifest checker"
+grep -q "check_public_verification_guide.sh" "$RELEASE_GATE" || fail "release gate does not run public verification checker"
 grep -q "check_release_quality_gate.sh" "$WORKFLOW" || fail "workflow does not run central release quality gate"
 
 echo "PASS: security artifact manifest is complete and all controlled artifacts match committed hashes"

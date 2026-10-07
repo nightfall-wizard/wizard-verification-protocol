@@ -20,6 +20,7 @@ for required in \
   "tools/check_cargo_supply_chain.sh" \
   "tools/check_dependency_inventory.sh" \
   "tools/check_release_evidence_bundle.sh" \
+  "tools/check_public_verification_guide.sh" \
   "tools/check_security_artifact_manifest.sh" \
   "cargo fmt --all -- --check" \
   "cargo test --all"
@@ -50,13 +51,16 @@ bash tools/check_dependency_inventory.sh
 echo "=== Gate 7: release evidence bundle ==="
 bash tools/check_release_evidence_bundle.sh
 
-echo "=== Gate 8: security artifact manifest ==="
+echo "=== Gate 8: public verification guide ==="
+bash tools/check_public_verification_guide.sh
+
+echo "=== Gate 9: security artifact manifest ==="
 bash tools/check_security_artifact_manifest.sh
 
-echo "=== Gate 9: Rust formatting ==="
+echo "=== Gate 10: Rust formatting ==="
 cargo fmt --all -- --check
 
-echo "=== Gate 10: full Rust test suite ==="
+echo "=== Gate 11: full Rust test suite ==="
 cargo test --all
 
 echo "PASS: release quality gate passed"
