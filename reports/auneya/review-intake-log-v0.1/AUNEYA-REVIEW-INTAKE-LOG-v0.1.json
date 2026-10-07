@@ -1,0 +1,317 @@
+{
+  "allowed_maintainer_statuses": [
+    "accepted",
+    "needs clarification",
+    "needs legal review",
+    "needs technical review",
+    "deferred",
+    "rejected",
+    "duplicate",
+    "out of scope"
+  ],
+  "boundary": {
+    "legal_review_required_before_launch": true,
+    "no_mainnet": true,
+    "no_market_value": true,
+    "no_token": true,
+    "no_transferability": true,
+    "not_financial_service": true,
+    "not_investment_advice": true,
+    "not_legal_advice": true
+  },
+  "checks": [
+    {
+      "id": "file_exists:docs/auneya/AUNEYA-EXTERNAL-REVIEWER-PACKET-V0.1.md",
+      "path": "docs/auneya/AUNEYA-EXTERNAL-REVIEWER-PACKET-V0.1.md",
+      "status": "pass"
+    },
+    {
+      "id": "file_exists:docs/auneya/AUNEYA-REVIEW-FEEDBACK-WORKFLOW-V0.1.md",
+      "path": "docs/auneya/AUNEYA-REVIEW-FEEDBACK-WORKFLOW-V0.1.md",
+      "status": "pass"
+    },
+    {
+      "id": "file_exists:docs/auneya/AUNEYA-REVIEW-INTAKE-EVIDENCE-V0.1.md",
+      "path": "docs/auneya/AUNEYA-REVIEW-INTAKE-EVIDENCE-V0.1.md",
+      "status": "pass"
+    },
+    {
+      "id": "file_exists:docs/auneya/AUNEYA-MAINTAINER-RESPONSE-LOG-V0.1.md",
+      "path": "docs/auneya/AUNEYA-MAINTAINER-RESPONSE-LOG-V0.1.md",
+      "status": "pass"
+    },
+    {
+      "id": "file_exists:.github/ISSUE_TEMPLATE/auneya_external_review.yml",
+      "path": ".github/ISSUE_TEMPLATE/auneya_external_review.yml",
+      "status": "pass"
+    },
+    {
+      "id": "file_exists:.github/ISSUE_TEMPLATE/auneya_maintainer_response.yml",
+      "path": ".github/ISSUE_TEMPLATE/auneya_maintainer_response.yml",
+      "status": "pass"
+    },
+    {
+      "id": "required_field:review_id",
+      "status": "pass",
+      "term": "review_id"
+    },
+    {
+      "id": "required_field:source",
+      "status": "pass",
+      "term": "source"
+    },
+    {
+      "id": "required_field:review_area",
+      "status": "pass",
+      "term": "review_area"
+    },
+    {
+      "id": "required_field:summary",
+      "status": "pass",
+      "term": "summary"
+    },
+    {
+      "id": "required_field:risk_level",
+      "status": "pass",
+      "term": "risk_level"
+    },
+    {
+      "id": "required_field:maintainer_status",
+      "status": "pass",
+      "term": "maintainer_status"
+    },
+    {
+      "id": "required_field:maintainer_response",
+      "status": "pass",
+      "term": "maintainer_response"
+    },
+    {
+      "id": "required_field:boundary_impact",
+      "status": "pass",
+      "term": "boundary_impact"
+    },
+    {
+      "id": "required_field:legal_review_required",
+      "status": "pass",
+      "term": "legal_review_required"
+    },
+    {
+      "id": "required_field:technical_review_required",
+      "status": "pass",
+      "term": "technical_review_required"
+    },
+    {
+      "id": "required_field:accepted_change_required",
+      "status": "pass",
+      "term": "accepted_change_required"
+    },
+    {
+      "id": "required_field:linked_issue",
+      "status": "pass",
+      "term": "linked_issue"
+    },
+    {
+      "id": "required_field:created_at",
+      "status": "pass",
+      "term": "created_at"
+    },
+    {
+      "id": "required_field:updated_at",
+      "status": "pass",
+      "term": "updated_at"
+    },
+    {
+      "id": "required_term:review intake evidence",
+      "status": "pass",
+      "term": "review intake evidence"
+    },
+    {
+      "id": "required_term:maintainer response log",
+      "status": "pass",
+      "term": "maintainer response log"
+    },
+    {
+      "id": "required_term:zero-intake state",
+      "status": "pass",
+      "term": "zero-intake state"
+    },
+    {
+      "id": "required_term:do not create fake reviewer feedback",
+      "status": "pass",
+      "term": "do not create fake reviewer feedback"
+    },
+    {
+      "id": "required_term:review categories",
+      "status": "pass",
+      "term": "review categories"
+    },
+    {
+      "id": "required_term:triage states",
+      "status": "pass",
+      "term": "triage states"
+    },
+    {
+      "id": "required_term:boundary impact",
+      "status": "pass",
+      "term": "boundary impact"
+    },
+    {
+      "id": "required_term:non-value simulation",
+      "status": "pass",
+      "term": "non-value simulation"
+    },
+    {
+      "id": "required_term:no token",
+      "status": "pass",
+      "term": "no token"
+    },
+    {
+      "id": "required_term:no market value",
+      "status": "pass",
+      "term": "no market value"
+    },
+    {
+      "id": "required_term:no transferability",
+      "status": "pass",
+      "term": "no transferability"
+    },
+    {
+      "id": "required_term:no mainnet",
+      "status": "pass",
+      "term": "no mainnet"
+    },
+    {
+      "id": "required_term:not investment advice",
+      "status": "pass",
+      "term": "not investment advice"
+    },
+    {
+      "id": "required_term:not legal advice",
+      "status": "pass",
+      "term": "not legal advice"
+    },
+    {
+      "id": "required_term:not a custody, broker, exchange or financial service",
+      "status": "pass",
+      "term": "not a custody, broker, exchange or financial service"
+    },
+    {
+      "id": "required_term:legal review",
+      "status": "pass",
+      "term": "legal review"
+    },
+    {
+      "id": "triage_status:accepted",
+      "status": "pass",
+      "term": "accepted"
+    },
+    {
+      "id": "triage_status:needs clarification",
+      "status": "pass",
+      "term": "needs clarification"
+    },
+    {
+      "id": "triage_status:needs legal review",
+      "status": "pass",
+      "term": "needs legal review"
+    },
+    {
+      "id": "triage_status:needs technical review",
+      "status": "pass",
+      "term": "needs technical review"
+    },
+    {
+      "id": "triage_status:deferred",
+      "status": "pass",
+      "term": "deferred"
+    },
+    {
+      "id": "triage_status:rejected",
+      "status": "pass",
+      "term": "rejected"
+    },
+    {
+      "id": "triage_status:duplicate",
+      "status": "pass",
+      "term": "duplicate"
+    },
+    {
+      "id": "triage_status:out of scope",
+      "status": "pass",
+      "term": "out of scope"
+    },
+    {
+      "id": "maintainer_template_term:AUNEYA maintainer response",
+      "status": "pass",
+      "term": "AUNEYA maintainer response"
+    },
+    {
+      "id": "maintainer_template_term:Maintainer status",
+      "status": "pass",
+      "term": "Maintainer status"
+    },
+    {
+      "id": "maintainer_template_term:Boundary impact",
+      "status": "pass",
+      "term": "Boundary impact"
+    },
+    {
+      "id": "maintainer_template_term:Legal review required",
+      "status": "pass",
+      "term": "Legal review required"
+    },
+    {
+      "id": "maintainer_template_term:Technical review required",
+      "status": "pass",
+      "term": "Technical review required"
+    },
+    {
+      "id": "maintainer_template_term:Accepted change required",
+      "status": "pass",
+      "term": "Accepted change required"
+    },
+    {
+      "id": "maintainer_template_term:Linked issue",
+      "status": "pass",
+      "term": "Linked issue"
+    }
+  ],
+  "evidence_pack": "auneya-review-intake-log-v0.1",
+  "failed": [],
+  "generated_at_utc": "2026-10-07T21:37:30.319951+00:00",
+  "mainnet_active": false,
+  "market_value_claimed": false,
+  "mode": "review_intake_evidence_and_maintainer_response_log",
+  "network": "none",
+  "overall_status": "pass",
+  "required_fields": [
+    "review_id",
+    "source",
+    "review_area",
+    "summary",
+    "risk_level",
+    "maintainer_status",
+    "maintainer_response",
+    "boundary_impact",
+    "legal_review_required",
+    "technical_review_required",
+    "accepted_change_required",
+    "linked_issue",
+    "created_at",
+    "updated_at"
+  ],
+  "review_intake_state": {
+    "external_review_received": false,
+    "fake_reviewer_feedback_created": false,
+    "intake_entries": [],
+    "reason": "No independent external reviewer issue has been received in this artifact. The log records schema readiness without inventing external feedback.",
+    "zero_intake_state": true
+  },
+  "score": {
+    "passed": 51,
+    "percent": 100.0,
+    "total": 51
+  },
+  "token_created": false,
+  "transferable": false
+}

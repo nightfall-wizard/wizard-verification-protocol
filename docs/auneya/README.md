@@ -172,3 +172,15 @@ This gate checks whether AUNEYA is externally reviewable as public documentation
 
 This packet makes AUNEYA externally reviewable through a structured reading order, review questions, review categories and GitHub issue feedback workflow.
 
+## Review Intake Evidence and Maintainer Response Log
+
+- `AUNEYA-REVIEW-INTAKE-EVIDENCE-V0.1.md`
+- `AUNEYA-MAINTAINER-RESPONSE-LOG-V0.1.md`
+- `../../.github/ISSUE_TEMPLATE/auneya_maintainer_response.yml`
+- `../../tools/auneya/auneya_review_intake_log_check.py`
+- `../../conformance/auneya-review-intake-log-v0.1.sh`
+- `../../reports/auneya/review-intake-log-v0.1/AUNEYA-REVIEW-INTAKE-LOG-v0.1.json`
+- `../../reports/auneya/review-intake-log-v0.1/AUNEYA-REVIEW-INTAKE-LOG-v0.1.md`
+
+This step records the initial zero-intake state and defines how future AUNEYA external review feedback must be captured, triaged and answered without inventing reviewer feedback.
+
