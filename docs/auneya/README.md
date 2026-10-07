@@ -160,3 +160,15 @@ The local simulation evidence pack binds the existing AUNEYA local simulation st
 
 This gate checks whether AUNEYA is externally reviewable as public documentation and local non-value simulation evidence.
 
+## External Reviewer Packet
+
+- `AUNEYA-EXTERNAL-REVIEWER-PACKET-V0.1.md`
+- `AUNEYA-REVIEW-FEEDBACK-WORKFLOW-V0.1.md`
+- `../../.github/ISSUE_TEMPLATE/auneya_external_review.yml`
+- `../../tools/auneya/auneya_reviewer_packet_check.py`
+- `../../conformance/auneya-reviewer-packet-v0.1.sh`
+- `../../reports/auneya/reviewer-packet-v0.1/AUNEYA-REVIEWER-PACKET-v0.1.json`
+- `../../reports/auneya/reviewer-packet-v0.1/AUNEYA-REVIEWER-PACKET-v0.1.md`
+
+This packet makes AUNEYA externally reviewable through a structured reading order, review questions, review categories and GitHub issue feedback workflow.
+
