@@ -580,3 +580,32 @@ Next milestone:
 
 AUNEYA first real external review request and public reviewer outreach log.
 
+
+## AUNEYA-LOCAL-LEDGER-WALLET-001
+
+Status: implemented.
+
+Completed:
+
+- local ledger simulator
+- local wallet simulator
+- local wallet address display
+- simulated non-value balance display
+- append-only local simulation entries
+- visible terminal wallet view
+- JSON export
+- Markdown export
+- wallet-view text export
+- machine-checkable ledger and wallet report
+- CI-compatible conformance script
+- GitHub Actions workflow
+
+Boundary:
+
+This step creates a tangible local ledger and local wallet simulator.
+It does not create a real wallet, private key, seed phrase, custody, AUNEYA, neya, a token, market value, transferability, mainnet activity, legal clearance, financial claims or investment advice.
+
+Next milestone:
+
+AUNEYA local browser dashboard and mobile-first read-only UI.
+
