@@ -499,3 +499,29 @@ Next milestone:
 
 AUNEYA external reviewer packet and issue-template workflow.
 
+
+## AUNEYA-REVIEWER-PACKET-001
+
+Status: implemented.
+
+Completed:
+
+- external reviewer packet
+- review feedback workflow
+- AUNEYA external review issue template
+- machine-checkable reviewer packet report
+- JSON evidence report
+- Markdown evidence report
+- public boundary validation
+- review category validation
+- CI-compatible conformance script
+
+Boundary:
+
+This step makes AUNEYA externally reviewable through structured documentation and issue-based feedback.
+It does not create AUNEYA, neya, a token, market value, transferability, mainnet activity, legal clearance, financial claims or investment advice.
+
+Next milestone:
+
+AUNEYA review intake evidence and maintainer response log.
+
