@@ -138,3 +138,14 @@ The local collect command records and displays a local non-value simulated colle
 - `../../conformance/auneya-minimal-fair-genesis-launch-path-v0.1.sh`
 
 The minimal fair-genesis launch path defines the intended open-source start model: no sale, no premine, no ICO, no official price, no listing promise, genesis supply 0, user-controlled wallets, and units arising only from valid post-genesis protocol work.
+
+## Local Simulation Evidence Pack
+
+- `AUNEYA-LOCAL-SIMULATION-EVIDENCE-PACK-V0.1.md`
+- `../../tools/auneya/auneya_local_simulation_evidence_pack.py`
+- `../../conformance/auneya-local-simulation-evidence-pack-v0.1.sh`
+- `../../reports/auneya/local-simulation-v0.1/AUNEYA-LOCAL-SIMULATION-EVIDENCE-v0.1.json`
+- `../../reports/auneya/local-simulation-v0.1/AUNEYA-LOCAL-SIMULATION-EVIDENCE-v0.1.md`
+
+The local simulation evidence pack binds the existing AUNEYA local simulation stack into one reproducible non-value evidence report.
+

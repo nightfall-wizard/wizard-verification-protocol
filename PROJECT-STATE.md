@@ -448,3 +448,29 @@ Remaining external completion: 1%.
 100 percent rule:
 
 Only mark the project 100 percent complete after merged PRs, green GitHub Actions, verified branch protection, reviewer or maintainer feedback, and recurring maintenance evidence are recorded.
+
+
+## AUNEYA-LOCAL-SIM-EVIDENCE-001
+
+Status: implemented.
+
+Completed:
+
+- local simulation evidence pack
+- JSON evidence report
+- Markdown evidence report
+- existing AUNEYA conformance orchestration
+- one-command local demo boundary validation
+- invalid private-data claim rejection validation
+- non-value simulation boundary preservation
+- CI-compatible conformance script
+
+Boundary:
+
+This step binds existing AUNEYA local simulation artifacts into one reproducible evidence pack.
+It does not create AUNEYA, neya, a token, market value, transferability, mainnet activity, financial claims, legal clearance or investment advice.
+
+Next milestone:
+
+AUNEYA external review readiness and public documentation quality gate.
+
