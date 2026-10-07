@@ -552,3 +552,31 @@ Next milestone:
 
 AUNEYA recurring review evidence refresh and external feedback trail.
 
+
+## AUNEYA-RECURRING-REVIEW-EVIDENCE-001
+
+Status: implemented.
+
+Completed:
+
+- recurring review evidence refresh document
+- external feedback trail document
+- scheduled GitHub Actions workflow
+- manual workflow_dispatch support
+- machine-checkable recurring review evidence report
+- JSON evidence report
+- Markdown evidence report
+- zero-feedback state validation
+- fake-feedback rejection rule
+- public boundary validation
+- CI-compatible conformance script
+
+Boundary:
+
+This step adds recurring review evidence refresh and an external feedback trail.
+It does not create fake external review, AUNEYA, neya, a token, market value, transferability, mainnet activity, legal clearance, financial claims or investment advice.
+
+Next milestone:
+
+AUNEYA first real external review request and public reviewer outreach log.
+
