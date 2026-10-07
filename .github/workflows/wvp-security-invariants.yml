@@ -15,5 +15,8 @@ jobs:
       - name: Check security invariants and negative fixtures
         run: bash tools/check_security_invariants.sh
 
+      - name: Check security evidence matrix
+        run: bash tools/check_security_evidence_matrix.sh
+
       - name: Run Rust test suite
         run: cargo test --all
