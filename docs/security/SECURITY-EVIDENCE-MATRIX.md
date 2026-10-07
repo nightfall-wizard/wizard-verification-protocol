@@ -74,3 +74,24 @@ A new security invariant is not accepted unless it has:
 
 If a security-relevant bug is found, the fix is incomplete until this matrix is updated.
 
+
+---
+
+## Central Release Gate
+
+The Security Evidence Matrix may be enforced directly by the GitHub Actions workflow or indirectly through the central release quality gate.
+
+Current central gate:
+
+- `tools/check_release_quality_gate.sh`
+- `.github/workflows/wvp-security-invariants.yml`
+
+The central release gate must run:
+
+- `tools/check_security_invariants.sh`
+- `tools/check_security_evidence_matrix.sh`
+- `tools/check_security_threat_model.sh`
+- `tools/check_rust_defensive_code.sh`
+- `cargo fmt --all -- --check`
+- `cargo test --all`
+

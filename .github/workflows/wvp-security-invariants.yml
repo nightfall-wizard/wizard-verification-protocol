@@ -12,17 +12,5 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Check security invariants and negative fixtures
-        run: bash tools/check_security_invariants.sh
-
-      - name: Check security evidence matrix
-        run: bash tools/check_security_evidence_matrix.sh
-
-      - name: Check security threat model
-        run: bash tools/check_security_threat_model.sh
-
-      - name: Check Rust defensive-code baseline
-        run: bash tools/check_rust_defensive_code.sh
-
-      - name: Run Rust test suite
-        run: cargo test --all
+      - name: Check release quality gate
+        run: bash tools/check_release_quality_gate.sh

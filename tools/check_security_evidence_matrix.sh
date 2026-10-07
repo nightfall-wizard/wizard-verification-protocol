@@ -6,6 +6,7 @@ INVARIANTS="docs/security/SECURITY-INVARIANTS.md"
 NEG_DIR="test-vectors/release-check/negative"
 TEST_FILE="reference/rust/wvp-release-check/tests/security_negative_fixtures.rs"
 WORKFLOW=".github/workflows/wvp-security-invariants.yml"
+RELEASE_GATE="tools/check_release_quality_gate.sh"
 
 fail() {
   echo "FAIL: $1" >&2
@@ -50,8 +51,19 @@ grep -q "reference/rust/wvp-release-check/tests/security_negative_fixtures.rs" "
 grep -q "negative_security_fixtures_are_executable_specification" "$TEST_FILE" || fail "test file does not contain executable fixture specification test"
 grep -q "negative_fixture_directory_is_version_controlled" "$TEST_FILE" || fail "test file does not contain fixture directory guard test"
 
-grep -q "cargo test --all" "$WORKFLOW" || fail "workflow does not run cargo test --all"
-grep -q "check_security_invariants.sh" "$WORKFLOW" || fail "workflow does not run invariant checker"
-grep -q "check_security_evidence_matrix.sh" "$WORKFLOW" || fail "workflow does not run evidence matrix checker"
+if grep -q "check_release_quality_gate.sh" "$WORKFLOW"; then
+  [ -f "$RELEASE_GATE" ] || fail "workflow uses release gate, but $RELEASE_GATE is missing"
+
+  grep -q "check_security_invariants.sh" "$RELEASE_GATE" || fail "release gate does not run invariant checker"
+  grep -q "check_security_evidence_matrix.sh" "$RELEASE_GATE" || fail "release gate does not run evidence matrix checker"
+  grep -q "check_security_threat_model.sh" "$RELEASE_GATE" || fail "release gate does not run threat model checker"
+  grep -q "check_rust_defensive_code.sh" "$RELEASE_GATE" || fail "release gate does not run defensive-code checker"
+  grep -q "cargo fmt --all -- --check" "$RELEASE_GATE" || fail "release gate does not run cargo fmt check"
+  grep -q "cargo test --all" "$RELEASE_GATE" || fail "release gate does not run cargo test --all"
+else
+  grep -q "cargo test --all" "$WORKFLOW" || fail "workflow does not run cargo test --all"
+  grep -q "check_security_invariants.sh" "$WORKFLOW" || fail "workflow does not run invariant checker"
+  grep -q "check_security_evidence_matrix.sh" "$WORKFLOW" || fail "workflow does not run evidence matrix checker"
+fi
 
 echo "PASS: security evidence matrix is complete and linked to invariants, fixtures, tests, and CI"
