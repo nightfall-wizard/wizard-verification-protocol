@@ -130,7 +130,6 @@ Documents:
 - `docs/auneya/AUNEYA-PROTOCOL-CHARTER.md`
 - `docs/auneya/AUNEYA-PROVABLE-WEB-SCOPE.md`
 - `docs/auneya/AUNEYA-NON-VALUE-SIMULATION-NOTICE.md`
-- `docs/auneya/AUNEYA-L1-LEGAL-BOUNDARY-V0.1.md`
 
 Explicit non-claims:
 
@@ -594,3 +593,5 @@ Explicit non-claims:
 - Nothing is transferable.
 - Legal review is required before any public token launch, listing, sale, transferability or market-value communication.
 <!-- WVP:AUNEYA-MINIMAL-FAIR-GENESIS-LAUNCH-PATH-V01:END -->
+
+
