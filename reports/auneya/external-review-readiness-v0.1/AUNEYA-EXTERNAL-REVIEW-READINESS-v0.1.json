@@ -1,0 +1,169 @@
+{
+  "boundary": {
+    "legal_review_required_before_launch": true,
+    "no_mainnet": true,
+    "no_market_value": true,
+    "no_token": true,
+    "no_transferability": true,
+    "not_financial_service": true,
+    "not_investment_advice": true,
+    "not_legal_advice": true
+  },
+  "checks": [
+    {
+      "id": "doc_exists:docs/auneya/AUNEYA-PROTOCOL-CHARTER.md",
+      "path": "docs/auneya/AUNEYA-PROTOCOL-CHARTER.md",
+      "status": "pass"
+    },
+    {
+      "id": "doc_exists:docs/auneya/AUNEYA-PROVABLE-WEB-SCOPE.md",
+      "path": "docs/auneya/AUNEYA-PROVABLE-WEB-SCOPE.md",
+      "status": "pass"
+    },
+    {
+      "id": "doc_exists:docs/auneya/AUNEYA-NON-VALUE-SIMULATION-NOTICE.md",
+      "path": "docs/auneya/AUNEYA-NON-VALUE-SIMULATION-NOTICE.md",
+      "status": "pass"
+    },
+    {
+      "id": "doc_exists:docs/auneya/AUNEYA-CLAIM-SCHEMA-V0.1.md",
+      "path": "docs/auneya/AUNEYA-CLAIM-SCHEMA-V0.1.md",
+      "status": "pass"
+    },
+    {
+      "id": "doc_exists:docs/auneya/AUNEYA-WITNESS-PROOF-SCHEMA-V0.1.md",
+      "path": "docs/auneya/AUNEYA-WITNESS-PROOF-SCHEMA-V0.1.md",
+      "status": "pass"
+    },
+    {
+      "id": "doc_exists:docs/auneya/AUNEYA-EVENT-SCHEMA-V0.1.md",
+      "path": "docs/auneya/AUNEYA-EVENT-SCHEMA-V0.1.md",
+      "status": "pass"
+    },
+    {
+      "id": "doc_exists:docs/auneya/AUNEYA-PULSE-AND-PROOFLET-FLOW-V0.1.md",
+      "path": "docs/auneya/AUNEYA-PULSE-AND-PROOFLET-FLOW-V0.1.md",
+      "status": "pass"
+    },
+    {
+      "id": "doc_exists:docs/auneya/AUNEYA-LOCAL-WITNESS-RUNNER-V0.1.md",
+      "path": "docs/auneya/AUNEYA-LOCAL-WITNESS-RUNNER-V0.1.md",
+      "status": "pass"
+    },
+    {
+      "id": "doc_exists:docs/auneya/AUNEYA-LOCAL-SIMULATION-EVIDENCE-PACK-V0.1.md",
+      "path": "docs/auneya/AUNEYA-LOCAL-SIMULATION-EVIDENCE-PACK-V0.1.md",
+      "status": "pass"
+    },
+    {
+      "id": "doc_exists:docs/auneya/AUNEYA-EXTERNAL-REVIEW-READINESS-V0.1.md",
+      "path": "docs/auneya/AUNEYA-EXTERNAL-REVIEW-READINESS-V0.1.md",
+      "status": "pass"
+    },
+    {
+      "id": "doc_exists:docs/auneya/AUNEYA-PUBLIC-DOCUMENTATION-QUALITY-GATE-V0.1.md",
+      "path": "docs/auneya/AUNEYA-PUBLIC-DOCUMENTATION-QUALITY-GATE-V0.1.md",
+      "status": "pass"
+    },
+    {
+      "id": "boundary_term:no token",
+      "status": "pass",
+      "term": "no token"
+    },
+    {
+      "id": "boundary_term:no market value",
+      "status": "pass",
+      "term": "no market value"
+    },
+    {
+      "id": "boundary_term:no transferability",
+      "status": "pass",
+      "term": "no transferability"
+    },
+    {
+      "id": "boundary_term:no mainnet",
+      "status": "pass",
+      "term": "no mainnet"
+    },
+    {
+      "id": "boundary_term:not investment advice",
+      "status": "pass",
+      "term": "not investment advice"
+    },
+    {
+      "id": "boundary_term:not legal advice",
+      "status": "pass",
+      "term": "not legal advice"
+    },
+    {
+      "id": "boundary_term:not a custody",
+      "status": "pass",
+      "term": "not a custody"
+    },
+    {
+      "id": "boundary_term:legal review",
+      "status": "pass",
+      "term": "legal review"
+    },
+    {
+      "id": "boundary_term:non-value",
+      "status": "pass",
+      "term": "non-value"
+    },
+    {
+      "id": "readiness_term:review scope",
+      "status": "pass",
+      "term": "review scope"
+    },
+    {
+      "id": "readiness_term:reviewer checklist",
+      "status": "pass",
+      "term": "reviewer checklist"
+    },
+    {
+      "id": "readiness_term:public documentation",
+      "status": "pass",
+      "term": "public documentation"
+    },
+    {
+      "id": "readiness_term:open questions",
+      "status": "pass",
+      "term": "open questions"
+    },
+    {
+      "id": "readiness_term:known limitations",
+      "status": "pass",
+      "term": "known limitations"
+    },
+    {
+      "id": "readiness_term:non-value simulation",
+      "status": "pass",
+      "term": "non-value simulation"
+    },
+    {
+      "id": "readiness_term:external review",
+      "status": "pass",
+      "term": "external review"
+    },
+    {
+      "id": "readiness_term:quality gate",
+      "status": "pass",
+      "term": "quality gate"
+    }
+  ],
+  "evidence_pack": "auneya-external-review-readiness-v0.1",
+  "failed": [],
+  "generated_at_utc": "2026-10-07T21:22:33.554048+00:00",
+  "mainnet_active": false,
+  "market_value_claimed": false,
+  "mode": "documentation_quality_gate",
+  "network": "none",
+  "overall_status": "pass",
+  "score": {
+    "passed": 28,
+    "percent": 100.0,
+    "total": 28
+  },
+  "token_created": false,
+  "transferable": false
+}
