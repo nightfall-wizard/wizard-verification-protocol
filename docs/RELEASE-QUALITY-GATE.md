@@ -4,7 +4,7 @@
 
 This document defines the minimum quality gate for WVP release-readiness.
 
-A change is not considered release-ready unless it passes all security, evidence, threat-model, defensive-code, formatting, and test gates.
+A change is not considered release-ready unless it passes all security, evidence, threat-model, defensive-code, supply-chain, formatting, and test gates.
 
 The goal is to make release quality explicit, repeatable, and enforceable.
 
@@ -18,6 +18,7 @@ The goal is to make release quality explicit, repeatable, and enforceable.
 | Security evidence matrix | `tools/check_security_evidence_matrix.sh` |
 | Security threat model | `tools/check_security_threat_model.sh` |
 | Defensive Rust code baseline | `tools/check_rust_defensive_code.sh` |
+| Cargo supply-chain reproducibility | `tools/check_cargo_supply_chain.sh` |
 | Rust formatting | `cargo fmt --all -- --check` |
 | Rust test suite | `cargo test --all` |
 
