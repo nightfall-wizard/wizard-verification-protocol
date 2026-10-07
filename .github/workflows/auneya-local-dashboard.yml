@@ -1,0 +1,26 @@
+name: AUNEYA Local Dashboard
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - "docs/auneya/AUNEYA-LOCAL-DASHBOARD-V0.1.md"
+      - "tools/auneya/auneya_local_dashboard.py"
+      - "conformance/auneya-local-dashboard-v0.1.sh"
+      - "reports/auneya/local-dashboard-v0.1/**"
+      - ".github/workflows/auneya-local-dashboard.yml"
+
+jobs:
+  local-dashboard:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Run AUNEYA local dashboard conformance
+        run: bash conformance/auneya-local-dashboard-v0.1.sh

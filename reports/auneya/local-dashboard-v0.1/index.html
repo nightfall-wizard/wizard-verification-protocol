@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AUNEYA Local Dashboard</title>
+  <style>
+    :root {
+      color-scheme: light dark;
+      --border: #8884;
+      --bg-soft: #8881;
+      --ok: #0a7;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0 auto;
+      padding: 16px;
+      max-width: 980px;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.45;
+    }
+    header, .card {
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 14px;
+      background: var(--bg-soft);
+      margin-bottom: 12px;
+      overflow-wrap: anywhere;
+    }
+    h1 { margin: 0 0 8px 0; font-size: 1.55rem; }
+    h2 { margin-top: 0; font-size: 1.1rem; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 12px;
+    }
+    .metric { font-size: 1.8rem; font-weight: 700; }
+    .ok { color: var(--ok); font-weight: 700; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      display: block;
+      overflow-x: auto;
+    }
+    th, td {
+      padding: 8px;
+      border-bottom: 1px solid var(--border);
+      text-align: left;
+      white-space: nowrap;
+    }
+    code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    }
+    footer {
+      margin-top: 18px;
+      font-size: 0.9rem;
+      opacity: 0.8;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>AUNEYA LOCAL DASHBOARD</h1>
+    <div class="ok">Read-only local non-value simulation</div>
+    <div>Network: <code>none</code> | Mainnet active: <code>false</code> | Transferable: <code>false</code></div>
+  </header>
+
+  <section class="grid">
+    <div class="card">
+      <h2>Wallet</h2>
+      <div><strong>ID:</strong> <code>local-wallet-001</code></div>
+      <div><strong>Address:</strong> <code>auneya-local-45df95a3cb6e475ad1ba7e90</code></div>
+      <div><strong>Type:</strong> <code>local_identity_wallet</code></div>
+    </div>
+
+    <div class="card">
+      <h2>Balance</h2>
+      <div class="metric">3</div>
+      <div><code>simulated_neya_non_value_unit</code></div>
+    </div>
+
+    <div class="card">
+      <h2>Ledger</h2>
+      <div><strong>Ledger ID:</strong> <code>auneya-local-ledger-v0.1</code></div>
+      <div><strong>Entries:</strong> <code>3</code></div>
+      <div><strong>Hash:</strong> <code>75ffb890604866837caf178293e7be032c11199417c28265e5599dfadd6a1511</code></div>
+    </div>
+
+    <div class="card">
+      <h2>Controls</h2>
+      <div>Send: <code>false</code></div>
+      <div>Receive: <code>false</code></div>
+      <div>Transfer: <code>false</code></div>
+      <div>Private key: <code>false</code></div>
+      <div>Seed phrase: <code>false</code></div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Ledger Entries</h2>
+    <table>
+      <thead>
+        <tr><th>#</th><th>Type</th><th>Amount</th><th>Balance</th><th>Entry Hash</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td><code>claim_accepted</code></td><td>+1</td><td>1</td><td><code>3cdcb9fa83fdd004</code></td></tr><tr><td>2</td><td><code>witness_prooflet</code></td><td>+1</td><td>2</td><td><code>27b235a91d4f0fb3</code></td></tr><tr><td>3</td><td><code>event_finalized</code></td><td>+1</td><td>3</td><td><code>59a7bdb5d6c3893b</code></td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="card">
+    <h2>History</h2>
+    <ol>
+      <li><strong>Step 1</strong>: claim accepted -> <code>+1 simulated_neya_non_value_unit</code></li><li><strong>Step 2</strong>: witness prooflet recorded -> <code>+1 simulated_neya_non_value_unit</code></li><li><strong>Step 3</strong>: event finalized -> <code>+1 simulated_neya_non_value_unit</code></li>
+    </ol>
+  </section>
+
+  <section class="card">
+    <h2>Boundary</h2>
+    <ul>
+      <li>no token</li>
+      <li>no market value</li>
+      <li>no transferability</li>
+      <li>no mainnet</li>
+      <li>no private key</li>
+      <li>no seed phrase</li>
+      <li>no custody</li>
+      <li>not investment advice</li>
+      <li>not legal advice</li>
+      <li>not a custody, broker, exchange or financial service</li>
+      <li>legal review required before launch, listing, sale, transferability or market-value communication</li>
+    </ul>
+  </section>
+
+  <footer>
+    Generated from local ledger JSON. Static local read-only dashboard.
+  </footer>
+</body>
+</html>
