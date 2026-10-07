@@ -33,8 +33,8 @@
     },
     {
       "path": "PROJECT-STATE.md",
-      "size_bytes": 9257,
-      "sha256": "67ec01aff33ce527e822dc334ddb230ce4edbb7ba683e805f14b21710eda35f9"
+      "size_bytes": 9975,
+      "sha256": "6644cab0c305443e40e954f0a8f6ac6141876cf1664ada0f1385098824bd1cdf"
     },
     {
       "path": "README.md",
@@ -353,8 +353,8 @@
     },
     {
       "path": "docs/auneya/README.md",
-      "size_bytes": 5552,
-      "sha256": "949caeaae0b2103d8faf1dd34d9a3f47d80a585d7dc9bc6c7e8e051a04179f40"
+      "size_bytes": 6083,
+      "sha256": "812fa1e50b62020fa415d4b0f81ff70da7268b8f88c9158e323600902a92dfba"
     },
     {
       "path": "docs/core/EVIDENCE-MODEL.md",
