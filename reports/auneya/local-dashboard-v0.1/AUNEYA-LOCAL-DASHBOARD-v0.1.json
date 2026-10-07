@@ -1,0 +1,62 @@
+{
+  "boundary": {
+    "custody_created": false,
+    "legal_review_required_before_launch": true,
+    "mainnet_active": false,
+    "market_value_claimed": false,
+    "network": "none",
+    "not_financial_service": true,
+    "not_investment_advice": true,
+    "not_legal_advice": true,
+    "private_key_created": false,
+    "read_only": true,
+    "receive_enabled": false,
+    "seed_phrase_created": false,
+    "send_enabled": false,
+    "token_created": false,
+    "transfer_enabled": false,
+    "transferable": false
+  },
+  "dashboard": {
+    "external_dependencies": false,
+    "input_forms": false,
+    "mobile_first": true,
+    "path": "reports/auneya/local-dashboard-v0.1/index.html",
+    "private_key_fields": false,
+    "read_only": true,
+    "receive_controls": false,
+    "seed_phrase_fields": false,
+    "send_controls": false,
+    "static_html": true,
+    "transfer_controls": false,
+    "url": "http://127.0.0.1:8765/index.html"
+  },
+  "generated_at_utc": "2026-10-07T22:03:03.974761+00:00",
+  "ledger_snapshot": {
+    "entry_count": 3,
+    "ledger_hash": "75ffb890604866837caf178293e7be032c11199417c28265e5599dfadd6a1511",
+    "ledger_id": "auneya-local-ledger-v0.1"
+  },
+  "mode": "local_browser_dashboard_read_only",
+  "schema_version": "auneya-local-dashboard-v0.1",
+  "source": {
+    "ledger_json": "reports/auneya/local-ledger-wallet-v0.1/AUNEYA-LOCAL-LEDGER-WALLET-v0.1.json",
+    "wallet_view": "reports/auneya/local-ledger-wallet-v0.1/AUNEYA-LOCAL-WALLET-VIEW-v0.1.txt"
+  },
+  "status": "pass",
+  "visible_sections": [
+    "wallet",
+    "balance",
+    "ledger",
+    "controls",
+    "ledger_entries",
+    "history",
+    "boundary"
+  ],
+  "wallet_snapshot": {
+    "balance": 3,
+    "unit": "simulated_neya_non_value_unit",
+    "wallet_address": "auneya-local-45df95a3cb6e475ad1ba7e90",
+    "wallet_id": "local-wallet-001"
+  }
+}

@@ -207,3 +207,14 @@ This step adds a recurring evidence refresh process and external feedback trail 
 
 This step adds a tangible local ledger and local wallet simulator with visible balance, history and export artifacts. It remains a local non-value simulation only.
 
+## Local Dashboard
+
+- `AUNEYA-LOCAL-DASHBOARD-V0.1.md`
+- `../../tools/auneya/auneya_local_dashboard.py`
+- `../../conformance/auneya-local-dashboard-v0.1.sh`
+- `../../reports/auneya/local-dashboard-v0.1/index.html`
+- `../../reports/auneya/local-dashboard-v0.1/AUNEYA-LOCAL-DASHBOARD-v0.1.json`
+- `../../reports/auneya/local-dashboard-v0.1/AUNEYA-LOCAL-DASHBOARD-v0.1.md`
+
+This step adds a local mobile-first read-only browser dashboard for the AUNEYA local ledger and wallet simulator.
+

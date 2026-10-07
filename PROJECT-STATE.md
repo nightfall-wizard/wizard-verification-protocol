@@ -609,3 +609,33 @@ Next milestone:
 
 AUNEYA local browser dashboard and mobile-first read-only UI.
 
+
+## AUNEYA-LOCAL-DASHBOARD-001
+
+Status: implemented.
+
+Completed:
+
+- local browser dashboard
+- mobile-first read-only UI
+- static HTML export
+- local dashboard JSON report
+- local dashboard Markdown report
+- wallet snapshot display
+- balance display
+- ledger entry display
+- ledger hash display
+- boundary display
+- machine-checkable dashboard report
+- CI-compatible conformance script
+- GitHub Actions workflow
+
+Boundary:
+
+This step creates a local browser dashboard for the local ledger and wallet simulator.
+It does not create a real wallet, private key, seed phrase, custody, AUNEYA, neya, a token, market value, transferability, mainnet activity, legal clearance, financial claims or investment advice.
+
+Next milestone:
+
+AUNEYA local claim composer and dashboard live-refresh sandbox.
+
