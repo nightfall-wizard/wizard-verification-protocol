@@ -184,3 +184,15 @@ This packet makes AUNEYA externally reviewable through a structured reading orde
 
 This step records the initial zero-intake state and defines how future AUNEYA external review feedback must be captured, triaged and answered without inventing reviewer feedback.
 
+## Recurring Review Evidence Refresh and External Feedback Trail
+
+- `AUNEYA-RECURRING-REVIEW-EVIDENCE-REFRESH-V0.1.md`
+- `AUNEYA-EXTERNAL-FEEDBACK-TRAIL-V0.1.md`
+- `../../.github/workflows/auneya-recurring-review-evidence.yml`
+- `../../tools/auneya/auneya_recurring_review_evidence_check.py`
+- `../../conformance/auneya-recurring-review-evidence-v0.1.sh`
+- `../../reports/auneya/recurring-review-evidence-v0.1/AUNEYA-RECURRING-REVIEW-EVIDENCE-v0.1.json`
+- `../../reports/auneya/recurring-review-evidence-v0.1/AUNEYA-RECURRING-REVIEW-EVIDENCE-v0.1.md`
+
+This step adds a recurring evidence refresh process and external feedback trail without inventing external review feedback.
+
