@@ -18,5 +18,8 @@ jobs:
       - name: Check security evidence matrix
         run: bash tools/check_security_evidence_matrix.sh
 
+      - name: Check security threat model
+        run: bash tools/check_security_threat_model.sh
+
       - name: Run Rust test suite
         run: cargo test --all
