@@ -1,0 +1,131 @@
+{
+  "checks": [
+    {
+      "command": "bash conformance/auneya-claim-schema-v0.1.sh",
+      "exit_code": 0,
+      "id": "claim_schema",
+      "output_tail": "=== AUNEYA Claim Schema v0.1 Conformance ===\nPASS AUNEYA Claim Schema v0.1 conformance\n",
+      "status": "pass"
+    },
+    {
+      "command": "bash conformance/auneya-witness-proof-schema-v0.1.sh",
+      "exit_code": 0,
+      "id": "witness_proof_schema",
+      "output_tail": "=== AUNEYA Witness Proof Schema v0.1 Conformance ===\nPASS AUNEYA Witness Proof Schema v0.1 conformance\n",
+      "status": "pass"
+    },
+    {
+      "command": "bash conformance/auneya-event-schema-v0.1.sh",
+      "exit_code": 0,
+      "id": "event_schema",
+      "output_tail": "=== AUNEYA Event Schema v0.1 Conformance ===\nPASS AUNEYA Event Schema v0.1 conformance\n",
+      "status": "pass"
+    },
+    {
+      "command": "bash conformance/auneya-pulse-flow-v0.1.sh",
+      "exit_code": 0,
+      "id": "pulse_flow",
+      "output_tail": "=== AUNEYA Pulse and Prooflet Flow v0.1 Conformance ===\nPASS AUNEYA Pulse and Prooflet Flow v0.1 conformance\n",
+      "status": "pass"
+    },
+    {
+      "command": "bash conformance/auneya-local-witness-runner-v0.1.sh",
+      "exit_code": 0,
+      "id": "local_witness_runner",
+      "output_tail": "=== AUNEYA Local Witness Runner v0.1 Conformance ===\nAUNEYA Local Witness Runner v0.1\nclaim_id: auneya_claim_release_reality_001\nflow_id: auneya_flow_local_runner_001\npulses: 4\nmicro_proofs: 2\nprooflet_id: auneya_prooflet_local_001\nsimulated_reward_entry: 18420 simulated_neya\ntransferable: false\nmarket_value_claimed: false\nwritten: .tmp/auneya-local-runner/valid-local-flow.json\nPASS local runner output validation\nFAIL: claim requires authentication and is out of scope\nPASS AUNEYA Local Witness Runner v0.1 conformance\n",
+      "status": "pass"
+    },
+    {
+      "command": "bash conformance/auneya-local-witness-display-v0.1.sh",
+      "exit_code": 0,
+      "id": "local_witness_display",
+      "output_tail": "=== AUNEYA Local Witness CLI Display v0.1 Conformance ===\n=== Erzeuge lokalen Flow mit Runner ===\nAUNEYA Local Witness Runner v0.1\nclaim_id: auneya_claim_release_reality_001\nflow_id: auneya_flow_local_runner_001\npulses: 4\nmicro_proofs: 2\nprooflet_id: auneya_prooflet_local_001\nsimulated_reward_entry: 18420 simulated_neya\ntransferable: false\nmarket_value_claimed: false\nwritten: .tmp/auneya-local-display/local-flow.json\n=== Erzeuge Display ===\n=== Erzeuge Compact Display ===\n=== Prüfe Display-Inhalt ===\n=== Prüfe Compact-Inhalt ===\n=== Display muss Value-Reward-Verstoß ablehnen ===\nPASS AUNEYA Local Witness CLI Display v0.1 conformance\n",
+      "status": "pass"
+    },
+    {
+      "command": "bash conformance/auneya-one-command-local-demo-v0.1.sh",
+      "exit_code": 0,
+      "id": "one_command_local_demo",
+      "output_tail": "=== AUNEYA One-Command Local Demo v0.1 Conformance ===\n=== Demo muss gültigen lokalen Flow erzeugen ===\nPASS one-command demo output validation\n=== Demo muss private Claim ablehnen ===\nPASS AUNEYA One-Command Local Demo v0.1 conformance\n",
+      "status": "pass"
+    },
+    {
+      "command": "bash conformance/auneya-local-claim-selection-v0.1.sh",
+      "exit_code": 0,
+      "id": "local_claim_selection",
+      "output_tail": "=== AUNEYA Local Claim Selection v0.1 Conformance ===\n=== Liste unterstützter Claims prüfen ===\n=== Einzelne Auswahl prüfen ===\n=== Pfad-Ausgabe prüfen ===\n=== Alle unterstützten Claim-Keys müssen auswählbar sein ===\n=== Ungültiger Claim-Key muss scheitern ===\n=== Demo mit ausgewähltem Claim ausführen ===\nPASS claim selection demo output validation\nPASS AUNEYA Local Claim Selection v0.1 conformance\n",
+      "status": "pass"
+    },
+    {
+      "command": "bash conformance/auneya-local-collection-ledger-simulation-v0.1.sh",
+      "exit_code": 0,
+      "id": "local_collection_ledger",
+      "output_tail": "=== AUNEYA Local Collection Ledger Simulation v0.1 Conformance ===\n=== Reset prüfen ===\n=== Ersten lokalen Simulationseintrag zählen ===\n=== Zweiten lokalen Simulationseintrag zählen ===\n=== Ledger anzeigen ===\n=== Ledger JSON prüfen ===\nPASS local collection ledger JSON validation\n=== Ungültiger Claim-Key muss scheitern ===\nPASS AUNEYA Local Collection Ledger Simulation v0.1 conformance\n",
+      "status": "pass"
+    },
+    {
+      "command": "bash conformance/auneya-local-collection-status-display-v0.1.sh",
+      "exit_code": 0,
+      "id": "local_collection_status",
+      "output_tail": "=== AUNEYA Local Collection Status Display v0.1 Conformance ===\n=== Leeren Status ohne Ledger prüfen ===\n=== Ledger mit zwei Simulationseinträgen erzeugen ===\n=== Status Display prüfen ===\n=== Compact Status prüfen ===\n=== Boundary-Verstoß muss abgelehnt werden ===\nPASS AUNEYA Local Collection Status Display v0.1 conformance\n",
+      "status": "pass"
+    },
+    {
+      "command": "bash conformance/auneya-local-collect-command-v0.1.sh",
+      "exit_code": 0,
+      "id": "local_collect_command",
+      "output_tail": "=== AUNEYA Local Collect Command v0.1 Conformance ===\n=== Ersten Collect ausführen ===\n=== Zweiten Collect ausführen ===\n=== Ledger JSON prüfen ===\nPASS local collect ledger validation\n=== Ungültiger Claim-Key muss scheitern ===\nPASS AUNEYA Local Collect Command v0.1 conformance\n",
+      "status": "pass"
+    },
+    {
+      "command": "bash conformance/auneya-minimal-fair-genesis-launch-path-v0.1.sh",
+      "exit_code": 0,
+      "id": "minimal_fair_genesis_launch_path",
+      "output_tail": "=== AUNEYA Minimal Fair-Genesis Launch Path v0.1 Conformance ===\n=== Dokument-Inhalte prüfen ===\n=== Maschinenlesbare Policy prüfen ===\nPASS minimal fair-genesis launch path validation\n=== Riskante positive Aussagen dürfen nicht vorkommen ===\nPASS risky wording check\nPASS AUNEYA Minimal Fair-Genesis Launch Path v0.1 conformance\n",
+      "status": "pass"
+    },
+    {
+      "command": "bash tools/auneya/auneya_one_command_local_demo.sh fixtures/auneya/claims/valid-release-reality.json",
+      "exit_code": 0,
+      "id": "local_demo_evidence_run",
+      "output_tail": "ya_prooflet_local_001\nsimulated_reward_entry: 18420 simulated_neya\ntransferable: false\nmarket_value_claimed: false\nwritten: /data/data/com.termux/files/home/wizard-verification-protocol/.tmp/auneya-local-simulation-evidence-pack-v0.1/demo/local-flow.json\n\nAUNEYA LOCAL WITNESS\n======================\nMode:                      local non-value simulation\nNetwork:                   none\nMainnet:                   not active\nToken created:             false\nMarket value claimed:      false\nTransferable:              false\n\nCLAIM\n----------------------\nClaim ID:                  auneya_claim_release_reality_001\nClaim schema:              auneya-claim-v0.1\nClaim hash:                sha256:63c401c6dc8e4a0ea...\n\nWITNESS\n----------------------\nWitness ID:                witness_android_termux_local_001\nDevice:                    android_termux\nEnvironment:               phone_safe\nSoftware:                  wvp local-runner-v0.1\n\nFLOW\n----------------------\nPulse interval:            1s\nPulses:                    4\nObserved:                  4\nUnverifiable:              0\nStale:                     0\nDangerous:                 0\nMicro-Proofs:              2\nProoflet:                  auneya_prooflet_local_001\nLatest pulse:              http_status\nLatest time:               2026-10-06T00:11:03Z\n\nSIMULATED ENTRY\n----------------------\nUnit:                      simulated_neya\nAmount:                    18420\nTransferable:              false\nMarket value:              false\n\nBOUNDARY\n----------------------\nPrivate data:              not accessed\nHacked data:               not used\nPaywall bypass:            not used\nCredentials:               not used\nSurveillance:              not performed\n\nNOTICE\n----------------------\nThis is local protocol research.\nNo token, real reward, mainnet or market value is created.\nLegal review is required before any public token launch, listing, sale, transferability or market-value communication.\n\nArtifacts:\n- flow: /data/data/com.termux/files/home/wizard-verification-protocol/.tmp/auneya-local-simulation-evidence-pack-v0.1/demo/local-flow.json\n- display: /data/data/com.termux/files/home/wizard-verification-protocol/.tmp/auneya-local-simulation-evidence-pack-v0.1/demo/local-display.txt\n- compact: /data/data/com.termux/files/home/wizard-verification-protocol/.tmp/auneya-local-simulation-evidence-pack-v0.1/demo/local-display-compact.txt\n\nBoundary:\n- no token\n- no real reward\n- no market value\n- no mainnet\n- local protocol research only\n",
+      "status": "pass"
+    },
+    {
+      "command": "validate local demo artifacts",
+      "exit_code": 0,
+      "id": "local_demo_boundary_validation",
+      "observed": {
+        "compact_file_created": true,
+        "display_file_created": true,
+        "flow_file_created": true,
+        "flow_type_ok": true,
+        "mainnet_not_active": true,
+        "market_value_false": true,
+        "micro_proofs_present": true,
+        "pulses_present": true,
+        "schema_version_ok": true,
+        "transferable_false": true
+      },
+      "output_tail": "{\n  \"flow_file_created\": true,\n  \"display_file_created\": true,\n  \"compact_file_created\": true,\n  \"schema_version_ok\": true,\n  \"flow_type_ok\": true,\n  \"pulses_present\": true,\n  \"micro_proofs_present\": true,\n  \"transferable_false\": true,\n  \"market_value_false\": true,\n  \"mainnet_not_active\": true\n}",
+      "status": "pass"
+    },
+    {
+      "command": "bash tools/auneya/auneya_one_command_local_demo.sh fixtures/auneya/claims/invalid-private-data-claim.json",
+      "exit_code": 1,
+      "id": "invalid_private_claim_rejected",
+      "output_tail": "AUNEYA ONE-COMMAND LOCAL DEMO v0.1\nMode: local non-value simulation\nNetwork: none\nMainnet: not active\nToken created: false\nMarket value claimed: false\nTransferable: false\n\nFAIL: claim requires authentication and is out of scope\n",
+      "status": "pass"
+    }
+  ],
+  "evidence_pack": "auneya-local-simulation-evidence-v0.1",
+  "generated_at_utc": "2026-10-07T21:05:16.085203+00:00",
+  "mainnet_active": false,
+  "market_value_claimed": false,
+  "mode": "local_non_value_simulation",
+  "network": "none",
+  "overall_status": "pass",
+  "repository_head": "55c4ae08890a6a1895ff898ccc12f233757a39dd",
+  "token_created": false,
+  "transferable": false
+}
