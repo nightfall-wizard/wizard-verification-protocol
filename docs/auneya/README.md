@@ -138,3 +138,95 @@ The local collect command records and displays a local non-value simulated colle
 - `../../conformance/auneya-minimal-fair-genesis-launch-path-v0.1.sh`
 
 The minimal fair-genesis launch path defines the intended open-source start model: no sale, no premine, no ICO, no official price, no listing promise, genesis supply 0, user-controlled wallets, and units arising only from valid post-genesis protocol work.
+
+## Local Simulation Evidence Pack
+
+- `AUNEYA-LOCAL-SIMULATION-EVIDENCE-PACK-V0.1.md`
+- `../../tools/auneya/auneya_local_simulation_evidence_pack.py`
+- `../../conformance/auneya-local-simulation-evidence-pack-v0.1.sh`
+- `../../reports/auneya/local-simulation-v0.1/AUNEYA-LOCAL-SIMULATION-EVIDENCE-v0.1.json`
+- `../../reports/auneya/local-simulation-v0.1/AUNEYA-LOCAL-SIMULATION-EVIDENCE-v0.1.md`
+
+The local simulation evidence pack binds the existing AUNEYA local simulation stack into one reproducible non-value evidence report.
+
+## External Review Readiness
+
+- `AUNEYA-EXTERNAL-REVIEW-READINESS-V0.1.md`
+- `AUNEYA-PUBLIC-DOCUMENTATION-QUALITY-GATE-V0.1.md`
+- `../../tools/auneya/auneya_external_review_readiness.py`
+- `../../conformance/auneya-external-review-readiness-v0.1.sh`
+- `../../reports/auneya/external-review-readiness-v0.1/AUNEYA-EXTERNAL-REVIEW-READINESS-v0.1.json`
+- `../../reports/auneya/external-review-readiness-v0.1/AUNEYA-EXTERNAL-REVIEW-READINESS-v0.1.md`
+
+This gate checks whether AUNEYA is externally reviewable as public documentation and local non-value simulation evidence.
+
+## External Reviewer Packet
+
+- `AUNEYA-EXTERNAL-REVIEWER-PACKET-V0.1.md`
+- `AUNEYA-REVIEW-FEEDBACK-WORKFLOW-V0.1.md`
+- `../../.github/ISSUE_TEMPLATE/auneya_external_review.yml`
+- `../../tools/auneya/auneya_reviewer_packet_check.py`
+- `../../conformance/auneya-reviewer-packet-v0.1.sh`
+- `../../reports/auneya/reviewer-packet-v0.1/AUNEYA-REVIEWER-PACKET-v0.1.json`
+- `../../reports/auneya/reviewer-packet-v0.1/AUNEYA-REVIEWER-PACKET-v0.1.md`
+
+This packet makes AUNEYA externally reviewable through a structured reading order, review questions, review categories and GitHub issue feedback workflow.
+
+## Review Intake Evidence and Maintainer Response Log
+
+- `AUNEYA-REVIEW-INTAKE-EVIDENCE-V0.1.md`
+- `AUNEYA-MAINTAINER-RESPONSE-LOG-V0.1.md`
+- `../../.github/ISSUE_TEMPLATE/auneya_maintainer_response.yml`
+- `../../tools/auneya/auneya_review_intake_log_check.py`
+- `../../conformance/auneya-review-intake-log-v0.1.sh`
+- `../../reports/auneya/review-intake-log-v0.1/AUNEYA-REVIEW-INTAKE-LOG-v0.1.json`
+- `../../reports/auneya/review-intake-log-v0.1/AUNEYA-REVIEW-INTAKE-LOG-v0.1.md`
+
+This step records the initial zero-intake state and defines how future AUNEYA external review feedback must be captured, triaged and answered without inventing reviewer feedback.
+
+## Recurring Review Evidence Refresh and External Feedback Trail
+
+- `AUNEYA-RECURRING-REVIEW-EVIDENCE-REFRESH-V0.1.md`
+- `AUNEYA-EXTERNAL-FEEDBACK-TRAIL-V0.1.md`
+- `../../.github/workflows/auneya-recurring-review-evidence.yml`
+- `../../tools/auneya/auneya_recurring_review_evidence_check.py`
+- `../../conformance/auneya-recurring-review-evidence-v0.1.sh`
+- `../../reports/auneya/recurring-review-evidence-v0.1/AUNEYA-RECURRING-REVIEW-EVIDENCE-v0.1.json`
+- `../../reports/auneya/recurring-review-evidence-v0.1/AUNEYA-RECURRING-REVIEW-EVIDENCE-v0.1.md`
+
+This step adds a recurring evidence refresh process and external feedback trail without inventing external review feedback.
+
+## Local Ledger + Wallet Simulator
+
+- `AUNEYA-LOCAL-LEDGER-WALLET-V0.1.md`
+- `../../tools/auneya/auneya_local_ledger_wallet.py`
+- `../../conformance/auneya-local-ledger-wallet-v0.1.sh`
+- `../../reports/auneya/local-ledger-wallet-v0.1/AUNEYA-LOCAL-LEDGER-WALLET-v0.1.json`
+- `../../reports/auneya/local-ledger-wallet-v0.1/AUNEYA-LOCAL-LEDGER-WALLET-v0.1.md`
+- `../../reports/auneya/local-ledger-wallet-v0.1/AUNEYA-LOCAL-WALLET-VIEW-v0.1.txt`
+
+This step adds a tangible local ledger and local wallet simulator with visible balance, history and export artifacts. It remains a local non-value simulation only.
+
+## Local Dashboard
+
+- `AUNEYA-LOCAL-DASHBOARD-V0.1.md`
+- `../../tools/auneya/auneya_local_dashboard.py`
+- `../../conformance/auneya-local-dashboard-v0.1.sh`
+- `../../reports/auneya/local-dashboard-v0.1/index.html`
+- `../../reports/auneya/local-dashboard-v0.1/AUNEYA-LOCAL-DASHBOARD-v0.1.json`
+- `../../reports/auneya/local-dashboard-v0.1/AUNEYA-LOCAL-DASHBOARD-v0.1.md`
+
+This step adds a local mobile-first read-only browser dashboard for the AUNEYA local ledger and wallet simulator.
+
+## Local Claim Composer
+
+- `AUNEYA-LOCAL-CLAIM-COMPOSER-V0.1.md`
+- `../../tools/auneya/auneya_local_claim_composer.py`
+- `../../conformance/auneya-local-claim-composer-v0.1.sh`
+- `../../reports/auneya/local-claim-composer-v0.1/index.html`
+- `../../reports/auneya/local-claim-composer-v0.1/AUNEYA-LOCAL-CLAIM-COMPOSER-STATE-v0.1.json`
+- `../../reports/auneya/local-claim-composer-v0.1/AUNEYA-LOCAL-CLAIM-COMPOSER-v0.1.json`
+- `../../reports/auneya/local-claim-composer-v0.1/AUNEYA-LOCAL-CLAIM-COMPOSER-v0.1.md`
+
+This step adds a local claim composer and dashboard live-refresh sandbox for local simulated claims.
+

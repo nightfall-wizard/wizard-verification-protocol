@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://auneya.local/schemas/research-genesis.schema.json",
+  "title": "AUNEYA Research Genesis Schema v0.1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "chain_id",
+    "environment_label",
+    "genesis_hash",
+    "protocol_version",
+    "created_at",
+    "consensus_profile",
+    "signature_domain",
+    "witness_domain",
+    "replay_domain",
+    "research_mode_enabled",
+    "economic_activation_enabled",
+    "legal_boundary_reference"
+  ],
+  "properties": {
+    "chain_id": {
+      "type": "string",
+      "pattern": "^auneya-(research|simulation|devnet|testnet)-[a-z0-9-]+-v[0-9]+$"
+    },
+    "environment_label": {
+      "type": "string",
+      "enum": [
+        "research",
+        "simulation",
+        "devnet",
+        "testnet"
+      ]
+    },
+    "genesis_hash": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$"
+    },
+    "protocol_version": {
+      "type": "string",
+      "pattern": "^0\\.[0-9]+\\.[0-9]+$"
+    },
+    "created_at": {
+      "type": "string",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"
+    },
+    "consensus_profile": {
+      "type": "string",
+      "enum": [
+        "research-only",
+        "simulation-only",
+        "devnet-only",
+        "testnet-only"
+      ]
+    },
+    "signature_domain": {
+      "type": "string",
+      "minLength": 1
+    },
+    "witness_domain": {
+      "type": "string",
+      "minLength": 1
+    },
+    "replay_domain": {
+      "type": "string",
+      "minLength": 1
+    },
+    "research_mode_enabled": {
+      "const": true
+    },
+    "economic_activation_enabled": {
+      "const": false
+    },
+    "legal_boundary_reference": {
+      "const": "AUNEYA L1 Legal Boundary v0.1"
+    }
+  }
+}

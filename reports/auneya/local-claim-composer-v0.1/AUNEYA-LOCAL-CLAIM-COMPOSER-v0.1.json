@@ -1,0 +1,84 @@
+{
+  "boundary": {
+    "custody_created": false,
+    "legal_review_required_before_launch": true,
+    "live_refresh_sandbox": true,
+    "local_only": true,
+    "mainnet_active": false,
+    "market_value_claimed": false,
+    "network": "none",
+    "not_financial_service": true,
+    "not_investment_advice": true,
+    "not_legal_advice": true,
+    "private_key_created": false,
+    "receive_enabled": false,
+    "seed_phrase_created": false,
+    "send_enabled": false,
+    "token_created": false,
+    "transfer_enabled": false,
+    "transferable": false
+  },
+  "claims": [
+    {
+      "boundary": {
+        "mainnet_active": false,
+        "market_value_claimed": false,
+        "token_created": false,
+        "transferable": false
+      },
+      "claim_hash": "b9b90b9aefaff78fdb73c1f07eba4039495383664755d75df2ee0af4909d2215",
+      "claim_id": "claim-local-user-0001-b9b90b9a",
+      "claim_text": "Public local demo claim",
+      "created_at": "2026-10-08T08:20:52.129160+00:00",
+      "entries_added": 3,
+      "event_id": "event-local-user-0001-db73c1f0",
+      "prooflet_id": "prooflet-local-user-0001-efaff78f",
+      "simulated_balance_delta": 3,
+      "source": "local_cli_demo",
+      "status": "local_event_finalized"
+    }
+  ],
+  "composer": {
+    "accepted_claim_count": 1,
+    "api_state_endpoint": "/api/state",
+    "claim_count": 1,
+    "claim_post_endpoint": "/claim",
+    "form_enabled": true,
+    "live_refresh_enabled": true,
+    "local_only": true,
+    "non_value_simulation": true,
+    "rejected_claim_count": 0
+  },
+  "dashboard": {
+    "api_state_endpoint": "/api/state",
+    "claim_post_endpoint": "/claim",
+    "external_dependencies": false,
+    "live_refresh_enabled": true,
+    "local_only": true,
+    "mobile_first": true,
+    "path": "reports/auneya/local-claim-composer-v0.1/index.html",
+    "url": "http://127.0.0.1:8766/index.html"
+  },
+  "generated_at_utc": "2026-10-08T08:20:52.131022+00:00",
+  "ledger_snapshot": {
+    "entry_count": 6,
+    "ledger_hash": "963852d542806e6fb349e98ea6821ccbdf8374bc4440427543c22b9e29899bcd",
+    "ledger_id": "auneya-local-claim-composer-ledger-v0.1"
+  },
+  "mode": "local_claim_composer_live_refresh_sandbox",
+  "schema_version": "auneya-local-claim-composer-v0.1",
+  "state": {
+    "balance": 6,
+    "claim_count": 1,
+    "entry_count": 6,
+    "ledger_hash": "963852d542806e6fb349e98ea6821ccbdf8374bc4440427543c22b9e29899bcd",
+    "path": "reports/auneya/local-claim-composer-v0.1/AUNEYA-LOCAL-CLAIM-COMPOSER-STATE-v0.1.json"
+  },
+  "status": "pass",
+  "wallet_snapshot": {
+    "balance": 6,
+    "unit": "simulated_neya_non_value_unit",
+    "wallet_address": "auneya-local-45df95a3cb6e475ad1ba7e90",
+    "wallet_id": "local-wallet-001"
+  }
+}

@@ -1,0 +1,206 @@
+{
+  "boundary": {
+    "custody_created": false,
+    "legal_review_required_before_launch": true,
+    "live_refresh_sandbox": true,
+    "local_only": true,
+    "mainnet_active": false,
+    "market_value_claimed": false,
+    "network": "none",
+    "not_financial_service": true,
+    "not_investment_advice": true,
+    "not_legal_advice": true,
+    "private_key_created": false,
+    "receive_enabled": false,
+    "seed_phrase_created": false,
+    "send_enabled": false,
+    "token_created": false,
+    "transfer_enabled": false,
+    "transferable": false
+  },
+  "claims": [
+    {
+      "boundary": {
+        "mainnet_active": false,
+        "market_value_claimed": false,
+        "token_created": false,
+        "transferable": false
+      },
+      "claim_hash": "b9b90b9aefaff78fdb73c1f07eba4039495383664755d75df2ee0af4909d2215",
+      "claim_id": "claim-local-user-0001-b9b90b9a",
+      "claim_text": "Public local demo claim",
+      "created_at": "2026-10-08T08:20:52.129160+00:00",
+      "entries_added": 3,
+      "event_id": "event-local-user-0001-db73c1f0",
+      "prooflet_id": "prooflet-local-user-0001-efaff78f",
+      "simulated_balance_delta": 3,
+      "source": "local_cli_demo",
+      "status": "local_event_finalized"
+    }
+  ],
+  "composer": {
+    "accepted_claim_count": 1,
+    "api_state_endpoint": "/api/state",
+    "claim_count": 1,
+    "claim_post_endpoint": "/claim",
+    "form_enabled": true,
+    "live_refresh_enabled": true,
+    "local_only": true,
+    "non_value_simulation": true,
+    "rejected_claim_count": 0
+  },
+  "generated_at_utc": "2026-10-08T08:20:52.129643+00:00",
+  "history": [
+    {
+      "action": "claim accepted",
+      "step": 1,
+      "visible_effect": "+1 simulated_neya_non_value_unit"
+    },
+    {
+      "action": "witness prooflet recorded",
+      "step": 2,
+      "visible_effect": "+1 simulated_neya_non_value_unit"
+    },
+    {
+      "action": "event finalized",
+      "step": 3,
+      "visible_effect": "+1 simulated_neya_non_value_unit"
+    },
+    {
+      "action": "local composer claim finalized",
+      "claim_id": "claim-local-user-0001-b9b90b9a",
+      "step": 4,
+      "visible_effect": "+3 simulated_neya_non_value_unit"
+    }
+  ],
+  "ledger": {
+    "entries": [
+      {
+        "amount": 1,
+        "claim_id": "claim-local-public-demo-001",
+        "created_at": "2026-10-07T00:00:01Z",
+        "entry_hash": "3cdcb9fa83fdd00406cd6aaeabf8e7f5d98d1ab04f4bf1ed2903fdf73020fe43",
+        "entry_id": "local-ledger-entry-0001",
+        "entry_type": "claim_accepted",
+        "event_id": null,
+        "memo": "Public claim accepted into local non-value simulation ledger.",
+        "prooflet_id": null,
+        "running_balance": 1,
+        "unit": "simulated_neya_non_value_unit",
+        "wallet_address": "auneya-local-45df95a3cb6e475ad1ba7e90",
+        "wallet_id": "local-wallet-001"
+      },
+      {
+        "amount": 1,
+        "claim_id": "claim-local-public-demo-001",
+        "created_at": "2026-10-07T00:00:02Z",
+        "entry_hash": "27b235a91d4f0fb3a30fe30cb65698371d0715a0ebe0dafc8f7624f494cd76d3",
+        "entry_id": "local-ledger-entry-0002",
+        "entry_type": "witness_prooflet",
+        "event_id": null,
+        "memo": "Local witness prooflet recorded as simulated evidence.",
+        "prooflet_id": "prooflet-local-demo-001",
+        "running_balance": 2,
+        "unit": "simulated_neya_non_value_unit",
+        "wallet_address": "auneya-local-45df95a3cb6e475ad1ba7e90",
+        "wallet_id": "local-wallet-001"
+      },
+      {
+        "amount": 1,
+        "claim_id": "claim-local-public-demo-001",
+        "created_at": "2026-10-07T00:00:03Z",
+        "entry_hash": "59a7bdb5d6c3893b24e2323da21343215389b85b8f66703660a55e2f72987263",
+        "entry_id": "local-ledger-entry-0003",
+        "entry_type": "event_finalized",
+        "event_id": "event-local-demo-001",
+        "memo": "Local AUNEYA event finalized in non-value simulation mode.",
+        "prooflet_id": "prooflet-local-demo-001",
+        "running_balance": 3,
+        "unit": "simulated_neya_non_value_unit",
+        "wallet_address": "auneya-local-45df95a3cb6e475ad1ba7e90",
+        "wallet_id": "local-wallet-001"
+      },
+      {
+        "amount": 1,
+        "claim_hash": "b9b90b9aefaff78fdb73c1f07eba4039495383664755d75df2ee0af4909d2215",
+        "claim_id": "claim-local-user-0001-b9b90b9a",
+        "claim_source": "local_cli_demo",
+        "claim_text": "Public local demo claim",
+        "created_at": "2026-10-08T08:20:52.129160+00:00",
+        "entry_hash": "e188e02da9846421829fa955f0cc6d372b28066c1314be2657c3e09eb961dfec",
+        "entry_id": "local-composer-entry-0004",
+        "entry_type": "claim_accepted",
+        "event_id": null,
+        "memo": "Local user claim accepted into composer sandbox.",
+        "prooflet_id": null,
+        "running_balance": 4,
+        "transferable": false,
+        "unit": "simulated_neya_non_value_unit",
+        "wallet_address": "auneya-local-45df95a3cb6e475ad1ba7e90",
+        "wallet_id": "local-wallet-001"
+      },
+      {
+        "amount": 1,
+        "claim_hash": "b9b90b9aefaff78fdb73c1f07eba4039495383664755d75df2ee0af4909d2215",
+        "claim_id": "claim-local-user-0001-b9b90b9a",
+        "claim_source": "local_cli_demo",
+        "claim_text": "Public local demo claim",
+        "created_at": "2026-10-08T08:20:52.129160+00:00",
+        "entry_hash": "859614e8b361059bb81272cbc0d131277ff0096a64e54565abd6f337629f3a29",
+        "entry_id": "local-composer-entry-0005",
+        "entry_type": "witness_prooflet",
+        "event_id": null,
+        "memo": "Local witness prooflet simulated for composer claim.",
+        "prooflet_id": "prooflet-local-user-0001-efaff78f",
+        "running_balance": 5,
+        "transferable": false,
+        "unit": "simulated_neya_non_value_unit",
+        "wallet_address": "auneya-local-45df95a3cb6e475ad1ba7e90",
+        "wallet_id": "local-wallet-001"
+      },
+      {
+        "amount": 1,
+        "claim_hash": "b9b90b9aefaff78fdb73c1f07eba4039495383664755d75df2ee0af4909d2215",
+        "claim_id": "claim-local-user-0001-b9b90b9a",
+        "claim_source": "local_cli_demo",
+        "claim_text": "Public local demo claim",
+        "created_at": "2026-10-08T08:20:52.129160+00:00",
+        "entry_hash": "5068398ca7df2073dab5f78114552ca9184635c17b480f3b08001c073989399c",
+        "entry_id": "local-composer-entry-0006",
+        "entry_type": "event_finalized",
+        "event_id": "event-local-user-0001-db73c1f0",
+        "memo": "Local event finalized for composer claim.",
+        "prooflet_id": "prooflet-local-user-0001-efaff78f",
+        "running_balance": 6,
+        "transferable": false,
+        "unit": "simulated_neya_non_value_unit",
+        "wallet_address": "auneya-local-45df95a3cb6e475ad1ba7e90",
+        "wallet_id": "local-wallet-001"
+      }
+    ],
+    "entry_count": 6,
+    "ledger_hash": "963852d542806e6fb349e98ea6821ccbdf8374bc4440427543c22b9e29899bcd",
+    "ledger_id": "auneya-local-claim-composer-ledger-v0.1",
+    "ledger_type": "append_only_local_claim_composer_simulation_ledger"
+  },
+  "mainnet_active": false,
+  "market_value_claimed": false,
+  "mode": "local_claim_composer_live_refresh_sandbox",
+  "network": "none",
+  "schema_version": "auneya-local-claim-composer-v0.1",
+  "token_created": false,
+  "transferable": false,
+  "wallet": {
+    "balance": 6,
+    "custody_created": false,
+    "private_key_created": false,
+    "receive_enabled": false,
+    "seed_phrase_created": false,
+    "send_enabled": false,
+    "transfer_enabled": false,
+    "unit": "simulated_neya_non_value_unit",
+    "wallet_address": "auneya-local-45df95a3cb6e475ad1ba7e90",
+    "wallet_id": "local-wallet-001",
+    "wallet_type": "local_identity_wallet"
+  }
+}

@@ -1,0 +1,30 @@
+name: AUNEYA Recurring Review Evidence
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 6 * * 1"
+  pull_request:
+    paths:
+      - "docs/auneya/**"
+      - "tools/auneya/**"
+      - "conformance/auneya-recurring-review-evidence-v0.1.sh"
+      - "reports/auneya/recurring-review-evidence-v0.1/**"
+      - ".github/workflows/auneya-recurring-review-evidence.yml"
+      - ".github/ISSUE_TEMPLATE/**"
+
+jobs:
+  recurring-review-evidence:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Run AUNEYA recurring review evidence check
+        run: bash conformance/auneya-recurring-review-evidence-v0.1.sh
+
