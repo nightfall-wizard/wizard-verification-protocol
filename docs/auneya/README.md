@@ -218,3 +218,15 @@ This step adds a tangible local ledger and local wallet simulator with visible b
 
 This step adds a local mobile-first read-only browser dashboard for the AUNEYA local ledger and wallet simulator.
 
+## Local Claim Composer
+
+- `AUNEYA-LOCAL-CLAIM-COMPOSER-V0.1.md`
+- `../../tools/auneya/auneya_local_claim_composer.py`
+- `../../conformance/auneya-local-claim-composer-v0.1.sh`
+- `../../reports/auneya/local-claim-composer-v0.1/index.html`
+- `../../reports/auneya/local-claim-composer-v0.1/AUNEYA-LOCAL-CLAIM-COMPOSER-STATE-v0.1.json`
+- `../../reports/auneya/local-claim-composer-v0.1/AUNEYA-LOCAL-CLAIM-COMPOSER-v0.1.json`
+- `../../reports/auneya/local-claim-composer-v0.1/AUNEYA-LOCAL-CLAIM-COMPOSER-v0.1.md`
+
+This step adds a local claim composer and dashboard live-refresh sandbox for local simulated claims.
+

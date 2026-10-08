@@ -639,3 +639,37 @@ Next milestone:
 
 AUNEYA local claim composer and dashboard live-refresh sandbox.
 
+
+## AUNEYA-LOCAL-CLAIM-COMPOSER-001
+
+Status: implemented.
+
+Completed:
+
+- local claim composer
+- dashboard live-refresh sandbox
+- local claim form
+- local state API
+- local claim POST endpoint
+- local claim validation
+- simulated prooflet generation
+- simulated event finalization
+- simulated ledger update
+- simulated balance update
+- local composer state JSON
+- local composer evidence JSON
+- local composer Markdown report
+- mobile-first composer HTML
+- machine-checkable composer report
+- CI-compatible conformance script
+- GitHub Actions workflow
+
+Boundary:
+
+This step creates a local claim composer and dashboard live-refresh sandbox.
+It does not create a real wallet, private key, seed phrase, custody, AUNEYA, neya, a token, market value, transferability, mainnet activity, legal clearance, financial claims or investment advice.
+
+Next milestone:
+
+AUNEYA local witness prooflet inspector and event detail explorer.
+
