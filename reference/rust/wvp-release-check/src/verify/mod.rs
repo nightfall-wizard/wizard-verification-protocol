@@ -6,6 +6,7 @@ use std::{
 };
 
 pub mod checksum;
+pub mod checksum_boundary;
 pub mod signature;
 
 fn verification_work_dir(prefix: &str, target: &str, tag: &str) -> Result<PathBuf, String> {
