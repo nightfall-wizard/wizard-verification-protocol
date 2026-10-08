@@ -1,0 +1,28 @@
+{
+  "id": "WVP-MAINT-PR25-TRIAGE-20261006-220238",
+  "timestamp_utc": "2026-10-06T22:02:38Z",
+  "repository": "nightfall-wizard/wizard-verification-protocol",
+  "subject": "External PR #25 triage",
+  "decision": "not accepted as submitted",
+  "reason": [
+    "scope exceeded repository hygiene request",
+    "introduced new project structure and implementation code",
+    "risked replacing existing project documentation",
+    "included bounty or wallet language outside unpaid review boundary",
+    "not appropriate for a security-adjacent verification repository without narrower design review"
+  ],
+  "security_boundary": [
+    "not an audit",
+    "not a Nightfall safety certification",
+    "not a cryptographic review",
+    "not a consensus correctness claim",
+    "not financial advice"
+  ],
+  "next_required_external_steps_for_100_percent": [
+    "green GitHub Actions on final accepted PRs",
+    "verified branch protection on main",
+    "at least one independent unpaid reviewer or maintainer feedback record",
+    "recurring maintenance evidence over time"
+  ],
+  "completion_after_this_step": "approximately 99.3-99.5 percent, not 100 percent"
+}
