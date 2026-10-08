@@ -595,3 +595,14 @@ Explicit non-claims:
 <!-- WVP:AUNEYA-MINIMAL-FAIR-GENESIS-LAUNCH-PATH-V01:END -->
 
 
+
+## External review operations
+
+WVP uses a bounded, unpaid external-review process for review-gated work.
+
+- Review process: `docs/review/EXTERNAL-REVIEW-PROCESS.md`
+- Reviewer checklist: `docs/review/REVIEWER-CHECKLIST.md`
+- Review request template: `docs/review/REVIEW-REQUEST-TEMPLATE.md`
+- Maintainer response protocol: `docs/review/MAINTAINER-RESPONSE-PROTOCOL.md`
+
+Boundary: this process is not an audit, not Nightfall safety certification, not legal advice, not custody, and not financial or investment advice.
