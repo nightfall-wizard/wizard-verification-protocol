@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AUNEYA Local Claim Composer</title>
+  <style>
+    :root {
+      color-scheme: light dark;
+      --border: #8884;
+      --bg-soft: #8881;
+      --ok: #0a7;
+      --warn: #b70;
+      --bad: #d33;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0 auto;
+      padding: 16px;
+      max-width: 980px;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.45;
+    }
+    header, .card {
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 14px;
+      background: var(--bg-soft);
+      margin-bottom: 12px;
+      overflow-wrap: anywhere;
+    }
+    h1 { margin: 0 0 8px 0; font-size: 1.45rem; }
+    h2 { margin-top: 0; font-size: 1.1rem; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 12px;
+    }
+    .metric { font-size: 1.8rem; font-weight: 700; }
+    .ok { color: var(--ok); font-weight: 700; }
+    .warn { color: var(--warn); font-weight: 700; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      display: block;
+      overflow-x: auto;
+    }
+    th, td {
+      padding: 8px;
+      border-bottom: 1px solid var(--border);
+      text-align: left;
+      white-space: nowrap;
+    }
+    code, textarea {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    }
+    textarea {
+      width: 100%;
+      min-height: 94px;
+      padding: 10px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: transparent;
+      font-size: 1rem;
+    }
+    button {
+      width: 100%;
+      margin-top: 10px;
+      padding: 12px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      font-weight: 700;
+      font-size: 1rem;
+    }
+    .small { font-size: 0.9rem; opacity: 0.8; }
+    footer { margin-top: 18px; font-size: 0.9rem; opacity: 0.8; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>AUNEYA LOCAL CLAIM COMPOSER</h1>
+    <div class="ok">Local live-refresh sandbox</div>
+    <div>Network: <code>none</code> | Mainnet active: <code>false</code> | Transferable: <code>false</code></div>
+    <div class="small">Auto-refresh: <code>enabled</code> via <code>/api/state</code></div>
+  </header>
+
+  <section class="card">
+    <h2>Create Local Claim</h2>
+    <form method="post" action="/claim">
+      <textarea name="claim_text" maxlength="240" required placeholder="Enter a public local demo claim. Do not enter secrets, private keys, seed phrases, market-value claims or investment language."></textarea>
+      <button type="submit">Create local simulated claim</button>
+    </form>
+    <p class="small">Adds exactly three local simulated entries: claim_accepted, witness_prooflet, event_finalized.</p>
+  </section>
+
+  <section class="grid">
+    <div class="card">
+      <h2>Wallet</h2>
+      <div><strong>ID:</strong> <code>local-wallet-001</code></div>
+      <div><strong>Address:</strong> <code>auneya-local-45df95a3cb6e475ad1ba7e90</code></div>
+      <div><strong>Type:</strong> <code>local_identity_wallet</code></div>
+    </div>
+
+    <div class="card">
+      <h2>Balance</h2>
+      <div id="balance" class="metric">6</div>
+      <div><code>simulated_neya_non_value_unit</code></div>
+    </div>
+
+    <div class="card">
+      <h2>Composer</h2>
+      <div><strong>Claims:</strong> <code id="claim-count">1</code></div>
+      <div><strong>Live refresh:</strong> <code>true</code></div>
+      <div><strong>Form enabled:</strong> <code>true</code></div>
+    </div>
+
+    <div class="card">
+      <h2>Controls</h2>
+      <div>Send: <code>false</code></div>
+      <div>Receive: <code>false</code></div>
+      <div>Transfer: <code>false</code></div>
+      <div>Private key: <code>false</code></div>
+      <div>Seed phrase: <code>false</code></div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Ledger</h2>
+    <div><strong>Ledger ID:</strong> <code>auneya-local-claim-composer-ledger-v0.1</code></div>
+    <div><strong>Entries:</strong> <code id="entry-count">6</code></div>
+    <div><strong>Hash:</strong> <code id="ledger-hash">963852d542806e6fb349e98ea6821ccbdf8374bc4440427543c22b9e29899bcd</code></div>
+  </section>
+
+  <section class="card">
+    <h2>Ledger Entries</h2>
+    <table>
+      <thead>
+        <tr><th>#</th><th>Type</th><th>Amount</th><th>Balance</th><th>Entry Hash</th></tr>
+      </thead>
+      <tbody id="entry-table">
+        <tr><td>1</td><td><code>claim_accepted</code></td><td>+1</td><td>1</td><td><code>3cdcb9fa83fdd004</code></td></tr>
+<tr><td>2</td><td><code>witness_prooflet</code></td><td>+1</td><td>2</td><td><code>27b235a91d4f0fb3</code></td></tr>
+<tr><td>3</td><td><code>event_finalized</code></td><td>+1</td><td>3</td><td><code>59a7bdb5d6c3893b</code></td></tr>
+<tr><td>4</td><td><code>claim_accepted</code></td><td>+1</td><td>4</td><td><code>e188e02da9846421</code></td></tr>
+<tr><td>5</td><td><code>witness_prooflet</code></td><td>+1</td><td>5</td><td><code>859614e8b361059b</code></td></tr>
+<tr><td>6</td><td><code>event_finalized</code></td><td>+1</td><td>6</td><td><code>5068398ca7df2073</code></td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="card">
+    <h2>Claims</h2>
+    <ol id="claims-list">
+      <li><strong>claim-local-user-0001-b9b90b9a</strong><br>Public local demo claim<br><code>local_event_finalized</code></li>
+    </ol>
+  </section>
+
+  <section class="card">
+    <h2>History</h2>
+    <ol id="history-list">
+      <li><strong>Step 1</strong>: claim accepted -> <code>+1 simulated_neya_non_value_unit</code></li>
+<li><strong>Step 2</strong>: witness prooflet recorded -> <code>+1 simulated_neya_non_value_unit</code></li>
+<li><strong>Step 3</strong>: event finalized -> <code>+1 simulated_neya_non_value_unit</code></li>
+<li><strong>Step 4</strong>: local composer claim finalized -> <code>+3 simulated_neya_non_value_unit</code></li>
+    </ol>
+  </section>
+
+  <section class="card">
+    <h2>Boundary</h2>
+    <ul>
+      <li>no token</li>
+      <li>no market value</li>
+      <li>no transferability</li>
+      <li>no mainnet</li>
+      <li>no private key</li>
+      <li>no seed phrase</li>
+      <li>no custody</li>
+      <li>not investment advice</li>
+      <li>not legal advice</li>
+      <li>not a custody, broker, exchange or financial service</li>
+      <li>legal review required before launch, listing, sale, transferability or market-value communication</li>
+    </ul>
+  </section>
+
+  <footer>
+    Generated from local composer state JSON. Local sandbox only.
+  </footer>
+
+  <script>
+    async function refreshState() {
+      try {
+        const response = await fetch('/api/state', {cache: 'no-store'});
+        if (!response.ok) return;
+        const state = await response.json();
+        document.getElementById('balance').textContent = state.wallet.balance;
+        document.getElementById('claim-count').textContent = state.composer.claim_count;
+        document.getElementById('entry-count').textContent = state.ledger.entry_count;
+        document.getElementById('ledger-hash').textContent = state.ledger.ledger_hash;
+      } catch (err) {
+        console.log('refresh failed', err);
+      }
+    }
+    setInterval(refreshState, 2000);
+    refreshState();
+  </script>
+</body>
+</html>
