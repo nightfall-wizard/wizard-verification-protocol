@@ -1,0 +1,95 @@
+name: AUNEYA external review
+description: Submit structured external review feedback for AUNEYA non-value simulation documentation.
+title: "[AUNEYA Review]: "
+labels:
+  - auneya
+  - external-review
+  - non-value-simulation
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this template for AUNEYA external review feedback.
+
+        Boundary:
+        - No token
+        - No market value
+        - No transferability
+        - No mainnet
+        - Not investment advice
+        - Not legal advice
+        - Not a custody, broker, exchange or financial service
+        - Legal review is required before any public token launch, listing, sale, transferability or market-value communication.
+
+  - type: dropdown
+    id: review_area
+    attributes:
+      label: Review area
+      description: Select the closest review category.
+      options:
+        - terminology clarity
+        - public-claim scope
+        - privacy boundary
+        - abuse resistance
+        - local simulation reproducibility
+        - documentation completeness
+        - non-value boundary
+        - legal-review dependency
+        - implementation gap
+        - reviewer question
+    validations:
+      required: true
+
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: Summarize the review feedback.
+      placeholder: Describe the issue or improvement clearly.
+    validations:
+      required: true
+
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence or file reference
+      description: Link or name the relevant document, section, command or report.
+      placeholder: Example: docs/auneya/AUNEYA-EXTERNAL-REVIEWER-PACKET-V0.1.md
+    validations:
+      required: true
+
+  - type: dropdown
+    id: risk_level
+    attributes:
+      label: Risk level
+      description: Select the review risk level.
+      options:
+        - low documentation clarity
+        - medium ambiguity
+        - high boundary risk
+        - needs legal review
+        - needs technical review
+    validations:
+      required: true
+
+  - type: textarea
+    id: suggested_change
+    attributes:
+      label: Suggested change
+      description: Suggest a concrete documentation or protocol clarification.
+      placeholder: Propose wording or a specific change.
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: boundary_confirmation
+    attributes:
+      label: Boundary confirmation
+      options:
+        - label: I understand this review is for non-value simulation documentation only.
+          required: true
+        - label: I am not asking for token launch, market value, transferability, mainnet activation or investment advice.
+          required: true
+        - label: I understand legal review is required before launch, listing, sale, transferability or market-value communication.
+          required: true
+

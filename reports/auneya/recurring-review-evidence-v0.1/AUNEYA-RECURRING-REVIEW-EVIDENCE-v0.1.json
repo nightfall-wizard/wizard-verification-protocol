@@ -1,0 +1,291 @@
+{
+  "boundary": {
+    "legal_review_required_before_launch": true,
+    "no_mainnet": true,
+    "no_market_value": true,
+    "no_token": true,
+    "no_transferability": true,
+    "not_financial_service": true,
+    "not_investment_advice": true,
+    "not_legal_advice": true
+  },
+  "checks": [
+    {
+      "id": "file_exists:docs/auneya/AUNEYA-EXTERNAL-REVIEWER-PACKET-V0.1.md",
+      "path": "docs/auneya/AUNEYA-EXTERNAL-REVIEWER-PACKET-V0.1.md",
+      "status": "pass"
+    },
+    {
+      "id": "file_exists:docs/auneya/AUNEYA-REVIEW-FEEDBACK-WORKFLOW-V0.1.md",
+      "path": "docs/auneya/AUNEYA-REVIEW-FEEDBACK-WORKFLOW-V0.1.md",
+      "status": "pass"
+    },
+    {
+      "id": "file_exists:docs/auneya/AUNEYA-REVIEW-INTAKE-EVIDENCE-V0.1.md",
+      "path": "docs/auneya/AUNEYA-REVIEW-INTAKE-EVIDENCE-V0.1.md",
+      "status": "pass"
+    },
+    {
+      "id": "file_exists:docs/auneya/AUNEYA-MAINTAINER-RESPONSE-LOG-V0.1.md",
+      "path": "docs/auneya/AUNEYA-MAINTAINER-RESPONSE-LOG-V0.1.md",
+      "status": "pass"
+    },
+    {
+      "id": "file_exists:docs/auneya/AUNEYA-RECURRING-REVIEW-EVIDENCE-REFRESH-V0.1.md",
+      "path": "docs/auneya/AUNEYA-RECURRING-REVIEW-EVIDENCE-REFRESH-V0.1.md",
+      "status": "pass"
+    },
+    {
+      "id": "file_exists:docs/auneya/AUNEYA-EXTERNAL-FEEDBACK-TRAIL-V0.1.md",
+      "path": "docs/auneya/AUNEYA-EXTERNAL-FEEDBACK-TRAIL-V0.1.md",
+      "status": "pass"
+    },
+    {
+      "id": "file_exists:.github/ISSUE_TEMPLATE/auneya_external_review.yml",
+      "path": ".github/ISSUE_TEMPLATE/auneya_external_review.yml",
+      "status": "pass"
+    },
+    {
+      "id": "file_exists:.github/ISSUE_TEMPLATE/auneya_maintainer_response.yml",
+      "path": ".github/ISSUE_TEMPLATE/auneya_maintainer_response.yml",
+      "status": "pass"
+    },
+    {
+      "id": "file_exists:.github/workflows/auneya-recurring-review-evidence.yml",
+      "path": ".github/workflows/auneya-recurring-review-evidence.yml",
+      "status": "pass"
+    },
+    {
+      "id": "required_term:recurring review evidence refresh",
+      "status": "pass",
+      "term": "recurring review evidence refresh"
+    },
+    {
+      "id": "required_term:external feedback trail",
+      "status": "pass",
+      "term": "external feedback trail"
+    },
+    {
+      "id": "required_term:refresh cadence",
+      "status": "pass",
+      "term": "refresh cadence"
+    },
+    {
+      "id": "required_term:weekly scheduled check",
+      "status": "pass",
+      "term": "weekly scheduled check"
+    },
+    {
+      "id": "required_term:workflow_dispatch",
+      "status": "pass",
+      "term": "workflow_dispatch"
+    },
+    {
+      "id": "required_term:schedule",
+      "status": "pass",
+      "term": "schedule"
+    },
+    {
+      "id": "required_term:zero-feedback state",
+      "status": "pass",
+      "term": "zero-feedback state"
+    },
+    {
+      "id": "required_term:do not create fake external feedback",
+      "status": "pass",
+      "term": "do not create fake external feedback"
+    },
+    {
+      "id": "required_term:review intake evidence",
+      "status": "pass",
+      "term": "review intake evidence"
+    },
+    {
+      "id": "required_term:maintainer response log",
+      "status": "pass",
+      "term": "maintainer response log"
+    },
+    {
+      "id": "required_term:non-value simulation",
+      "status": "pass",
+      "term": "non-value simulation"
+    },
+    {
+      "id": "required_term:no token",
+      "status": "pass",
+      "term": "no token"
+    },
+    {
+      "id": "required_term:no market value",
+      "status": "pass",
+      "term": "no market value"
+    },
+    {
+      "id": "required_term:no transferability",
+      "status": "pass",
+      "term": "no transferability"
+    },
+    {
+      "id": "required_term:no mainnet",
+      "status": "pass",
+      "term": "no mainnet"
+    },
+    {
+      "id": "required_term:not investment advice",
+      "status": "pass",
+      "term": "not investment advice"
+    },
+    {
+      "id": "required_term:not legal advice",
+      "status": "pass",
+      "term": "not legal advice"
+    },
+    {
+      "id": "required_term:not a custody, broker, exchange or financial service",
+      "status": "pass",
+      "term": "not a custody, broker, exchange or financial service"
+    },
+    {
+      "id": "required_term:legal review",
+      "status": "pass",
+      "term": "legal review"
+    },
+    {
+      "id": "trail_field:trail_id",
+      "status": "pass",
+      "term": "trail_id"
+    },
+    {
+      "id": "trail_field:cycle_id",
+      "status": "pass",
+      "term": "cycle_id"
+    },
+    {
+      "id": "trail_field:refresh_type",
+      "status": "pass",
+      "term": "refresh_type"
+    },
+    {
+      "id": "trail_field:source",
+      "status": "pass",
+      "term": "source"
+    },
+    {
+      "id": "trail_field:issue_count",
+      "status": "pass",
+      "term": "issue_count"
+    },
+    {
+      "id": "trail_field:external_feedback_received",
+      "status": "pass",
+      "term": "external_feedback_received"
+    },
+    {
+      "id": "trail_field:fake_feedback_created",
+      "status": "pass",
+      "term": "fake_feedback_created"
+    },
+    {
+      "id": "trail_field:linked_issue",
+      "status": "pass",
+      "term": "linked_issue"
+    },
+    {
+      "id": "trail_field:maintainer_status",
+      "status": "pass",
+      "term": "maintainer_status"
+    },
+    {
+      "id": "trail_field:boundary_impact",
+      "status": "pass",
+      "term": "boundary_impact"
+    },
+    {
+      "id": "trail_field:legal_review_required",
+      "status": "pass",
+      "term": "legal_review_required"
+    },
+    {
+      "id": "trail_field:technical_review_required",
+      "status": "pass",
+      "term": "technical_review_required"
+    },
+    {
+      "id": "trail_field:created_at",
+      "status": "pass",
+      "term": "created_at"
+    },
+    {
+      "id": "trail_field:updated_at",
+      "status": "pass",
+      "term": "updated_at"
+    },
+    {
+      "id": "workflow_term:AUNEYA Recurring Review Evidence",
+      "status": "pass",
+      "term": "AUNEYA Recurring Review Evidence"
+    },
+    {
+      "id": "workflow_term:workflow_dispatch",
+      "status": "pass",
+      "term": "workflow_dispatch"
+    },
+    {
+      "id": "workflow_term:schedule",
+      "status": "pass",
+      "term": "schedule"
+    },
+    {
+      "id": "workflow_term:auneya-recurring-review-evidence-v0.1.sh",
+      "status": "pass",
+      "term": "auneya-recurring-review-evidence-v0.1.sh"
+    }
+  ],
+  "evidence_pack": "auneya-recurring-review-evidence-v0.1",
+  "external_feedback_trail_fields": [
+    "trail_id",
+    "cycle_id",
+    "refresh_type",
+    "source",
+    "issue_count",
+    "external_feedback_received",
+    "fake_feedback_created",
+    "linked_issue",
+    "maintainer_status",
+    "boundary_impact",
+    "legal_review_required",
+    "technical_review_required",
+    "created_at",
+    "updated_at"
+  ],
+  "failed": [],
+  "generated_at_utc": "2026-10-07T21:44:39.528859+00:00",
+  "mainnet_active": false,
+  "market_value_claimed": false,
+  "mode": "recurring_review_evidence_refresh_and_external_feedback_trail",
+  "network": "none",
+  "overall_status": "pass",
+  "recurring_review_state": {
+    "cycle_id": "initial-recurring-review-cycle-v0.1",
+    "external_feedback_received": false,
+    "fake_feedback_created": false,
+    "issue_count": 0,
+    "reason": "No independent external AUNEYA review issue is recorded in this initial recurring refresh artifact. The trail exists without inventing feedback.",
+    "refresh_cadence": "weekly scheduled check plus manual workflow_dispatch",
+    "refresh_type": "initial_zero_feedback_refresh",
+    "trail_entries": []
+  },
+  "score": {
+    "passed": 46,
+    "percent": 100.0,
+    "total": 46
+  },
+  "token_created": false,
+  "transferable": false,
+  "workflow": {
+    "local_conformance_script": "conformance/auneya-recurring-review-evidence-v0.1.sh",
+    "manual_dispatch": true,
+    "path": ".github/workflows/auneya-recurring-review-evidence.yml",
+    "scheduled_check": true
+  }
+}

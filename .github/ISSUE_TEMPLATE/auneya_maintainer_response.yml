@@ -1,0 +1,115 @@
+name: AUNEYA maintainer response
+description: Record a structured maintainer response to AUNEYA external review feedback.
+title: "[AUNEYA Maintainer Response]: "
+labels:
+  - auneya
+  - maintainer-response
+  - non-value-simulation
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form to record a maintainer response to AUNEYA review feedback.
+
+        Boundary:
+        - No token
+        - No market value
+        - No transferability
+        - No mainnet
+        - Not investment advice
+        - Not legal advice
+        - Not a custody, broker, exchange or financial service
+        - Legal review is required before any public token launch, listing, sale, transferability or market-value communication.
+
+  - type: input
+    id: linked_issue
+    attributes:
+      label: Linked issue
+      description: Link the original AUNEYA external review issue.
+      placeholder: "#123"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: maintainer_status
+    attributes:
+      label: Maintainer status
+      description: Select the maintainer triage state.
+      options:
+        - accepted
+        - needs clarification
+        - needs legal review
+        - needs technical review
+        - deferred
+        - rejected
+        - duplicate
+        - out of scope
+    validations:
+      required: true
+
+  - type: textarea
+    id: maintainer_response
+    attributes:
+      label: Maintainer response
+      description: Summarize the decision and reasoning.
+      placeholder: Explain the response without implying launch, value, transferability or legal clearance.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: boundary_impact
+    attributes:
+      label: Boundary impact
+      description: Select the closest boundary impact.
+      options:
+        - no boundary impact
+        - non-value wording clarification
+        - legal-review dependency
+        - technical-review dependency
+        - documentation-only change
+        - out-of-scope value or launch request
+    validations:
+      required: true
+
+  - type: dropdown
+    id: legal_review_required
+    attributes:
+      label: Legal review required
+      options:
+        - "false"
+        - "true"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: technical_review_required
+    attributes:
+      label: Technical review required
+      options:
+        - "false"
+        - "true"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: accepted_change_required
+    attributes:
+      label: Accepted change required
+      options:
+        - "false"
+        - "true"
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: boundary_confirmation
+    attributes:
+      label: Boundary confirmation
+      options:
+        - label: This maintainer response does not create token launch, market value, transferability, mainnet activation or investment advice.
+          required: true
+        - label: This maintainer response does not claim legal clearance.
+          required: true
+        - label: Legal review remains required before launch, listing, sale, transferability or market-value communication.
+          required: true
+

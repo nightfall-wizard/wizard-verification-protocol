@@ -1,0 +1,26 @@
+name: AUNEYA Local Claim Composer
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - "docs/auneya/AUNEYA-LOCAL-CLAIM-COMPOSER-V0.1.md"
+      - "tools/auneya/auneya_local_claim_composer.py"
+      - "conformance/auneya-local-claim-composer-v0.1.sh"
+      - "reports/auneya/local-claim-composer-v0.1/**"
+      - ".github/workflows/auneya-local-claim-composer.yml"
+
+jobs:
+  local-claim-composer:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Run AUNEYA local claim composer conformance
+        run: bash conformance/auneya-local-claim-composer-v0.1.sh

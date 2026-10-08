@@ -448,3 +448,228 @@ Remaining external completion: 1%.
 100 percent rule:
 
 Only mark the project 100 percent complete after merged PRs, green GitHub Actions, verified branch protection, reviewer or maintainer feedback, and recurring maintenance evidence are recorded.
+
+
+## AUNEYA-LOCAL-SIM-EVIDENCE-001
+
+Status: implemented.
+
+Completed:
+
+- local simulation evidence pack
+- JSON evidence report
+- Markdown evidence report
+- existing AUNEYA conformance orchestration
+- one-command local demo boundary validation
+- invalid private-data claim rejection validation
+- non-value simulation boundary preservation
+- CI-compatible conformance script
+
+Boundary:
+
+This step binds existing AUNEYA local simulation artifacts into one reproducible evidence pack.
+It does not create AUNEYA, neya, a token, market value, transferability, mainnet activity, financial claims, legal clearance or investment advice.
+
+Next milestone:
+
+AUNEYA external review readiness and public documentation quality gate.
+
+
+## AUNEYA-EXTERNAL-REVIEW-READY-001
+
+Status: implemented.
+
+Completed:
+
+- external review readiness document
+- public documentation quality gate
+- machine-checkable readiness report
+- JSON evidence report
+- Markdown evidence report
+- public boundary validation
+- reviewer checklist validation
+- CI-compatible conformance script
+
+Boundary:
+
+This step checks AUNEYA documentation readiness for external review.
+It does not create AUNEYA, neya, a token, market value, transferability, mainnet activity, legal clearance, financial claims or investment advice.
+
+Next milestone:
+
+AUNEYA external reviewer packet and issue-template workflow.
+
+
+## AUNEYA-REVIEWER-PACKET-001
+
+Status: implemented.
+
+Completed:
+
+- external reviewer packet
+- review feedback workflow
+- AUNEYA external review issue template
+- machine-checkable reviewer packet report
+- JSON evidence report
+- Markdown evidence report
+- public boundary validation
+- review category validation
+- CI-compatible conformance script
+
+Boundary:
+
+This step makes AUNEYA externally reviewable through structured documentation and issue-based feedback.
+It does not create AUNEYA, neya, a token, market value, transferability, mainnet activity, legal clearance, financial claims or investment advice.
+
+Next milestone:
+
+AUNEYA review intake evidence and maintainer response log.
+
+
+## AUNEYA-REVIEW-INTAKE-LOG-001
+
+Status: implemented.
+
+Completed:
+
+- review intake evidence model
+- zero-intake state documentation
+- maintainer response log
+- AUNEYA maintainer response issue template
+- machine-checkable review intake report
+- JSON evidence report
+- Markdown evidence report
+- public boundary validation
+- maintainer triage-state validation
+- CI-compatible conformance script
+
+Boundary:
+
+This step records review intake readiness and maintainer response structure.
+It does not create fake external review, AUNEYA, neya, a token, market value, transferability, mainnet activity, legal clearance, financial claims or investment advice.
+
+Next milestone:
+
+AUNEYA recurring review evidence refresh and external feedback trail.
+
+
+## AUNEYA-RECURRING-REVIEW-EVIDENCE-001
+
+Status: implemented.
+
+Completed:
+
+- recurring review evidence refresh document
+- external feedback trail document
+- scheduled GitHub Actions workflow
+- manual workflow_dispatch support
+- machine-checkable recurring review evidence report
+- JSON evidence report
+- Markdown evidence report
+- zero-feedback state validation
+- fake-feedback rejection rule
+- public boundary validation
+- CI-compatible conformance script
+
+Boundary:
+
+This step adds recurring review evidence refresh and an external feedback trail.
+It does not create fake external review, AUNEYA, neya, a token, market value, transferability, mainnet activity, legal clearance, financial claims or investment advice.
+
+Next milestone:
+
+AUNEYA first real external review request and public reviewer outreach log.
+
+
+## AUNEYA-LOCAL-LEDGER-WALLET-001
+
+Status: implemented.
+
+Completed:
+
+- local ledger simulator
+- local wallet simulator
+- local wallet address display
+- simulated non-value balance display
+- append-only local simulation entries
+- visible terminal wallet view
+- JSON export
+- Markdown export
+- wallet-view text export
+- machine-checkable ledger and wallet report
+- CI-compatible conformance script
+- GitHub Actions workflow
+
+Boundary:
+
+This step creates a tangible local ledger and local wallet simulator.
+It does not create a real wallet, private key, seed phrase, custody, AUNEYA, neya, a token, market value, transferability, mainnet activity, legal clearance, financial claims or investment advice.
+
+Next milestone:
+
+AUNEYA local browser dashboard and mobile-first read-only UI.
+
+
+## AUNEYA-LOCAL-DASHBOARD-001
+
+Status: implemented.
+
+Completed:
+
+- local browser dashboard
+- mobile-first read-only UI
+- static HTML export
+- local dashboard JSON report
+- local dashboard Markdown report
+- wallet snapshot display
+- balance display
+- ledger entry display
+- ledger hash display
+- boundary display
+- machine-checkable dashboard report
+- CI-compatible conformance script
+- GitHub Actions workflow
+
+Boundary:
+
+This step creates a local browser dashboard for the local ledger and wallet simulator.
+It does not create a real wallet, private key, seed phrase, custody, AUNEYA, neya, a token, market value, transferability, mainnet activity, legal clearance, financial claims or investment advice.
+
+Next milestone:
+
+AUNEYA local claim composer and dashboard live-refresh sandbox.
+
+
+## AUNEYA-LOCAL-CLAIM-COMPOSER-001
+
+Status: implemented.
+
+Completed:
+
+- local claim composer
+- dashboard live-refresh sandbox
+- local claim form
+- local state API
+- local claim POST endpoint
+- local claim validation
+- simulated prooflet generation
+- simulated event finalization
+- simulated ledger update
+- simulated balance update
+- local composer state JSON
+- local composer evidence JSON
+- local composer Markdown report
+- mobile-first composer HTML
+- machine-checkable composer report
+- CI-compatible conformance script
+- GitHub Actions workflow
+
+Boundary:
+
+This step creates a local claim composer and dashboard live-refresh sandbox.
+It does not create a real wallet, private key, seed phrase, custody, AUNEYA, neya, a token, market value, transferability, mainnet activity, legal clearance, financial claims or investment advice.
+
+Next milestone:
+
+AUNEYA local witness prooflet inspector and event detail explorer.
+
