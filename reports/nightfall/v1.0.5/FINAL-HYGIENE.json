@@ -1,0 +1,15 @@
+{
+  "id": "WVP-FINAL-HYGIENE",
+  "created_unix": 1791322650,
+  "removed_generated_artifacts": true,
+  "gitignore_updated": true,
+  "forbidden_patterns": [
+    "__pycache__/",
+    "*.py[cod]",
+    "*.pyo",
+    ".pytest_cache/",
+    ".mypy_cache/",
+    ".ruff_cache/"
+  ],
+  "boundary": "Repository hygiene does not certify Nightfall safety and is not an audit."
+}
