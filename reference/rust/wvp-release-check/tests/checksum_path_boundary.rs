@@ -109,3 +109,14 @@ fn malformed_duplicate_and_tampered_inputs_are_rejected() {
     fs::write(f.0.join("assets/release.bin"), b"changed").unwrap();
     assert!(f.check("release.bin").is_err());
 }
+
+#[test]
+fn conflicting_digest_records_are_rejected() {
+    let f = Fixture::new();
+    let conflicting = "0000000000000000000000000000000000000000000000000000000000000000";
+    let manifest = format!("{DIGEST}  release.bin\n{conflicting}  release.bin\n");
+    assert!(
+        f.check_raw(&manifest).is_err(),
+        "conflicting SHA256 entries for the same artifact were accepted"
+    );
+}
