@@ -72,11 +72,24 @@ fn verify_signature_asset_result(
     result
 }
 
+fn reject_symlink_input(path: &Path) -> Result<(), VerificationError> {
+    let metadata = fs::symlink_metadata(path).map_err(|e| VerificationError::Io(e.to_string()))?;
+    if !metadata.file_type().is_file() {
+        return Err(VerificationError::Io(
+            "signature verification input must be a regular non-symlink file".into(),
+        ));
+    }
+    Ok(())
+}
+
 pub(crate) fn verify_detached_signature(
     public_key: &Path,
     signature_file: &Path,
     signed_asset: &Path,
 ) -> Result<(), VerificationError> {
+    reject_symlink_input(public_key)?;
+    reject_symlink_input(signature_file)?;
+    reject_symlink_input(signed_asset)?;
     let output = Command::new("openssl")
         .args(["dgst", "-sha256", "-verify"])
         .arg(public_key)
@@ -207,6 +220,43 @@ mod tests {
         let result =
             verify_detached_signature(&fixture.public_key, &fixture.signature, &fixture.asset);
         assert!(result.is_ok());
+        let _ = fs::remove_dir_all(fixture.dir);
+    }
+
+    #[cfg(unix)]
+    #[test]
+    fn signature_verification_rejects_symlink_inputs() {
+        use std::os::unix::fs::symlink;
+
+        let fixture = build_signature_fixture("symlink-inputs");
+
+        for (label, position) in [("key", 0usize), ("signature", 1usize), ("asset", 2usize)] {
+            let link = fixture.dir.join(format!("{label}.link"));
+            let original = match position {
+                0 => &fixture.public_key,
+                1 => &fixture.signature,
+                _ => &fixture.asset,
+            };
+            symlink(original, &link).unwrap();
+
+            let key = if position == 0 {
+                &link
+            } else {
+                &fixture.public_key
+            };
+            let sig = if position == 1 {
+                &link
+            } else {
+                &fixture.signature
+            };
+            let asset = if position == 2 { &link } else { &fixture.asset };
+
+            assert!(
+                verify_detached_signature(key, sig, asset).is_err(),
+                "symlink {label} was accepted"
+            );
+        }
+
         let _ = fs::remove_dir_all(fixture.dir);
     }
 
