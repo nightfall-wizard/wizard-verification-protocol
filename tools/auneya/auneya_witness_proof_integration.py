@@ -52,6 +52,194 @@ def payload_hash(proof):
     return "sha256:" + hashlib.sha256(raw).hexdigest()
 
 
+
+def validate_proof_schema(proof):
+    """Validate the supported witness-proof schema rules."""
+    from datetime import datetime
+
+    schema_path = (
+        Path(__file__).resolve().parents[2]
+        / "schemas/auneya-witness-proof-v0.1.schema.json"
+    )
+    schema = json.loads(schema_path.read_text())
+
+    def check(value, rule):
+        kind = rule.get("type")
+
+        if kind == "object":
+            if not isinstance(value, dict):
+                return False
+            properties = rule.get("properties", {})
+            if not set(rule.get("required", [])).issubset(value):
+                return False
+            if rule.get("additionalProperties") is False:
+                if set(value) - set(properties):
+                    return False
+            for key, item in value.items():
+                if key in properties:
+                    if not check(item, properties[key]):
+                        return False
+
+        elif kind == "array":
+            if not isinstance(value, list):
+                return False
+            if len(value) < rule.get("minItems", 0):
+                return False
+            if len(value) > rule.get("maxItems", float("inf")):
+                return False
+            if not all(check(item, rule["items"]) for item in value):
+                return False
+
+        elif kind == "string":
+            if not isinstance(value, str):
+                return False
+            if len(value) < rule.get("minLength", 0):
+                return False
+            if len(value) > rule.get("maxLength", float("inf")):
+                return False
+            if "pattern" in rule:
+                if re.search(rule["pattern"], value) is None:
+                    return False
+            if rule.get("format") == "date-time":
+                try:
+                    if not value.endswith("Z") and not re.search(
+                        r"[+-][0-9]{2}:[0-9]{2}$", value
+                    ):
+                        return False
+                    datetime.fromisoformat(
+                        value.replace("Z", "+00:00")
+                    )
+                except ValueError:
+                    return False
+
+        elif kind == "boolean":
+            if type(value) is not bool:
+                return False
+
+        elif kind == "integer":
+            if type(value) is not int:
+                return False
+            if value < rule.get("minimum", float("-inf")):
+                return False
+            if value > rule.get("maximum", float("inf")):
+                return False
+
+        if "const" in rule and value != rule["const"]:
+            return False
+        if "enum" in rule and value not in rule["enum"]:
+            return False
+
+        return True
+
+
+    def schema_keywords_supported(rule):
+        if not isinstance(rule, dict):
+            return False
+
+        kind = rule.get("type")
+
+        allowed = {
+            "object": {
+                "properties", "required",
+                "additionalProperties",
+            },
+            "array": {
+                "items", "minItems", "maxItems",
+            },
+            "string": {
+                "minLength", "maxLength",
+                "pattern", "format",
+            },
+            "boolean": set(),
+            "integer": {
+                "minimum", "maximum",
+            },
+        }
+
+        if kind not in allowed:
+            return False
+
+        common = {"type", "const", "enum"}
+        metadata = {"$schema", "$id", "title"}
+
+        if set(rule) - common - metadata - allowed[kind]:
+            return False
+
+        if "format" in rule:
+            if kind != "string" or rule["format"] != "date-time":
+                return False
+
+        if "enum" in rule:
+            if not isinstance(rule["enum"], list):
+                return False
+            if not rule["enum"]:
+                return False
+
+        if "pattern" in rule:
+            if not isinstance(rule["pattern"], str):
+                return False
+            try:
+                re.compile(rule["pattern"])
+            except re.error:
+                return False
+
+        for key in ("minLength", "maxLength",
+                    "minItems", "maxItems",
+                    "minimum", "maximum"):
+            if key in rule:
+                value = rule[key]
+                if type(value) is not int or value < 0:
+                    return False
+
+        for minimum, maximum in (
+            ("minLength", "maxLength"),
+            ("minItems", "maxItems"),
+            ("minimum", "maximum"),
+        ):
+            if minimum in rule and maximum in rule:
+                if rule[minimum] > rule[maximum]:
+                    return False
+
+        if kind == "object":
+            if rule.get("additionalProperties") is not False:
+                return False
+
+            properties = rule.get("properties")
+            required = rule.get("required")
+
+            if not isinstance(properties, dict):
+                return False
+
+            if not isinstance(required, list):
+                return False
+
+            if not all(isinstance(x, str) for x in required):
+                return False
+
+            if len(required) != len(set(required)):
+                return False
+
+            if not set(required).issubset(properties):
+                return False
+
+            return all(
+                schema_keywords_supported(child)
+                for child in properties.values()
+            )
+
+        if kind == "array":
+            return schema_keywords_supported(
+                rule.get("items")
+            )
+
+        return True
+
+    if not schema_keywords_supported(schema):
+        return False
+
+    return check(proof, schema)
+
+
 def verify_proof(
     proof,
     expected_chain_id,
@@ -62,6 +250,12 @@ def verify_proof(
     """Fail closed using externally trusted verification context."""
 
     if not isinstance(proof, dict):
+        return False
+
+    try:
+        if not validate_proof_schema(proof):
+            return False
+    except (OSError, ValueError, TypeError, KeyError):
         return False
 
     if proof.get("schema_version") != "auneya-witness-proof-v0.1":
