@@ -94,6 +94,137 @@ class WitnessProofIntegrationTests(unittest.TestCase):
             self.signature,
         )
 
+
+    def test_signed_schema_invalid_extra_field_rejected(self):
+        proof = copy.deepcopy(self.proof)
+        proof["unexpected_security_field"] = "not_in_schema"
+        proof["integrity"]["proof_hash"] = payload_hash(proof)
+
+        self.message.write_bytes(
+            signing_message(
+                CHAIN,
+                self.witness,
+                payload_hash(proof),
+            )
+        )
+
+        openssl(
+            "pkeyutl", "-sign",
+            "-inkey", self.private,
+            "-rawin", "-in", self.message,
+            "-out", self.signature,
+        )
+
+        self.assertFalse(
+            self.check(proof),
+            "Schema-invalid signed proof must be rejected",
+        )
+
+
+    def test_unknown_schema_keyword_rejected(self):
+        from unittest.mock import patch
+
+        schema_path = (
+            ROOT / "schemas/"
+            "auneya-witness-proof-v0.1.schema.json"
+        )
+
+        schema = json.loads(schema_path.read_text())
+        schema["properties"]["proof_id"]["not"] = {
+            "type": "string"
+        }
+
+        original_read_text = Path.read_text
+
+        def patched_read_text(path, *args, **kwargs):
+            if path.resolve() == schema_path.resolve():
+                return json.dumps(schema)
+            return original_read_text(
+                path, *args, **kwargs
+            )
+
+        with patch.object(
+            Path, "read_text", patched_read_text
+        ):
+            self.assertFalse(
+                self.check(),
+                "Unsupported schema keyword must fail closed",
+            )
+
+
+    def test_schema_drift_rejected(self):
+        from unittest.mock import patch
+
+        schema_path = (
+            ROOT / "schemas/"
+            "auneya-witness-proof-v0.1.schema.json"
+        )
+        original = json.loads(schema_path.read_text())
+        original_read = Path.read_text
+
+        cases = {
+            "minimum_on_string": lambda s:
+                s["properties"]["proof_id"].update(
+                    {"minimum": 999999}
+                ),
+            "properties_on_string": lambda s:
+                s["properties"]["proof_id"].update(
+                    {"properties": {
+                        "forbidden": {"type": "boolean"}
+                    }}
+                ),
+            "required_on_string": lambda s:
+                s["properties"]["proof_id"].update(
+                    {"required": ["forbidden"]}
+                ),
+            "unknown_keyword": lambda s:
+                s["properties"]["non_value_notice"].update(
+                    {"not": {"type": "string"}}
+                ),
+            "unsupported_format": lambda s:
+                s["properties"]["created_at"].update(
+                    {"format": "email"}
+                ),
+            "missing_array_items": lambda s:
+                s["properties"]["evidence"].pop("items"),
+            "open_object": lambda s:
+                s["properties"]["witness"].update(
+                    {"additionalProperties": True}
+                ),
+            "invalid_required": lambda s:
+                s["properties"]["witness"].update(
+                    {"required": ["nonexistent"]}
+                ),
+            "negative_minimum": lambda s:
+                s["properties"]["timing"]["properties"][
+                    "duration_ms"
+                ].update({"minimum": -1}),
+            "invalid_pattern": lambda s:
+                s["properties"]["proof_id"].update(
+                    {"pattern": "["}
+                ),
+        }
+
+        for name, mutate in cases.items():
+            with self.subTest(case=name):
+                schema = copy.deepcopy(original)
+                mutate(schema)
+
+                def patched_read(path, *args, **kwargs):
+                    if path.resolve() == schema_path.resolve():
+                        return json.dumps(schema)
+                    return original_read(
+                        path, *args, **kwargs
+                    )
+
+                with patch.object(
+                    Path, "read_text", patched_read
+                ):
+                    self.assertFalse(
+                        self.check(),
+                        f"Schema drift accepted: {name}",
+                    )
+
     def test_valid_proof(self):
         self.assertTrue(self.check())
 
