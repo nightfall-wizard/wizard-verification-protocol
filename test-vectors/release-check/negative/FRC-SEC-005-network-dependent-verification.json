@@ -1,0 +1,10 @@
+{
+  "case_id": "FRC-SEC-005",
+  "description": "Reject core release verification that requires live network access",
+  "expected": "reject",
+  "invariant": "WVP-INV-005",
+  "verification": {
+    "requires_network": true,
+    "network_url": "https://example.invalid/live-release-state"
+  }
+}

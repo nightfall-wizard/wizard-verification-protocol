@@ -35,23 +35,13 @@ fn verify_checksum_asset_result(target: &str, tag: &str) -> Result<bool, Verific
             .file_name()
             .and_then(|name| name.to_str())
             .ok_or_else(|| VerificationError::InvalidUtf8Filename("checksum".to_string()))?;
-        let output = Command::new("sha256sum")
-            .arg("-c")
-            .arg(checksum_name)
-            .current_dir(&dir)
-            .output()
-            .map_err(|err| VerificationError::CommandFailed {
-                context: "failed to execute sha256sum".to_string(),
-                detail: err.to_string(),
-            })?;
-        if output.status.success() {
-            Ok(true)
-        } else {
-            Err(VerificationError::CommandFailed {
-                context: "sha256sum verification failed".to_string(),
-                detail: String::from_utf8_lossy(&output.stderr).trim().to_string(),
-            })
-        }
+        super::checksum_boundary::verify_checksum_directory(&dir, checksum_name).map_err(
+            |detail| VerificationError::CommandFailed {
+                context: "checksum boundary verification failed".to_string(),
+                detail,
+            },
+        )?;
+        Ok(true)
     })();
     let _ = fs::remove_dir_all(&dir);
     result
