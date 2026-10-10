@@ -1,0 +1,28 @@
+name: AUNEYA Authenticated ACK v0.3
+
+on:
+  pull_request:
+    paths:
+      - 'tools/auneya/auneya_authenticated_ack_v03.py'
+      - 'conformance/auneya-authenticated-ack-v0.3.sh'
+      - 'docs/auneya/AUNEYA-AUTHENTICATED-ACK-V0.3.md'
+      - '.github/workflows/auneya-authenticated-ack-v03.yml'
+
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  signed-ack:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Existing durable-delivery regression
+        run: bash conformance/auneya-durable-delivery-v0.2.sh
+
+      - name: Signed ACK and adversarial conformance
+        run: bash conformance/auneya-authenticated-ack-v0.3.sh
