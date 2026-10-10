@@ -1,0 +1,28 @@
+name: AUNEYA Trusted Node Identity v0.4
+
+on:
+  pull_request:
+    paths:
+      - 'tools/auneya/auneya_trusted_node_identity_v04.py'
+      - 'conformance/auneya-trusted-node-identity-v0.4.sh'
+      - 'docs/auneya/AUNEYA-TRUSTED-NODE-IDENTITY-V0.4.md'
+      - '.github/workflows/auneya-trusted-node-identity-v04.yml'
+
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  identity-conformance:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Existing Ed25519 ACK regression
+        run: bash conformance/auneya-authenticated-ack-v0.3.sh
+
+      - name: Trusted identity and key lifecycle tests
+        run: bash conformance/auneya-trusted-node-identity-v0.4.sh
