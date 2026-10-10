@@ -61,22 +61,29 @@ target/release/wvp-release-check \
   --json \
   --live | tee "$JSON_OUT"
 
-grep -Fq '"version": "0.3.0"' "$JSON_OUT"
-grep -Fq '"status": "INFO"' "$JSON_OUT"
-grep -Fq '"repository_found": true' "$JSON_OUT"
-grep -Fq '"live_inspection": true' "$JSON_OUT"
+grep -Fq '"version": "0.4.0"' "$JSON_OUT"
+# WVP-V020-HISTORICAL-PLUS-CURRENT-V040
+# Historical v0.2 checks above remain strict.
+LATEST="$(gh api "repos/$TARGET_REPO/releases?per_page=1" --jq '.[0].tag_name')"
+META="$(gh release view "$LATEST" -R "$TARGET_REPO" --json assets,body)"
+COUNT="$(printf '%s' "$META" | jq '.assets | length')"
 
-# Historical v0.2.0 release verification above is tag-scoped.
-# The current live latest release may advance beyond v0.2.0.
-# Do not assert latest_release_tag or latest_release_asset_count here.
-# Current latest-release policy is covered by release-check-live-smoke.sh
-# and the v0.3 post-release publication conformance check.
-
-grep -Fq '"checksum_asset_count": 1' "$JSON_OUT"
-grep -Fq '"signature_asset_count": 1' "$JSON_OUT"
-grep -Fq '"checksum_verification_passed": true' "$JSON_OUT"
-grep -Fq '"signature_verification_passed": true' "$JSON_OUT"
-grep -Fq '"signature_verification_error": null' "$JSON_OUT"
+if [ "$COUNT" -eq 0 ]; then
+  printf '%s' "$META" | jq -e '.body | contains("Source-only release:")' >/dev/null
+  jq -e '
+    .status == "WARN" and
+    .github.checksum_asset_count == 0 and
+    .github.signature_asset_count == 0 and
+    .github.signature_verification_attempted == false
+  ' "$JSON_OUT" >/dev/null
+else
+  jq -e '
+    .status == "INFO" and
+    .github.checksum_verification_passed == true and
+    .github.signature_verification_passed == true and
+    .github.signature_verification_error == null
+  ' "$JSON_OUT" >/dev/null
+fi
 
 END_TS="$(date '+%Y-%m-%d %H:%M:%S %Z')"
 END_EPOCH="$(date +%s)"

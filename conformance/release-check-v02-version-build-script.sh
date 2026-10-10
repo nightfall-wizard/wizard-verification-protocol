@@ -17,9 +17,9 @@ test -s "$MANIFEST"
 test -s "$LOCKFILE"
 test -x "$SCRIPT"
 
-grep -Fq 'version = "0.3.0"' "$MANIFEST"
+grep -Fq 'version = "0.4.0"' "$MANIFEST"
 grep -Fq 'name = "wvp-release-check"' "$LOCKFILE"
-grep -Fq 'version = "0.3.0"' "$LOCKFILE"
+grep -Fq 'version = "0.4.0"' "$LOCKFILE"
 
 grep -Fq 'EXPECTED_VERSION="0.2.0"' "$SCRIPT"
 grep -Fq 'cargo build --release' "$SCRIPT"
@@ -41,7 +41,7 @@ test -x "$BIN"
 
 OUT="$("$BIN" --target nightfall-wizard/wizard-verification-protocol --json)"
 echo "$OUT"
-echo "$OUT" | grep -Fq '"version": "0.3.0"'
+echo "$OUT" | grep -Fq '"version": "0.4.0"'
 
 END_TS="$(date '+%Y-%m-%d %H:%M:%S %Z')"
 END_EPOCH="$(date +%s)"

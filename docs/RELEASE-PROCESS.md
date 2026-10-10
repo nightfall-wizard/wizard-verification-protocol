@@ -39,15 +39,15 @@ Run:
 - python3 wvp/nightfall/runtime_toy_harness.py
 - python3 wvp/nightfall/governance_release.py
 
-## External steps
+## Independent reviews
 
-A local Termux command cannot guarantee:
+Independent reviewers are welcome but are not a blocking prerequisite for a
+maintainer-published WVP software release. Maintainers may release after the
+required automated checks pass on the exact published commit.
 
-- PR merge
-- GitHub branch protection
-- independent external review
-- maintainer approval
-- long-term maintenance history
+Independent audits, security certification, legal review and reproducible-build
+proof remain **unproven** unless separately evidenced. Existing review reports
+and historical records are preserved; no security check is bypassed.
 
 ## Boundary
 

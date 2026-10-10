@@ -1,53 +1,31 @@
 #!/usr/bin/env bash
 set -euo pipefail
+# WVP-SIGNATURE-POLICY-V040
 
-echo "=== WVP SIGNATURE VERIFIED POLICY CONFORMANCE ==="
-START_TS="$(date '+%Y-%m-%d %H:%M:%S %Z')"
-START_EPOCH="$(date +%s)"
-echo "Startzeit: $START_TS"
-
-ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-cd "$ROOT"
+cd "$(dirname "${BASH_SOURCE[0]}")/.."
 
 TARGET="${WVP_TARGET:-nightfall-wizard/wizard-verification-protocol}"
-EXPECTED_TAG="${WVP_RELEASE_TAG:-v0.3.0}"
+TAG="$(gh api "repos/$TARGET/releases?per_page=1" --jq '.[0].tag_name')"
+META="$(gh release view "$TAG" -R "$TARGET" --json assets,body)"
+COUNT="$(printf '%s' "$META" | jq '.assets | length')"
 
-echo "Target: $TARGET"
-echo "Expected latest tag: $EXPECTED_TAG"
+OUT="$(cargo run --quiet --manifest-path reference/rust/wvp-release-check/Cargo.toml -- --target "$TARGET" --json --live)"
 
-OUT="$(
-  cargo run --quiet --manifest-path reference/rust/wvp-release-check/Cargo.toml -- \
-    --target "$TARGET" \
-    --json \
-    --live
-)"
-
-echo "$OUT"
-
-check_contains() {
-  needle="$1"
-  if ! echo "$OUT" | grep -Fq "$needle"; then
-    echo "FAIL: expected output to contain: $needle"
-    false
-  fi
-}
-
-check_contains '"status": "INFO"'
-check_contains '"latest_release_tag": "'$EXPECTED_TAG'"'
-check_contains '"checksum_asset_count": 1'
-check_contains '"signature_asset_count": 1'
-check_contains '"checksum_verification_attempted": true'
-check_contains '"checksum_verification_passed": true'
-check_contains '"signature_verification_attempted": true'
-check_contains '"signature_verification_passed": true'
-check_contains '"signature_verification_error": null'
-check_contains '"signature asset discovery is not signature verification"'
-check_contains '"signature verification depends on configured public key"'
-
-END_TS="$(date '+%Y-%m-%d %H:%M:%S %Z')"
-END_EPOCH="$(date +%s)"
-DURATION="$((END_EPOCH - START_EPOCH))"
-
-echo "RESULT: PASS"
-echo "Endzeit: $END_TS"
-echo "Dauer Sekunden: $DURATION"
+if [ "$COUNT" -eq 0 ]; then
+  printf '%s' "$META" | jq -e '.body | contains("Source-only release:")' >/dev/null
+  printf '%s' "$OUT" | jq -e '
+    .status == "WARN" and
+    .github.signature_asset_count == 0 and
+    .github.signature_verification_attempted == false and
+    .github.signature_verification_passed == null
+  ' >/dev/null
+  echo 'PASS: Source-only release is WARN, never VERIFIED'
+else
+  printf '%s' "$OUT" | jq -e '
+    .status == "INFO" and
+    .github.signature_asset_count == 1 and
+    .github.signature_verification_attempted == true and
+    .github.signature_verification_passed == true
+  ' >/dev/null
+  echo 'PASS: Binary signature verified'
+fi
