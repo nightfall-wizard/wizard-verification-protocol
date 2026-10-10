@@ -1,0 +1,31 @@
+name: AUNEYA Durable Delivery v0.2
+
+on:
+  pull_request:
+    paths:
+      - "tools/auneya/auneya_durable_delivery_v02.py"
+      - "conformance/auneya-durable-delivery-v0.2.sh"
+      - "docs/auneya/AUNEYA-DURABLE-DELIVERY-V0.2.md"
+      - ".github/workflows/auneya-durable-delivery-v02.yml"
+
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  reliable-delivery:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: AUNEYA reliable delivery verification
+        run: |
+          openssl version
+          python3 --version
+          bash conformance/auneya-attestation-binding-v0.1.sh
+          bash conformance/auneya-witness-proof-integration-v0.2.sh
+          bash conformance/auneya-two-node-loopback-v0.1.sh
+          bash conformance/auneya-durable-delivery-v0.2.sh
