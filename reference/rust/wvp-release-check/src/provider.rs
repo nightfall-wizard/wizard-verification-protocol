@@ -80,7 +80,9 @@ fn inspect_github(target: &RepositoryTarget) -> ReleaseObservation {
         }
     };
 
-    let latest_endpoint = format!("repos/{target_string}/releases?per_page=1");
+    // Use GitHub latest stable release, not a prerelease.
+    // Preserve checksum and signature verification.
+    let latest_endpoint = format!("repos/{target_string}/releases/latest");
     let (
         latest_release_found,
         latest_release_tag,
@@ -90,7 +92,7 @@ fn inspect_github(target: &RepositoryTarget) -> ReleaseObservation {
     ) = match release_count {
         Some(0) => (Some(false), None, Some(0), Some(0), Some(0)),
         Some(_) => {
-            let tag = match gh_api(&latest_endpoint, ".[0].tag_name // \"\"") {
+            let tag = match gh_api(&latest_endpoint, ".tag_name // \"\"") {
                 Ok(value) if value.is_empty() => None,
                 Ok(value) => Some(value),
                 Err(err) => {
@@ -98,7 +100,7 @@ fn inspect_github(target: &RepositoryTarget) -> ReleaseObservation {
                     None
                 }
             };
-            let asset_count = match gh_count(&latest_endpoint, "[.[0].assets[]?] | length") {
+            let asset_count = match gh_count(&latest_endpoint, "[.assets[]?] | length") {
                 Ok(count) => Some(count),
                 Err(err) => {
                     errors.push(err);
@@ -107,7 +109,7 @@ fn inspect_github(target: &RepositoryTarget) -> ReleaseObservation {
             };
             let checksum_count = match gh_count(
                 &latest_endpoint,
-                r#"[.[0].assets[]? | select(.name | test("(?i)(sha256|sha512|checksums?|digest)"))] | length"#,
+                r#"[.assets[]? | select(.name | test("(?i)(sha256|sha512|checksums?|digest)"))] | length"#,
             ) {
                 Ok(count) => Some(count),
                 Err(err) => {
@@ -117,7 +119,7 @@ fn inspect_github(target: &RepositoryTarget) -> ReleaseObservation {
             };
             let signature_count = match gh_count(
                 &latest_endpoint,
-                r#"[.[0].assets[]? | select(.name | test("(?i)([.](sig|asc|minisig|gpg)$|[.]signature$)"))] | length"#,
+                r#"[.assets[]? | select(.name | test("(?i)([.](sig|asc|minisig|gpg)$|[.]signature$)"))] | length"#,
             ) {
                 Ok(count) => Some(count),
                 Err(err) => {
