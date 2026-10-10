@@ -17,6 +17,16 @@ if [ -z "$TAG" ] || [ "$TAG" = "null" ]; then
   false
 fi
 
+# WVP-SOURCE-ONLY-CHECKSUM-POLICY-V040
+META="$(gh release view "$TAG" --repo "$REPO" --json assets,body)"
+COUNT="$(printf '%s' "$META" | jq '.assets | length')"
+
+if [ "$COUNT" -eq 0 ]; then
+  printf '%s' "$META" | jq -e '.body | contains("Source-only release:")' >/dev/null
+  echo 'PASS (BOUNDED): No binary assets; no checksum verification claimed'
+  exit 0
+fi
+
 DL_DIR="$ROOT/target/wvp-self-release-checksum-$TAG-$(date +%Y%m%d-%H%M%S)"
 mkdir -p "$DL_DIR"
 

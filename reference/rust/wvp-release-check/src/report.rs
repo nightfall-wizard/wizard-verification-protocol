@@ -129,7 +129,7 @@ mod tests {
         let out = render_json(&cfg, Status::Warn, None);
         assert!(out.contains("\"schema_version\": 1"));
         assert!(out.contains("\"tool\": \"wvp-release-check\""));
-        assert!(out.contains("\"version\": \"0.3.0\""));
+        assert!(out.contains(&format!("\"version\": \"{}\"", VERSION)));
         assert!(out.contains("\"target\": \"nightfall-wizard/wizard-verification-protocol\""));
         assert!(out.contains("\"status\": \"WARN\""));
         assert!(out.contains("\"classification\": \"observed\""));
