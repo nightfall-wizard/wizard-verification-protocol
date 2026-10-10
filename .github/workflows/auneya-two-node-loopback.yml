@@ -1,0 +1,27 @@
+name: AUNEYA Two-Node Loopback
+
+on:
+  pull_request:
+    paths:
+      - "tools/auneya/auneya_two_node_research.py"
+      - "conformance/auneya-two-node-loopback-v0.1.sh"
+      - "docs/auneya/AUNEYA-TWO-NODE-LOOPBACK-V0.1.md"
+      - ".github/workflows/auneya-two-node-loopback.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  two-node:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Test AUNEYA two-node prototype
+        run: |
+          python3 --version
+          openssl version
+          bash conformance/auneya-two-node-loopback-v0.1.sh
