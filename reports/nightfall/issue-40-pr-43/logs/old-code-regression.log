@@ -1,0 +1,24 @@
+   Compiling nightfall-node v1.0.5 (/data/data/com.termux/files/home/wvp-nightfall-43/worktrees/baseline/crates/nightfall-node)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 7.34s
+     Running tests/reorg_fetch.rs (target/debug/deps/reorg_fetch-2127f8a0e4f65ce9)
+
+running 1 test
+test a_fresh_ahead_peer_holds_mining_however_long_the_sync_takes ... FAILED
+
+failures:
+
+---- a_fresh_ahead_peer_holds_mining_however_long_the_sync_takes stdout ----
+
+thread 'a_fresh_ahead_peer_holds_mining_however_long_the_sync_takes' (6863) panicked at crates/nightfall-node/tests/reorg_fetch.rs:121:5:
+assertion `left == right` failed: a node with a fresh peer 195,920 blocks ahead must keep waiting
+  left: None
+ right: Some(195920)
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    a_fresh_ahead_peer_holds_mining_however_long_the_sync_takes
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 20 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `-p nightfall-node --test reorg_fetch`
