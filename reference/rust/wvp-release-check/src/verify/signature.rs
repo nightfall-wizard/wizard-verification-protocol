@@ -237,7 +237,11 @@ mod tests {
                 1 => &fixture.signature,
                 _ => &fixture.asset,
             };
-            symlink(original, &link).unwrap();
+            let link_result = symlink(original, &link);
+            assert!(
+                link_result.is_ok(),
+                "failed to create {label} symlink: {link_result:?}"
+            );
 
             let key = if position == 0 {
                 &link
