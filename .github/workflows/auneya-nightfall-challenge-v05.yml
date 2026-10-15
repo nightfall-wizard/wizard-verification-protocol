@@ -1,0 +1,24 @@
+name: AUNEYA Nightfall Challenge v0.5
+
+on:
+  pull_request:
+    paths:
+      - 'tools/auneya/auneya_nightfall_challenge_v05.py'
+      - 'tests/test_auneya_nightfall_challenge_v05.py'
+      - 'docs/auneya/AUNEYA-NIGHTFALL-CHALLENGE-V0.5.md'
+      - '.github/workflows/auneya-nightfall-challenge-v05.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  adversarial-proof-tests:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Existing trusted identity regression
+        run: bash conformance/auneya-trusted-node-identity-v0.4.sh
+      - name: Nightfall observation and tamper/replay tests
+        run: PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tests -p test_auneya_nightfall_challenge_v05.py -v
