@@ -56,7 +56,7 @@ openssl dgst -sha256 \
 cargo build --release --manifest-path reference/rust/wvp-release-check/Cargo.toml
 
 JSON_OUT="$TMP_DIR/wvp-self-check.json"
-target/release/wvp-release-check \
+WVP_RELEASE_TAG="$TAG" target/release/wvp-release-check \
   --target "$TARGET_REPO" \
   --json \
   --live | tee "$JSON_OUT"
