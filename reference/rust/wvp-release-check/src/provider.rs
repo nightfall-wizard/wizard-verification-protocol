@@ -116,20 +116,20 @@ fn inspect_github(target: &RepositoryTarget) -> ReleaseObservation {
             };
         }
     };
-    let (latest_endpoint, selector) =
-        match release_query(&target_string, requested_tag.as_deref()) {
-            Ok(query) => query,
-            Err(err) => {
-                errors.push(err);
-                return ReleaseObservation {
-                    repository_found,
-                    release_count,
-                    tag_count,
-                    errors,
-                    ..ReleaseObservation::default()
-                };
-            }
-        };
+    let (latest_endpoint, selector) = match release_query(&target_string, requested_tag.as_deref())
+    {
+        Ok(query) => query,
+        Err(err) => {
+            errors.push(err);
+            return ReleaseObservation {
+                repository_found,
+                release_count,
+                tag_count,
+                errors,
+                ..ReleaseObservation::default()
+            };
+        }
+    };
     let tag_expression = format!("{selector}.tag_name // \"\"");
     let asset_count_expression = format!("[{selector}.assets[]?] | length");
     let checksum_expression = format!(
@@ -162,20 +162,14 @@ fn inspect_github(target: &RepositoryTarget) -> ReleaseObservation {
                     None
                 }
             };
-            let checksum_count = match gh_count(
-                &latest_endpoint,
-                &checksum_expression,
-            ) {
+            let checksum_count = match gh_count(&latest_endpoint, &checksum_expression) {
                 Ok(count) => Some(count),
                 Err(err) => {
                     errors.push(err);
                     None
                 }
             };
-            let signature_count = match gh_count(
-                &latest_endpoint,
-                &signature_expression,
-            ) {
+            let signature_count = match gh_count(&latest_endpoint, &signature_expression) {
                 Ok(count) => Some(count),
                 Err(err) => {
                     errors.push(err);
