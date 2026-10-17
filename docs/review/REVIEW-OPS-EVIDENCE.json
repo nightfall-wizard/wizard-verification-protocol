@@ -1,0 +1,51 @@
+{
+  "schema": "wvp.review_ops.v1",
+  "marker": "WVP-REVIEW-OPS-V1",
+  "status": "draft_for_review",
+  "scope": "external review operations process",
+  "documents": [
+    "docs/review/README.md",
+    "docs/review/EXTERNAL-REVIEW-PROCESS.md",
+    "docs/review/REVIEWER-CHECKLIST.md",
+    "docs/review/REVIEW-REQUEST-TEMPLATE.md",
+    "docs/review/MAINTAINER-RESPONSE-PROTOCOL.md",
+    "docs/review/BOUNDARY-GLOSSARY.md"
+  ],
+  "review_gate": {
+    "requires_formal_github_pr_review": true,
+    "issue_comment_alone_is_not_sufficient_for_branch_policy": true,
+    "admin_bypass_allowed": false,
+    "self_approval_counts_as_independent_review": false
+  },
+  "boundaries": {
+    "no_nightfall_safety_certification": true,
+    "no_cryptographic_audit_claim": true,
+    "no_consensus_correctness_claim": true,
+    "no_legal_advice": true,
+    "no_custody": true,
+    "no_financial_advice": true,
+    "no_investment_advice": true,
+    "no_token_sale": true,
+    "no_bounty": true,
+    "no_paid_review": true,
+    "no_market_value_claim": true,
+    "no_100_percent_completion_claim": true
+  },
+  "related_open_review_gates": [
+    {
+      "pr": 23,
+      "issue": 24,
+      "topic": "repository hygiene and branch protection readiness"
+    },
+    {
+      "pr": 26,
+      "issue": 34,
+      "topic": "maintainer triage evidence for external PR 25"
+    },
+    {
+      "pr": 28,
+      "issue": 29,
+      "topic": "WVP v0.5-RC1 public review"
+    }
+  ]
+}

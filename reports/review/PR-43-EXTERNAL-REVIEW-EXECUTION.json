@@ -1,0 +1,35 @@
+{
+  "schema": "wvp.pr_external_review_execution.v1",
+  "marker": "WVP-PR-43-EXTERNAL-REVIEW-EXECUTION",
+  "status": "prepared_for_independent_review",
+  "generated_utc": "2026-10-08T19:31:25Z",
+  "repository": "nightfall-wizard/wizard-verification-protocol",
+  "pull_request": 43,
+  "branch": "docs/external-review-ops-v1",
+  "head_commit": "29942e772164768b94b96e70a5e48445f612759a",
+  "base_commit": "22a45b5a0ab56c9017dfd5c3af55f0fc9b717944",
+  "local_verification": {
+    "review_ops_docs_check": "bash tools/check_review_ops_docs.sh",
+    "unit_tests": "python3 -m unittest discover -s tests -v"
+  },
+  "review_gate": {
+    "requires_formal_github_pr_review": true,
+    "issue_comment_alone_is_not_sufficient": true,
+    "self_approval_counts_as_independent_review": false,
+    "admin_bypass_allowed": false
+  },
+  "non_claims": {
+    "no_nightfall_safety_certification": true,
+    "no_cryptographic_audit": true,
+    "no_consensus_correctness_proof": true,
+    "no_legal_advice": true,
+    "no_custody": true,
+    "no_financial_advice": true,
+    "no_investment_advice": true,
+    "no_bounty": true,
+    "no_token": true,
+    "no_paid_review": true,
+    "no_market_value_claim": true,
+    "no_100_percent_completion_claim": true
+  }
+}
