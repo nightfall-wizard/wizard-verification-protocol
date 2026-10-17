@@ -46,6 +46,28 @@ fn gh_count(endpoint: &str, jq: &str) -> Result<usize, String> {
         .map_err(|err| err.to_string())
 }
 
+fn release_query(
+    target: &str,
+    release_tag: Option<&str>,
+) -> Result<(String, &'static str), String> {
+    match release_tag {
+        None => Ok((format!("repos/{target}/releases?per_page=1"), ".[0]")),
+        Some(tag) => {
+            if tag.is_empty()
+                || tag.len() > 128
+                || !tag.as_bytes()[0].is_ascii_alphanumeric()
+                || tag.contains("..")
+                || !tag
+                    .bytes()
+                    .all(|b| b.is_ascii_alphanumeric() || matches!(b, b'.' | b'_' | b'-'))
+            {
+                return Err("invalid WVP_RELEASE_TAG: expected a safe release tag".to_string());
+            }
+            Ok((format!("repos/{target}/releases/tags/{tag}"), ""))
+        }
+    }
+}
+
 fn inspect_github(target: &RepositoryTarget) -> ReleaseObservation {
     let target_string = target.to_string();
     let mut errors = Vec::new();
@@ -138,6 +160,14 @@ fn inspect_github(target: &RepositoryTarget) -> ReleaseObservation {
         None => (None, None, None, None, None),
     };
 
+    if let Some(expected_tag) = requested_tag.as_deref() {
+        if latest_release_tag.as_deref() != Some(expected_tag) {
+            errors.push(format!(
+                "requested WVP release tag {expected_tag} was not returned"
+            ));
+        }
+    }
+
     let (
         checksum_verification_attempted,
         checksum_verification_passed,
@@ -178,5 +208,33 @@ fn inspect_github(target: &RepositoryTarget) -> ReleaseObservation {
         checksum_verification_passed,
         checksum_verification_error,
         errors,
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn default_release_query_preserves_latest_release_behavior() {
+        assert_eq!(
+            release_query("owner/repo", None),
+            Ok(("repos/owner/repo/releases?per_page=1".to_string(), ".[0]"))
+        );
+    }
+
+    #[test]
+    fn selected_release_query_never_falls_back_to_latest() {
+        assert_eq!(
+            release_query("owner/repo", Some("v0.3.0")),
+            Ok(("repos/owner/repo/releases/tags/v0.3.0".to_string(), ""))
+        );
+    }
+
+    #[test]
+    fn selected_release_tag_rejects_unsafe_inputs() {
+        for tag in ["", "/bad", "../main", "-bad", "v/1", "x?y", "x#y", "x y"] {
+            assert!(release_query("owner/repo", Some(tag)).is_err(), "{tag}");
+        }
     }
 }
