@@ -134,13 +134,13 @@ jobs:
         run: ./conformance/release-check-v030-actual-version-bump.sh
 
       - name: WVP v0.3 unsigned asset staging conformance
-        run: ./conformance/release-check-v030-unsigned-asset-staging.sh
+        run: bash tools/check_historical_v030.sh stage
 
       - name: WVP v0.3 detached signature procedure conformance
-        run: ./conformance/release-check-v030-detached-signature-procedure.sh
+        run: bash tools/check_historical_v030.sh signature
 
       - name: WVP v0.3 local signing execution guard conformance
-        run: ./conformance/release-check-v030-local-signing-execution-guard.sh
+        run: bash tools/check_historical_v030.sh guard
 
       - name: WVP v0.3 post-release publication conformance
         run: ./conformance/release-check-v030-post-release-publication.sh

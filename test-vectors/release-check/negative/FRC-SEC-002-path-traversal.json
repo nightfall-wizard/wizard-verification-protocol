@@ -1,0 +1,11 @@
+{
+  "case_id": "FRC-SEC-002",
+  "description": "Reject release artifact path traversal",
+  "expected": "reject",
+  "invariant": "WVP-INV-002",
+  "artifact": {
+    "name": "../nightfall-wallet",
+    "version": "0.0.1",
+    "digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+  }
+}

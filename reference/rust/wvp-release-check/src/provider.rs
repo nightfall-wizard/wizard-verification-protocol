@@ -46,6 +46,28 @@ fn gh_count(endpoint: &str, jq: &str) -> Result<usize, String> {
         .map_err(|err| err.to_string())
 }
 
+fn release_query(
+    target: &str,
+    release_tag: Option<&str>,
+) -> Result<(String, &'static str), String> {
+    match release_tag {
+        None => Ok((format!("repos/{target}/releases/latest"), "")),
+        Some(tag) => {
+            if tag.is_empty()
+                || tag.len() > 128
+                || !tag.as_bytes()[0].is_ascii_alphanumeric()
+                || tag.contains("..")
+                || !tag
+                    .bytes()
+                    .all(|b| b.is_ascii_alphanumeric() || matches!(b, b'.' | b'_' | b'-'))
+            {
+                return Err("invalid WVP_RELEASE_TAG: expected a safe release tag".to_string());
+            }
+            Ok((format!("repos/{target}/releases/tags/{tag}"), ""))
+        }
+    }
+}
+
 fn inspect_github(target: &RepositoryTarget) -> ReleaseObservation {
     let target_string = target.to_string();
     let mut errors = Vec::new();
@@ -82,7 +104,34 @@ fn inspect_github(target: &RepositoryTarget) -> ReleaseObservation {
 
     // Use GitHub latest stable release, not a prerelease.
     // Preserve checksum and signature verification.
-    let latest_endpoint = format!("repos/{target_string}/releases/latest");
+    let requested_tag = match std::env::var("WVP_RELEASE_TAG") {
+        Ok(tag) => Some(tag),
+        Err(std::env::VarError::NotPresent) => None,
+        Err(std::env::VarError::NotUnicode(_)) => {
+            errors.push("invalid WVP_RELEASE_TAG: non-Unicode value".to_string());
+            return ReleaseObservation {
+                repository_found,
+                release_count,
+                tag_count,
+                errors,
+                ..ReleaseObservation::default()
+            };
+        }
+    };
+
+    let (latest_endpoint, _) = match release_query(&target_string, requested_tag.as_deref()) {
+        Ok(query) => query,
+        Err(err) => {
+            errors.push(err);
+            return ReleaseObservation {
+                repository_found,
+                release_count,
+                tag_count,
+                errors,
+                ..ReleaseObservation::default()
+            };
+        }
+    };
     let (
         latest_release_found,
         latest_release_tag,
@@ -138,6 +187,14 @@ fn inspect_github(target: &RepositoryTarget) -> ReleaseObservation {
         None => (None, None, None, None, None),
     };
 
+    if let Some(expected_tag) = requested_tag.as_deref() {
+        if latest_release_tag.as_deref() != Some(expected_tag) {
+            errors.push(format!(
+                "requested WVP release tag {expected_tag} was not returned"
+            ));
+        }
+    }
+
     let (
         checksum_verification_attempted,
         checksum_verification_passed,
@@ -178,5 +235,33 @@ fn inspect_github(target: &RepositoryTarget) -> ReleaseObservation {
         checksum_verification_passed,
         checksum_verification_error,
         errors,
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn default_release_query_preserves_latest_release_behavior() {
+        assert_eq!(
+            release_query("owner/repo", None),
+            Ok(("repos/owner/repo/releases/latest".to_string(), ""))
+        );
+    }
+
+    #[test]
+    fn selected_release_query_never_falls_back_to_latest() {
+        assert_eq!(
+            release_query("owner/repo", Some("v0.3.0")),
+            Ok(("repos/owner/repo/releases/tags/v0.3.0".to_string(), ""))
+        );
+    }
+
+    #[test]
+    fn selected_release_tag_rejects_unsafe_inputs() {
+        for tag in ["", "/bad", "../main", "-bad", "v/1", "x?y", "x#y", "x y"] {
+            assert!(release_query("owner/repo", Some(tag)).is_err(), "{tag}");
+        }
     }
 }

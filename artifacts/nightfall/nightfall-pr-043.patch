@@ -1,0 +1,139 @@
+From d709f7cab014fc6581bf5e7a5cdf62603979bb04 Mon Sep 17 00:00:00 2001
+From: parthod0x <parthms.id@gmail.com>
+Date: Tue, 6 Oct 2026 19:12:24 +0000
+Subject: [PATCH] Do not mine while a fresh peer is known to be ahead
+
+mining_should_wait applied the MAX_CATCHUP_WAIT_SECS escape in the branch where
+a peer has already been confirmed fresh AND ahead:
+
+    if best_peer_height <= our_height {
+        return None;
+    }
+    if now.saturating_sub(behind_since) > MAX_CATCHUP_WAIT_SECS {
+        return None;                      // <-- fires during a normal sync
+    }
+    Some(best_peer_height - our_height)
+
+That escape exists so an ISOLATED node is not bricked, but isolation is already
+decided above by `peer_fresh`. Past this point we know a live peer confirmed a
+greater height inside PEER_HEIGHT_TTL_SECS, so the node is syncing, not alone.
+
+MAX_CATCHUP_WAIT_SECS is 600. Every initial sync of a real chain takes far
+longer than ten minutes, so the window always expires mid-sync and mining
+starts regardless of how far behind the node is. It then mines at the low
+historical difficulty of its own stale tip, which is easy to hit, and builds a
+private chain -- precisely what this function's doc comment and the call site
+in mining_loop both warn against:
+
+    Every block mined while behind a peer is built on a tip that peer has
+    already moved past, so it lands on a branch that loses the moment the
+    two reconcile. The work is not merely wasted, it actively deepens a fork
+
+Observed on mainnet at 1.0.5. A node resyncing from genesis mined block 94,080
+eleven minutes after receiving that height from a peer, while still 196,000
+blocks behind, and could never reorg back:
+
+    06:47:47  extended +128 from 162.19.84.16:17891  -> blocks=94080
+    06:58:46  mined block 94080 difficulty=137542
+
+1,491 blocks were mined during that one resync. The node ended
+stalled_on_fork, rejecting every peer with "unexpected height", and only a full
+chain wipe recovered it. Reported in #40.
+
+The fix is to drop the escape from the fresh-and-ahead branch. If the peer
+really does go away its height ages past the TTL, peer_fresh turns false, and
+the escape above still releases mining as intended.
+
+Tests
+-----
+  a_fresh_ahead_peer_holds_mining_however_long_the_sync_takes
+      fails before (left: None, right: Some(195920)), passes after. Also
+      asserts the hold still holds a day later -- a long sync is not evidence
+      of isolation.
+
+  an_ahead_peer_going_stale_still_releases_mining
+      pins the behaviour the escape was written for, so this does not trade
+      one failure mode for another.
+
+reorg_fetch: 20 passed before, 21 passed after.
+Full workspace suite: 221 passed, 0 failed.
+---
+ crates/nightfall-node/src/runtime.rs       | 16 ++++++++--
+ crates/nightfall-node/tests/reorg_fetch.rs | 37 ++++++++++++++++++++++
+ 2 files changed, 50 insertions(+), 3 deletions(-)
+
+diff --git a/crates/nightfall-node/src/runtime.rs b/crates/nightfall-node/src/runtime.rs
+index 344df5d..7d3c53a 100644
+--- a/crates/nightfall-node/src/runtime.rs
++++ b/crates/nightfall-node/src/runtime.rs
+@@ -2926,9 +2926,19 @@ pub fn mining_should_wait(
+     if best_peer_height <= our_height {
+         return None;
+     }
+-    if now.saturating_sub(behind_since) > MAX_CATCHUP_WAIT_SECS {
+-        return None;
+-    }
++    // No catch-up escape here on purpose.
++    //
++    // MAX_CATCHUP_WAIT_SECS exists so an ISOLATED node is not bricked, and
++    // isolation is already decided above by `peer_fresh`. Reaching this point
++    // means a peer confirmed a greater height within PEER_HEIGHT_TTL_SECS, so
++    // we are syncing, not alone -- and any initial sync takes far longer than
++    // the 10 minute window. Applying the escape here made a node start mining
++    // while hundreds of thousands of blocks behind, at the low historical
++    // difficulty of its own stale tip, which forks it onto a private chain
++    // exactly as this function's own doc comment warns.
++    //
++    // If the peer really does go away, its height goes stale, `peer_fresh`
++    // turns false, and the escape above still applies.
+     Some(best_peer_height - our_height)
+ }
+ 
+diff --git a/crates/nightfall-node/tests/reorg_fetch.rs b/crates/nightfall-node/tests/reorg_fetch.rs
+index b66d6a1..96ea373 100644
+--- a/crates/nightfall-node/tests/reorg_fetch.rs
++++ b/crates/nightfall-node/tests/reorg_fetch.rs
+@@ -106,6 +106,43 @@ fn a_fresh_ahead_peer_holds_mining() {
+     );
+ }
+ 
++#[test]
++fn a_fresh_ahead_peer_holds_mining_however_long_the_sync_takes() {
++    // The catch-up escape must NOT apply while a live peer is known to be
++    // ahead. Every initial sync is longer than MAX_CATCHUP_WAIT_SECS, so
++    // letting the window expire here starts mining at the low historical
++    // difficulty of a stale tip and forks the node onto a private chain.
++    //
++    // Observed on mainnet: a node 196,000 blocks behind mined block 94,080
++    // eleven minutes after receiving that height from a peer, then could never
++    // reorg back. 1,491 blocks were mined during one resync.
++    let start = 1_800_000_000;
++    let now = start + MAX_CATCHUP_WAIT_SECS + 1;
++    assert_eq!(
++        mining_should_wait(94_080, 94_080, 290_000, now, start, now),
++        Some(195_920),
++        "a node with a fresh peer 195,920 blocks ahead must keep waiting"
++    );
++
++    // Still true much later -- a long sync is not evidence of isolation.
++    let much_later = start + 86_400;
++    assert_eq!(
++        mining_should_wait(94_080, 94_080, 290_000, much_later, start, much_later),
++        Some(195_920)
++    );
++}
++
++#[test]
++fn an_ahead_peer_going_stale_still_releases_mining() {
++    // The escape must survive for the case it was written for: the peer
++    // stops answering, its height ages past the TTL, and an otherwise
++    // isolated node must not stay bricked.
++    let start = 1_800_000_000;
++    let seen = start;
++    let now = seen + PEER_HEIGHT_TTL_SECS + MAX_CATCHUP_WAIT_SECS + 1;
++    assert_eq!(mining_should_wait(94_080, 94_080, 290_000, seen, start, now), None);
++}
++
+ #[test]
+ fn gossip_does_not_fill_the_dial_list() {
+     // A peers.json of 60 Tor exits used to launch 60 stay_connected threads.

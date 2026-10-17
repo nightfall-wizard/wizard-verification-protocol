@@ -13,10 +13,10 @@ TARGET="${WVP_TARGET:-nightfall-wizard/wizard-verification-protocol}"
 EXPECTED_TAG="${WVP_RELEASE_TAG:-v0.3.0}"
 
 echo "Target: $TARGET"
-echo "Expected latest tag: $EXPECTED_TAG"
+echo "Expected selected WVP release tag: $EXPECTED_TAG"
 
 OUT="$(
-  cargo run --quiet --manifest-path reference/rust/wvp-release-check/Cargo.toml -- \
+  WVP_RELEASE_TAG="$EXPECTED_TAG" cargo run --quiet --manifest-path reference/rust/wvp-release-check/Cargo.toml -- \
     --target "$TARGET" \
     --json \
     --live

@@ -1,0 +1,419 @@
+name: WVP Integration Diagnostic
+
+on:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  rust:
+    name: Full integration diagnostic
+    runs-on: ubuntu-24.04
+
+    steps:
+      - name: Checkout
+        id: diag_001
+        if: always()
+        continue-on-error: true
+        uses: actions/checkout@v4
+
+      - name: Toolchain info
+        id: diag_002
+        if: always()
+        continue-on-error: true
+        run: |
+          rustc --version
+          cargo --version
+
+      - name: Format check
+        id: diag_003
+        if: always()
+        continue-on-error: true
+        run: cargo fmt --all -- --check
+
+      - name: Clippy
+        id: diag_004
+        if: always()
+        continue-on-error: true
+        run: cargo clippy --workspace --all-targets -- -D warnings
+
+      - name: Tests
+        id: diag_005
+        if: always()
+        continue-on-error: true
+        run: cargo test --workspace --locked
+
+      - name: WVP adversarial classification invariant tests
+        id: diag_006
+        if: always()
+        continue-on-error: true
+        run: cargo test --workspace --locked adversarial
+
+      - name: WVP stable JSON report contract tests
+        id: diag_007
+        if: always()
+        continue-on-error: true
+        run: cargo test --workspace --locked report_contract
+
+      - name: WVP report v1 compatibility guard
+        id: diag_008
+        if: always()
+        continue-on-error: true
+        run: cargo test --workspace --locked compatibility_guard
+
+      - name: Example JSON output
+        id: diag_009
+        if: always()
+        continue-on-error: true
+        run: cargo run --manifest-path reference/rust/wvp-release-check/Cargo.toml -- --target nightfall-wizard/wizard-verification-protocol --json
+
+      - name: Release-check conformance smoke
+        id: diag_010
+        if: always()
+        continue-on-error: true
+        run: ./conformance/release-check-smoke.sh
+
+      - name: Release-check live GitHub metadata smoke
+        id: diag_011
+        if: always()
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: ./conformance/release-check-live-smoke.sh
+
+      - name: WVP self-release checksum conformance
+        id: diag_012
+        if: always()
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: ./conformance/release-check-self-release-checksum.sh
+
+      - name: WVP missing signature policy conformance
+        id: diag_013
+        if: always()
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: ./conformance/release-check-missing-signature-policy.sh
+
+      - name: WVP no-secret signing material conformance
+        id: diag_014
+        if: always()
+        continue-on-error: true
+        run: ./conformance/release-check-no-secret-signing-material.sh
+
+      - name: WVP signature tooling capability conformance
+        id: diag_015
+        if: always()
+        continue-on-error: true
+        run: ./conformance/release-check-signature-tooling-capability.sh
+
+      - name: WVP signature status model conformance
+        id: diag_016
+        if: always()
+        continue-on-error: true
+        run: ./conformance/release-check-signature-status-model.sh
+
+      - name: WVP public release verification key conformance
+        id: diag_017
+        if: always()
+        continue-on-error: true
+        run: ./conformance/release-check-public-key-policy.sh
+
+      - name: WVP self-release signature conformance
+        id: diag_018
+        if: always()
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: ./conformance/release-check-self-release-signature.sh
+
+      - name: WVP signature asset matching conformance
+        id: diag_019
+        if: always()
+        continue-on-error: true
+        run: ./conformance/release-check-signature-asset-matching.sh
+
+      - name: WVP signature tamper-negative conformance
+        id: diag_020
+        if: always()
+        continue-on-error: true
+        run: ./conformance/release-check-signature-tamper-negative.sh
+
+      - name: WVP v0.2 release candidate docs conformance
+        id: diag_021
+        if: always()
+        continue-on-error: true
+        run: ./conformance/release-check-v02-rc-docs.sh
+
+      - name: WVP v0.2 version and build script conformance
+        id: diag_022
+        if: always()
+        continue-on-error: true
+        run: ./conformance/release-check-v02-version-build-script.sh
+
+      - name: WVP v0.2.0 post-release conformance
+        id: diag_023
+        if: always()
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: ./conformance/release-check-v020-post-release.sh
+
+      - name: WVP reproducible-build evidence baseline conformance
+        id: diag_024
+        if: always()
+        continue-on-error: true
+        run: ./conformance/release-check-reproducible-build-evidence-baseline.sh
+
+      - name: WVP same-environment repeat-build conformance
+        id: diag_025
+        if: always()
+        continue-on-error: true
+        run: ./conformance/release-check-same-env-repeat-build.sh
+
+      - name: WVP independent-environment separation conformance
+        id: diag_026
+        if: always()
+        continue-on-error: true
+        run: ./conformance/release-check-independent-environment-separation.sh
+
+      - name: WVP CI build provenance artifact conformance
+        id: diag_027
+        if: always()
+        continue-on-error: true
+        run: ./conformance/release-check-ci-build-provenance-artifact.sh
+
+      - name: WVP CI build provenance artifact generation
+        id: diag_028
+        if: always()
+        continue-on-error: true
+        run: ./scripts/release/generate-ci-build-provenance-artifact.sh --require-clean
+
+      - name: Upload WVP CI build provenance artifact
+        id: diag_029
+        if: always()
+        continue-on-error: true
+        uses: actions/upload-artifact@v4
+        with:
+          name: wvp-ci-build-provenance-${{ github.sha }}
+          path: target/wvp-ci-build-provenance
+          if-no-files-found: error
+
+      - name: WVP v0.3 release readiness checklist conformance
+        id: diag_030
+        if: always()
+        continue-on-error: true
+        run: ./conformance/release-check-v030-readiness-checklist.sh
+
+
+      - name: WVP v0.3 release docs conformance
+        id: diag_031
+        if: always()
+        continue-on-error: true
+        run: ./conformance/release-check-v030-release-docs.sh
+
+      - name: WVP v0.3 version/release plan conformance
+        id: diag_032
+        if: always()
+        continue-on-error: true
+        run: ./conformance/release-check-v030-version-release-plan.sh
+
+      - name: WVP v0.3 actual version bump conformance
+        id: diag_033
+        if: always()
+        continue-on-error: true
+        run: ./conformance/release-check-v030-actual-version-bump.sh
+
+      - name: WVP v0.3 unsigned asset staging conformance
+        id: diag_034
+        if: always()
+        continue-on-error: true
+        run: bash tools/check_historical_v030.sh stage
+
+      - name: WVP v0.3 detached signature procedure conformance
+        id: diag_035
+        if: always()
+        continue-on-error: true
+        run: bash tools/check_historical_v030.sh signature
+
+      - name: WVP v0.3 local signing execution guard conformance
+        id: diag_036
+        if: always()
+        continue-on-error: true
+        run: bash tools/check_historical_v030.sh guard
+
+      - name: WVP v0.3 post-release publication conformance
+        id: diag_037
+        if: always()
+        continue-on-error: true
+        run: ./conformance/release-check-v030-post-release-publication.sh
+        env:
+          GH_TOKEN: ${{ github.token }}
+      - name: WVP Android-vs-CI local conformance script syntax
+        id: diag_038
+        if: always()
+        continue-on-error: true
+        run: bash -n ./conformance/release-check-android-vs-ci-build-provenance.sh
+
+      - name: WVP build provenance comparison format conformance
+        id: diag_039
+        if: always()
+        continue-on-error: true
+        run: ./conformance/release-check-build-provenance-comparison-format.sh
+
+      - name: WVP v0.4 scope plan conformance
+        id: diag_040
+        if: always()
+        continue-on-error: true
+        run: ./conformance/wvp-v040-scope-plan-conformance.sh
+
+      - name: WVP v0.4 release-check hardening matrix conformance
+        id: diag_041
+        if: always()
+        continue-on-error: true
+        run: ./conformance/wvp-v040-release-check-hardening-matrix-conformance.sh
+
+      - name: WVP v0.4 release-check fixture strategy conformance
+        id: diag_042
+        if: always()
+        continue-on-error: true
+        run: ./conformance/wvp-v040-release-check-fixture-strategy-conformance.sh
+
+      - name: WVP v0.4 FRC-007 fixture conformance
+        id: diag_043
+        if: always()
+        continue-on-error: true
+        run: ./conformance/wvp-v040-release-check-frc007-conformance.sh
+
+      - name: WVP v0.4 FRC-005 duplicate checksum fixture conformance
+        id: diag_044
+        if: always()
+        continue-on-error: true
+        run: ./conformance/wvp-v040-release-check-frc005-conformance.sh
+
+      - name: WVP v0.4 FRC-006 duplicate signature fixture conformance
+        id: diag_045
+        if: always()
+        continue-on-error: true
+        run: ./conformance/wvp-v040-release-check-frc006-conformance.sh
+
+      - name: WVP v0.4 FRC-003 signature without public key fixture conformance
+        id: diag_046
+        if: always()
+        continue-on-error: true
+        run: ./conformance/wvp-v040-release-check-frc003-conformance.sh
+
+      - name: WVP v0.4 FRC-004 public key without signature fixture conformance
+        id: diag_047
+        if: always()
+        continue-on-error: true
+        run: ./conformance/wvp-v040-release-check-frc004-conformance.sh
+
+      - name: WVP v0.4 fixture runner design conformance
+        id: diag_048
+        if: always()
+        continue-on-error: true
+        run: ./conformance/wvp-v040-release-check-fixture-runner-design-conformance.sh
+
+      - name: WVP v0.4 fixture index validator conformance
+        id: diag_049
+        if: always()
+        continue-on-error: true
+        run: ./conformance/wvp-v040-release-check-fixture-index-validator-conformance.sh
+
+      - name: WVP v0.4 fixture runner skeleton conformance
+        id: diag_050
+        if: always()
+        continue-on-error: true
+        run: ./conformance/wvp-v040-release-check-fixture-runner-skeleton-conformance.sh
+
+      - name: WVP v0.4 fixture runner semantic conformance
+        id: diag_051
+        if: always()
+        continue-on-error: true
+        run: ./conformance/wvp-v040-release-check-fixture-runner-semantic-conformance.sh
+
+      - name: WVP v0.4 fixture runner semantic coverage conformance
+        id: diag_052
+        if: always()
+        continue-on-error: true
+        run: ./conformance/wvp-v040-release-check-fixture-runner-semantic-coverage-conformance.sh
+
+      - name: WVP v0.4.1 adversarial fixture matrix conformance
+        id: diag_053
+        if: always()
+        continue-on-error: true
+        run: ./conformance/wvp-v041-adversarial-fixture-matrix-conformance.sh
+
+      - name: WVP v0.4 fixture runner report conformance
+        id: diag_054
+        if: always()
+        continue-on-error: true
+        run: ./conformance/wvp-v040-release-check-fixture-runner-report-conformance.sh
+
+      - name: WVP v0.4 release readiness checklist conformance
+        id: diag_055
+        if: always()
+        continue-on-error: true
+        run: ./conformance/wvp-v040-release-readiness-checklist-conformance.sh
+
+      - name: WVP v0.4 release notes draft conformance
+        id: diag_056
+        if: always()
+        continue-on-error: true
+        run: ./conformance/wvp-v040-release-notes-draft-conformance.sh
+
+      - name: WVP v0.4 final pre-release gate conformance
+        id: diag_057
+        if: always()
+        continue-on-error: true
+        run: ./conformance/wvp-v040-final-pre-release-gate-conformance.sh
+
+      - name: WVP v0.4 controlled release plan conformance
+        id: diag_058
+        if: always()
+        continue-on-error: true
+        run: ./conformance/wvp-v040-controlled-release-plan-conformance.sh
+
+      - name: WVP v0.4 pre-release prep stop marker conformance
+        id: diag_059
+        if: always()
+        continue-on-error: true
+        run: ./conformance/wvp-v040-pre-release-prep-stop-marker-conformance.sh
+
+      - name: WVP v0.4 public status alignment conformance
+        id: diag_060
+        if: always()
+        continue-on-error: true
+        run: ./conformance/wvp-v040-public-status-alignment-conformance.sh
+
+      - name: WVP v0.4 capabilities and usage conformance
+        id: diag_061
+        if: always()
+        continue-on-error: true
+        run: ./conformance/wvp-v040-capabilities-and-usage-conformance.sh
+
+      - name: Assert diagnostic results
+        if: always()
+        env:
+          STEPS_JSON: ${{ toJSON(steps) }}
+        run: |
+          python3 - <<'PY2'
+          import json, os
+          data = json.loads(os.environ['STEPS_JSON'])
+          failures = []
+          print('=== COMPLETE DIAGNOSTIC REPORT ===')
+          for key, step in data.items():
+              outcome = step.get('outcome', 'unknown')
+              print(key, outcome)
+              if outcome != 'success':
+                  failures.append((key, outcome))
+          print('FAILED OR SKIPPED:', failures)
+          if failures:
+              raise SystemExit(1)
+          print('ALL DIAGNOSTIC STEPS PASS')
+          PY2
