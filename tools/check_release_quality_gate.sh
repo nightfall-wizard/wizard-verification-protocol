@@ -1,0 +1,66 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+DOC="docs/RELEASE-QUALITY-GATE.md"
+WORKFLOW=".github/workflows/wvp-security-invariants.yml"
+
+fail() {
+  echo "FAIL: $1" >&2
+  exit 1
+}
+
+[ -f "$DOC" ] || fail "missing $DOC"
+[ -f "$WORKFLOW" ] || fail "missing $WORKFLOW"
+
+for required in \
+  "tools/check_security_invariants.sh" \
+  "tools/check_security_evidence_matrix.sh" \
+  "tools/check_security_threat_model.sh" \
+  "tools/check_rust_defensive_code.sh" \
+  "tools/check_cargo_supply_chain.sh" \
+  "tools/check_dependency_inventory.sh" \
+  "tools/check_release_evidence_bundle.sh" \
+  "tools/check_public_verification_guide.sh" \
+  "tools/check_security_artifact_manifest.sh" \
+  "cargo fmt --all -- --check" \
+  "cargo test --all"
+do
+  grep -q "$required" "$DOC" || fail "release quality document missing: $required"
+done
+
+grep -q "check_release_quality_gate.sh" "$WORKFLOW" || fail "workflow does not run release quality gate"
+
+echo "=== Gate 1: security invariants ==="
+bash tools/check_security_invariants.sh
+
+echo "=== Gate 2: security evidence matrix ==="
+bash tools/check_security_evidence_matrix.sh
+
+echo "=== Gate 3: security threat model ==="
+bash tools/check_security_threat_model.sh
+
+echo "=== Gate 4: Rust defensive-code baseline ==="
+bash tools/check_rust_defensive_code.sh
+
+echo "=== Gate 5: Cargo supply-chain reproducibility ==="
+bash tools/check_cargo_supply_chain.sh
+
+echo "=== Gate 6: Cargo dependency inventory ==="
+bash tools/check_dependency_inventory.sh
+
+echo "=== Gate 7: release evidence bundle ==="
+bash tools/check_release_evidence_bundle.sh
+
+echo "=== Gate 8: public verification guide ==="
+bash tools/check_public_verification_guide.sh
+
+echo "=== Gate 9: security artifact manifest ==="
+bash tools/check_security_artifact_manifest.sh
+
+echo "=== Gate 10: Rust formatting ==="
+cargo fmt --all -- --check
+
+echo "=== Gate 11: full Rust test suite ==="
+cargo test --all
+
+echo "PASS: release quality gate passed"

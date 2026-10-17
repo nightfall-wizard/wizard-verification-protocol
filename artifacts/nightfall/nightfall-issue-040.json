@@ -1,0 +1,78 @@
+{
+  "url": "https://api.github.com/repos/Instinctes/nightfall/issues/40",
+  "repository_url": "https://api.github.com/repos/Instinctes/nightfall",
+  "labels_url": "https://api.github.com/repos/Instinctes/nightfall/issues/40/labels{/name}",
+  "comments_url": "https://api.github.com/repos/Instinctes/nightfall/issues/40/comments",
+  "events_url": "https://api.github.com/repos/Instinctes/nightfall/issues/40/events",
+  "html_url": "https://github.com/Instinctes/nightfall/issues/40",
+  "id": 5707486406,
+  "node_id": "I_kwDOT2kZwM8AAAABVDFUxg",
+  "number": 40,
+  "title": "Node permanently stalled on a fork: 19h at the same height, no recovery path, reports mining:true throughout",
+  "user": {
+    "login": "parthod0x",
+    "id": 260393540,
+    "node_id": "U_kgDOD4VKRA",
+    "avatar_url": "https://avatars.githubusercontent.com/u/260393540?v=4",
+    "gravatar_id": "",
+    "url": "https://api.github.com/users/parthod0x",
+    "html_url": "https://github.com/parthod0x",
+    "followers_url": "https://api.github.com/users/parthod0x/followers",
+    "following_url": "https://api.github.com/users/parthod0x/following{/other_user}",
+    "gists_url": "https://api.github.com/users/parthod0x/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/parthod0x/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/parthod0x/subscriptions",
+    "organizations_url": "https://api.github.com/users/parthod0x/orgs",
+    "repos_url": "https://api.github.com/users/parthod0x/repos",
+    "events_url": "https://api.github.com/users/parthod0x/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/parthod0x/received_events",
+    "type": "User",
+    "user_view_type": "public",
+    "site_admin": false
+  },
+  "labels": [
+
+  ],
+  "state": "open",
+  "locked": false,
+  "assignees": [
+
+  ],
+  "milestone": null,
+  "comments": 1,
+  "created_at": "2026-10-05T06:32:02Z",
+  "updated_at": "2026-10-06T18:26:10Z",
+  "closed_at": null,
+  "assignee": null,
+  "author_association": "NONE",
+  "active_lock_reason": null,
+  "sub_issues_summary": {
+    "total": 0,
+    "completed": 0,
+    "percent_completed": 0
+  },
+  "issue_dependencies_summary": {
+    "blocked_by": 0,
+    "total_blocked_by": 0,
+    "blocking": 0,
+    "total_blocking": 0
+  },
+  "body": "## Summary\n\nA mining node wedged itself onto a minority fork and **never recovered**. It sat at the same height for 19 hours while the network advanced 4,600 blocks, rejecting every peer's chain, and there is no command to get it unstuck. The only way out was to delete `blocks.bin` and resync from genesis.\n\nThe failure is silent: throughout, `status` reported `\"mining\": true`. Nothing was being mined.\n\n```\nnightfalld 1.0.5   (6b93cd3)\nmainnet, protocol_version 8, wire_version 6\nUbuntu 26.04 (WSL2), AMD Ryzen 9 5900HX, 11 mining threads\n```\n\n## What happened\n\nThe node was syncing and mining normally, then stopped dead at height 280,537:\n\n```\n11:03:49  accepted block 280524 from seed2.nightfallcoin.org:17891\n11:04:01  accepted block 280525 from 162.19.84.16:17891\n11:04:14  accepted block 280526 from 162.19.84.16:17891\n11:04:22  mined block 280527 hash=329d7885... difficulty=34996\n11:05:05  accepted block 280531 from seed3.nightfallcoin.org:17891   <- 528/529/530 never logged\n11:06:21  accepted block 280533 from seed2.nightfallcoin.org:17891   <- 532 never logged\n11:06:23  accepted block 280534 from seed2.nightfallcoin.org:17891\n11:07:00  mined block 280535 hash=ebcec53f... difficulty=34370\n11:08:02  mined block 280536 hash=b95ec9ae... difficulty=34420\n11:08:11  mined block 280537 hash=bf662ef6... difficulty=30957\n          ... nothing further. blocks.bin was never written again.\n```\n\nTwo things stand out:\n\n1. **The accepted sequence has gaps.** 280527 → 280531 → 280533. Either those heights arrived without being logged, or the node advanced its tip across heights it never linked. I cannot tell which from the logs alone, but the jumps immediately precede the wedge.\n2. **It mined three blocks on top** (280535–280537) and then could never reorg away from them.\n\n## The stuck state\n\nAfter that point, every peer was rejected, forever:\n\n```\npeer seed.nightfallcoin.org:17891 is ahead on a fork — fetching their chain\npeer seed.nightfallcoin.org:17891 offered an invalid chain: unexpected height\npeer seed2.nightfallcoin.org:17891 is ahead on a fork — fetching their chain\npeer seed2.nightfallcoin.org:17891 offered an invalid chain: unexpected height\n...\n```\n\nTally over the incident:\n\n```\n2071  unexpected height\n  18  previous hash does not link to our tip\n```\n\nAll four peers, in rotation, indefinitely. `status` at the 19-hour mark:\n\n```json\n{\n  \"tip_height\": 280537,\n  \"best_peer_height\": 285144,\n  \"stalled_on_fork\": true,\n  \"reorg_in_flight\": false,\n  \"fork_rewind\": 0,\n  \"total_work\": 62532090330,\n  \"blocks\": 280538,\n  \"live_peers\": 4,\n  \"mining\": true,\n  \"mining_idle\": \"behind a peer\",\n  \"supply_invariant_ok\": true\n}\n```\n\n`stalled_on_fork: true` with `fork_rewind: 0` — the node knows it is stalled on a fork and never attempts a rewind.\n\n## Why this is worse than a sync hiccup\n\n- **It is permanent.** 19 hours, 4,600 blocks, four healthy peers, zero progress. It did not recover on its own and there is no reason to think it ever would.\n- **It is silent.** `\"mining\": true` the whole time. A miner watching that field sees a healthy node. The real state is only visible in `mining_idle` or `stalled_on_fork`, and nothing warns.\n- **There is no recovery path.** The CLI offers `banner, init, status, tip, path, mine, run, export-snapshot, migrate-storage, import-snapshot` — nothing to rewind, invalidate a block, or force a reorg. `import-snapshot` needs a snapshot that a stalled node has no way to obtain.\n- **The only fix is destructive.** Stop the node, move `blocks.bin` (396 MB) aside, re-`init`, resync from genesis. On this connection that is many hours, during which no mining happens either.\n- **Blocks mined on the fork are lost.** 280535–280537 are not on the canonical chain. Worse, the wallet scans the *node's* chain, so the reported balance silently included fork-only coins until the resync corrected it.\n\n## Suggested directions\n\nTaking these roughly in order of value:\n\n1. **Make `stalled_on_fork` recoverable.** If the node can detect the state — and it does, it sets the flag — it could rewind N blocks behind the common ancestor and re-request. `fork_rewind` already exists in the status payload and stayed 0 throughout, which suggests the mechanism is either unimplemented or never triggered.\n2. **Add an escape hatch**, e.g. `nightfalld rewind --to <height>` or `invalidate-block <hash>`. Even a blunt one would have turned a multi-hour resync into seconds. This is the smallest change with the largest effect.\n3. **Make the silence loud.** When `stalled_on_fork` has been true for more than a few minutes, log a `WARN`/`ERROR` rather than only `INFO`-level fork-fetch chatter, and consider reflecting it in `mining` rather than only `mining_idle`. A node that cannot mine should not report `\"mining\": true`.\n4. **Investigate the height gaps.** 280527 → 280531 → 280533 in `accepted block` lines looks like the proximate cause rather than a logging artifact, and `unexpected height` being the dominant rejection (2071 of 2089) points the same way — the node's idea of its own height disagrees with what peers offer.\n\n## Artifacts\n\nI still have the forked `blocks.bin` (396 MB, tip `bf662ef6ad8d6672d4f687aa45df2c6e114c92e0678bb92175519db88ff37597`, 280,538 blocks) and the full `node.log`. Happy to upload either, or run any diagnostic against the preserved chain — it is archived, not deleted, precisely so this is reproducible from the failed state.\n\nAfter the resync the node is healthy again (`stalled_on_fork: false`, tip climbing), so this is a report rather than a request for help.\n",
+  "closed_by": null,
+  "reactions": {
+    "url": "https://api.github.com/repos/Instinctes/nightfall/issues/40/reactions",
+    "total_count": 0,
+    "+1": 0,
+    "-1": 0,
+    "laugh": 0,
+    "hooray": 0,
+    "confused": 0,
+    "heart": 0,
+    "rocket": 0,
+    "eyes": 0
+  },
+  "timeline_url": "https://api.github.com/repos/Instinctes/nightfall/issues/40/timeline",
+  "performed_via_github_app": null,
+  "state_reason": null,
+  "pinned_comment": null
+}
