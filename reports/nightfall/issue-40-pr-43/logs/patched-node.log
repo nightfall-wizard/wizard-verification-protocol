@@ -1,0 +1,68 @@
+   Compiling nightfall-node v1.0.5 (/data/data/com.termux/files/home/wvp-nightfall-43/worktrees/patched/crates/nightfall-node)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 17.12s
+     Running unittests src/lib.rs (target/debug/deps/nightfall_node-e968e8085874f5af)
+
+running 11 tests
+test runtime::ibd_claim_tests::claim_pointer_catches_up_after_ingest ... ok
+test runtime::ibd_claim_tests::distinct_pages_then_rewind_at_the_cap ... ok
+test rpc::tests::loopback_detection ... ok
+test runtime::sync_hold_tests::a_deep_fork_is_a_dead_branch ... ok
+test mobile::tests::the_public_endpoint_serves_only_what_it_is_meant_to ... ok
+test runtime::sync_hold_tests::a_fork_is_not_one_block_behind ... ok
+test runtime::sync_hold_tests::lag_is_a_distance ... ok
+test session::tests::inbound_sessions_do_not_count_as_outbound ... ok
+test session::tests::insert_and_remove_are_visible ... ok
+test session::tests::inbound_and_outbound_to_the_same_listen_addr_do_not_collide ... ok
+test session::tests::stem_skips_the_peer_we_heard_the_tx_from ... ok
+
+test result: ok. 11 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+
+     Running unittests src/main.rs (target/debug/deps/nightfalld-f43f542cfb117c05)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/introducer.rs (target/debug/deps/introducer-fa4114718e2c526d)
+
+running 5 tests
+test hello_ok_states_whether_this_node_is_pruned ... ok
+test an_introducer_answers_hands_over_and_hangs_up ... ok
+test a_hello_without_the_new_fields_is_still_accepted ... ok
+test an_introduction_costs_no_session_seat ... ok
+test a_normal_node_keeps_the_session ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.03s
+
+     Running tests/reorg_fetch.rs (target/debug/deps/reorg_fetch-2127f8a0e4f65ce9)
+
+running 21 tests
+test a_fresh_ahead_peer_holds_mining_however_long_the_sync_takes ... ok
+test a_fresh_equal_peer_lets_us_mine ... ok
+test a_fresh_ahead_peer_holds_mining ... ok
+test a_liar_advertising_u64_max_is_capped ... ok
+test a_loaded_chain_does_not_mine_before_a_peer_speaks ... ok
+test a_newcomer_is_never_the_victim ... ok
+test a_peer_thousands_ahead_on_a_shallow_fork_is_still_fetched ... ok
+test a_short_peer_is_not_padded ... ok
+test a_suffix_after_a_recent_ancestor_is_fetched_whole ... ok
+test a_synced_inbound_gives_up_its_seat ... ok
+test an_ahead_peer_going_stale_still_releases_mining ... ok
+test catching_up_inbounds_are_not_evicted ... ok
+test empty_node_may_mine_without_peers ... ok
+test genesis_only_peer_is_one_block ... ok
+test gossip_does_not_fill_the_dial_list ... ok
+test isolated_node_mines_after_the_catchup_window ... ok
+test nothing_to_fetch_past_their_tip ... ok
+test outbound_sessions_are_not_evicted ... ok
+test stale_peer_height_is_not_trusted ... ok
+test the_directory_names_seeds_and_reachable_listeners_only ... ok
+test we_only_remember_seeds_and_confirmed_peers ... ok
+
+test result: ok. 21 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+
+   Doc-tests nightfall_node
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s

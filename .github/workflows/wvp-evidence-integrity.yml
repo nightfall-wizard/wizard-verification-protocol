@@ -1,0 +1,69 @@
+name: WVP Evidence Integrity
+
+on:
+  pull_request:
+    paths:
+      - "reports/nightfall/issue-40-pr-43/**"
+      - ".github/workflows/wvp-evidence-integrity.yml"
+  push:
+    paths:
+      - "reports/nightfall/issue-40-pr-43/**"
+      - ".github/workflows/wvp-evidence-integrity.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  evidence-integrity:
+    name: Verify evidence integrity
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Verify evidence files and checksums
+        shell: bash
+        run: |
+          set -Eeuo pipefail
+
+          DIR="reports/nightfall/issue-40-pr-43"
+          cd "$DIR"
+
+          test -s REPORT.md
+          test -s LIMITATIONS.md
+          test -s SHA256SUMS.txt
+
+          for name in \
+            baseline \
+            patched-regression \
+            patched-node \
+            old-code-regression \
+            fixed-code-regression
+          do
+            test -s "logs/$name.log"
+            grep -q "logs/$name.log" SHA256SUMS.txt
+          done
+
+          sha256sum --check --strict SHA256SUMS.txt
+
+      - name: Verify recorded test outcomes
+        shell: bash
+        run: |
+          set -Eeuo pipefail
+
+          DIR="reports/nightfall/issue-40-pr-43"
+          cd "$DIR"
+
+          grep -q 'test result: ok' logs/baseline.log
+          grep -q 'test result: ok' logs/patched-regression.log
+          grep -q 'test result: ok' logs/patched-node.log
+
+          grep -q 'FAILED' logs/old-code-regression.log
+          grep -q 'test result: FAILED' logs/old-code-regression.log
+
+          grep -q '1 passed; 0 failed' \
+            logs/fixed-code-regression.log
+
+          echo "Evidence consistency checks passed."
