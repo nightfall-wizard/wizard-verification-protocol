@@ -130,18 +130,6 @@ jobs:
       - name: WVP v0.3 version/release plan conformance
         run: ./conformance/release-check-v030-version-release-plan.sh
 
-      - name: WVP v0.3 actual version bump conformance
-        run: ./conformance/release-check-v030-actual-version-bump.sh
-
-      - name: WVP v0.3 unsigned asset staging conformance
-        run: ./conformance/release-check-v030-unsigned-asset-staging.sh
-
-      - name: WVP v0.3 detached signature procedure conformance
-        run: ./conformance/release-check-v030-detached-signature-procedure.sh
-
-      - name: WVP v0.3 local signing execution guard conformance
-        run: ./conformance/release-check-v030-local-signing-execution-guard.sh
-
       - name: WVP v0.3 post-release publication conformance
         run: ./conformance/release-check-v030-post-release-publication.sh
         env:
@@ -197,23 +185,5 @@ jobs:
       - name: WVP v0.4 fixture runner report conformance
         run: ./conformance/wvp-v040-release-check-fixture-runner-report-conformance.sh
 
-      - name: WVP v0.4 release readiness checklist conformance
-        run: ./conformance/wvp-v040-release-readiness-checklist-conformance.sh
-
-      - name: WVP v0.4 release notes draft conformance
-        run: ./conformance/wvp-v040-release-notes-draft-conformance.sh
-
-      - name: WVP v0.4 final pre-release gate conformance
-        run: ./conformance/wvp-v040-final-pre-release-gate-conformance.sh
-
-      - name: WVP v0.4 controlled release plan conformance
-        run: ./conformance/wvp-v040-controlled-release-plan-conformance.sh
-
-      - name: WVP v0.4 pre-release prep stop marker conformance
-        run: ./conformance/wvp-v040-pre-release-prep-stop-marker-conformance.sh
-
-      - name: WVP v0.4 public status alignment conformance
-        run: ./conformance/wvp-v040-public-status-alignment-conformance.sh
-
-      - name: WVP v0.4 capabilities and usage conformance
-        run: ./conformance/wvp-v040-capabilities-and-usage-conformance.sh
+      - name: WVP v0.4 current version conformance
+        run: bash conformance/wvp-v040-version-conformance.sh

@@ -78,7 +78,7 @@ PY
 
 OUT="$("$OUT_DIR/wvp-release-check-native" --target nightfall-wizard/wizard-verification-protocol --json)"
 echo "$OUT"
-echo "$OUT" | grep -Fq '"version": "0.3.0"'
+echo "$OUT" | grep -Fq '"version": "0.4.0"'
 
 if [ "${GITHUB_ACTIONS:-false}" = "true" ]; then
   python3 - "$OUT_DIR/CI-BUILD-PROVENANCE-MANIFEST.json" <<'PY'
