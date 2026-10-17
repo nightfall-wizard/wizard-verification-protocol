@@ -1,0 +1,18 @@
+{
+  "case_id": "FRC-SEC-003",
+  "description": "Reject duplicate artifact identity with conflicting digest",
+  "expected": "reject",
+  "invariant": "WVP-INV-003",
+  "artifacts": [
+    {
+      "name": "nightfall-wallet",
+      "version": "0.0.1",
+      "digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    },
+    {
+      "name": "nightfall-wallet",
+      "version": "0.0.1",
+      "digest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    }
+  ]
+}

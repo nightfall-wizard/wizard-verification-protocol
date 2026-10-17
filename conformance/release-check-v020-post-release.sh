@@ -56,12 +56,12 @@ openssl dgst -sha256 \
 cargo build --release --manifest-path reference/rust/wvp-release-check/Cargo.toml
 
 JSON_OUT="$TMP_DIR/wvp-self-check.json"
-target/release/wvp-release-check \
+WVP_RELEASE_TAG="$TAG" target/release/wvp-release-check \
   --target "$TARGET_REPO" \
   --json \
   --live | tee "$JSON_OUT"
 
-grep -Fq '"version": "0.3.0"' "$JSON_OUT"
+grep -Fq '"version": "0.4.0"' "$JSON_OUT"
 grep -Fq '"status": "INFO"' "$JSON_OUT"
 grep -Fq '"repository_found": true' "$JSON_OUT"
 grep -Fq '"live_inspection": true' "$JSON_OUT"

@@ -1,0 +1,26 @@
+{
+  "base_commit": "55d72736e8641043fde82429879c65bbe94bab41",
+  "scope": "WVP-INV-002 checksum artifact paths",
+  "baseline": "behavior-preserving extraction of prior sha256sum -c invocation",
+  "baseline_positive_control": "pass",
+  "baseline_negative_tests": "3 expected failures",
+  "fixed_regression_suite": "pass",
+  "path_guard_mutation": "detected",
+  "rust_fmt_clippy_tests": "pass",
+  "python_tests": "pass",
+  "release_quality_gate": "pass",
+  "remote_ci": "not_yet_observed",
+  "independent_audit": false,
+  "source_sha256": {
+    "reference/rust/wvp-release-check/src/verify/checksum_boundary.rs": "0ba1470f190068bcb153f6e3ff6f246fc71e98f75766b955cab384125f402196",
+    "reference/rust/wvp-release-check/src/verify/checksum.rs": "7a6bbfec507c87499488fd0f7b5d38105318e545c735ba1ead2139a01b3ddd90",
+    "reference/rust/wvp-release-check/tests/checksum_path_boundary.rs": "086fb7b73441ff004ee2b10d4427215110b90fb9998cb93d29d416ae082b4070"
+  },
+  "evidence_log_sha256": {
+    "baseline-absolute_path_is_rejected.log": "4fb9ca010a5f7a05929de56832bab7b85bf686525da6645d2d1ae3e792be327e",
+    "baseline-fixture_traversal_is_rejected.log": "0bd8903cd74d1ac876b820adfe6bf2ed2a3bd46fa0626aa59ddd783e082304ac",
+    "baseline-symlink_escape_is_rejected.log": "e2684d6ae1a13e4752554f296d743df2e24d257987ef924887964fed94aebcce",
+    "baseline-valid.log": "75cf00ed881ec8dad69fc61979f1ab7345ac78b75b8bebbbbc545dab698c19d0",
+    "mutation.log": "d3820cecaef871100672f2c9749cdbd23dc8ce523bd79c77007c5e10105b9067"
+  }
+}
