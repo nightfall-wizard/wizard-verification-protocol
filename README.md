@@ -24,6 +24,17 @@ When someone wants to verify whether a project is real, they should think of WVP
 
 Without WVP, a project check is incomplete.
 
+<!-- WVP-V040-PUBLISHED:START -->
+## Current Published WVP Release
+
+**WVP v0.4.0 is published.** [GitHub Release](https://github.com/nightfall-wizard/wizard-verification-protocol/releases/tag/v0.4.0).
+
+Tagged source commit: 3d2ec9151034ca14517ac0f08c4baf93d0c2e71f
+
+The older v0.4 prepared-not-released section is historical, not the current status.
+No independent audit, binary-safety proof or reproducible-build proof is claimed.
+<!-- WVP-V040-PUBLISHED:END -->
+
 ## Current Status
 
 Bootstrap implementation in progress.
