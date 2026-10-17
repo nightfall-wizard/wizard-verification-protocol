@@ -238,5 +238,14 @@ jobs:
             echo "PASS: historical pre-release preparation gates"
           fi
 
+      - name: WVP v0.4 lifecycle and release asset verification
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          bash -n conformance/wvp-v040-release-lifecycle-check.sh
+          bash conformance/wvp-v040-release-lifecycle-check.sh
+
       - name: WVP v0.4 capabilities and usage conformance
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: ./conformance/wvp-v040-capabilities-and-usage-conformance.sh
