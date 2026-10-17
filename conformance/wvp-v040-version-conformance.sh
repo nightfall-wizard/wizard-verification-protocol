@@ -19,8 +19,12 @@ assert len([
 
 text = Path('README.md').read_text()
 
-assert '## WVP v0.4 Release Track' in text
-assert 'not independently audited' in text
+# Current public README wording; historical v0.4 preparation records remain.
+# Do not assert that the release remains unpublished: this gate must also work
+# after v0.4.0 is tagged. Publication state has a separate lifecycle CI gate.
+assert '## WVP v0.4 Public Status' in text
+assert 'This is not an audit.' in text
+assert 'This is not a source-to-release proof.' in text
 
 print('PASS: WVP v0.4 source version + lock + honest public status')
 CHECK
