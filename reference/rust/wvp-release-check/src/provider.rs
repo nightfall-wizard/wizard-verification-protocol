@@ -119,20 +119,19 @@ fn inspect_github(target: &RepositoryTarget) -> ReleaseObservation {
         }
     };
 
-    let (latest_endpoint, _) =
-        match release_query(&target_string, requested_tag.as_deref()) {
-            Ok(query) => query,
-            Err(err) => {
-                errors.push(err);
-                return ReleaseObservation {
-                    repository_found,
-                    release_count,
-                    tag_count,
-                    errors,
-                    ..ReleaseObservation::default()
-                };
-            }
-        };
+    let (latest_endpoint, _) = match release_query(&target_string, requested_tag.as_deref()) {
+        Ok(query) => query,
+        Err(err) => {
+            errors.push(err);
+            return ReleaseObservation {
+                repository_found,
+                release_count,
+                tag_count,
+                errors,
+                ..ReleaseObservation::default()
+            };
+        }
+    };
     let (
         latest_release_found,
         latest_release_tag,
