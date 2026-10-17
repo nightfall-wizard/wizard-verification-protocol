@@ -61,7 +61,7 @@ WVP_RELEASE_TAG="$TAG" target/release/wvp-release-check \
   --json \
   --live | tee "$JSON_OUT"
 
-grep -Fq '"version": "0.4.0"' "$JSON_OUT"
+grep -Fq '"version": "0.5.0"' "$JSON_OUT"
 grep -Fq '"status": "INFO"' "$JSON_OUT"
 grep -Fq '"repository_found": true' "$JSON_OUT"
 grep -Fq '"live_inspection": true' "$JSON_OUT"
