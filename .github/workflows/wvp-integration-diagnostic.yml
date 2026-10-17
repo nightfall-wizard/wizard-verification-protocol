@@ -232,19 +232,19 @@ jobs:
         id: diag_034
         if: always()
         continue-on-error: true
-        run: ./conformance/release-check-v030-unsigned-asset-staging.sh
+        run: bash tools/check_historical_v030.sh stage
 
       - name: WVP v0.3 detached signature procedure conformance
         id: diag_035
         if: always()
         continue-on-error: true
-        run: ./conformance/release-check-v030-detached-signature-procedure.sh
+        run: bash tools/check_historical_v030.sh signature
 
       - name: WVP v0.3 local signing execution guard conformance
         id: diag_036
         if: always()
         continue-on-error: true
-        run: ./conformance/release-check-v030-local-signing-execution-guard.sh
+        run: bash tools/check_historical_v030.sh guard
 
       - name: WVP v0.3 post-release publication conformance
         id: diag_037
