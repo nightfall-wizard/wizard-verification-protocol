@@ -42,6 +42,14 @@ jobs:
       - name: WVP report v1 compatibility guard
         run: cargo test --workspace --locked compatibility_guard
 
+      - name: WVP v0.5 source identity conformance
+        run: bash conformance/wvp-v050-version-conformance.sh
+
+      - name: WVP v0.5 cryptographic bundle binding / negative tests
+        run: |
+          python3 -m unittest discover -s tests -p 'test_wvp_bundle_v050.py' -v
+          python3 -m py_compile tools/wvp_bundle_verify_v050.py
+
       - name: Example JSON output
         run: cargo run --manifest-path reference/rust/wvp-release-check/Cargo.toml -- --target nightfall-wizard/wizard-verification-protocol --json
 
