@@ -1,13 +1,16 @@
 #!/usr/bin/env bash
 set -euo pipefail
-# WVP-SIGNATURE-POLICY-V040
 
-cd "$(dirname "${BASH_SOURCE[0]}")/.."
+echo "=== WVP SIGNATURE VERIFIED POLICY CONFORMANCE ==="
+START_TS="$(date '+%Y-%m-%d %H:%M:%S %Z')"
+START_EPOCH="$(date +%s)"
+echo "Startzeit: $START_TS"
+
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+cd "$ROOT"
 
 TARGET="${WVP_TARGET:-nightfall-wizard/wizard-verification-protocol}"
-TAG="$(gh api "repos/$TARGET/releases?per_page=1" --jq '.[0].tag_name')"
-META="$(gh release view "$TAG" -R "$TARGET" --json assets,body)"
-COUNT="$(printf '%s' "$META" | jq '.assets | length')"
+EXPECTED_TAG="${WVP_RELEASE_TAG:-v0.3.0}"
 
 echo "Target: $TARGET"
 echo "Expected selected WVP release tag: $EXPECTED_TAG"

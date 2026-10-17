@@ -51,7 +51,7 @@ fn release_query(
     release_tag: Option<&str>,
 ) -> Result<(String, &'static str), String> {
     match release_tag {
-        None => Ok((format!("repos/{target}/releases?per_page=1"), ".[0]")),
+        None => Ok((format!("repos/{target}/releases/latest"), "")),
         Some(tag) => {
             if tag.is_empty()
                 || tag.len() > 128
@@ -104,7 +104,35 @@ fn inspect_github(target: &RepositoryTarget) -> ReleaseObservation {
 
     // Use GitHub latest stable release, not a prerelease.
     // Preserve checksum and signature verification.
-    let latest_endpoint = format!("repos/{target_string}/releases/latest");
+    let requested_tag = match std::env::var("WVP_RELEASE_TAG") {
+        Ok(tag) => Some(tag),
+        Err(std::env::VarError::NotPresent) => None,
+        Err(std::env::VarError::NotUnicode(_)) => {
+            errors.push("invalid WVP_RELEASE_TAG: non-Unicode value".to_string());
+            return ReleaseObservation {
+                repository_found,
+                release_count,
+                tag_count,
+                errors,
+                ..ReleaseObservation::default()
+            };
+        }
+    };
+
+    let (latest_endpoint, _) =
+        match release_query(&target_string, requested_tag.as_deref()) {
+            Ok(query) => query,
+            Err(err) => {
+                errors.push(err);
+                return ReleaseObservation {
+                    repository_found,
+                    release_count,
+                    tag_count,
+                    errors,
+                    ..ReleaseObservation::default()
+                };
+            }
+        };
     let (
         latest_release_found,
         latest_release_tag,
@@ -219,7 +247,7 @@ mod tests {
     fn default_release_query_preserves_latest_release_behavior() {
         assert_eq!(
             release_query("owner/repo", None),
-            Ok(("repos/owner/repo/releases?per_page=1".to_string(), ".[0]"))
+            Ok(("repos/owner/repo/releases/latest".to_string(), ""))
         );
     }
 

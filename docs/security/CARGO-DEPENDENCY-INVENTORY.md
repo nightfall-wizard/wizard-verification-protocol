@@ -23,7 +23,7 @@ Inventory scope:
 ## Current Cargo.lock Hash
 
 ```text
-78cf87b89da0009d8742cebd829b6463d154d29be882c684f38635675c427e8e  Cargo.lock
+39e4d355cff4008221cd9c403480766d0fc694de4c0f7e86589e2e4034fe7413  Cargo.lock
 ```
 
 ---
@@ -55,7 +55,7 @@ Summary:
 - total dependency-tree lines: 57
 
 ```text
-wvp-release-check v0.3.0 (/data/data/com.termux/files/home/wizard-verification-protocol/reference/rust/wvp-release-check)
+wvp-release-check v0.4.0 (/data/data/com.termux/files/home/wizard-verification-protocol/reference/rust/wvp-release-check)
 ├── serde v1.0.229
 │   ├── serde_core v1.0.229
 │   └── serde_derive v1.0.229 (proc-macro)
