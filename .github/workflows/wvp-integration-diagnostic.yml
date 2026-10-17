@@ -10,6 +10,8 @@ jobs:
   rust:
     name: Full integration diagnostic
     runs-on: ubuntu-24.04
+    env:
+      GH_TOKEN: ${{ github.token }}
 
     steps:
       - name: Checkout
