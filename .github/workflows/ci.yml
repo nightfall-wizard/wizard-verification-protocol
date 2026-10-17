@@ -152,6 +152,12 @@ jobs:
       - name: WVP build provenance comparison format conformance
         run: ./conformance/release-check-build-provenance-comparison-format.sh
 
+      - name: WVP v0.4 package version and honest README claims
+        run: bash ./conformance/wvp-v040-version-conformance.sh
+
+      - name: Termux v0.4 publisher shell syntax
+        run: bash -n scripts/release/publish-v040-termux.sh
+
       - name: WVP v0.4 scope plan conformance
         run: ./conformance/wvp-v040-scope-plan-conformance.sh
 
