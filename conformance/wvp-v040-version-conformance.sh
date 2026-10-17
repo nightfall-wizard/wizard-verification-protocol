@@ -6,7 +6,7 @@ import tomllib
 from pathlib import Path
 
 with open('reference/rust/wvp-release-check/Cargo.toml', 'rb') as f:
-    assert tomllib.load(f)['package']['version'] == '0.4.0'
+    assert tomllib.load(f)['package']['version'] in {'0.4.0', '0.5.0'}
 
 with open('Cargo.lock', 'rb') as f:
     rows = tomllib.load(f)['package']
@@ -14,7 +14,7 @@ with open('Cargo.lock', 'rb') as f:
 assert len([
     x for x in rows
     if x['name'] == 'wvp-release-check'
-    and x['version'] == '0.4.0'
+    and x['version'] in {'0.4.0', '0.5.0'}
 ]) == 1
 
 text = Path('README.md').read_text()
@@ -26,5 +26,5 @@ assert '## WVP v0.4 Public Status' in text
 assert 'This is not an audit.' in text
 assert 'This is not a source-to-release proof.' in text
 
-print('PASS: WVP v0.4 source version + lock + honest public status')
+print('PASS: WVP v0.4 historical publication / current version lock and honest public status')
 CHECK

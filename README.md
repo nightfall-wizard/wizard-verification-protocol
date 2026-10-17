@@ -606,3 +606,11 @@ Explicit non-claims:
 <!-- WVP:AUNEYA-MINIMAL-FAIR-GENESIS-LAUNCH-PATH-V01:END -->
 
 
+
+## WVP v0.5 Candidate — Cryptographic Asset Binding
+
+The v0.5.0 source candidate adds offline fail-closed cryptographic binding of a
+release payload, its SHA256 digest, and its detached signature against an explicitly
+trusted public key. Documentation: [v0.5.0 candidate](docs/release/WVP-V0.5.0-CANDIDATE.md).
+This is **not a published v0.5.0 release** and is not an audit, reproducible build
+proof or source-to-binary equivalence proof.

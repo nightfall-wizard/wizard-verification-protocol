@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-echo "=== HISTORICAL v0.3 / CURRENT v0.4 ==="
+echo "=== HISTORICAL v0.3 / CURRENT v0.5 ==="
 
 BEFORE_TAGS="$(git tag --list)"
 
@@ -41,8 +41,8 @@ def package_version(lock):
 assert old_manifest["package"]["version"] == "0.3.0"
 assert package_version(old_lock) == "0.3.0"
 
-assert new_manifest["package"]["version"] == "0.4.0"
-assert package_version(new_lock) == "0.4.0"
+assert new_manifest["package"]["version"] == "0.5.0"
+assert package_version(new_lock) == "0.5.0"
 
 doc = Path(
     "docs/release/WVP-V0.3-RELEASE-READINESS-CHECKLIST.md"
@@ -51,7 +51,7 @@ doc = Path(
 assert "[x] v0.3 version bump is prepared" in doc
 
 print("PASS: historical v0.3.0 source verified")
-print("PASS: current v0.4.0 manifest and lock verified")
+print("PASS: current v0.5.0 manifest and lock verified")
 PY
 
 AFTER_TAGS="$(git tag --list)"
