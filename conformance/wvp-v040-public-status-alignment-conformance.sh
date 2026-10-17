@@ -159,23 +159,8 @@ if problems:
 print("README public status block OK.")
 PY
 
-echo "=== VERIFY NO v0.4 RELEASE OR TAG EXISTS ==="
-if git ls-remote --tags origin "refs/tags/v0.4.0" | grep -q "v0.4.0"; then
-  echo "FAIL: v0.4.0 tag already exists."
-  exit 1
-fi
-
-set +e
-gh release view "v0.4.0" --repo "nightfall-wizard/wizard-verification-protocol" >/dev/null 2>&1
-REL_RESULT=$?
-set -e
-
-if [ "$REL_RESULT" -eq 0 ]; then
-  echo "FAIL: v0.4.0 GitHub release already exists."
-  exit 1
-fi
-
-echo "No v0.4.0 tag or GitHub release exists."
+echo "=== VERIFY v0.4 RELEASE LIFECYCLE ==="
+bash conformance/wvp-v040-release-lifecycle-check.sh
 echo
 
 echo "=== VERIFY NO SECRET-LIKE MATERIAL ==="
@@ -197,8 +182,7 @@ echo "README public status block exists."
 echo "README says v0.4 is prepared-not-released."
 echo "Required v0.4 evidence paths are present."
 echo "Runner report status is PASS."
-echo "No v0.4.0 tag exists."
-echo "No v0.4.0 GitHub release exists."
+echo "v0.4.0 release lifecycle and publication evidence verified."
 echo "Boundary statements are explicit."
 echo "No audit/legal/binary/reproducible/source-to-release claim is made."
 echo "Endzeit: $END_TS"
