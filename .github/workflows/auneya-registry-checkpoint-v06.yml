@@ -1,0 +1,23 @@
+name: AUNEYA Registry Checkpoint v0.6
+on:
+  pull_request:
+    paths:
+      - 'tools/auneya/auneya_registry_checkpoint_v06.py'
+      - 'tests/test_auneya_registry_checkpoint_v06.py'
+      - 'docs/auneya/AUNEYA-REGISTRY-CHECKPOINT-V0.6.md'
+      - '.github/workflows/auneya-registry-checkpoint-v06.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  offline-adversarial:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Existing v0.4 and v0.5 regressions
+        run: |
+          bash conformance/auneya-trusted-node-identity-v0.4.sh
+          python3 -m unittest discover -s tests -p 'test_auneya_nightfall_challenge_v05.py' -v
+      - name: Offline checkpoint and rollback tests
+        run: python3 -m unittest discover -s tests -p 'test_auneya_registry_checkpoint_v06.py' -v
