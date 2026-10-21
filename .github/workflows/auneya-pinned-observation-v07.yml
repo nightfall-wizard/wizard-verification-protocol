@@ -1,0 +1,31 @@
+name: AUNEYA v0.7 pinned observations
+on:
+  push:
+    paths:
+      - 'tools/auneya/auneya_pinned_observation_v07.py'
+      - 'tests/test_auneya_pinned_observation_v07.py'
+      - 'tools/auneya/auneya_nightfall_challenge_v05.py'
+      - 'tools/auneya/auneya_registry_checkpoint_v06.py'
+      - 'tools/auneya/auneya_trusted_node_identity_v04.py'
+      - '.github/workflows/auneya-pinned-observation-v07.yml'
+  pull_request:
+    paths:
+      - 'tools/auneya/**'
+      - 'tests/test_auneya_*'
+      - '.github/workflows/auneya-pinned-observation-v07.yml'
+  workflow_dispatch:
+jobs:
+  offline-regression:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Confirm OpenSSL
+        run: openssl version
+      - name: New and dependency regression suites
+        run: |
+          python3 -m unittest discover -s tests -p 'test_auneya_pinned_observation_v07.py' -v
+          python3 -m unittest discover -s tests -p 'test_auneya_nightfall_challenge_v05.py' -v
+          python3 -m unittest discover -s tests -p 'test_auneya_registry_checkpoint_v06.py' -v
