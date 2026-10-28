@@ -230,3 +230,16 @@ This step adds a local mobile-first read-only browser dashboard for the AUNEYA l
 
 This step adds a local claim composer and dashboard live-refresh sandbox for local simulated claims.
 
+
+## AUNEYA/WVP v0.8 Pinned Multi-Witness Evidence Batch
+
+- `AUNEYA-WVP-EVIDENCE-BATCH-V0.8.md`
+- `../../tools/auneya/auneya_wvp_evidence_batch_v08.py`
+- `../../tests/test_auneya_wvp_evidence_batch_v08.py`
+
+This bounded offline verifier compares 2 to 16
+independently keyed Nightfall operator signatures.
+
+It does not claim consensus validity, Sybil
+resistance, a network launch, tokens or
+investment value.
