@@ -1,0 +1,48 @@
+name: AUNEYA WVP v1.0 atomic archive
+
+on:
+  pull_request:
+    paths:
+      - 'tools/auneya/**'
+      - 'tests/test_auneya_archive_v10.py'
+      - '.github/workflows/auneya-archive-v10.yml'
+
+  push:
+    paths:
+      - 'tools/auneya/**'
+      - 'tests/test_auneya_archive_v10.py'
+      - '.github/workflows/auneya-archive-v10.yml'
+
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  atomic-archive:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: OpenSSL availability
+        run: openssl version
+
+      - name: Atomic archive and compatibility
+        run: |
+          python3 -m unittest discover \
+            -s tests \
+            -p 'test_auneya_archive_v10.py' -v
+
+          python3 -m unittest discover \
+            -s tests \
+            -p 'test_auneya_archive_v09.py' -v
+
+          python3 -m unittest discover \
+            -s tests \
+            -p 'test_auneya_wvp_evidence_batch_v08.py' -v
