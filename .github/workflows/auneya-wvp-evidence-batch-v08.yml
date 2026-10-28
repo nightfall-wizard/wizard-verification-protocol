@@ -1,0 +1,39 @@
+name: AUNEYA WVP v0.8 batch evidence
+
+on:
+  push:
+    paths:
+      - 'tools/auneya/auneya_wvp_evidence_batch_v08.py'
+      - 'tests/test_auneya_wvp_evidence_batch_v08.py'
+      - 'docs/auneya/AUNEYA-WVP-EVIDENCE-BATCH-V0.8.md'
+      - '.github/workflows/auneya-wvp-evidence-batch-v08.yml'
+
+  pull_request:
+    paths:
+      - 'tools/auneya/**'
+      - 'tests/test_auneya_*'
+      - '.github/workflows/auneya-wvp-evidence-batch-v08.yml'
+
+  workflow_dispatch:
+
+jobs:
+  verify-offline:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Confirm OpenSSL
+        run: openssl version
+
+      - name: Offline signed-receipt regressions
+        run: |
+          python3 -m unittest discover -s tests -p 'test_auneya_wvp_evidence_batch_v08.py' -v
+          python3 -m unittest discover -s tests -p 'test_auneya_pinned_observation_v07.py' -v
+          python3 -m unittest discover -s tests -p 'test_auneya_registry_checkpoint_v06.py' -v
+          python3 -m unittest discover -s tests -p 'test_auneya_nightfall_challenge_v05.py' -v

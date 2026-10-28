@@ -1,0 +1,30 @@
+name: AUNEYA v0.9 archive regression
+
+on:
+  - push
+  - pull_request
+  - workflow_dispatch
+
+jobs:
+  archive-tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - run: openssl version
+
+      - run: |
+          python3 -m unittest discover \
+            -s tests \
+            -p 'test_auneya_archive_v09.py' -v
+
+      - run: |
+          python3 -m unittest discover \
+            -s tests \
+            -p 'test_auneya_wvp_evidence_batch_v08.py' -v
