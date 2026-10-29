@@ -1,0 +1,35 @@
+name: AUNEYA v1.2 portable offline evidence
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  portable-verifier:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Verify executable Python sources
+        run: |
+          python3 -m py_compile \
+            tools/auneya/auneya_portable_v12.py \
+            tests/test_auneya_portable_v12.py
+
+      - name: Adversarial portable and historical verification
+        run: |
+          python3 -m unittest discover -s tests -p 'test_auneya_portable_v12.py' -v
+          python3 -m unittest discover -s tests -p 'test_auneya_federation_v11.py' -v
+          python3 -m unittest discover -s tests -p 'test_auneya_archive_v10.py' -v
+          python3 -m unittest discover -s tests -p 'test_auneya_archive_v09.py' -v
+          python3 -m unittest discover -s tests -p 'test_auneya_wvp_evidence_batch_v08.py' -v

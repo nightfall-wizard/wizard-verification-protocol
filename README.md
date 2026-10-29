@@ -624,3 +624,24 @@ release payload, its SHA256 digest, and its detached signature against an explic
 trusted public key. Documentation: [v0.5.0 candidate](docs/release/WVP-V0.5.0-CANDIDATE.md).
 This is **not a published v0.5.0 release** and is not an audit, reproducible build
 proof or source-to-binary equivalence proof.
+
+<!-- WVP:AUNEYA-PORTABLE-FEDERATION-V12:START -->
+## AUNEYA/WVP v1.2 — Portable Offline Evidence Verification
+
+The v1.2 research utility exports canonical v1.1 federation
+evidence to a private portable directory.
+
+On a separate device, archived capsules, signed statements
+and deterministic federation reports can be reverified
+without trusting the originating SQLite database.
+
+Independent checkpoint, challenge and manifest SHA-256
+pins are required.
+
+See `docs/auneya/AUNEYA-PORTABLE-FEDERATION-V1.2.md`.
+
+This is non-value, offline research only.
+
+No token, mainnet, transfer, independent-operator proof,
+consensus proof or independent audit is claimed.
+<!-- WVP:AUNEYA-PORTABLE-FEDERATION-V12:END -->
