@@ -41,6 +41,12 @@ jobs:
           node --check tools/auneya/auneya_independent_v13.js
           python3 -m unittest discover -s tests -p 'test_auneya_independent_v13.py' -v
 
+      - name: AUNEYA v1.4 lossless interoperability
+        run: |
+          node --check tools/auneya/auneya_lossless_json_v14.js
+          node --check tools/auneya/auneya_independent_v14.js
+          python3 -m unittest discover -s tests -p 'test_auneya_independent_v14.py' -v
+
       - name: Unit tests
         run: python3 -m unittest discover -s tests -v
 
