@@ -321,3 +321,31 @@ AUNEYA-TEMPORAL-ADMISSION-V1.5.md
 AUNEYA-PEER-EVIDENCE-GATE-V1.6.md
 
 This document remains a draft until reviewed and formally approved.
+
+
+## 14. v1.7 local transport research update (non-normative)
+
+AUNEYA v1.7 adds a bounded localhost-only TCP
+test transport around unmodified v1.6 signed
+envelope verification and durable local
+replay protection.
+
+Operator-pinned peer enrollment, rotation
+and revocation are local administrative actions.
+
+Only the inbound peer statement is
+Ed25519-authenticated.
+
+The response acknowledgment is not authenticated.
+
+This is a Gate 2 sub-step, not a functional
+public decentralized network.
+
+Remaining Gate 2, 3, 4, 5 and 6 requirements
+are not waived.
+
+References:
+
+AUNEYA-TRANSPORT-V1.7.md
+
+AUNEYA-ROADMAP-V1.7.md
