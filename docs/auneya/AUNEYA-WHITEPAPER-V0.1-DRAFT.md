@@ -349,3 +349,42 @@ References:
 AUNEYA-TRANSPORT-V1.7.md
 
 AUNEYA-ROADMAP-V1.7.md
+
+
+## 15. Authenticated Receipts v1.8
+
+Status: Local non-value research implementation.
+
+AUNEYA v1.8 adds independently pinned
+Ed25519 responder authentication to the
+existing v1.7 bounded local transport.
+
+A fresh sender-generated nonce binds the
+response to an individual transport request.
+
+The signed receipt also commits to the
+complete v1.6 request-frame SHA-256.
+
+The client rejects forged, replayed,
+modified and incorrectly pinned responses.
+
+The underlying v1.6 atomic local replay
+ledger remains unchanged.
+
+A committed local request may survive
+loss of its signed response.
+
+Therefore a transport failure does not
+prove that the request was rolled back.
+
+This capability does not establish
+public P2P networking, trusted global
+time, distributed consensus, independently
+anchored storage or independent audit.
+
+Economic activation remains prohibited
+without a separate authorized process.
+
+Research reference:
+
+AUNEYA-AUTHENTICATED-RECEIPTS-V1.8.md
