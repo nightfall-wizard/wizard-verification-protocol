@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
 set -euo pipefail
+WVP_PACKAGE_VERSION=$(python3 - <<'WVP_VERSION'
+import tomllib
+with open('reference/rust/wvp-release-check/Cargo.toml','rb') as f:
+    print(tomllib.load(f)['package']['version'])
+WVP_VERSION
+)
 
 echo "=== WVP v0.2 VERSION AND BUILD SCRIPT CONFORMANCE ==="
 START_TS="$(date '+%Y-%m-%d %H:%M:%S %Z')"
@@ -17,9 +23,9 @@ test -s "$MANIFEST"
 test -s "$LOCKFILE"
 test -x "$SCRIPT"
 
-grep -Fq 'version = "0.5.0"' "$MANIFEST"
+grep -Fq "version = \"${WVP_PACKAGE_VERSION}\"" "$MANIFEST"
 grep -Fq 'name = "wvp-release-check"' "$LOCKFILE"
-grep -Fq 'version = "0.5.0"' "$LOCKFILE"
+grep -Fq "version = \"${WVP_PACKAGE_VERSION}\"" "$LOCKFILE"
 
 grep -Fq 'EXPECTED_VERSION="0.2.0"' "$SCRIPT"
 grep -Fq 'cargo build --release' "$SCRIPT"
@@ -41,7 +47,7 @@ test -x "$BIN"
 
 OUT="$("$BIN" --target nightfall-wizard/wizard-verification-protocol --json)"
 echo "$OUT"
-echo "$OUT" | grep -Fq '"version": "0.5.0"'
+echo "$OUT" | grep -Fq "\"version\": \"${WVP_PACKAGE_VERSION}\""
 
 END_TS="$(date '+%Y-%m-%d %H:%M:%S %Z')"
 END_EPOCH="$(date +%s)"
