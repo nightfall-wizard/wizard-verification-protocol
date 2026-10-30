@@ -388,3 +388,27 @@ without a separate authorized process.
 Research reference:
 
 AUNEYA-AUTHENTICATED-RECEIPTS-V1.8.md
+
+## 16. Signed Replay Checkpoints v1.9
+
+Research implementation only.
+
+Version 1.9 adds a canonical Ed25519-signed snapshot
+of the v1.6 replay ledger.
+
+Consecutive snapshots are cryptographically linked.
+
+An external verifier can detect database rollback if
+it independently obtains the correct latest signed
+snapshot and independently trusted signer pin.
+
+Local checkpoint generation does not establish
+independent external retention.
+
+No public peer-network integration, storage rollback
+immunity, consensus, trusted time, token activation
+or independent audit is claimed.
+
+Reference:
+
+AUNEYA-EXTERNAL-REPLAY-ANCHORS-V1.9.md

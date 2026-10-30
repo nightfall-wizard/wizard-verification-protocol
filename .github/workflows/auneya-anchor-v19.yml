@@ -1,0 +1,39 @@
+name: AUNEYA External Replay Anchor v1.9
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  anchor-gate:
+    name: anchor-gate
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Verify Node signer syntax
+        run: |
+          node --check tools/auneya/auneya_anchor_crypto_v19.js
+
+      - name: Adversarial signed checkpoint regression
+        run: |
+          python3 -m unittest discover \
+            -s tests \
+            -p 'test_auneya_anchor_v19.py' \
+            -v
