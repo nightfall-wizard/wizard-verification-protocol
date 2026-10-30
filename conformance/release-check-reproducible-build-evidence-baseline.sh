@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
 set -euo pipefail
+WVP_PACKAGE_VERSION=$(python3 - <<'WVP_VERSION'
+import tomllib
+with open('reference/rust/wvp-release-check/Cargo.toml','rb') as f:
+    print(tomllib.load(f)['package']['version'])
+WVP_VERSION
+)
 
 echo "=== WVP REPRODUCIBLE-BUILD EVIDENCE BASELINE CONFORMANCE ==="
 START_TS="$(date '+%Y-%m-%d %H:%M:%S %Z')"
@@ -54,7 +60,7 @@ grep -Fq '"cargo":' "$OUT_DIR/BUILD-PROVENANCE.json"
 
 OUT="$("$OUT_DIR/$ASSET_NAME" --target nightfall-wizard/wizard-verification-protocol --json)"
 echo "$OUT"
-echo "$OUT" | grep -Fq '"version": "0.5.0"'
+echo "$OUT" | grep -Fq "\"version\": \"${WVP_PACKAGE_VERSION}\""
 
 END_TS="$(date '+%Y-%m-%d %H:%M:%S %Z')"
 END_EPOCH="$(date +%s)"

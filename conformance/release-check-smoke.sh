@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
 set -euo pipefail
+WVP_PACKAGE_VERSION=$(python3 - <<'WVP_VERSION'
+import tomllib
+with open('reference/rust/wvp-release-check/Cargo.toml','rb') as f:
+    print(tomllib.load(f)['package']['version'])
+WVP_VERSION
+)
 
 echo "=== WVP RELEASE CHECK CONFORMANCE SMOKE ==="
 START_TS="$(date '+%Y-%m-%d %H:%M:%S %Z')"
@@ -19,7 +25,7 @@ check_contains() {
 }
 
 check_contains '"tool": "wvp-release-check"'
-check_contains '"version": "0.5.0"'
+check_contains "\"version\": \"${WVP_PACKAGE_VERSION}\""
 check_contains '"target": "nightfall-wizard/wizard-verification-protocol"'
 check_contains '"status": "WARN"'
 check_contains '"classification": "observed"'

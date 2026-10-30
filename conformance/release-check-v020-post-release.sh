@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
 set -euo pipefail
+WVP_PACKAGE_VERSION=$(python3 - <<'WVP_VERSION'
+import tomllib
+with open('reference/rust/wvp-release-check/Cargo.toml','rb') as f:
+    print(tomllib.load(f)['package']['version'])
+WVP_VERSION
+)
 
 echo "=== WVP v0.2.0 POST-RELEASE CONFORMANCE ==="
 START_TS="$(date '+%Y-%m-%d %H:%M:%S %Z')"
@@ -61,7 +67,7 @@ WVP_RELEASE_TAG="$TAG" target/release/wvp-release-check \
   --json \
   --live | tee "$JSON_OUT"
 
-grep -Fq '"version": "0.5.0"' "$JSON_OUT"
+grep -Fq "\"version\": \"${WVP_PACKAGE_VERSION}\"" "$JSON_OUT"
 grep -Fq '"status": "INFO"' "$JSON_OUT"
 grep -Fq '"repository_found": true' "$JSON_OUT"
 grep -Fq '"live_inspection": true' "$JSON_OUT"

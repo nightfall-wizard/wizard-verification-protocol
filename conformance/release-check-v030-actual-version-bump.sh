@@ -41,8 +41,8 @@ def package_version(lock):
 assert old_manifest["package"]["version"] == "0.3.0"
 assert package_version(old_lock) == "0.3.0"
 
-assert new_manifest["package"]["version"] == "0.5.0"
-assert package_version(new_lock) == "0.5.0"
+assert tuple(map(int, new_manifest["package"]["version"].split("."))) >= (0,5,0)
+assert package_version(new_lock) == new_manifest["package"]["version"]
 
 doc = Path(
     "docs/release/WVP-V0.3-RELEASE-READINESS-CHECKLIST.md"

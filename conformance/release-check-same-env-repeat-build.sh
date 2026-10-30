@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
 set -euo pipefail
+WVP_PACKAGE_VERSION=$(python3 - <<'WVP_VERSION'
+import tomllib
+with open('reference/rust/wvp-release-check/Cargo.toml','rb') as f:
+    print(tomllib.load(f)['package']['version'])
+WVP_VERSION
+)
 
 echo "=== WVP SAME-ENVIRONMENT REPEAT-BUILD CONFORMANCE ==="
 START_TS="$(date '+%Y-%m-%d %H:%M:%S %Z')"
@@ -67,8 +73,8 @@ OUT_B="$("$OUT_DIR/build-b/$BINARY_NAME" --target nightfall-wizard/wizard-verifi
 echo "$OUT_A"
 echo "$OUT_B"
 
-echo "$OUT_A" | grep -Fq '"version": "0.5.0"'
-echo "$OUT_B" | grep -Fq '"version": "0.5.0"'
+echo "$OUT_A" | grep -Fq "\"version\": \"${WVP_PACKAGE_VERSION}\""
+echo "$OUT_B" | grep -Fq "\"version\": \"${WVP_PACKAGE_VERSION}\""
 
 END_TS="$(date '+%Y-%m-%d %H:%M:%S %Z')"
 END_EPOCH="$(date +%s)"

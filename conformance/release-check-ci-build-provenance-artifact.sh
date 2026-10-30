@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
 set -euo pipefail
+WVP_PACKAGE_VERSION=$(python3 - <<'WVP_VERSION'
+import tomllib
+with open('reference/rust/wvp-release-check/Cargo.toml','rb') as f:
+    print(tomllib.load(f)['package']['version'])
+WVP_VERSION
+)
 
 echo "=== WVP CI BUILD PROVENANCE ARTIFACT CONFORMANCE ==="
 START_TS="$(date '+%Y-%m-%d %H:%M:%S %Z')"
@@ -78,7 +84,7 @@ PY
 
 OUT="$("$OUT_DIR/wvp-release-check-native" --target nightfall-wizard/wizard-verification-protocol --json)"
 echo "$OUT"
-echo "$OUT" | grep -Fq '"version": "0.5.0"'
+echo "$OUT" | grep -Fq "\"version\": \"${WVP_PACKAGE_VERSION}\""
 
 if [ "${GITHUB_ACTIONS:-false}" = "true" ]; then
   python3 - "$OUT_DIR/CI-BUILD-PROVENANCE-MANIFEST.json" <<'PY'
