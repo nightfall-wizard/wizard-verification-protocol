@@ -1,0 +1,42 @@
+name: README Evidence Truth
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  schedule:
+    - cron: '17 7 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  documentation-integrity:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Deterministic offline README verification
+        run: python3 tools/readme_truth.py --check
+
+      - name: Adversarial documentation tests
+        run: |
+          python3 -m unittest discover \
+            -s tests \
+            -p 'test_readme_truth.py' \
+            -v
+
+      - name: Detect changed published releases
+        if: github.event_name == 'schedule'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 tools/readme_truth.py --check-live
