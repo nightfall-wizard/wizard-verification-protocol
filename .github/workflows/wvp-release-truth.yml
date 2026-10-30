@@ -1,0 +1,29 @@
+name: WVP Release Identity Guard
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  release-identity:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Check published-vs-source identity
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 tools/wvp_release_truth.py
+
+      - name: Adversarial identity tests
+        run: python3 -m unittest discover -s tests -p 'test_wvp_release_truth.py' -v

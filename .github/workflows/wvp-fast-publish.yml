@@ -1,0 +1,151 @@
+name: WVP CI-Gated Source Release
+
+on:
+  workflow_run:
+    workflows:
+      - WVP CI
+      - WVP Required Checks
+      - WVP Security Invariants
+      - WVP Release-Reality Check
+      - WVP Release Identity Guard
+    types: [completed]
+
+permissions:
+  contents: write
+  checks: read
+  actions: read
+
+concurrency:
+  group: wvp-source-release-main
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    if: github.event.workflow_run.head_branch == 'main' && github.event.workflow_run.event == 'push'
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.workflow_run.head_sha }}
+
+      - name: Verify required checks and publish
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TARGET_SHA: ${{ github.event.workflow_run.head_sha }}
+        shell: bash
+        run: |
+          set -Eeuo pipefail
+
+          repo="$GITHUB_REPOSITORY"
+          sha="$TARGET_SHA"
+
+          [ "$(gh api "repos/$repo/branches/main" --jq .commit.sha)" = "$sha" ] || exit 0
+
+          gh api "repos/$repo/commits/$sha/check-runs?per_page=100" > /tmp/wvp-checks.json
+
+          if ! jq -e '
+            [.check_runs[] | select(
+              .name == "required" or
+              .name == "security-invariants" or
+              .name == "Rust reference implementations" or
+              .name == "release-reality-check" or
+              .name == "release-identity"
+            )] as $c |
+            ([$c[].name] | unique | length) == 5 and
+            all($c[]; .status == "completed" and .conclusion == "success")
+          ' /tmp/wvp-checks.json >/dev/null; then
+
+            echo 'Main checks not all green. No release.'
+            exit 0
+          fi
+
+          version=$(sed -n 's/^version = "\([0-9]*\.[0-9]*\.[0-9]*\)"$/\1/p' reference/rust/wvp-release-check/Cargo.toml | head -n1)
+
+          [ -n "$version" ] || exit 1
+
+          tag="v$version"
+
+          published=$(gh api "repos/$repo/releases/latest" --jq .tag_name)
+
+          if [ "$tag" = "$published" ]; then
+            echo 'Version already published.'
+            exit 0
+          fi
+
+          python3 - "$published" "$version" <<'PY'
+          import sys
+
+          a = tuple(
+              map(int, sys.argv[1].lstrip('v').split('.'))
+          )
+
+          b = tuple(
+              map(int, sys.argv[2].split('.'))
+          )
+
+          assert b == (a[0], a[1], a[2] + 1), (
+              'Unexpected release version jump'
+          )
+          PY
+
+          git config user.name github-actions
+          git config user.email github-actions@users.noreply.github.com
+
+          if git ls-remote --exit-code --tags origin "refs/tags/$tag" >/dev/null 2>&1; then
+
+            git fetch --quiet origin "refs/tags/$tag:refs/tags/$tag"
+
+            [ "$(git rev-parse "$tag^{}")" = "$sha" ] || exit 1
+
+          else
+
+            git tag -a "$tag" -m "WVP $tag source-only release"
+
+            git push origin "refs/tags/$tag"
+
+          fi
+
+          if gh release view "$tag" --repo "$repo" >/dev/null 2>&1; then
+            exit 0
+          fi
+
+          mkdir -p /tmp/wvp-assets
+
+          asset="wvp-$tag-source.tar.gz"
+
+          git archive --format=tar --prefix="wvp-$tag/" HEAD |
+            gzip -n -9 > "/tmp/wvp-assets/$asset"
+
+          (
+            cd /tmp/wvp-assets
+            sha256sum "$asset" > "$asset.sha256"
+            sha256sum -c "$asset.sha256"
+          )
+
+          sha256=$(sha256sum "/tmp/wvp-assets/$asset" | cut -d' ' -f1)
+
+          jq -n \
+            --arg tag "$tag" \
+            --arg commit "$sha" \
+            --arg digest "$sha256" \
+            '{
+              tag:$tag,
+              source_commit:$commit,
+              source_archive_sha256:$digest,
+              distribution:"source-only-unsigned",
+              signed_binary:false,
+              independent_audit_proven:false,
+              mainnet_or_token_active:false
+            }' > "/tmp/wvp-assets/WVP-$tag-MANIFEST.json"
+
+          [ "$(gh api "repos/$repo/branches/main" --jq .commit.sha)" = "$sha" ] || exit 1
+
+          gh release create "$tag" \
+            "/tmp/wvp-assets/$asset" \
+            "/tmp/wvp-assets/$asset.sha256" \
+            "/tmp/wvp-assets/WVP-$tag-MANIFEST.json" \
+            --repo "$repo" \
+            --verify-tag \
+            --title "WVP $tag" \
+            --notes "WVP version identity and live release status improvement. Source-only unsigned; required CI gates passed on $sha. No independent audit, token, mainnet, signed binary or reproducibility proof is claimed."

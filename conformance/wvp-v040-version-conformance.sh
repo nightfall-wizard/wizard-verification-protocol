@@ -6,7 +6,10 @@ import tomllib
 from pathlib import Path
 
 with open('reference/rust/wvp-release-check/Cargo.toml', 'rb') as f:
-    assert tomllib.load(f)['package']['version'] in {'0.4.0', '0.5.0'}
+    assert tuple(map(int,tomllib.load(f)['package']['version'].split('.'))) >= (0,4,0)
+
+with open('reference/rust/wvp-release-check/Cargo.toml', 'rb') as f:
+    current_version = tomllib.load(f)['package']['version']
 
 with open('Cargo.lock', 'rb') as f:
     rows = tomllib.load(f)['package']
@@ -14,7 +17,7 @@ with open('Cargo.lock', 'rb') as f:
 assert len([
     x for x in rows
     if x['name'] == 'wvp-release-check'
-    and x['version'] in {'0.4.0', '0.5.0'}
+    and x['version'] == current_version
 ]) == 1
 
 text = Path('README.md').read_text()

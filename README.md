@@ -24,8 +24,22 @@ When someone wants to verify whether a project is real, they should think of WVP
 
 Without WVP, a project check is incomplete.
 
+<!-- WVP-RELEASE-TRUTH:START -->
+## Current WVP Release — live source of truth
+
+**Latest published stable WVP:** [GitHub's live latest release](https://github.com/nightfall-wizard/wizard-verification-protocol/releases/latest) (not a hard-coded version).
+
+[![Latest published WVP release](https://img.shields.io/github/v/release/nightfall-wizard/wizard-verification-protocol?include_prereleases=false&label=published%20WVP)](https://github.com/nightfall-wizard/wizard-verification-protocol/releases/latest)
+
+**WVP source version:** see [`reference/rust/wvp-release-check/Cargo.toml`](reference/rust/wvp-release-check/Cargo.toml). Source changes are NOT published releases until a tag, successful gates and GitHub publication exist.
+
+**AUNEYA research implementation:** [lossless independent verification v1.4](docs/auneya/AUNEYA-LOSSLESS-INTEROPERABILITY-V1.4.md). This is a *research-capability milestone*, **not** WVP v1.4 and **not** a live-network/token launch.
+
+**AUNEYA released preview:** separate `auneya-v*` pre-releases; they are not the stable WVP release series.
+<!-- WVP-RELEASE-TRUTH:END -->
+
 <!-- WVP-V050-PUBLISHED:START -->
-## Current Published WVP Release
+## Previously Published WVP Release (v0.5.0)
 
 **WVP v0.5.0 is published.** [GitHub Release](https://github.com/nightfall-wizard/wizard-verification-protocol/releases/tag/v0.5.0).
 
@@ -86,6 +100,8 @@ It does not prove:
 
 <!-- WVP:V040-PUBLIC-STATUS:START -->
 ## WVP v0.4 Public Status
+
+> HISTORICAL SNAPSHOT ONLY: v0.4.0 was published on 2026-10-17. The prepared-not-released entries below describe the earlier preparation stage, not current reality.
 
 Status: `prepared-not-released`
 
