@@ -661,3 +661,22 @@ This is non-value, offline research only.
 No token, mainnet, transfer, independent-operator proof,
 consensus proof or independent audit is claimed.
 <!-- WVP:AUNEYA-PORTABLE-FEDERATION-V12:END -->
+
+
+## AUNEYA v1.7 loopback-only transport research
+
+Authenticated bounded local TCP testing for
+unchanged v1.6 signed peer envelopes.
+
+Includes explicit offline public-key enrollment,
+rotation, revocation, real socket regression tests
+and durable local replay protection.
+
+No public P2P network.
+
+No consensus, mainnet or token release.
+
+See:
+
+- docs/auneya/AUNEYA-TRANSPORT-V1.7.md
+- docs/auneya/AUNEYA-ROADMAP-V1.7.md

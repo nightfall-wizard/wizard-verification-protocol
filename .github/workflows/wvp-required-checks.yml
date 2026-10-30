@@ -52,6 +52,11 @@ jobs:
           python3 -m py_compile tools/auneya/auneya_admission_v15.py
           python3 -m unittest discover -s tests -p 'test_auneya_admission_v15.py' -v
 
+      - name: AUNEYA v1.7 authenticated loopback transport
+        run: |
+          python3 -m py_compile tools/auneya/auneya_transport_v17.py
+          python3 -m unittest discover -s tests -p 'test_auneya_transport_v17.py' -v
+
       - name: Unit tests
         run: python3 -m unittest discover -s tests -v
 
