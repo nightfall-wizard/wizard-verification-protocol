@@ -10,7 +10,19 @@ ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$ROOT"
 
 REPO="nightfall-wizard/wizard-verification-protocol"
-TAG="$(gh release list --repo "$REPO" --limit 1 --json tagName --jq '.[0].tagName')"
+TAG="$(
+  gh api "repos/$REPO/releases?per_page=100" |
+  jq -r '
+    [
+      .[]
+      | select(.draft == false and .prerelease == false)
+      | select(.tag_name | test("^v[0-9]+[.][0-9]+[.][0-9]+$"))
+    ]
+    | sort_by(.published_at)
+    | last
+    | .tag_name // empty
+  '
+)"
 
 if [ -z "$TAG" ] || [ "$TAG" = "null" ]; then
   echo "FAIL: no GitHub release tag found"
