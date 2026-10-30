@@ -1,682 +1,124 @@
-# Wizard Verification Protocol — WVP
+# Wizard Verification Protocol (WVP) & AUNEYA
 
-Built by nightfall-wizard.
+**Built and maintained by [nightfall-wizard](https://github.com/nightfall-wizard).**
 
-## Category
+> No claim without proof. No proof without reproduction. No verification without adversarial testing.
 
-Proof-of-Project-Reality
+[![Published WVP](https://img.shields.io/github/v/release/nightfall-wizard/wizard-verification-protocol?include_prereleases=false&label=WVP%20published)](https://github.com/nightfall-wizard/wizard-verification-protocol/releases/latest)
+[![README truth](https://github.com/nightfall-wizard/wizard-verification-protocol/actions/workflows/readme-truth.yml/badge.svg)](https://github.com/nightfall-wizard/wizard-verification-protocol/actions/workflows/readme-truth.yml)
 
-## Core Sentence
+## The two-layer vision
 
-Wizard Verification Protocol turns project claims into verifiable reality.
-
-## Adversarial Principle
-
-No claim without proof. No proof without reproduction. No verification without adversarial testing.
-
-## Purpose
-
-WVP is a mobile-built, zero-budget verification standard for checking whether crypto and open-source projects are technically, organizationally and economically real.
-
-## Schelling Point Goal
-
-When someone wants to verify whether a project is real, they should think of WVP.
-
-Without WVP, a project check is incomplete.
+**WVP** is an evidence-first, adversarial verification framework for reproducible checks of public software and project claims.
+**AUNEYA** researches a phone-first witness protocol for lawful public digital evidence.
+WVP is its verification core; AUNEYA is the proposed network layer, not an already operating public network.
 
 <!-- WVP-RELEASE-TRUTH:START -->
-## Current WVP Release — live source of truth
+## Release truth — independent identities
 
-**Latest published stable WVP:** [GitHub's live latest release](https://github.com/nightfall-wizard/wizard-verification-protocol/releases/latest) (not a hard-coded version).
+| Track | Verified status |
+| --- | --- |
+| WVP published stable | **[v0.5.1](https://github.com/nightfall-wizard/wizard-verification-protocol/releases/tag/v0.5.1)** · [always-current release](https://github.com/nightfall-wizard/wizard-verification-protocol/releases/latest) |
+| WVP source package | **`0.5.1`** · [`Cargo.toml`](reference/rust/wvp-release-check/Cargo.toml); source is not a release |
+| AUNEYA published research preview | **[auneya-v1.5.0](https://github.com/nightfall-wizard/wizard-verification-protocol/releases/tag/auneya-v1.5.0)** · distinct from WVP |
+| AUNEYA research implementation | **v1.9** · [signed replay checkpoints](docs/auneya/AUNEYA-EXTERNAL-REPLAY-ANCHORS-V1.9.md); not a published v1.9 release |
 
-[![Latest published WVP release](https://img.shields.io/github/v/release/nightfall-wizard/wizard-verification-protocol?include_prereleases=false&label=published%20WVP)](https://github.com/nightfall-wizard/wizard-verification-protocol/releases/latest)
-
-**WVP source version:** see [`reference/rust/wvp-release-check/Cargo.toml`](reference/rust/wvp-release-check/Cargo.toml). Source changes are NOT published releases until a tag, successful gates and GitHub publication exist.
-
-**AUNEYA research implementation:** [signed offline replay checkpoints v1.9](docs/auneya/AUNEYA-EXTERNAL-REPLAY-ANCHORS-V1.9.md). This is a *research-capability milestone*, **not** WVP v1.4 and **not** a live-network/token launch.
-
-**AUNEYA released preview:** separate `auneya-v*` pre-releases; they are not the stable WVP release series.
+*Release API snapshot checked on 2026-10-30T21:34:53Z UTC; this snapshot is not real-time.
+The WVP `releases/latest` link is live. Source: [`published release evidence`](docs/status/WVP-AUNEYA-PUBLISHED-RELEASES.json).*
 <!-- WVP-RELEASE-TRUTH:END -->
 
+## WVP verification surface
+
+- [Rust release checker](reference/rust/wvp-release-check/src/lib.rs) and [adversarial classification tests](reference/rust/wvp-release-check/tests/adversarial_classification.rs) separate recorded evidence from unsupported release claims.
+- [Release-truth guard](tools/wvp_release_truth.py) distinguishes published WVP, source packages and AUNEYA research versions.
+- [Evidence-first release policy](docs/release/WVP-RELEASE-TRUTH-AND-AUNEYA-GATES.md) documents strict claim boundaries.
+
+## AUNEYA implemented research milestones
+
+Each row links to committed source, an engineering document and an adversarial test file.
+**File existence is evidence of implementation, not proof that an independent audit passed.**
+
+| Version | Capability | Source / specification / tests |
+| --- | --- | --- |
+| v0.5 | Signed challenges | [code](tools/auneya/auneya_nightfall_challenge_v05.py) · [spec](docs/auneya/AUNEYA-NIGHTFALL-CHALLENGE-V0.5.md) · [tests](tests/test_auneya_nightfall_challenge_v05.py) |
+| v0.6 | Registry checkpoint binding | [code](tools/auneya/auneya_registry_checkpoint_v06.py) · [spec](docs/auneya/AUNEYA-REGISTRY-CHECKPOINT-V0.6.md) · [tests](tests/test_auneya_registry_checkpoint_v06.py) |
+| v0.7 | Pinned observations | [code](tools/auneya/auneya_pinned_observation_v07.py) · [spec](docs/auneya/AUNEYA-PINNED-OBSERVATION-V0.7.md) · [tests](tests/test_auneya_pinned_observation_v07.py) |
+| v0.8 | Multi-witness evidence | [code](tools/auneya/auneya_wvp_evidence_batch_v08.py) · [spec](docs/auneya/AUNEYA-WVP-EVIDENCE-BATCH-V0.8.md) · [tests](tests/test_auneya_wvp_evidence_batch_v08.py) |
+| v0.9 | Canonical evidence archives | [code](tools/auneya/auneya_archive_v09.py) · [spec](docs/auneya/AUNEYA-ARCHIVAL-EVIDENCE-V0.9.md) · [tests](tests/test_auneya_archive_v09.py) |
+| v1.0 | Transactional archives | [code](tools/auneya/auneya_archive_v10.py) · [spec](docs/auneya/AUNEYA-TRANSACTIONAL-ARCHIVE-V1.0.md) · [tests](tests/test_auneya_archive_v10.py) |
+| v1.1 | Federated evidence research | [code](tools/auneya/auneya_federation_v11.py) · [spec](docs/auneya/AUNEYA-FEDERATED-WITNESS-EVIDENCE-V1.1.md) · [tests](tests/test_auneya_federation_v11.py) |
+| v1.2 | Portable offline verification | [code](tools/auneya/auneya_portable_v12.py) · [spec](docs/auneya/AUNEYA-PORTABLE-FEDERATION-V1.2.md) · [tests](tests/test_auneya_portable_v12.py) |
+| v1.3 | Independent Ed25519 verification | [code](tools/auneya/auneya_independent_v13.js) · [spec](docs/auneya/AUNEYA-INDEPENDENT-VERIFICATION-V1.3.md) · [tests](tests/test_auneya_independent_v13.py) |
+| v1.4 | Lossless cross-language interop | [code](tools/auneya/auneya_independent_v14.js) · [spec](docs/auneya/AUNEYA-LOSSLESS-INTEROPERABILITY-V1.4.md) · [tests](tests/test_auneya_independent_v14.py) |
+| v1.5 | Temporal evidence admission | [code](tools/auneya/auneya_admission_v15.py) · [spec](docs/auneya/AUNEYA-TEMPORAL-ADMISSION-V1.5.md) · [tests](tests/test_auneya_admission_v15.py) |
+| v1.6 | Signed peer-envelope admission | [code](tools/auneya/auneya_peer_gate_v16.py) · [spec](docs/auneya/AUNEYA-PEER-EVIDENCE-GATE-V1.6.md) · [tests](tests/test_auneya_peer_gate_v16.py) |
+| v1.7 | Bounded local TCP transport | [code](tools/auneya/auneya_transport_v17.py) · [spec](docs/auneya/AUNEYA-TRANSPORT-V1.7.md) · [tests](tests/test_auneya_transport_v17.py) |
+| v1.8 | Authenticated local receipts | [code](tools/auneya/auneya_receipt_v18.py) · [spec](docs/auneya/AUNEYA-AUTHENTICATED-RECEIPTS-V1.8.md) · [tests](tests/test_auneya_receipt_v18.py) |
+| v1.9 | Signed offline replay checkpoints | [code](tools/auneya/auneya_anchor_v19.py) · [spec](docs/auneya/AUNEYA-EXTERNAL-REPLAY-ANCHORS-V1.9.md) · [tests](tests/test_auneya_anchor_v19.py) |
+
+## Roadmap and research gates
+
+Based on the [v1.9 engineering roadmap](docs/auneya/AUNEYA-ROADMAP-V1.9.md):
+
+| Gate | Current evidence boundary |
+| --- | --- |
+| 1 · Authenticated peer evidence | Implemented as local research capability (v1.6) |
+| 2 · Peer transport | Partially implemented: bounded localhost TCP + signed responder receipts (v1.7/v1.8) |
+| 3 · External replay anchors | Partially implemented: offline operator-signed chained checkpoints (v1.9); no independently proven remote retention |
+| 4 · Public reproducibility | Incomplete: normative schemas, interoperability and independent replication remain |
+| 5 · External validation | Not completed: real second-device trials, independent cryptographic/privacy/security/legal reviews |
+| 6 · Production decision | **BLOCKED** · no automatic network or economic activation |
+
+**Next engineering priority (Gate 3):** independently retained high-water replay checkpoints,
+rollback/recovery attack tests across distinct devices, and reproducible signed acceptance vectors.
+The existing v1.9 checkpoint file stored beside its database is **not** an independent anchor.
+
+## Start and reproduce locally (Termux)
+
+```sh
+./tools/auneya/auneya_one_command_local_demo.sh
+python3 -m unittest discover -s tests -p "test_auneya_anchor_v19.py" -v
+python3 -m unittest discover -s tests -p "test_wvp_release_truth.py" -v
+python3 tools/readme_truth.py --check
+```
+
+The demo is **local non-value simulation**, not real token collection.
+Cryptographic tests may require `openssl` and `node` on the device.
+The README checker validates traceability and freshness against the checked-in release snapshot.
+
+## Canonical project documents
+
+- [Protocol Charter](docs/auneya/AUNEYA-PROTOCOL-CHARTER.md) — purpose, legal and economic boundaries.
+- [AUNEYA technical whitepaper v0.1 DRAFT](docs/auneya/AUNEYA-WHITEPAPER-V0.1-DRAFT.md) — research, **not** final protocol approval.
+- [AUNEYA engineering roadmap v1.9](docs/auneya/AUNEYA-ROADMAP-V1.9.md) — six gates and remaining work.
+- [WVP release identity policy](docs/release/WVP-RELEASE-TRUTH-AND-AUNEYA-GATES.md) — release/source distinction.
+- [Security disclosures](SECURITY.md) · [MIT license](LICENSE).
+
+## Security and honest claim boundaries
+
+WVP/AUNEYA currently **do not claim**: an independent security audit;
+independent witness/device identity; public P2P networking; global consensus;
+Sybil resistance; trusted time; distributed rollback immunity; reproducible binary builds;
+mainnet readiness; economic activation; transferable units; or legal clearance.
+An Ed25519 signature proves possession of a signing key, not observer independence or factual truth.
+
 <!-- WVP-V050-PUBLISHED:START -->
-## Previously Published WVP Release (v0.5.0)
+## Historical release notes
 
-**WVP v0.5.0 is published.** [GitHub Release](https://github.com/nightfall-wizard/wizard-verification-protocol/releases/tag/v0.5.0).
-
-Tagged commit: `41ab8d3aa166fbe6deb52935975e65c10a1d618c`. Distribution: `source-only-unsigned`. Signed Android binary: `false`.
-
-No independent audit, source-to-release equivalence, binary safety or reproducible build proof is claimed.
+WVP [v0.5.0](https://github.com/nightfall-wizard/wizard-verification-protocol/releases/tag/v0.5.0) is an already published historical release,
+not an unreleased source candidate.
 <!-- WVP-V050-PUBLISHED:END -->
-
-<!-- WVP-V040-PUBLISHED:START -->
-## Previous Published WVP Release
-
-**WVP v0.4.0 is published.** [GitHub Release](https://github.com/nightfall-wizard/wizard-verification-protocol/releases/tag/v0.4.0).
-
-Tagged source commit: 3d2ec9151034ca14517ac0f08c4baf93d0c2e71f
-
-The older v0.4 prepared-not-released section is historical, not the current status.
-No independent audit, binary-safety proof or reproducible-build proof is claimed.
-<!-- WVP-V040-PUBLISHED:END -->
-
-## Current Status
-
-Bootstrap implementation in progress.
-
-## Current Modules
-
-- wvp-release-check
-- wvp-scorecard
-- wvp-node-diagnose
-- wvp-conformance
-- wvp-light-verify
-
-<!-- WVP:ANDROID-VS-CI-CONFORMANCE:START -->
-## Android vs CI Build Provenance Conformance
-
-WVP includes a local, authenticated Android-vs-CI conformance command:
-
-    ./conformance/release-check-android-vs-ci-build-provenance.sh
-
-This command downloads the GitHub Actions build-provenance artifact for the checked-out commit, generates a fresh Android-Termux artifact locally, compares both artifacts, and validates that the result stays within the correct claim boundary.
-
-It verifies:
-
-- same source commit;
-- same package version;
-- same Cargo.lock hash;
-- Android-Termux and GitHub Actions are separate environment classes;
-- cross-architecture binary differences are not treated as failure;
-- no reproducible-build claim is made.
-
-It does not prove:
-
-- binary safety;
-- source-to-release correspondence;
-- full reproducible builds;
-- audit status.
-<!-- WVP:ANDROID-VS-CI-CONFORMANCE:END -->
-
-
 <!-- WVP:V040-PUBLIC-STATUS:START -->
-## WVP v0.4 Public Status
 
-> HISTORICAL SNAPSHOT ONLY: v0.4.0 was published on 2026-10-17. The prepared-not-released entries below describe the earlier preparation stage, not current reality.
-
-Status: `prepared-not-released`
-
-WVP v0.4 release preparation is complete, but v0.4.0 has not been released.
-
-Current public interpretation:
-
-- v0.4 release evidence has been prepared.
-- v0.4 release notes draft exists.
-- v0.4 final pre-release gate exists.
-- v0.4 controlled release plan exists.
-- v0.4 pre-release preparation is intentionally stopped before release execution.
-- A real v0.4.0 release requires a separate explicit release execution step.
-
-Release action status:
-
-| Action | Status |
-|---|---:|
-| v0.4.0 Git tag created | `no` |
-| v0.4.0 GitHub release created | `no` |
-| v0.4.0 GitHub release asset uploaded | `no` |
-| Private key added | `no` |
-| Signature created | `no` |
-
-Prepared evidence:
-
-- `docs/release-check/WVP-V040-PRE-RELEASE-PREP-STOP-MARKER.md`
-- `docs/release-check/WVP-V040-CONTROLLED-RELEASE-PLAN.md`
-- `docs/release-check/WVP-V040-FINAL-PRE-RELEASE-GATE.md`
-- `docs/release-check/WVP-V040-RELEASE-NOTES-DRAFT.md`
-- `docs/release-check/WVP-V040-RELEASE-READINESS-CHECKLIST.md`
-- `reports/release-check/WVP-V040-FIXTURE-RUNNER-REPORT.json`
-- `reports/release-check/WVP-V040-FIXTURE-RUNNER-REPORT.md`
-- `fixtures/release-check/FIXTURE-INDEX.json`
-
-Reference commit at status alignment:
-
-- `1b6bfadbab943f023871f8adedc04982b580980e`
-
-Explicit non-claims:
-
-- This is not an audit.
-- This is not legal clearance.
-- This is not a binary safety proof.
-- This is not a source-to-release proof.
-- This is not a reproducible-build proof.
-- This is not a wallet safety claim.
-- This is not investment advice.
-- This is not a custody, broker, exchange, or paid-report function.
+**HISTORICAL SNAPSHOT ONLY:** WVP
+[v0.4.0](https://github.com/nightfall-wizard/wizard-verification-protocol/releases/tag/v0.4.0) was published;
+older prepared-not-released records describe a past pre-publication stage, not current status.
+Earlier README text is preserved in Git history.
 <!-- WVP:V040-PUBLIC-STATUS:END -->
 
-<!-- WVP:AUNEYA-PROTOCOL-CHARTER:START -->
-## AUNEYA Protocol Charter
-
-AUNEYA is the working architecture for a phone-first witness network for the provable web.
-
-WVP remains the technical verification core.
-
-AUNEYA is currently documented as non-value protocol research and simulation only.
-
-Documents:
-
-- `docs/auneya/AUNEYA-PROTOCOL-CHARTER.md`
-- `docs/auneya/AUNEYA-PROVABLE-WEB-SCOPE.md`
-- `docs/auneya/AUNEYA-NON-VALUE-SIMULATION-NOTICE.md`
-
-Explicit non-claims:
-
-- No token is created by this step.
-- No token sale is offered.
-- No market value is claimed.
-- No return, profit, yield or financial outcome is offered or promised.
-- Legal review is required before any public token launch, listing, sale, transferability or market-value communication.
-<!-- WVP:AUNEYA-PROTOCOL-CHARTER:END -->
-
-<!-- WVP:AUNEYA-CLAIM-SCHEMA-V01:START -->
-## AUNEYA Claim Schema v0.1
-
-AUNEYA Claim Schema v0.1 defines the first machine-readable claim format for the provable web.
-
-It defines:
-
-- claim identity
-- claim type
-- lawful public target
-- evidence requirements
-- expiry policy
-- legal boundary
-- non-value notice
-
-Files:
-
-- `schemas/auneya-claim-v0.1.schema.json`
-- `docs/auneya/AUNEYA-CLAIM-SCHEMA-V0.1.md`
-- `fixtures/auneya/claims/`
-- `conformance/auneya-claim-schema-v0.1.sh`
-
-Explicit non-claims:
-
-- No token is created by this schema.
-- No reward is created by this schema.
-- No market value is claimed.
-- Legal review is required before any public token launch, listing, sale, transferability or market-value communication.
-<!-- WVP:AUNEYA-CLAIM-SCHEMA-V01:END -->
-
-<!-- WVP:AUNEYA-WITNESS-PROOF-SCHEMA-V01:START -->
-## AUNEYA Witness Proof Schema v0.1
-
-AUNEYA Witness Proof Schema v0.1 defines the first machine-readable proof format for checked lawful public claims.
-
-It defines:
-
-- proof identity
-- claim reference
-- witness identity class
-- observed status
-- evidence hashes
-- lawful boundary confirmation
-- timing metadata
-- proof integrity metadata
-
-Files:
-
-- `schemas/auneya-witness-proof-v0.1.schema.json`
-- `docs/auneya/AUNEYA-WITNESS-PROOF-SCHEMA-V0.1.md`
-- `fixtures/auneya/witness-proofs/`
-- `conformance/auneya-witness-proof-schema-v0.1.sh`
-
-Explicit non-claims:
-
-- No token is created by this schema.
-- No reward is created by this schema.
-- No market value is claimed.
-- Legal review is required before any public token launch, listing, sale, transferability or market-value communication.
-<!-- WVP:AUNEYA-WITNESS-PROOF-SCHEMA-V01:END -->
-
-<!-- WVP:AUNEYA-EVENT-SCHEMA-V01:START -->
-## AUNEYA Event Schema v0.1
-
-AUNEYA Event Schema v0.1 defines how multiple lawful witness proofs for the same public claim form an Auneya Event.
-
-It defines:
-
-- event identity
-- claim reference
-- witness proof references
-- quorum rules
-- independent witness count
-- event status
-- lawful boundary confirmation
-- event integrity metadata
-
-Files:
-
-- `schemas/auneya-event-v0.1.schema.json`
-- `docs/auneya/AUNEYA-EVENT-SCHEMA-V0.1.md`
-- `fixtures/auneya/events/`
-- `conformance/auneya-event-schema-v0.1.sh`
-
-Explicit non-claims:
-
-- No token is created by this schema.
-- No reward is created by this schema.
-- No market value is claimed.
-- Legal review is required before any public token launch, listing, sale, transferability or market-value communication.
-<!-- WVP:AUNEYA-EVENT-SCHEMA-V01:END -->
-
-<!-- WVP:AUNEYA-PULSE-FLOW-V01:START -->
-## AUNEYA Pulse and Prooflet Flow v0.1
-
-AUNEYA Pulse and Prooflet Flow v0.1 defines the first phone-first witness loop.
-
-It defines:
-
-- one-second Pulse cadence
-- Micro-Proof grouping
-- Prooflet creation
-- lawful public boundary checks
-- non-value simulated reward entries
-
-Files:
-
-- `schemas/auneya-pulse-flow-v0.1.schema.json`
-- `docs/auneya/AUNEYA-PULSE-AND-PROOFLET-FLOW-V0.1.md`
-- `fixtures/auneya/pulse-flow/`
-- `conformance/auneya-pulse-flow-v0.1.sh`
-
-Explicit non-claims:
-
-- No token is created by this schema.
-- No real reward is created by this schema.
-- No market value is claimed.
-- Simulated reward entries are non-transferable and non-value only.
-- Legal review is required before any public token launch, listing, sale, transferability or market-value communication.
-<!-- WVP:AUNEYA-PULSE-FLOW-V01:END -->
-
-<!-- WVP:AUNEYA-LOCAL-WITNESS-RUNNER-V01:START -->
-## AUNEYA Local Witness Runner v0.1
-
-AUNEYA Local Witness Runner v0.1 generates a local non-value pulse-flow report from a lawful public claim fixture.
-
-It defines:
-
-- Termux-local witness execution
-- lawful claim rejection
-- Pulse generation
-- Micro-Proof generation
-- Prooflet generation
-- non-value simulated reward entry generation
-
-Files:
-
-- `tools/auneya/auneya_local_witness_runner.py`
-- `docs/auneya/AUNEYA-LOCAL-WITNESS-RUNNER-V0.1.md`
-- `fixtures/auneya/local-runner/example-local-witness-flow.json`
-- `conformance/auneya-local-witness-runner-v0.1.sh`
-
-Explicit non-claims:
-
-- No token is created by this runner.
-- No real reward is created by this runner.
-- No market value is claimed.
-- No mainnet is activated.
-- Simulated reward entries are non-transferable and non-value only.
-- Legal review is required before any public token launch, listing, sale, transferability or market-value communication.
-<!-- WVP:AUNEYA-LOCAL-WITNESS-RUNNER-V01:END -->
-
-<!-- WVP:AUNEYA-LOCAL-WITNESS-CLI-DISPLAY-V01:START -->
-## AUNEYA Local Witness CLI Display v0.1
-
-AUNEYA Local Witness CLI Display v0.1 prints a clean Termux status view from a local non-value pulse-flow report.
-
-It shows:
-
-- local non-value simulation mode
-- claim identity
-- witness identity
-- pulse count
-- micro-proof count
-- prooflet identity
-- simulated non-value entry
-- legal boundary confirmations
-
-Files:
-
-- `tools/auneya/auneya_local_witness_display.py`
-- `docs/auneya/AUNEYA-LOCAL-WITNESS-CLI-DISPLAY-V0.1.md`
-- `fixtures/auneya/local-runner/example-local-witness-display.txt`
-- `conformance/auneya-local-witness-display-v0.1.sh`
-
-Explicit non-claims:
-
-- No token is created by this display.
-- No real reward is created by this display.
-- No market value is claimed.
-- No mainnet is activated.
-- Simulated entries are non-transferable and non-value only.
-- Legal review is required before any public token launch, listing, sale, transferability or market-value communication.
-<!-- WVP:AUNEYA-LOCAL-WITNESS-CLI-DISPLAY-V01:END -->
-
-<!-- WVP:AUNEYA-ONE-COMMAND-LOCAL-DEMO-V01:START -->
-## AUNEYA One-Command Local Demo v0.1
-
-AUNEYA One-Command Local Demo v0.1 runs the local witness runner and local witness CLI display in one Termux-compatible command.
-
-It shows:
-
-- local non-value simulation mode
-- local claim processing
-- Pulse generation
-- Micro-Proof generation
-- Prooflet generation
-- local display output
-- explicit non-value boundaries
-
-Command:
-
-`./tools/auneya/auneya_one_command_local_demo.sh`
-
-Files:
-
-- `tools/auneya/auneya_one_command_local_demo.sh`
-- `docs/auneya/AUNEYA-ONE-COMMAND-LOCAL-DEMO-V0.1.md`
-- `fixtures/auneya/local-runner/example-one-command-local-demo.txt`
-- `conformance/auneya-one-command-local-demo-v0.1.sh`
-
-Explicit non-claims:
-
-- No token is created by this demo.
-- No real reward is created by this demo.
-- No market value is claimed.
-- No mainnet is activated.
-- Simulated entries are non-transferable and non-value only.
-- Legal review is required before any public token launch, listing, sale, transferability or market-value communication.
-<!-- WVP:AUNEYA-ONE-COMMAND-LOCAL-DEMO-V01:END -->
-
-<!-- WVP:AUNEYA-LOCAL-DEMO-QUICKSTART-V01:START -->
-## AUNEYA Local Demo Quickstart v0.1
-
-Run the local AUNEYA demo from Termux:
-
-`./tools/auneya/auneya_one_command_local_demo.sh`
-
-This runs:
-
-- local claim fixture processing
-- local Pulse generation
-- local Micro-Proof generation
-- local Prooflet generation
-- local CLI display output
-
-Self-check:
-
-`./conformance/auneya-local-demo-quickstart-v0.1.sh`
-
-Files:
-
-- `docs/auneya/AUNEYA-LOCAL-DEMO-QUICKSTART-V0.1.md`
-- `fixtures/auneya/local-runner/example-local-demo-quickstart.txt`
-- `conformance/auneya-local-demo-quickstart-v0.1.sh`
-
-Explicit non-claims:
-
-- No token is created by this quickstart.
-- No AUNEYA is created by this quickstart.
-- No neya is created by this quickstart.
-- No real reward is created by this quickstart.
-- No market value is claimed.
-- No mainnet is activated.
-- Simulated entries are non-transferable and non-value only.
-- Legal review is required before any public token launch, listing, sale, transferability or market-value communication.
-<!-- WVP:AUNEYA-LOCAL-DEMO-QUICKSTART-V01:END -->
-
-<!-- WVP:AUNEYA-LOCAL-CLAIM-SELECTION-V01:START -->
-## AUNEYA Local Claim Selection v0.1
-
-Choose a supported lawful public claim fixture from Termux:
-
-`python3 tools/auneya/auneya_local_claim_select.py --list`
-
-Run the local demo with a selected claim:
-
-`python3 tools/auneya/auneya_local_claim_select.py --claim-key release-reality --run-demo`
-
-Supported local claim keys:
-
-- `release-reality`
-- `download-integrity`
-- `website-claim-reality`
-
-Self-check:
-
-`./conformance/auneya-local-claim-selection-v0.1.sh`
-
-Files:
-
-- `tools/auneya/auneya_local_claim_select.py`
-- `docs/auneya/AUNEYA-LOCAL-CLAIM-SELECTION-V0.1.md`
-- `fixtures/auneya/local-runner/example-local-claim-selection-list.txt`
-- `fixtures/auneya/local-runner/example-local-claim-selection-demo.txt`
-- `conformance/auneya-local-claim-selection-v0.1.sh`
-
-Explicit non-claims:
-
-- No token is created by this selector.
-- No AUNEYA is created by this selector.
-- No neya is created by this selector.
-- No real reward is created by this selector.
-- No market value is claimed.
-- No mainnet is activated.
-- Simulated entries are non-transferable and non-value only.
-- Legal review is required before any public token launch, listing, sale, transferability or market-value communication.
-<!-- WVP:AUNEYA-LOCAL-CLAIM-SELECTION-V01:END -->
-
-<!-- WVP:AUNEYA-LOCAL-COLLECTION-LEDGER-SIMULATION-V01:START -->
-## AUNEYA Local Collection Ledger Simulation v0.1
-
-Record a local non-value simulated entry from Termux:
-
-`python3 tools/auneya/auneya_local_collection_ledger.py --record --claim-key release-reality`
-
-Show the local simulated ledger:
-
-`python3 tools/auneya/auneya_local_collection_ledger.py --show`
-
-Reset the local simulated ledger:
-
-`python3 tools/auneya/auneya_local_collection_ledger.py --reset`
-
-Self-check:
-
-`./conformance/auneya-local-collection-ledger-simulation-v0.1.sh`
-
-Files:
-
-- `tools/auneya/auneya_local_collection_ledger.py`
-- `docs/auneya/AUNEYA-LOCAL-COLLECTION-LEDGER-SIMULATION-V0.1.md`
-- `fixtures/auneya/local-runner/example-local-collection-ledger.json`
-- `fixtures/auneya/local-runner/example-local-collection-ledger-record.txt`
-- `fixtures/auneya/local-runner/example-local-collection-ledger-show.txt`
-- `conformance/auneya-local-collection-ledger-simulation-v0.1.sh`
-
-Explicit non-claims:
-
-- No token is created by this ledger.
-- No AUNEYA is created by this ledger.
-- No neya is created by this ledger.
-- No real reward is created by this ledger.
-- No market value is claimed.
-- No mainnet is activated.
-- Simulated entries are non-transferable and non-value only.
-- Legal review is required before any public token launch, listing, sale, transferability or market-value communication.
-<!-- WVP:AUNEYA-LOCAL-COLLECTION-LEDGER-SIMULATION-V01:END -->
-
-<!-- WVP:AUNEYA-LOCAL-COLLECTION-STATUS-DISPLAY-V01:START -->
-## AUNEYA Local Collection Status Display v0.1
-
-Show the local simulated collection status from Termux:
-
-`python3 tools/auneya/auneya_local_collection_status.py --ledger .auneya/local-collection-ledger.json`
-
-Compact status:
-
-`python3 tools/auneya/auneya_local_collection_status.py --ledger .auneya/local-collection-ledger.json --compact`
-
-Self-check:
-
-`./conformance/auneya-local-collection-status-display-v0.1.sh`
-
-Files:
-
-- `tools/auneya/auneya_local_collection_status.py`
-- `docs/auneya/AUNEYA-LOCAL-COLLECTION-STATUS-DISPLAY-V0.1.md`
-- `fixtures/auneya/local-runner/example-local-collection-status-display.txt`
-- `fixtures/auneya/local-runner/example-local-collection-status-compact.txt`
-- `conformance/auneya-local-collection-status-display-v0.1.sh`
-
-Explicit non-claims:
-
-- No token is created by this display.
-- No AUNEYA is created by this display.
-- No neya is created by this display.
-- No real reward is created by this display.
-- No market value is claimed.
-- No mainnet is activated.
-- Simulated entries are non-transferable and non-value only.
-- Legal review is required before any public token launch, listing, sale, transferability or market-value communication.
-<!-- WVP:AUNEYA-LOCAL-COLLECTION-STATUS-DISPLAY-V01:END -->
-
-<!-- WVP:AUNEYA-LOCAL-COLLECT-COMMAND-V01:START -->
-## AUNEYA Local Collect Command v0.1
-
-Record and display one local non-value simulated collection entry from Termux:
-
-`./tools/auneya/auneya_local_collect.sh`
-
-Optional claim key:
-
-`./tools/auneya/auneya_local_collect.sh release-reality`
-
-Supported claim keys:
-
-- `release-reality`
-- `download-integrity`
-- `website-claim-reality`
-
-Self-check:
-
-`./conformance/auneya-local-collect-command-v0.1.sh`
-
-Files:
-
-- `tools/auneya/auneya_local_collect.sh`
-- `docs/auneya/AUNEYA-LOCAL-COLLECT-COMMAND-V0.1.md`
-- `fixtures/auneya/local-runner/example-local-collect-command.txt`
-- `fixtures/auneya/local-runner/example-local-collect-ledger.json`
-- `conformance/auneya-local-collect-command-v0.1.sh`
-
-Explicit non-claims:
-
-- No token is created by this command.
-- No AUNEYA is created by this command.
-- No neya is created by this command.
-- No real reward is created by this command.
-- No market value is claimed.
-- No mainnet is activated.
-- Simulated entries are non-transferable and non-value only.
-- Legal review is required before any public token launch, listing, sale, transferability or market-value communication.
-<!-- WVP:AUNEYA-LOCAL-COLLECT-COMMAND-V01:END -->
-
-<!-- WVP:AUNEYA-MINIMAL-FAIR-GENESIS-LAUNCH-PATH-V01:START -->
-## AUNEYA Minimal Fair-Genesis Launch Path v0.1
-
-AUNEYA's intended launch path is a decentralized open-source fair-genesis protocol start.
-
-Minimal launch rules:
-
-1. Finish the open-source protocol code.
-2. Do not create coins before final legal mainnet genesis.
-3. Do not sell coins.
-4. Do not manually allocate coins.
-5. Do not request personal data in exchange for coins.
-6. Do not hold wallets, keys or coins for other users.
-7. Do not operate an exchange, broker, custody service or advisory service.
-8. Do not communicate an official price or listing promise.
-9. Publish a Final Genesis Notice before any mainnet genesis.
-10. Start with genesis supply 0.
-11. After final genesis, every user can run the software independently.
-12. Units may arise only automatically from valid post-genesis protocol work.
-
-Files:
-
-- `docs/auneya/AUNEYA-MINIMAL-FAIR-GENESIS-LAUNCH-PATH-V0.1.md`
-- `fixtures/auneya/legal/minimal-fair-genesis-launch-path-v0.1.json`
-- `conformance/auneya-minimal-fair-genesis-launch-path-v0.1.sh`
-
-Explicit non-claims:
-
-- No token is created by this document.
-- No AUNEYA is created by this document.
-- No neya is created by this document.
-- No real reward is created by this document.
-- No token sale is offered.
-- No market value is claimed.
-- No mainnet is activated.
-- Nothing is transferable.
-- Legal review is required before any public token launch, listing, sale, transferability or market-value communication.
-<!-- WVP:AUNEYA-MINIMAL-FAIR-GENESIS-LAUNCH-PATH-V01:END -->
-
-
-
-## WVP v0.5 Candidate — Cryptographic Asset Binding
-
-The v0.5.0 source candidate adds offline fail-closed cryptographic binding of a
-release payload, its SHA256 digest, and its detached signature against an explicitly
-trusted public key. Documentation: [v0.5.0 candidate](docs/release/WVP-V0.5.0-CANDIDATE.md).
-This is **not a published v0.5.0 release** and is not an audit, reproducible build
-proof or source-to-binary equivalence proof.
-
-<!-- WVP:AUNEYA-PORTABLE-FEDERATION-V12:START -->
-## AUNEYA/WVP v1.2 — Portable Offline Evidence Verification
-
-The v1.2 research utility exports canonical v1.1 federation
-evidence to a private portable directory.
-
-On a separate device, archived capsules, signed statements
-and deterministic federation reports can be reverified
-without trusting the originating SQLite database.
-
-Independent checkpoint, challenge and manifest SHA-256
-pins are required.
-
-See `docs/auneya/AUNEYA-PORTABLE-FEDERATION-V1.2.md`.
-
-This is non-value, offline research only.
-
-No token, mainnet, transfer, independent-operator proof,
-consensus proof or independent audit is claimed.
-<!-- WVP:AUNEYA-PORTABLE-FEDERATION-V12:END -->
-
-
-## AUNEYA v1.7 loopback-only transport research
-
-Authenticated bounded local TCP testing for
-unchanged v1.6 signed peer envelopes.
-
-Includes explicit offline public-key enrollment,
-rotation, revocation, real socket regression tests
-and durable local replay protection.
-
-No public P2P network.
-
-No consensus, mainnet or token release.
-
-See:
-
-- docs/auneya/AUNEYA-TRANSPORT-V1.7.md
-- docs/auneya/AUNEYA-ROADMAP-V1.7.md
+## Maintainer workflow
+
+The README is generated by [`tools/readme_truth.py`](tools/readme_truth.py) and checked by
+[CI](.github/workflows/readme-truth.yml). To refresh against public GitHub release facts,
+run `python3 tools/readme_truth.py --refresh` in an authenticated Termux environment.
+A scheduled CI check detects release changes; it does **not** silently modify releases or the protocol.
