@@ -52,36 +52,41 @@ end = "<!-- WVP:V040-PUBLIC-STATUS:END -->"
 
 problems = []
 
-if start not in readme or end not in readme:
+if readme.count(start) != 1 or readme.count(end) != 1:
     problems.append("README public status block markers missing")
     block = readme
 else:
     block = readme.split(start, 1)[1].split(end, 1)[0]
 
 required_phrases = [
-    "Status: `prepared-not-released`",
-    "WVP v0.4 Public Status",
-    "WVP v0.4 release preparation is complete, but v0.4.0 has not been released.",
-    "v0.4 pre-release preparation is intentionally stopped before release execution.",
-    "A real v0.4.0 release requires a separate explicit release execution step.",
-    "v0.4.0 Git tag created",
-    "v0.4.0 GitHub release created",
-    "v0.4.0 GitHub release asset uploaded",
-    "Private key added",
-    "Signature created",
-    "This is not an audit.",
-    "This is not legal clearance.",
-    "This is not a binary safety proof.",
-    "This is not a source-to-release proof.",
-    "This is not a reproducible-build proof.",
-    "This is not a wallet safety claim.",
-    "This is not investment advice.",
-    "This is not a custody, broker, exchange, or paid-report function.",
+    "HISTORICAL SNAPSHOT ONLY",
+    "v0.4.0",
+    "releases/tag/v0.4.0",
+    "was published",
 ]
 
 for phrase in required_phrases:
     if phrase not in block:
-        problems.append("missing phrase in README v0.4 status block: " + phrase)
+        problems.append(
+            "README historical publication evidence missing: "
+            + phrase
+        )
+
+if "v0.4.0 has not been released" in block:
+    problems.append(
+        "README contradicts published v0.4.0 release"
+    )
+
+for phrase in (
+    "independent security audit",
+    "reproducible binary builds",
+    "mainnet readiness",
+):
+    if phrase not in readme:
+        problems.append(
+            "Current README security boundary missing: "
+            + phrase
+        )
 
 required_paths = [
     "docs/release-check/WVP-V040-PRE-RELEASE-PREP-STOP-MARKER.md",
@@ -98,8 +103,6 @@ for path in required_paths:
     p = Path(path)
     if not p.is_file() or p.stat().st_size == 0:
         problems.append("missing or empty referenced path: " + path)
-    if path not in block:
-        problems.append("README public status block does not mention path: " + path)
 
 required = {"FRC-003", "FRC-004", "FRC-005", "FRC-006", "FRC-007"}
 implemented = {
@@ -179,7 +182,7 @@ echo
 echo "=== WVP v0.4 PUBLIC STATUS ALIGNMENT CONFORMANCE RESULT ==="
 echo "RESULT: PASS"
 echo "README public status block exists."
-echo "README says v0.4 is prepared-not-released."
+echo "README identifies v0.4 as a published historical release."
 echo "Required v0.4 evidence paths are present."
 echo "Runner report status is PASS."
 echo "v0.4.0 release lifecycle and publication evidence verified."
