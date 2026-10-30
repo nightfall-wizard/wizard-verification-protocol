@@ -1,0 +1,51 @@
+name: AUNEYA v1.8 signed receipts
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  receipt-v18:
+
+    name: receipt-v18
+
+    runs-on: ubuntu-24.04
+
+    timeout-minutes: 10
+
+    steps:
+
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: JavaScript syntax verification
+        run: |
+          node --check \
+            tools/auneya/auneya_receipt_crypto_v18.js
+
+      - name: AUNEYA v1.7 regression
+        run: |
+          python3 -m unittest discover \
+            -s tests \
+            -p 'test_auneya_transport_v17.py' \
+            -v
+
+      - name: AUNEYA v1.8 adversarial verification
+        run: |
+          python3 -m unittest discover \
+            -s tests \
+            -p 'test_auneya_receipt_v18.py' \
+            -v
