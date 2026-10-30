@@ -33,7 +33,7 @@ Without WVP, a project check is incomplete.
 
 **WVP source version:** see [`reference/rust/wvp-release-check/Cargo.toml`](reference/rust/wvp-release-check/Cargo.toml). Source changes are NOT published releases until a tag, successful gates and GitHub publication exist.
 
-**AUNEYA research implementation:** [signed local receipts v1.8](docs/auneya/AUNEYA-AUTHENTICATED-RECEIPTS-V1.8.md). This is a *research-capability milestone*, **not** WVP v1.4 and **not** a live-network/token launch.
+**AUNEYA research implementation:** [signed offline replay checkpoints v1.9](docs/auneya/AUNEYA-EXTERNAL-REPLAY-ANCHORS-V1.9.md). This is a *research-capability milestone*, **not** WVP v1.4 and **not** a live-network/token launch.
 
 **AUNEYA released preview:** separate `auneya-v*` pre-releases; they are not the stable WVP release series.
 <!-- WVP-RELEASE-TRUTH:END -->
