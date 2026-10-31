@@ -56,6 +56,31 @@ class ReadmeRealityTests(unittest.TestCase):
                 doc
             )
 
+
+    def test_v110_research_identity_and_security_boundary(self):
+
+        doc = mod.render(ROOT)
+
+        self.assertIn(
+            '| v1.10 | Offline independent high-water keeper research |',
+            doc
+        )
+
+        self.assertIn(
+            'not a published v1.10 release',
+            doc
+        )
+
+        self.assertIn(
+            'no independently proven remote retention',
+            doc
+        )
+
+        self.assertIn(
+            'independent physical-device trials',
+            doc
+        )
+
     def test_missing_source_is_rejected(self):
 
         bad = mod.MILESTONES + (

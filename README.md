@@ -21,7 +21,7 @@ WVP is its verification core; AUNEYA is the proposed network layer, not an alrea
 | WVP published stable | **[v0.5.1](https://github.com/nightfall-wizard/wizard-verification-protocol/releases/tag/v0.5.1)** · [always-current release](https://github.com/nightfall-wizard/wizard-verification-protocol/releases/latest) |
 | WVP source package | **`0.5.1`** · [`Cargo.toml`](reference/rust/wvp-release-check/Cargo.toml); source is not a release |
 | AUNEYA published research preview | **[auneya-v1.5.0](https://github.com/nightfall-wizard/wizard-verification-protocol/releases/tag/auneya-v1.5.0)** · distinct from WVP |
-| AUNEYA research implementation | **v1.9** · [signed replay checkpoints](docs/auneya/AUNEYA-EXTERNAL-REPLAY-ANCHORS-V1.9.md); not a published v1.9 release |
+| AUNEYA research implementation | **v1.10** · [offline high-water witness](docs/auneya/AUNEYA-INDEPENDENT-HIGHWATER-V1.10.md); not a published v1.10 release |
 
 *Release API snapshot checked on 2026-10-30T21:34:53Z UTC; this snapshot is not real-time.
 The WVP `releases/latest` link is live. Source: [`published release evidence`](docs/status/WVP-AUNEYA-PUBLISHED-RELEASES.json).*
@@ -55,6 +55,7 @@ Each row links to committed source, an engineering document and an adversarial t
 | v1.7 | Bounded local TCP transport | [code](tools/auneya/auneya_transport_v17.py) · [spec](docs/auneya/AUNEYA-TRANSPORT-V1.7.md) · [tests](tests/test_auneya_transport_v17.py) |
 | v1.8 | Authenticated local receipts | [code](tools/auneya/auneya_receipt_v18.py) · [spec](docs/auneya/AUNEYA-AUTHENTICATED-RECEIPTS-V1.8.md) · [tests](tests/test_auneya_receipt_v18.py) |
 | v1.9 | Signed offline replay checkpoints | [code](tools/auneya/auneya_anchor_v19.py) · [spec](docs/auneya/AUNEYA-EXTERNAL-REPLAY-ANCHORS-V1.9.md) · [tests](tests/test_auneya_anchor_v19.py) |
+| v1.10 | Offline independent high-water keeper research | [code](tools/auneya/auneya_witness_v110.py) · [spec](docs/auneya/AUNEYA-INDEPENDENT-HIGHWATER-V1.10.md) · [tests](tests/test_auneya_witness_v110.py) |
 
 ## Roadmap and research gates
 
@@ -64,20 +65,23 @@ Based on the [v1.9 engineering roadmap](docs/auneya/AUNEYA-ROADMAP-V1.9.md):
 | --- | --- |
 | 1 · Authenticated peer evidence | Implemented as local research capability (v1.6) |
 | 2 · Peer transport | Partially implemented: bounded localhost TCP + signed responder receipts (v1.7/v1.8) |
-| 3 · External replay anchors | Partially implemented: offline operator-signed chained checkpoints (v1.9); no independently proven remote retention |
+| 3 · External replay anchors | Partially implemented: signed checkpoints (v1.9) and offline keeper receipts (v1.10); no independently proven remote retention |
 | 4 · Public reproducibility | Incomplete: normative schemas, interoperability and independent replication remain |
 | 5 · External validation | Not completed: real second-device trials, independent cryptographic/privacy/security/legal reviews |
 | 6 · Production decision | **BLOCKED** · no automatic network or economic activation |
 
-**Next engineering priority (Gate 3):** independently retained high-water replay checkpoints,
-rollback/recovery attack tests across distinct devices, and reproducible signed acceptance vectors.
+**Next engineering priority (Gate 3):** independent physical-device trials,
+authenticated receipt retention, rollback/recovery attack tests across distinct devices,
+and reproducible signed acceptance vectors.
 The existing v1.9 checkpoint file stored beside its database is **not** an independent anchor.
+A v1.10 keeper in the same rollback domain also does not establish independent retention.
 
 ## Start and reproduce locally (Termux)
 
 ```sh
 ./tools/auneya/auneya_one_command_local_demo.sh
 python3 -m unittest discover -s tests -p "test_auneya_anchor_v19.py" -v
+python3 -m unittest discover -s tests -p "test_auneya_witness_v110.py" -v
 python3 -m unittest discover -s tests -p "test_wvp_release_truth.py" -v
 python3 tools/readme_truth.py --check
 ```
