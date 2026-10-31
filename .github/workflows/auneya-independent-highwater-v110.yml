@@ -1,0 +1,41 @@
+name: AUNEYA independent highwater v1.10
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  highwater:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Python and Node dependencies
+        run: |
+          python3 --version
+          node --version
+          test -f tools/auneya/auneya_anchor_v19.py
+
+      - name: Gate 3 v1.9 and v1.10 adversarial tests
+        run: |
+          python3 -m unittest discover \
+            -s tests \
+            -p 'test_auneya_anchor_v19.py' -v
+
+          python3 -m unittest discover \
+            -s tests \
+            -p 'test_auneya_witness_v110.py' -v
+
+      - name: Compile and check whitespace
+        run: |
+          python3 -m py_compile \
+            tools/auneya/auneya_witness_v110.py \
+            tests/test_auneya_witness_v110.py
+
+          git diff --check

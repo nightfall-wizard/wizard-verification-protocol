@@ -189,3 +189,32 @@ Independent storage and cross-device tests remain blocked
 pending real external validation.
 
 No claims of production readiness or economic activation.
+
+
+## v1.10: independent offline keeper high-water (research)
+
+Implemented:
+
+- Separate signer-bound keeper store.
+- Chained authenticated witness receipts.
+- Monotonic checkpoint admission.
+- External high-water receipt checking.
+- Database rollback regression tests.
+- Adversarial signature and replay tests.
+- Interrupted receipt export recovery.
+
+Not completed:
+
+- Independent physical-device trials.
+- Remote witness availability.
+- Independent retention certification.
+- Rollback immunity without an outside receipt.
+- Trusted time.
+- Signing-key compromise recovery.
+- Public reproducibility validation.
+- Independent security audit.
+
+Gate 3 remains partially implemented.
+
+Reference:
+AUNEYA-INDEPENDENT-HIGHWATER-V1.10.md.

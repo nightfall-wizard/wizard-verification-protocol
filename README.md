@@ -56,6 +56,8 @@ Each row links to committed source, an engineering document and an adversarial t
 | v1.8 | Authenticated local receipts | [code](tools/auneya/auneya_receipt_v18.py) · [spec](docs/auneya/AUNEYA-AUTHENTICATED-RECEIPTS-V1.8.md) · [tests](tests/test_auneya_receipt_v18.py) |
 | v1.9 | Signed offline replay checkpoints | [code](tools/auneya/auneya_anchor_v19.py) · [spec](docs/auneya/AUNEYA-EXTERNAL-REPLAY-ANCHORS-V1.9.md) · [tests](tests/test_auneya_anchor_v19.py) |
 
+| v1.10 | Offline independent high-water keeper research | [code](tools/auneya/auneya_witness_v110.py) · [spec](docs/auneya/AUNEYA-INDEPENDENT-HIGHWATER-V1.10.md) · [tests](tests/test_auneya_witness_v110.py) |
+
 ## Roadmap and research gates
 
 Based on the [v1.9 engineering roadmap](docs/auneya/AUNEYA-ROADMAP-V1.9.md):
