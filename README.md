@@ -21,7 +21,8 @@ WVP is its verification core; AUNEYA is the proposed network layer, not an alrea
 | WVP published stable | **[v0.5.1](https://github.com/nightfall-wizard/wizard-verification-protocol/releases/tag/v0.5.1)** · [always-current release](https://github.com/nightfall-wizard/wizard-verification-protocol/releases/latest) |
 | WVP source package | **`0.5.1`** · [`Cargo.toml`](reference/rust/wvp-release-check/Cargo.toml); source is not a release |
 | AUNEYA published research preview | **[auneya-v1.5.0](https://github.com/nightfall-wizard/wizard-verification-protocol/releases/tag/auneya-v1.5.0)** · distinct from WVP |
-| AUNEYA research implementation | **v1.10** · [offline high-water witness](docs/auneya/AUNEYA-INDEPENDENT-HIGHWATER-V1.10.md); not a published v1.10 release |
+| AUNEYA research implementation | **v1.11** · [authenticated keeper quorum](docs/auneya/AUNEYA-MULTI-KEEPER-QUORUM-V1.11.md); not a published v1.11 release |
+| AUNEYA historical research v1.10 | **[v1.10](docs/auneya/AUNEYA-INDEPENDENT-HIGHWATER-V1.10.md)** · not a published v1.10 release |
 
 *Release API snapshot checked on 2026-10-30T21:34:53Z UTC; this snapshot is not real-time.
 The WVP `releases/latest` link is live. Source: [`published release evidence`](docs/status/WVP-AUNEYA-PUBLISHED-RELEASES.json).*
@@ -56,6 +57,7 @@ Each row links to committed source, an engineering document and an adversarial t
 | v1.8 | Authenticated local receipts | [code](tools/auneya/auneya_receipt_v18.py) · [spec](docs/auneya/AUNEYA-AUTHENTICATED-RECEIPTS-V1.8.md) · [tests](tests/test_auneya_receipt_v18.py) |
 | v1.9 | Signed offline replay checkpoints | [code](tools/auneya/auneya_anchor_v19.py) · [spec](docs/auneya/AUNEYA-EXTERNAL-REPLAY-ANCHORS-V1.9.md) · [tests](tests/test_auneya_anchor_v19.py) |
 | v1.10 | Offline independent high-water keeper research | [code](tools/auneya/auneya_witness_v110.py) · [spec](docs/auneya/AUNEYA-INDEPENDENT-HIGHWATER-V1.10.md) · [tests](tests/test_auneya_witness_v110.py) |
+| v1.11 | Authenticated multi-keeper quorum | [code](tools/auneya/auneya_quorum_v111.py) · [spec](docs/auneya/AUNEYA-MULTI-KEEPER-QUORUM-V1.11.md) · [tests](tests/test_auneya_quorum_v111.py) |
 
 ## Roadmap and research gates
 

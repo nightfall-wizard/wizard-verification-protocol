@@ -167,6 +167,14 @@ MILESTONES = (
         'AUNEYA-INDEPENDENT-HIGHWATER-V1.10.md',
         'test_auneya_witness_v110.py'
     ),
+    (
+        '1.11',
+        'Authenticated multi-keeper quorum',
+        'auneya_quorum_v111.py',
+        'AUNEYA-MULTI-KEEPER-QUORUM-V1.11.md',
+        'test_auneya_quorum_v111.py'
+    ),
+
 )
 
 
@@ -556,7 +564,8 @@ def render(root=ROOT):
         f'| WVP published stable | **[{snap["wvp"]}]({p_wvp})** · [always-current release]({LATEST}) |',
         f'| WVP source package | **`{source}`** · [`Cargo.toml`](reference/rust/wvp-release-check/Cargo.toml); source is not a release |',
         f'| AUNEYA published research preview | **[{snap["auneya_preview"]}]({p_aun})** · distinct from WVP |',
-        f'| AUNEYA research implementation | **v{research}** · [offline high-water witness](docs/auneya/AUNEYA-INDEPENDENT-HIGHWATER-V1.10.md); not a published v{research} release |',
+        f'| AUNEYA research implementation | **v{research}** · [authenticated keeper quorum](docs/auneya/AUNEYA-MULTI-KEEPER-QUORUM-V1.11.md); not a published v{research} release |',
+        '| AUNEYA historical research v1.10 | **[v1.10](docs/auneya/AUNEYA-INDEPENDENT-HIGHWATER-V1.10.md)** · not a published v1.10 release |',
         '',
         f'*Release API snapshot checked on {snap["observed_utc"]} UTC; this snapshot is not real-time. ',
         f'The WVP `releases/latest` link is live. Source: [`published release evidence`]({SNAP}).*',

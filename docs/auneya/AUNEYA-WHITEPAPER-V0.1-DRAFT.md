@@ -412,3 +412,46 @@ or independent audit is claimed.
 Reference:
 
 AUNEYA-EXTERNAL-REPLAY-ANCHORS-V1.9.md
+
+## 17. Authenticated Multi-Keeper Evidence v1.11
+
+Status: Non-normative research implementation.
+
+AUNEYA v1.11 introduces deterministic verification
+of multiple v1.10 keeper receipts bound to one
+Ed25519-signed v1.9 replay checkpoint.
+
+The verifier enforces an explicitly configured
+minimum quorum of distinct cryptographic signers.
+
+Trust anchors are configured separately from
+untrusted evidence bundles.
+
+The system rejects forged signatures, duplicated
+signer identities, conflicting supplied evidence,
+invalid predecessor relationships and insufficient
+signed quorums.
+
+Its deterministic WVP report distinguishes
+authenticated signatures from claims that have
+not been independently established.
+
+Multiple signing keys are not proof of
+independent physical devices or human operators.
+
+The implementation does not establish:
+
+- Public decentralized networking.
+- Independent storage availability.
+- Trusted global latest checkpoints.
+- Global anti-rollback guarantees.
+- Sybil resistance.
+- Distributed consensus.
+- Independent security auditing.
+- Legal authorization.
+- Mainnet readiness.
+- Economic activation.
+
+Reference:
+
+AUNEYA-MULTI-KEEPER-QUORUM-V1.11.md

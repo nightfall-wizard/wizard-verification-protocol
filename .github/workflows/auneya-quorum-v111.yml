@@ -1,0 +1,59 @@
+name: AUNEYA Multi-Keeper Quorum v1.11
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  quorum:
+    name: Adversarial quorum verification
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Verify dependencies
+        run: |
+          python3 --version
+          node --version
+
+      - name: Compile
+        run: |
+          python3 -m py_compile \
+            tools/auneya/auneya_quorum_v111.py \
+            tests/test_auneya_quorum_v111.py
+
+      - name: Existing v1.9 cryptographic tests
+        run: |
+          python3 -m unittest discover \
+            -s tests \
+            -p 'test_auneya_anchor_v19.py' \
+            -v
+
+      - name: Existing v1.10 keeper tests
+        run: |
+          python3 -m unittest discover \
+            -s tests \
+            -p 'test_auneya_witness_v110.py' \
+            -v
+
+      - name: New v1.11 adversarial quorum tests
+        run: |
+          python3 -m unittest discover \
+            -s tests \
+            -p 'test_auneya_quorum_v111.py' \
+            -v
+
+      - name: Verify README consistency
+        run: |
+          python3 tools/readme_truth.py --check
+
+      - name: Whitespace verification
+        run: |
+          git diff --check

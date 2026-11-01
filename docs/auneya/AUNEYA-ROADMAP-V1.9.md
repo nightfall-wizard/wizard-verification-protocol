@@ -218,3 +218,51 @@ Gate 3 remains partially implemented.
 
 Reference:
 AUNEYA-INDEPENDENT-HIGHWATER-V1.10.md.
+
+## v1.11: Authenticated Multi-Keeper Quorum
+
+Status: Implemented as offline research capability.
+
+New capabilities:
+
+- Multiple authenticated keeper receipts.
+- Explicit minimum signer quorum.
+- Independently configured signer fingerprints.
+- Deterministic WVP verification report.
+- Signed checkpoint predecessor continuity.
+- Signed keeper receipt predecessor continuity.
+- Detection of supplied same-height equivocation.
+- Adversarial cryptographic regression tests.
+- Automated GitHub Actions checks.
+
+Source:
+
+tools/auneya/auneya_quorum_v111.py
+
+Specification:
+
+docs/auneya/AUNEYA-MULTI-KEEPER-QUORUM-V1.11.md
+
+Tests:
+
+tests/test_auneya_quorum_v111.py
+
+Remaining Gate 3 work:
+
+- Independent physical-device experiments.
+- Authenticated external retention.
+- Durable external high-water floors.
+- Real remote outage experiments.
+- Signing-key compromise recovery.
+- Independent operator validation.
+- Real-world equivocation detection experiments.
+
+Gate 3 remains PARTIALLY IMPLEMENTED.
+
+Gate 4 remains INCOMPLETE.
+
+Gate 5 remains NOT COMPLETED.
+
+Gate 6 remains BLOCKED.
+
+No production or economic activation is authorized.
