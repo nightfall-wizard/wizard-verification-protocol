@@ -153,3 +153,7 @@ The maintainer does not own truth.
 The maintainer maintains the open verification standard.
 
 The goal is a neutral, open, legally clean trust machine for the AI age.
+
+## Independent WVP/AUNEYA governance
+
+WVP/AUNEYA is independently led by nightfall-wizard, not owned, operated or governed by nightfallcoin.org or any external crypto project. See [governance](../PROJECT-INDEPENDENCE.md). The next technical priority is [real-device Gate 3 acceptance](AUNEYA-GATE3-DEVICE-ACCEPTANCE.md). No mainnet or economic activation.

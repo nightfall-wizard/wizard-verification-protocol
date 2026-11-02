@@ -122,5 +122,28 @@ class ReadmeRealityTests(unittest.TestCase):
                 mod.evidence(ROOT)
 
 
+class IndependenceTests(unittest.TestCase):
+    def test_governance_consistency(self):
+        files = [
+            'README.md',
+            'docs/PROJECT-INDEPENDENCE.md',
+            'docs/auneya/AUNEYA-PROTOCOL-CHARTER.md',
+            'docs/auneya/AUNEYA-WHITEPAPER-V0.1-DRAFT.md',
+            'docs/auneya/AUNEYA-ROADMAP-V1.9.md'
+        ]
+
+        for f in files:
+            data = (ROOT / f).read_text(
+                encoding='utf-8'
+            ).lower()
+
+            for term in (
+                'nightfall-wizard',
+                'nightfallcoin.org',
+                'independen'
+            ):
+                self.assertIn(term, data, f)
+
+
 if __name__ == '__main__':
     unittest.main()
