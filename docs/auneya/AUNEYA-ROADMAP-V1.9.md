@@ -299,3 +299,7 @@ Gate 5 remains NOT COMPLETED.
 Gate 6 remains BLOCKED.
 
 No mainnet or economic activation is authorized.
+
+## Independent project and next Gate 3 milestone
+
+WVP/AUNEYA is independently led by nightfall-wizard, not owned, operated or governed by nightfallcoin.org or any external crypto project. See [governance](../PROJECT-INDEPENDENCE.md). The next technical priority is [real-device Gate 3 acceptance](AUNEYA-GATE3-DEVICE-ACCEPTANCE.md). No mainnet or economic activation.

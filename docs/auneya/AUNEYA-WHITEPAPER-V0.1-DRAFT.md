@@ -494,3 +494,7 @@ Reference:
 AUNEYA-PORTABLE-QUORUM-CAPSULE-V1.12.md
 
 Economic activation remains disabled.
+
+## Independent WVP/AUNEYA research governance
+
+WVP/AUNEYA is independently led by nightfall-wizard, not owned, operated or governed by nightfallcoin.org or any external crypto project. See [governance](../PROJECT-INDEPENDENCE.md). The next technical priority is [real-device Gate 3 acceptance](AUNEYA-GATE3-DEVICE-ACCEPTANCE.md). No mainnet or economic activation.
