@@ -266,3 +266,36 @@ Gate 5 remains NOT COMPLETED.
 Gate 6 remains BLOCKED.
 
 No production or economic activation is authorized.
+
+## v1.12 Portable quorum capsules and recipient high-water floors
+
+Status: Experimental implementation only.
+
+Implemented:
+
+- Portable canonical quorum evidence.
+- Strict bounded resource consumption.
+- Separately configured signer pins.
+- Existing v1.11 signature validation.
+- Deterministic WVP classification.
+- Atomic recipient high-water floors.
+- Contiguous signed predecessor checks.
+- Replay and same-height conflict rejection.
+- Adversarial cryptographic regression tests.
+- Automated GitHub Actions checks.
+
+Not completed:
+
+- Independent physical-device experiments.
+- Independent external retention certification.
+- Operator-diversity verification.
+- Remote outage recovery experiments.
+- Compromised-key recovery.
+- Independent protocol audit.
+
+Gate 3 remains PARTIALLY IMPLEMENTED.
+Gate 4 remains INCOMPLETE.
+Gate 5 remains NOT COMPLETED.
+Gate 6 remains BLOCKED.
+
+No mainnet or economic activation is authorized.

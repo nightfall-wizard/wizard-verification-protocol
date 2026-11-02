@@ -1,0 +1,50 @@
+name: AUNEYA v1.12 Portable Evidence Conformance
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  portable-quorum:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Signed v1.11 regression tests
+        run: |
+          python3 -m unittest discover \
+            -s tests \
+            -p 'test_auneya_quorum_v111.py' \
+            -v
+
+      - name: Portable v1.12 adversarial tests
+        run: |
+          python3 -m unittest discover \
+            -s tests \
+            -p 'test_auneya_capsule_v112.py' \
+            -v
+
+      - name: README and documentation truth
+        run: |
+          python3 tools/readme_truth.py --check
+          python3 -m unittest discover \
+            -s tests \
+            -p 'test_readme_truth.py' \
+            -v
