@@ -174,6 +174,13 @@ MILESTONES = (
         'AUNEYA-MULTI-KEEPER-QUORUM-V1.11.md',
         'test_auneya_quorum_v111.py'
     ),
+    (
+        '1.12',
+        'Portable signed quorum capsule and recipient high-water floor',
+        'auneya_capsule_v112.py',
+        'AUNEYA-PORTABLE-QUORUM-CAPSULE-V1.12.md',
+        'test_auneya_capsule_v112.py'
+    ),
 
 )
 
@@ -564,7 +571,7 @@ def render(root=ROOT):
         f'| WVP published stable | **[{snap["wvp"]}]({p_wvp})** · [always-current release]({LATEST}) |',
         f'| WVP source package | **`{source}`** · [`Cargo.toml`](reference/rust/wvp-release-check/Cargo.toml); source is not a release |',
         f'| AUNEYA published research preview | **[{snap["auneya_preview"]}]({p_aun})** · distinct from WVP |',
-        f'| AUNEYA research implementation | **v{research}** · [authenticated keeper quorum](docs/auneya/AUNEYA-MULTI-KEEPER-QUORUM-V1.11.md); not a published v{research} release |',
+        f'| AUNEYA research implementation | **v{research}** · [portable quorum verification](docs/auneya/AUNEYA-PORTABLE-QUORUM-CAPSULE-V1.12.md); not a published v{research} release |',
         '| AUNEYA historical research v1.10 | **[v1.10](docs/auneya/AUNEYA-INDEPENDENT-HIGHWATER-V1.10.md)** · not a published v1.10 release |',
         '',
         f'*Release API snapshot checked on {snap["observed_utc"]} UTC; this snapshot is not real-time. ',
@@ -605,7 +612,7 @@ def render(root=ROOT):
         '| --- | --- |',
         '| 1 · Authenticated peer evidence | Implemented as local research capability (v1.6) |',
         '| 2 · Peer transport | Partially implemented: bounded localhost TCP + signed responder receipts (v1.7/v1.8) |',
-        '| 3 · External replay anchors | Partially implemented: signed checkpoints (v1.9) and offline keeper receipts (v1.10); no independently proven remote retention |',
+        '| 3 · External replay anchors | Partially implemented: checkpoints (v1.9), quorum (v1.11), portable capsules and local high-water floors (v1.12); no independently proven remote retention |',
         '| 4 · Public reproducibility | Incomplete: normative schemas, interoperability and independent replication remain |',
         '| 5 · External validation | Not completed: real second-device trials, independent cryptographic/privacy/security/legal reviews |',
         '| 6 · Production decision | **BLOCKED** · no automatic network or economic activation |',
@@ -622,6 +629,7 @@ def render(root=ROOT):
         './tools/auneya/auneya_one_command_local_demo.sh',
         'python3 -m unittest discover -s tests -p "test_auneya_anchor_v19.py" -v',
         'python3 -m unittest discover -s tests -p "test_auneya_witness_v110.py" -v',
+        'python3 -m unittest discover -s tests -p "test_auneya_capsule_v112.py" -v',
         'python3 -m unittest discover -s tests -p "test_wvp_release_truth.py" -v',
         'python3 tools/readme_truth.py --check',
         '```',

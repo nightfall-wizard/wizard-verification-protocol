@@ -455,3 +455,42 @@ The implementation does not establish:
 Reference:
 
 AUNEYA-MULTI-KEEPER-QUORUM-V1.11.md
+
+## 18. Portable Quorum Evidence v1.12 (non-normative)
+
+AUNEYA v1.12 adds a bounded portable exchange
+format for authenticated v1.11 quorum evidence.
+
+Recipients verify signed checkpoints and
+keeper receipts against independently
+configured trust anchors.
+
+A recipient can maintain an atomic
+monotonic high-water floor.
+
+This enables local detection of:
+
+- Stale evidence.
+- Skipped checkpoint sequences.
+- Invalid predecessor relationships.
+- Conflicting signed same-height anchors.
+- Modified signed evidence.
+- Insufficient authenticated quorum.
+
+A local floor is not independent external
+retention unless operated outside the
+producer's storage rollback domain.
+
+Multiple signatures do not prove physical
+device independence or operator diversity.
+
+This implementation does not establish
+network consensus, Sybil resistance,
+trusted time, public networking,
+production readiness or audit completion.
+
+Reference:
+
+AUNEYA-PORTABLE-QUORUM-CAPSULE-V1.12.md
+
+Economic activation remains disabled.
