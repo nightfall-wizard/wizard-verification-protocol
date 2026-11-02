@@ -498,3 +498,32 @@ Economic activation remains disabled.
 ## Independent WVP/AUNEYA research governance
 
 WVP/AUNEYA is independently led by nightfall-wizard, not owned, operated or governed by nightfallcoin.org or any external crypto project. See [governance](../PROJECT-INDEPENDENCE.md). The next technical priority is [real-device Gate 3 acceptance](AUNEYA-GATE3-DEVICE-ACCEPTANCE.md). No mainnet or economic activation.
+
+## 19. Recipient-signed acceptance research v1.13
+
+Status: Non-normative research implementation.
+
+Following v1.12 portable quorum verification,
+a recipient can produce a separately signed
+Ed25519 acceptance acknowledgment.
+
+The acknowledgment cryptographically commits to
+the accepted capsule, anchor, research chain,
+recipient trust policy, high-water floor
+and recipient signer fingerprint.
+
+The historical v1.7 unauthenticated responder
+limitation was separately addressed by the
+v1.8 authenticated transport receipt capability.
+
+The v1.13 recipient acknowledgment is a distinct
+research capability.
+
+It does not prove physical-device independence,
+operator independence, factual truth, remote
+availability, global consensus, trusted time,
+independent audit or legal authorization.
+
+The whitepaper remains a draft.
+
+No mainnet or economic activation.

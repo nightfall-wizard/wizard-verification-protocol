@@ -303,3 +303,36 @@ No mainnet or economic activation is authorized.
 ## Independent project and next Gate 3 milestone
 
 WVP/AUNEYA is independently led by nightfall-wizard, not owned, operated or governed by nightfallcoin.org or any external crypto project. See [governance](../PROJECT-INDEPENDENCE.md). The next technical priority is [real-device Gate 3 acceptance](AUNEYA-GATE3-DEVICE-ACCEPTANCE.md). No mainnet or economic activation.
+
+## v1.13 — Recipient-signed Gate 3 acceptance
+
+Status: Experimental research implementation.
+
+Implemented:
+
+- Independently pinned recipient signatures.
+- Ed25519 acceptance statements.
+- Portable capsule commitments.
+- Signed anchor commitments.
+- Recipient trust-policy commitments.
+- Recipient high-water floor commitments.
+- Canonical bounded evidence.
+- Adversarial regression tests.
+- Automated GitHub CI.
+- Deterministic README integration.
+
+Not completed:
+
+- Independent physical-device acceptance.
+- Independently certified external retention.
+- Remote outage experiments.
+- Signing-key recovery.
+- Independent protocol replication.
+- Independent security review.
+
+Gate 3: PARTIALLY IMPLEMENTED.
+Gate 4: INCOMPLETE.
+Gate 5: NOT COMPLETED.
+Gate 6: BLOCKED.
+
+No public network or economic activation.
