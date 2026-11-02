@@ -1,0 +1,39 @@
+name: AUNEYA v1.13 recipient evidence
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  recipient-ack:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Existing portable quorum attacks
+        run: python3 -m unittest discover -s tests -p 'test_auneya_capsule_v112.py' -v
+
+      - name: Signed recipient ACK adversarial tests
+        run: python3 -m unittest discover -s tests -p 'test_auneya_gate3_receipt_v113.py' -v
+
+      - name: README regression
+        run: python3 -m unittest discover -s tests -p 'test_readme_truth.py' -v
+
+      - name: Deterministic README verification
+        run: python3 tools/readme_truth.py --check

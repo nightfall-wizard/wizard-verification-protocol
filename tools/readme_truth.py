@@ -182,6 +182,14 @@ MILESTONES = (
         'test_auneya_capsule_v112.py'
     ),
 
+    (
+        '1.13',
+        'Recipient-signed Gate 3 acceptance evidence (research)',
+        'auneya_gate3_receipt_v113.py',
+        'AUNEYA-GATE3-RECIPIENT-RECEIPTS-V1.13.md',
+        'test_auneya_gate3_receipt_v113.py'
+    ),
+
 )
 
 
@@ -578,7 +586,7 @@ def render(root=ROOT):
         f'| WVP published stable | **[{snap["wvp"]}]({p_wvp})** · [always-current release]({LATEST}) |',
         f'| WVP source package | **`{source}`** · [`Cargo.toml`](reference/rust/wvp-release-check/Cargo.toml); source is not a release |',
         f'| AUNEYA published research preview | **[{snap["auneya_preview"]}]({p_aun})** · distinct from WVP |',
-        f'| AUNEYA research implementation | **v{research}** · [portable quorum verification](docs/auneya/AUNEYA-PORTABLE-QUORUM-CAPSULE-V1.12.md); not a published v{research} release |',
+        f'| AUNEYA research implementation | **v{research}** · [recipient-signed Gate 3 research](docs/auneya/AUNEYA-GATE3-RECIPIENT-RECEIPTS-V1.13.md); not a published v{research} release |',
         '| AUNEYA historical research v1.10 | **[v1.10](docs/auneya/AUNEYA-INDEPENDENT-HIGHWATER-V1.10.md)** · not a published v1.10 release |',
         '',
         f'*Release API snapshot checked on {snap["observed_utc"]} UTC; this snapshot is not real-time. ',
@@ -619,7 +627,7 @@ def render(root=ROOT):
         '| --- | --- |',
         '| 1 · Authenticated peer evidence | Implemented as local research capability (v1.6) |',
         '| 2 · Peer transport | Partially implemented: bounded localhost TCP + signed responder receipts (v1.7/v1.8) |',
-        '| 3 · External replay anchors | Partially implemented: checkpoints (v1.9), quorum (v1.11), portable capsules and local high-water floors (v1.12); no independently proven remote retention |',
+        '| 3 · External replay anchors | Partially implemented: checkpoints (v1.9), quorum (v1.11), portable capsules (v1.12) and signed recipient ACKs (v1.13); no independently proven remote retention |',
         '| 4 · Public reproducibility | Incomplete: normative schemas, interoperability and independent replication remain |',
         '| 5 · External validation | Not completed: real second-device trials, independent cryptographic/privacy/security/legal reviews |',
         '| 6 · Production decision | **BLOCKED** · no automatic network or economic activation |',
@@ -637,6 +645,7 @@ def render(root=ROOT):
         'python3 -m unittest discover -s tests -p "test_auneya_anchor_v19.py" -v',
         'python3 -m unittest discover -s tests -p "test_auneya_witness_v110.py" -v',
         'python3 -m unittest discover -s tests -p "test_auneya_capsule_v112.py" -v',
+        'python3 -m unittest discover -s tests -p "test_auneya_gate3_receipt_v113.py" -v',
         'python3 -m unittest discover -s tests -p "test_wvp_release_truth.py" -v',
         'python3 tools/readme_truth.py --check',
         '```',
@@ -650,6 +659,7 @@ def render(root=ROOT):
         '- [Protocol Charter](docs/auneya/AUNEYA-PROTOCOL-CHARTER.md) — purpose, legal and economic boundaries.',
         '- [AUNEYA technical whitepaper v0.1 DRAFT](docs/auneya/AUNEYA-WHITEPAPER-V0.1-DRAFT.md) — research, **not** final protocol approval.',
         '- [AUNEYA engineering roadmap v1.9](docs/auneya/AUNEYA-ROADMAP-V1.9.md) — six gates and remaining work.',
+        '- [Recipient ACK v1.13 research](docs/auneya/AUNEYA-GATE3-RECIPIENT-RECEIPTS-V1.13.md) — signed local acceptance, not proof of separate devices.',
         '- [WVP release identity policy](docs/release/WVP-RELEASE-TRUTH-AND-AUNEYA-GATES.md) — release/source distinction.',
         '- [Security disclosures](SECURITY.md) · [MIT license](LICENSE).',
         '',

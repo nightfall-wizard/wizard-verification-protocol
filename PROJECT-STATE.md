@@ -1,3 +1,12 @@
+> **Historical WVP-SEC milestone ledger.**
+>
+> The opening "Scaffold implemented" status describes
+> an earlier milestone, not the current WVP/AUNEYA project.
+>
+> Current release identities and Gate 3 research status
+> are documented in the generated root README,
+> AUNEYA roadmap and Gate 3 device acceptance document.
+
 # Project State
 
 ## Current milestone
