@@ -1,0 +1,42 @@
+name: AUNEYA v1.16 Full-Quorum Cross-Language
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  independent-full-quorum:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Syntax and genuine full-quorum cryptographic tests
+        run: |
+          node --check tools/auneya/auneya_gate3_full_v116.js
+          python3 -m unittest discover -s tests -p 'test_auneya_gate3_full_v116.py' -v
+
+      - name: Historical protocol regressions
+        run: |
+          python3 -m unittest discover -s tests -p 'test_auneya_capsule_v112.py' -v
+          python3 -m unittest discover -s tests -p 'test_auneya_gate3_interop_v115.py' -v
+
+      - name: Deterministic README contract
+        run: |
+          python3 -m unittest discover -s tests -p 'test_readme_truth.py' -v
+          python3 tools/readme_truth.py --check

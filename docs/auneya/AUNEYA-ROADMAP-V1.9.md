@@ -400,3 +400,36 @@ No economic activation.
 
 Reference:
 AUNEYA-GATE3-CROSS-LANGUAGE-V1.15.md.
+
+## v1.16 — Independent full-quorum cross-language verification
+
+Status: experimental non-value research.
+
+A separate Node.js implementation re-validates v1.12 signed quorum
+capsules and the exact v1.11 WVP report commitment, with optional
+v1.15 ACK binding.
+
+Signed predecessor continuity, full pin checking and adversarial
+Python/Node regression tests are included.
+
+Remaining engineering requirements:
+
+- Normative cross-implementation schemas.
+- Larger-capsule parser parity.
+- Independent physical-device acceptance.
+- External durable retention.
+- Real outage and rollback evidence.
+- Trusted-time design.
+- Independent protocol and security review.
+
+Gate 3: PARTIALLY IMPLEMENTED.
+
+Gate 4: INCOMPLETE.
+
+Gate 5: NOT COMPLETED.
+
+Gate 6: BLOCKED.
+
+No mainnet, public-network launch or economic activation.
+
+Reference: AUNEYA-GATE3-FULL-QUORUM-V1.16.md.
