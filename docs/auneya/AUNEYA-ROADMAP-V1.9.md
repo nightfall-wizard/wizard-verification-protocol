@@ -361,3 +361,42 @@ Gate 6: BLOCKED.
 No public P2P, mainnet or economic activation.
 
 See AUNEYA-GATE3-OFFLINE-AUDIT-V1.14.md.
+
+## v1.15 — Independent Cross-Language Recipient ACK Verification
+
+Status: Experimental non-value research.
+
+Implemented:
+
+- Independent Node.js Ed25519 recipient ACK verification.
+- Python/Node cross-language conformance.
+- Canonical lossless JSON verification.
+- Large integer interoperability.
+- Deterministic signed public test vectors.
+- Independent recipient public-key pin checking.
+- Externally supplied latest ACK head checking.
+- Optional capsule commitment verification.
+- Optional recipient high-water commitment verification.
+- Adversarial regression tests.
+- Dedicated GitHub Actions CI.
+
+Remaining work:
+
+- Independent full-quorum cross-language verification.
+- Normative schemas.
+- Real independent physical-device experiments.
+- External retention validation.
+- Remote outage and rollback recovery experiments.
+- Independent security review.
+
+Gate 3: PARTIALLY IMPLEMENTED.
+Gate 4: INCOMPLETE.
+Gate 5: NOT COMPLETED.
+Gate 6: BLOCKED.
+
+No public network activation.
+No mainnet activation.
+No economic activation.
+
+Reference:
+AUNEYA-GATE3-CROSS-LANGUAGE-V1.15.md.

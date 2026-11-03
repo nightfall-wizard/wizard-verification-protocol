@@ -551,3 +551,49 @@ Gate 6 remains blocked.
 No token issuance, mainnet activation, audit, consensus or legal approval.
 
 Reference: AUNEYA-GATE3-OFFLINE-AUDIT-V1.14.md.
+
+## v1.15 Independent Recipient ACK Interoperability
+
+Status: Non-normative technical research update.
+
+AUNEYA v1.15 adds a separately implemented Node.js
+cryptographic verification path for existing v1.13
+recipient-signed acknowledgement evidence.
+
+Native Node.js Ed25519 verification validates
+the original signed body and domain separation.
+
+The implementation uses deterministic test vectors,
+lossless JSON parsing and independently supplied
+trust commitments.
+
+The verifier rejects altered signatures, incorrect
+key pins, noncanonical messages, unsupported security
+claims and mismatching external ACK commitments.
+
+A v1.15 signature verdict does not independently
+authenticate the underlying v1.12 multi-keeper quorum.
+
+The v1.14 offline auditor remains necessary for
+full quorum and recipient-history verification.
+
+Two software implementations running on one device
+do not establish physical-device independence.
+
+External retention and global freshness remain
+unproven.
+
+The whitepaper remains a research DRAFT.
+
+Gate 3 remains partially implemented.
+Gate 4 remains incomplete.
+Gate 5 remains incomplete.
+Gate 6 remains blocked.
+
+No production readiness is claimed.
+No independent security audit is claimed.
+No public P2P network is activated.
+No economic activation is authorized.
+
+Reference:
+AUNEYA-GATE3-CROSS-LANGUAGE-V1.15.md.
