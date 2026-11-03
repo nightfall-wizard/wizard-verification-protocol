@@ -527,3 +527,27 @@ independent audit or legal authorization.
 The whitepaper remains a draft.
 
 No mainnet or economic activation.
+
+## 20. Recipient-history offline audit research v1.14
+
+Version 1.14 creates a read-only audit path over the full sequence of
+v1.12 quorum capsules and v1.13 recipient-signed confirmations.
+
+It re-verifies signed Ed25519 quorum evidence, recipient signatures and
+independently pinned identity/trust policy; requires contiguous history,
+signed predecessor continuity and a separately supplied external latest
+ACK SHA-256.
+
+This does not prove external retention when the pin is not actually stored
+outside the attacker's rollback domain.
+
+The artifact and CI tests are reproducible research evidence, not a claim
+that physical-device acceptance or independent replication has occurred.
+
+Gate 3 stays partial.
+Gates 4/5 remain open.
+Gate 6 remains blocked.
+
+No token issuance, mainnet activation, audit, consensus or legal approval.
+
+Reference: AUNEYA-GATE3-OFFLINE-AUDIT-V1.14.md.

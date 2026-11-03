@@ -1,0 +1,40 @@
+name: AUNEYA v1.14 independent offline audit
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  offline-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Cryptographic cross-sequence audit and adversarial attacks
+        run: python3 -m unittest discover -s tests -p 'test_auneya_gate3_audit_v114.py' -v
+
+      - name: Previous recipient and quorum protocol regressions
+        run: |
+          python3 -m unittest discover -s tests -p 'test_auneya_gate3_receipt_v113.py' -v
+          python3 -m unittest discover -s tests -p 'test_auneya_capsule_v112.py' -v
+
+      - name: README is generated from verified evidence
+        run: |
+          python3 -m unittest discover -s tests -p 'test_readme_truth.py' -v
+          python3 tools/readme_truth.py --check

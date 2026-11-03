@@ -336,3 +336,28 @@ Gate 5: NOT COMPLETED.
 Gate 6: BLOCKED.
 
 No public network or economic activation.
+
+## v1.14 — Independent offline recipient-history audit
+
+Status: Implemented as experimental, non-value offline research tooling.
+
+- Complete v1.12 signed multi-keeper quorum is independently re-verified.
+- Each v1.13 recipient ACK is independently signature/pin-verified.
+- Recipient and quorum commitments are compared exactly.
+- Signed predecessor, contiguous sequence, replay and duplicate rejection.
+- External latest ACK SHA-256 must be supplied out of band.
+- No state mutation during verification; optional exclusive private report.
+- Real Ed25519 two-sequence regression tests and CI.
+- Deterministic README evidence synchronization.
+
+Gate 3: PARTIALLY IMPLEMENTED. A pin stored beside a compromised producer
+is insufficient to prove independent retention. Physical second-device
+acceptance, outage/rollback, recovery and independent review remain open.
+
+Gate 4: INCOMPLETE.
+Gate 5: NOT COMPLETED.
+Gate 6: BLOCKED.
+
+No public P2P, mainnet or economic activation.
+
+See AUNEYA-GATE3-OFFLINE-AUDIT-V1.14.md.
