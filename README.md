@@ -28,7 +28,7 @@ See [independent governance](docs/PROJECT-INDEPENDENCE.md) and [Gate 3 device ac
 | WVP published stable | **[v0.5.1](https://github.com/nightfall-wizard/wizard-verification-protocol/releases/tag/v0.5.1)** · [always-current release](https://github.com/nightfall-wizard/wizard-verification-protocol/releases/latest) |
 | WVP source package | **`0.5.1`** · [`Cargo.toml`](reference/rust/wvp-release-check/Cargo.toml); source is not a release |
 | AUNEYA published research preview | **[auneya-v1.5.0](https://github.com/nightfall-wizard/wizard-verification-protocol/releases/tag/auneya-v1.5.0)** · distinct from WVP |
-| AUNEYA research implementation | **v1.15** · [cross-language Gate 3 recipient ACK verifier](docs/auneya/AUNEYA-GATE3-CROSS-LANGUAGE-V1.15.md); not a published v1.15 release |
+| AUNEYA research implementation | **v1.16** · [independent full-quorum Node.js verifier](docs/auneya/AUNEYA-GATE3-FULL-QUORUM-V1.16.md); not a published v1.16 release |
 | AUNEYA historical research v1.10 | **[v1.10](docs/auneya/AUNEYA-INDEPENDENT-HIGHWATER-V1.10.md)** · not a published v1.10 release |
 
 *Release API snapshot checked on 2026-10-30T21:34:53Z UTC; this snapshot is not real-time.
@@ -69,6 +69,7 @@ Each row links to committed source, an engineering document and an adversarial t
 | v1.13 | Recipient-signed Gate 3 acceptance evidence (research) | [code](tools/auneya/auneya_gate3_receipt_v113.py) · [spec](docs/auneya/AUNEYA-GATE3-RECIPIENT-RECEIPTS-V1.13.md) · [tests](tests/test_auneya_gate3_receipt_v113.py) |
 | v1.14 | Independent offline recipient-history and quorum audit | [code](tools/auneya/auneya_gate3_audit_v114.py) · [spec](docs/auneya/AUNEYA-GATE3-OFFLINE-AUDIT-V1.14.md) · [tests](tests/test_auneya_gate3_audit_v114.py) |
 | v1.15 | Independent recipient ACK cross-language verification | [code](tools/auneya/auneya_gate3_interop_v115.js) · [spec](docs/auneya/AUNEYA-GATE3-CROSS-LANGUAGE-V1.15.md) · [tests](tests/test_auneya_gate3_interop_v115.py) |
+| v1.16 | Independent Node.js full-quorum capsule verification (research) | [code](tools/auneya/auneya_gate3_full_v116.js) · [spec](docs/auneya/AUNEYA-GATE3-FULL-QUORUM-V1.16.md) · [tests](tests/test_auneya_gate3_full_v116.py) |
 
 ## Roadmap and research gates
 
@@ -79,7 +80,7 @@ Based on the [v1.9 engineering roadmap](docs/auneya/AUNEYA-ROADMAP-V1.9.md):
 | 1 · Authenticated peer evidence | Implemented as local research capability (v1.6) |
 | 2 · Peer transport | Partially implemented: bounded localhost TCP + signed responder receipts (v1.7/v1.8) |
 | 3 · External replay anchors | Partially implemented: checkpoints (v1.9), quorum (v1.11), portable capsules (v1.12) signed recipient ACKs (v1.13) and offline history audit (v1.14); no independently proven remote retention |
-| 4 · Public reproducibility | Incomplete: v1.15 recipient ACK cross-language conformance implemented as research; full-quorum replication and normative schemas remain outstanding |
+| 4 · Public reproducibility | Incomplete: v1.15 ACK and v1.16 full-quorum Node.js cross-language checks implemented as research; normative schemas and independent review remain outstanding |
 | 5 · External validation | Not completed: real second-device trials, independent cryptographic/privacy/security/legal reviews |
 | 6 · Production decision | **BLOCKED** · no automatic network or economic activation |
 
@@ -99,6 +100,7 @@ python3 -m unittest discover -s tests -p "test_auneya_capsule_v112.py" -v
 python3 -m unittest discover -s tests -p "test_auneya_gate3_receipt_v113.py" -v
 python3 -m unittest discover -s tests -p "test_auneya_gate3_audit_v114.py" -v
 python3 -m unittest discover -s tests -p "test_auneya_gate3_interop_v115.py" -v
+python3 -m unittest discover -s tests -p "test_auneya_gate3_full_v116.py" -v
 python3 -m unittest discover -s tests -p "test_wvp_release_truth.py" -v
 python3 tools/readme_truth.py --check
 ```
@@ -114,6 +116,7 @@ The README checker validates traceability and freshness against the checked-in r
 - [AUNEYA engineering roadmap v1.9](docs/auneya/AUNEYA-ROADMAP-V1.9.md) — six gates and remaining work.
 - [Recipient ACK v1.13 research](docs/auneya/AUNEYA-GATE3-RECIPIENT-RECEIPTS-V1.13.md) — signed local acceptance, not proof of separate devices.
 - [Gate 3 interoperability v1.15](docs/auneya/AUNEYA-GATE3-CROSS-LANGUAGE-V1.15.md) — independently implemented recipient ACK verification and deterministic test vectors.
+- [Gate 3 full-quorum v1.16](docs/auneya/AUNEYA-GATE3-FULL-QUORUM-V1.16.md) — independently rechecks signed quorum and WVP report commitments in Node.js.
 - [WVP release identity policy](docs/release/WVP-RELEASE-TRUTH-AND-AUNEYA-GATES.md) — release/source distinction.
 - [Security disclosures](SECURITY.md) · [MIT license](LICENSE).
 

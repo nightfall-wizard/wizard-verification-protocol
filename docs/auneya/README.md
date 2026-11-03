@@ -243,3 +243,17 @@ independently keyed Nightfall operator signatures.
 It does not claim consensus validity, Sybil
 resistance, a network launch, tokens or
 investment value.
+
+## v1.16 — Independent full-quorum verification
+
+See [v1.16 full-quorum Node.js research verification](AUNEYA-GATE3-FULL-QUORUM-V1.16.md).
+
+Source:
+`../../tools/auneya/auneya_gate3_full_v116.js`
+
+Tests:
+`../../tests/test_auneya_gate3_full_v116.py`
+
+This is offline, non-value research only.
+
+It is not proof of independently operated physical devices.

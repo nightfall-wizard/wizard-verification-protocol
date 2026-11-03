@@ -597,3 +597,31 @@ No economic activation is authorized.
 
 Reference:
 AUNEYA-GATE3-CROSS-LANGUAGE-V1.15.md.
+
+## v1.16 — independent full-quorum implementation note
+
+Status: non-normative research implementation.
+
+Node.js independently verifies complete v1.12 Ed25519 signed
+multi-keeper capsules and their v1.11 WVP report commitments.
+
+Optional binding to the v1.15 recipient ACK is offline and read-only.
+
+This narrows a cross-language implementation gap.
+
+It does not prove:
+
+- Independent storage.
+- Physical witness identity.
+- Network security.
+- Distributed consensus.
+- Global freshness.
+- Independent external audit.
+
+The underlying protocols and economic restrictions remain unchanged.
+
+Whitepaper v0.1 remains a research draft.
+
+This section is not production authorization.
+
+Reference: AUNEYA-GATE3-FULL-QUORUM-V1.16.md.
