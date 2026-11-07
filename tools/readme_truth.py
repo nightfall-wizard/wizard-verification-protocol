@@ -214,6 +214,7 @@ MILESTONES = (
         'test_auneya_gate3_full_v116.py'
     ),
 
+    ('1.17','Offline Python/Node quorum verification','auneya_dual_v117.py','AUNEYA-DUAL-VERIFICATION-V1.17.md','test_auneya_dual_v117.py'),
 )
 
 
@@ -610,7 +611,7 @@ def render(root=ROOT):
         f'| WVP published stable | **[{snap["wvp"]}]({p_wvp})** · [always-current release]({LATEST}) |',
         f'| WVP source package | **`{source}`** · [`Cargo.toml`](reference/rust/wvp-release-check/Cargo.toml); source is not a release |',
         f'| AUNEYA published research preview | **[{snap["auneya_preview"]}]({p_aun})** · distinct from WVP |',
-        f'| AUNEYA research implementation | **v{research}** · [independent full-quorum Node.js verifier](docs/auneya/AUNEYA-GATE3-FULL-QUORUM-V1.16.md); not a published v{research} release |',
+        f'| AUNEYA research implementation | **v{research}** · [dual-runtime verifier](docs/auneya/AUNEYA-DUAL-VERIFICATION-V1.17.md); not a published v{research} release |',
         '| AUNEYA historical research v1.10 | **[v1.10](docs/auneya/AUNEYA-INDEPENDENT-HIGHWATER-V1.10.md)** · not a published v1.10 release |',
         '',
         f'*Release API snapshot checked on {snap["observed_utc"]} UTC; this snapshot is not real-time. ',
