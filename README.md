@@ -28,7 +28,7 @@ See [independent governance](docs/PROJECT-INDEPENDENCE.md) and [Gate 3 device ac
 | WVP published stable | **[v0.5.1](https://github.com/nightfall-wizard/wizard-verification-protocol/releases/tag/v0.5.1)** · [always-current release](https://github.com/nightfall-wizard/wizard-verification-protocol/releases/latest) |
 | WVP source package | **`0.5.1`** · [`Cargo.toml`](reference/rust/wvp-release-check/Cargo.toml); source is not a release |
 | AUNEYA published research preview | **[auneya-v1.5.0](https://github.com/nightfall-wizard/wizard-verification-protocol/releases/tag/auneya-v1.5.0)** · distinct from WVP |
-| AUNEYA research implementation | **v1.16** · [independent full-quorum Node.js verifier](docs/auneya/AUNEYA-GATE3-FULL-QUORUM-V1.16.md); not a published v1.16 release |
+| AUNEYA research implementation | **v1.17** · [dual-runtime verifier](docs/auneya/AUNEYA-DUAL-VERIFICATION-V1.17.md); not a published v1.17 release |
 | AUNEYA historical research v1.10 | **[v1.10](docs/auneya/AUNEYA-INDEPENDENT-HIGHWATER-V1.10.md)** · not a published v1.10 release |
 
 *Release API snapshot checked on 2026-10-30T21:34:53Z UTC; this snapshot is not real-time.
@@ -70,6 +70,7 @@ Each row links to committed source, an engineering document and an adversarial t
 | v1.14 | Independent offline recipient-history and quorum audit | [code](tools/auneya/auneya_gate3_audit_v114.py) · [spec](docs/auneya/AUNEYA-GATE3-OFFLINE-AUDIT-V1.14.md) · [tests](tests/test_auneya_gate3_audit_v114.py) |
 | v1.15 | Independent recipient ACK cross-language verification | [code](tools/auneya/auneya_gate3_interop_v115.js) · [spec](docs/auneya/AUNEYA-GATE3-CROSS-LANGUAGE-V1.15.md) · [tests](tests/test_auneya_gate3_interop_v115.py) |
 | v1.16 | Independent Node.js full-quorum capsule verification (research) | [code](tools/auneya/auneya_gate3_full_v116.js) · [spec](docs/auneya/AUNEYA-GATE3-FULL-QUORUM-V1.16.md) · [tests](tests/test_auneya_gate3_full_v116.py) |
+| v1.17 | Offline Python/Node quorum verification | [code](tools/auneya/auneya_dual_v117.py) · [spec](docs/auneya/AUNEYA-DUAL-VERIFICATION-V1.17.md) · [tests](tests/test_auneya_dual_v117.py) |
 
 ## Roadmap and research gates
 

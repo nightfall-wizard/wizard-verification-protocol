@@ -625,3 +625,9 @@ Whitepaper v0.1 remains a research draft.
 This section is not production authorization.
 
 Reference: AUNEYA-GATE3-FULL-QUORUM-V1.16.md.
+
+## v1.17 research — dual-runtime quorum acceptance
+
+Cryptographic Python/Node quorum agreement and deterministic WVP evidence.
+Independent devices, external retention and audits are still missing;
+no mainnet or economic activation is authorized.
