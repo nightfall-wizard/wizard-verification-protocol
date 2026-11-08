@@ -631,3 +631,20 @@ Reference: AUNEYA-GATE3-FULL-QUORUM-V1.16.md.
 Cryptographic Python/Node quorum agreement and deterministic WVP evidence.
 Independent devices, external retention and audits are still missing;
 no mainnet or economic activation is authorized.
+
+## 21. Gate 4 evidence contract v1.18 (non-normative research update)
+
+AUNEYA v1.18 defines a bounded, canonical JSON Schema for an offline
+Python/Node full-quorum double-verification artifact.
+
+Its verifier rejects unsupported assurance claims and rechecks the
+original signed evidence.
+
+The supplied expected capsule hash must have a separate trust provenance.
+
+The report alone does not certify independent retention, physical device
+separation, factual correctness, reproducible builds or production readiness.
+
+No network or economic activation is authorized.
+
+Reference: AUNEYA-GATE4-DUAL-EVIDENCE-V1.18.md.

@@ -1,0 +1,31 @@
+name: AUNEYA v1.18 Offline Evidence Contract
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  evidence-contract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Adversarial evidence contract tests
+        run: python3 -m unittest discover -s tests -p 'test_auneya_gate4_bundle_v118.py' -v
+
+      - name: README consistency
+        run: python3 tools/readme_truth.py --check
