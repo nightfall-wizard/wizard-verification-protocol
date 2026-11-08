@@ -1,0 +1,147 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/nightfall-wizard/wizard-verification-protocol/schemas/auneya-gate4-evidence-v1.18.schema.json",
+  "title": "AUNEYA v1.18 dual-runtime offline research evidence",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "format",
+    "dual",
+    "dual_sha256",
+    "schema_sha256",
+    "capsule_sha256",
+    "trust_sha256",
+    "non_value_research_only",
+    "independent_devices_proven",
+    "external_retention_proven",
+    "independent_audit_completed",
+    "economic_activation",
+    "mainnet_active"
+  ],
+  "properties": {
+    "format": {
+      "const": "auneya-gate4-dual-evidence-v1.18"
+    },
+    "dual": {
+      "$ref": "#/$defs/dual"
+    },
+    "dual_sha256": {
+      "$ref": "#/$defs/digest"
+    },
+    "schema_sha256": {
+      "$ref": "#/$defs/digest"
+    },
+    "capsule_sha256": {
+      "$ref": "#/$defs/digest"
+    },
+    "trust_sha256": {
+      "$ref": "#/$defs/digest"
+    },
+    "non_value_research_only": {
+      "const": true
+    },
+    "independent_devices_proven": {
+      "const": false
+    },
+    "external_retention_proven": {
+      "const": false
+    },
+    "independent_audit_completed": {
+      "const": false
+    },
+    "economic_activation": {
+      "const": false
+    },
+    "mainnet_active": {
+      "const": false
+    }
+  },
+  "$defs": {
+    "digest": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "dual": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "format",
+        "chain_id",
+        "sequence",
+        "capsule_sha256",
+        "trust_sha256",
+        "anchor_sha256",
+        "quorum_report_sha256",
+        "keeper_count",
+        "required_quorum",
+        "python_verified",
+        "node_verified",
+        "independent_devices_proven",
+        "external_retention_proven",
+        "independent_audit_completed",
+        "economic_activation",
+        "mainnet_active",
+        "non_value_research_only"
+      ],
+      "properties": {
+        "format": {
+          "const": "auneya-dual-runtime-v1.17"
+        },
+        "chain_id": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9._-]{0,79}$"
+        },
+        "sequence": {
+          "type": "string",
+          "pattern": "^[1-9][0-9]{0,18}$"
+        },
+        "capsule_sha256": {
+          "$ref": "#/$defs/digest"
+        },
+        "trust_sha256": {
+          "$ref": "#/$defs/digest"
+        },
+        "anchor_sha256": {
+          "$ref": "#/$defs/digest"
+        },
+        "quorum_report_sha256": {
+          "$ref": "#/$defs/digest"
+        },
+        "keeper_count": {
+          "type": "integer",
+          "minimum": 2,
+          "maximum": 16
+        },
+        "required_quorum": {
+          "type": "integer",
+          "minimum": 2,
+          "maximum": 16
+        },
+        "python_verified": {
+          "const": true
+        },
+        "node_verified": {
+          "const": true
+        },
+        "independent_devices_proven": {
+          "const": false
+        },
+        "external_retention_proven": {
+          "const": false
+        },
+        "independent_audit_completed": {
+          "const": false
+        },
+        "economic_activation": {
+          "const": false
+        },
+        "mainnet_active": {
+          "const": false
+        },
+        "non_value_research_only": {
+          "const": true
+        }
+      }
+    }
+  }
+}

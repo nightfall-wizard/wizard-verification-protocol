@@ -439,3 +439,23 @@ Reference: AUNEYA-GATE3-FULL-QUORUM-V1.16.md.
 Cryptographic Python/Node quorum agreement and deterministic WVP evidence.
 Independent devices, external retention and audits are still missing;
 no mainnet or economic activation is authorized.
+
+## v1.18 — Offline dual-runtime evidence contract (research)
+
+Gate 4 gains a canonical machine-readable report with an exact JSON Schema,
+strong typed non-claims, SHA-256 links, deterministic re-verification and
+adversarial negative tests.
+
+This is not protocol consensus standardization.
+
+Gate 3 remains PARTIALLY IMPLEMENTED pending real two-device acceptance,
+independent retention and rollback/recovery experiments.
+
+Gate 4 remains INCOMPLETE pending independent replication, normative wire
+schemas and outside review.
+
+Gate 5 is NOT COMPLETED.
+
+Gate 6 remains BLOCKED.
+
+See [v1.18 contract](AUNEYA-GATE4-DUAL-EVIDENCE-V1.18.md).
