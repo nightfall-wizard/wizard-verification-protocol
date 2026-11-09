@@ -1,6 +1,12 @@
 
 # Changelog
 
+## WVP 0.5.2 — Re-executable local evidence
+
+- Source-bound canonical evidence, adversarial tests and README truth.
+- No independent audit, physical device proof, mainnet or token.
+
+
 ## WVP 0.5.1 — Release identity and version continuity
 
 - Added: live published WVP release source-of-truth badge and GitHub link.
