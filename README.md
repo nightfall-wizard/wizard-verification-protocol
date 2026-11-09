@@ -25,13 +25,13 @@ See [independent governance](docs/PROJECT-INDEPENDENCE.md) and [Gate 3 device ac
 
 | Track | Verified status |
 | --- | --- |
-| WVP published stable | **[v0.5.1](https://github.com/nightfall-wizard/wizard-verification-protocol/releases/tag/v0.5.1)** · [always-current release](https://github.com/nightfall-wizard/wizard-verification-protocol/releases/latest) |
+| WVP published stable | **[v0.5.2](https://github.com/nightfall-wizard/wizard-verification-protocol/releases/tag/v0.5.2)** · [always-current release](https://github.com/nightfall-wizard/wizard-verification-protocol/releases/latest) |
 | WVP source package | **`0.5.2`** · [`Cargo.toml`](reference/rust/wvp-release-check/Cargo.toml); source is not a release |
 | AUNEYA published research preview | **[auneya-v1.5.0](https://github.com/nightfall-wizard/wizard-verification-protocol/releases/tag/auneya-v1.5.0)** · distinct from WVP |
 | AUNEYA research implementation | **v1.18** · [schema-bound dual evidence](docs/auneya/AUNEYA-GATE4-DUAL-EVIDENCE-V1.18.md); not a published v1.18 release |
 | AUNEYA historical research v1.10 | **[v1.10](docs/auneya/AUNEYA-INDEPENDENT-HIGHWATER-V1.10.md)** · not a published v1.10 release |
 
-*Release API snapshot checked on 2026-10-30T21:34:53Z UTC; this snapshot is not real-time.
+*Release API snapshot checked on 2026-11-09T19:29:07Z UTC; this snapshot is not real-time.
 The WVP `releases/latest` link is live. Source: [`published release evidence`](docs/status/WVP-AUNEYA-PUBLISHED-RELEASES.json).*
 <!-- WVP-RELEASE-TRUTH:END -->
 
