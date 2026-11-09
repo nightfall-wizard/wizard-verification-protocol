@@ -623,6 +623,7 @@ def render(root=ROOT):
         '',
         '- [Rust release checker](reference/rust/wvp-release-check/src/lib.rs) and [adversarial classification tests](reference/rust/wvp-release-check/tests/adversarial_classification.rs) separate recorded evidence from unsupported release claims.',
         '- [Release-truth guard](tools/wvp_release_truth.py) distinguishes published WVP, source packages and AUNEYA research versions.',
+        '- [WVP v0.5.2 local evidence verifier](tools/wvp_repro_v052.py) and [adversarial contract tests](tests/test_wvp_repro_v052.py) provide reproducible local checks, not independent audit proof.',
         '- [Evidence-first release policy](docs/release/WVP-RELEASE-TRUTH-AND-AUNEYA-GATES.md) documents strict claim boundaries.',
         '',
         '## AUNEYA implemented research milestones',

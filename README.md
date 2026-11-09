@@ -26,7 +26,7 @@ See [independent governance](docs/PROJECT-INDEPENDENCE.md) and [Gate 3 device ac
 | Track | Verified status |
 | --- | --- |
 | WVP published stable | **[v0.5.1](https://github.com/nightfall-wizard/wizard-verification-protocol/releases/tag/v0.5.1)** · [always-current release](https://github.com/nightfall-wizard/wizard-verification-protocol/releases/latest) |
-| WVP source package | **`0.5.1`** · [`Cargo.toml`](reference/rust/wvp-release-check/Cargo.toml); source is not a release |
+| WVP source package | **`0.5.2`** · [`Cargo.toml`](reference/rust/wvp-release-check/Cargo.toml); source is not a release |
 | AUNEYA published research preview | **[auneya-v1.5.0](https://github.com/nightfall-wizard/wizard-verification-protocol/releases/tag/auneya-v1.5.0)** · distinct from WVP |
 | AUNEYA research implementation | **v1.18** · [schema-bound dual evidence](docs/auneya/AUNEYA-GATE4-DUAL-EVIDENCE-V1.18.md); not a published v1.18 release |
 | AUNEYA historical research v1.10 | **[v1.10](docs/auneya/AUNEYA-INDEPENDENT-HIGHWATER-V1.10.md)** · not a published v1.10 release |
@@ -39,6 +39,7 @@ The WVP `releases/latest` link is live. Source: [`published release evidence`](d
 
 - [Rust release checker](reference/rust/wvp-release-check/src/lib.rs) and [adversarial classification tests](reference/rust/wvp-release-check/tests/adversarial_classification.rs) separate recorded evidence from unsupported release claims.
 - [Release-truth guard](tools/wvp_release_truth.py) distinguishes published WVP, source packages and AUNEYA research versions.
+- [WVP v0.5.2 local evidence verifier](tools/wvp_repro_v052.py) and [adversarial contract tests](tests/test_wvp_repro_v052.py) provide reproducible local checks, not independent audit proof.
 - [Evidence-first release policy](docs/release/WVP-RELEASE-TRUTH-AND-AUNEYA-GATES.md) documents strict claim boundaries.
 
 ## AUNEYA implemented research milestones
