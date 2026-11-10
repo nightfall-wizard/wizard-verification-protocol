@@ -459,3 +459,19 @@ Gate 5 is NOT COMPLETED.
 Gate 6 remains BLOCKED.
 
 See [v1.18 contract](AUNEYA-GATE4-DUAL-EVIDENCE-V1.18.md).
+
+## v1.19 — Deterministic adversarial dual-runtime conformance (research)
+
+Implemented: Python and Node.js independently reject 15 deterministically
+mutated quorum capsules, including forged signed records and untrusted receipt
+substitution. Each attack is individually rehashed, so cryptographic/parser
+checks rather than an old external hash must reject it. A reproducible WVP
+report records case hashes and two explicit rejection results. Dedicated CI and
+README evidence integration verify the regression suite.
+
+Gate 3 remains PARTIAL: separate real devices and external durable anchors
+remain unproven. Gate 4 remains INCOMPLETE: normative wire schemas, independent
+reproduction and independent review are outstanding. Gates 5/6 remain blocked.
+No network, token, audit or economic activation occurs.
+
+See [v1.19 conformance](AUNEYA-GATE4-ADVERSARIAL-V1.19.md).
