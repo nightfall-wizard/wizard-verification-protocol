@@ -216,6 +216,7 @@ MILESTONES = (
 
     ('1.17','Offline Python/Node quorum verification','auneya_dual_v117.py','AUNEYA-DUAL-VERIFICATION-V1.17.md','test_auneya_dual_v117.py'),
     ('1.18','Offline schema-bound dual-runtime evidence contract','auneya_gate4_bundle_v118.py','AUNEYA-GATE4-DUAL-EVIDENCE-V1.18.md','test_auneya_gate4_bundle_v118.py'),
+    ('1.19','Adversarial dual-runtime capsule conformance','auneya_gate4_adversarial_v119.py','AUNEYA-GATE4-ADVERSARIAL-V1.19.md','test_auneya_gate4_adversarial_v119.py'),
 )
 
 
@@ -612,7 +613,7 @@ def render(root=ROOT):
         f'| WVP published stable | **[{snap["wvp"]}]({p_wvp})** · [always-current release]({LATEST}) |',
         f'| WVP source package | **`{source}`** · [`Cargo.toml`](reference/rust/wvp-release-check/Cargo.toml); source is not a release |',
         f'| AUNEYA published research preview | **[{snap["auneya_preview"]}]({p_aun})** · distinct from WVP |',
-        f'| AUNEYA research implementation | **v{research}** · [schema-bound dual evidence](docs/auneya/AUNEYA-GATE4-DUAL-EVIDENCE-V1.18.md); not a published v{research} release |',
+        f'| AUNEYA research implementation | **v{research}** · [adversarial dual-runtime conformance](docs/auneya/AUNEYA-GATE4-ADVERSARIAL-V1.19.md); not a published v{research} release |',
         '| AUNEYA historical research v1.10 | **[v1.10](docs/auneya/AUNEYA-INDEPENDENT-HIGHWATER-V1.10.md)** · not a published v1.10 release |',
         '',
         f'*Release API snapshot checked on {snap["observed_utc"]} UTC; this snapshot is not real-time. ',
@@ -655,7 +656,7 @@ def render(root=ROOT):
         '| 1 · Authenticated peer evidence | Implemented as local research capability (v1.6) |',
         '| 2 · Peer transport | Partially implemented: bounded localhost TCP + signed responder receipts (v1.7/v1.8) |',
         '| 3 · External replay anchors | Partially implemented: checkpoints (v1.9), quorum (v1.11), portable capsules (v1.12) signed recipient ACKs (v1.13) and offline history audit (v1.14); no independently proven remote retention |',
-        '| 4 · Public reproducibility | Incomplete: v1.15 ACK and v1.16 full-quorum Node.js cross-language checks implemented as research; v1.18 offline JSON evidence schema added; independent replication and protocol-level normative schemas remain outstanding |',
+        '| 4 · Public reproducibility | Incomplete: v1.15 ACK and v1.16 full-quorum Node.js cross-language checks implemented as research; v1.18 evidence schema and v1.19 adversarial Python/Node conformance added; independent replication and normative wire schemas remain outstanding |',
         '| 5 · External validation | Not completed: real second-device trials, independent cryptographic/privacy/security/legal reviews |',
         '| 6 · Production decision | **BLOCKED** · no automatic network or economic activation |',
         '',
@@ -677,6 +678,7 @@ def render(root=ROOT):
         'python3 -m unittest discover -s tests -p "test_auneya_gate3_interop_v115.py" -v',
         'python3 -m unittest discover -s tests -p "test_auneya_gate3_full_v116.py" -v',
         'python3 -m unittest discover -s tests -p "test_auneya_gate4_bundle_v118.py" -v',
+        'python3 -m unittest discover -s tests -p "test_auneya_gate4_adversarial_v119.py" -v',
         'python3 -m unittest discover -s tests -p "test_wvp_release_truth.py" -v',
         'python3 tools/readme_truth.py --check',
         '```',
@@ -694,6 +696,7 @@ def render(root=ROOT):
         '- [Gate 3 interoperability v1.15](docs/auneya/AUNEYA-GATE3-CROSS-LANGUAGE-V1.15.md) — independently implemented recipient ACK verification and deterministic test vectors.',
         '- [Gate 3 full-quorum v1.16](docs/auneya/AUNEYA-GATE3-FULL-QUORUM-V1.16.md) — independently rechecks signed quorum and WVP report commitments in Node.js.',
         '- [Gate 4 offline evidence contract v1.18](docs/auneya/AUNEYA-GATE4-DUAL-EVIDENCE-V1.18.md) — schema-bound dual verification; no physical-device claim.',
+        '- [Gate 4 adversarial conformance v1.19](docs/auneya/AUNEYA-GATE4-ADVERSARIAL-V1.19.md) — 15 Python/Node negative vectors; still no physical-device claim.',
         '- [WVP release identity policy](docs/release/WVP-RELEASE-TRUTH-AND-AUNEYA-GATES.md) — release/source distinction.',
         '- [Security disclosures](SECURITY.md) · [MIT license](LICENSE).',
         '',

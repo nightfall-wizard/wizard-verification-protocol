@@ -648,3 +648,20 @@ separation, factual correctness, reproducible builds or production readiness.
 No network or economic activation is authorized.
 
 Reference: AUNEYA-GATE4-DUAL-EVIDENCE-V1.18.md.
+
+## 22. Adversarial cross-implementation conformance v1.19 (research)
+
+The deterministic v1.19 campaign uses the existing authenticated v1.12
+multi-keeper capsule and dual v1.18 verification as its positive baseline.
+It then creates 15 bounded malformed or forged variants and rehashes each
+attack before presenting it independently to Python and Node.js. Every variant
+must be explicitly rejected by both implementations; disagreements and Node
+crashes are fatal to conformance. The machine-readable result commits to the
+baseline evidence digest and individual mutant hashes.
+
+This is a repeatable local security regression experiment, not independent
+verification by a second physical device, an approved normative specification,
+a certified third-party audit or evidence of network/economic readiness.
+
+See AUNEYA-GATE4-ADVERSARIAL-V1.19.md. All previous non-value and lawful
+public-evidence boundaries remain in force.
