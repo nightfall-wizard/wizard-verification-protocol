@@ -475,3 +475,11 @@ reproduction and independent review are outstanding. Gates 5/6 remain blocked.
 No network, token, audit or economic activation occurs.
 
 See [v1.19 conformance](AUNEYA-GATE4-ADVERSARIAL-V1.19.md).
+
+## v1.20 candidate wire conformance
+
+Bounded structural schema, genuine dual-runtime Ed25519 checks,
+15 rehashed adversarial negatives and deterministic report.
+Gate 3 partial: two independently operated devices still missing.
+Gate 4 incomplete: outside replication and normative review missing.
+Gates 5/6 blocked; no production/economic activation.
