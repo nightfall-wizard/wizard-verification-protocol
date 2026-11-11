@@ -257,3 +257,10 @@ Tests:
 This is offline, non-value research only.
 
 It is not proof of independently operated physical devices.
+
+## v1.20 wire research
+
+- `AUNEYA-CAPSULE-WIRE-PROFILE-V1.20.md`
+- `../../schemas/auneya-capsule-wire-v1.20.schema.json`
+- `../../tools/auneya/auneya_wire_v120.py`
+- `../../tests/test_auneya_wire_v120.py`

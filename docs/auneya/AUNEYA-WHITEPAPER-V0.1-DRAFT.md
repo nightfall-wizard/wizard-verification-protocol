@@ -665,3 +665,10 @@ a certified third-party audit or evidence of network/economic readiness.
 
 See AUNEYA-GATE4-ADVERSARIAL-V1.19.md. All previous non-value and lawful
 public-evidence boundaries remain in force.
+
+## 23. Candidate capsule wire profile v1.20
+
+Structural JSON Schema, canonical bounded encoding and actual
+Python/Node signature checks with adversarial regression.
+Not a final normative standard, independent physical-device
+proof, external audit, token, network or economy.
