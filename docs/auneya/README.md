@@ -264,3 +264,14 @@ It is not proof of independently operated physical devices.
 - `../../schemas/auneya-capsule-wire-v1.20.schema.json`
 - `../../tools/auneya/auneya_wire_v120.py`
 - `../../tests/test_auneya_wire_v120.py`
+
+## v1.21 Differential Cryptographic Rejection
+
+- `AUNEYA-GATE4-DIFFERENTIAL-V1.21.md`
+- `../../tools/auneya/auneya_guard_v121.py`
+- `../../tests/test_auneya_guard_v121.py`
+
+Local Python/Node.js adversarial conformance only.
+
+No independently proven physical witness devices,
+external retention, production network or economic activation.
