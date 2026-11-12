@@ -1,0 +1,36 @@
+name: AUNEYA Gate 4 Differential v1.21
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  dual-runtime-security:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Cryptographic differential rejection
+        run: |
+          python3 -m unittest discover \
+            -s tests \
+            -p 'test_auneya_guard_v121.py' \
+            -v
+
+      - name: Generated README consistency
+        run: python3 tools/readme_truth.py --check

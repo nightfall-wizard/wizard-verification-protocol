@@ -672,3 +672,42 @@ Structural JSON Schema, canonical bounded encoding and actual
 Python/Node signature checks with adversarial regression.
 Not a final normative standard, independent physical-device
 proof, external audit, token, network or economy.
+
+## v1.21 — Differential Rejection Conformance
+
+Status: non-normative technical research update.
+
+AUNEYA v1.21 extends the established v1.19 adversarial
+rejection tests with over 100 deterministic mutations.
+
+The campaign checks malformed canonical framing,
+modified cryptographic commitments, invalid protocol
+identities, sequence boundaries and corrupted signed evidence.
+
+Python and Node.js independently evaluate each mutation.
+
+Every mutated capsule receives its own digest so that
+cryptographic and semantic validation, rather than
+comparison with the original external hash, must reject it.
+
+An authentic independently pinned source capsule is required.
+
+Results record deterministic attack identifiers,
+SHA-256 commitments and independent rejection outcomes.
+
+This improves local technical reproducibility.
+
+It does not prove independent physical witnesses,
+remote storage, global consensus, public P2P security,
+trusted time, independent audit or legal authorization.
+
+The whitepaper remains a research draft.
+
+Gate 3 remains partial.
+Gate 4 remains incomplete.
+Gate 5 remains incomplete.
+Gate 6 remains blocked.
+
+No token issuance, mainnet or economic activation.
+
+Reference: AUNEYA-GATE4-DIFFERENTIAL-V1.21.md.

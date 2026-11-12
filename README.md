@@ -28,7 +28,7 @@ See [independent governance](docs/PROJECT-INDEPENDENCE.md) and [Gate 3 device ac
 | WVP published stable | **[v0.5.2](https://github.com/nightfall-wizard/wizard-verification-protocol/releases/tag/v0.5.2)** · [always-current release](https://github.com/nightfall-wizard/wizard-verification-protocol/releases/latest) |
 | WVP source package | **`0.5.2`** · [`Cargo.toml`](reference/rust/wvp-release-check/Cargo.toml); source is not a release |
 | AUNEYA published research preview | **[auneya-v1.5.0](https://github.com/nightfall-wizard/wizard-verification-protocol/releases/tag/auneya-v1.5.0)** · distinct from WVP |
-| AUNEYA research implementation | **v1.20** · [bounded capsule wire conformance](docs/auneya/AUNEYA-CAPSULE-WIRE-PROFILE-V1.20.md); not a published v1.20 release |
+| AUNEYA research implementation | **v1.21** · [differential cryptographic rejection](docs/auneya/AUNEYA-GATE4-DIFFERENTIAL-V1.21.md); not a published v1.21 release |
 | AUNEYA historical research v1.10 | **[v1.10](docs/auneya/AUNEYA-INDEPENDENT-HIGHWATER-V1.10.md)** · not a published v1.10 release |
 
 *Release API snapshot checked on 2026-11-09T19:29:07Z UTC; this snapshot is not real-time.
@@ -75,6 +75,7 @@ Each row links to committed source, an engineering document and an adversarial t
 | v1.18 | Offline schema-bound dual-runtime evidence contract | [code](tools/auneya/auneya_gate4_bundle_v118.py) · [spec](docs/auneya/AUNEYA-GATE4-DUAL-EVIDENCE-V1.18.md) · [tests](tests/test_auneya_gate4_bundle_v118.py) |
 | v1.19 | Adversarial dual-runtime capsule conformance | [code](tools/auneya/auneya_gate4_adversarial_v119.py) · [spec](docs/auneya/AUNEYA-GATE4-ADVERSARIAL-V1.19.md) · [tests](tests/test_auneya_gate4_adversarial_v119.py) |
 | v1.20 | Bounded capsule wire conformance | [code](tools/auneya/auneya_wire_v120.py) · [spec](docs/auneya/AUNEYA-CAPSULE-WIRE-PROFILE-V1.20.md) · [tests](tests/test_auneya_wire_v120.py) |
+| v1.21 | Gate 4 differential cryptographic rejection campaign | [code](tools/auneya/auneya_guard_v121.py) · [spec](docs/auneya/AUNEYA-GATE4-DIFFERENTIAL-V1.21.md) · [tests](tests/test_auneya_guard_v121.py) |
 
 ## Roadmap and research gates
 
@@ -128,6 +129,7 @@ The README checker validates traceability and freshness against the checked-in r
 - [Gate 4 offline evidence contract v1.18](docs/auneya/AUNEYA-GATE4-DUAL-EVIDENCE-V1.18.md) — schema-bound dual verification; no physical-device claim.
 - [Gate 4 adversarial conformance v1.19](docs/auneya/AUNEYA-GATE4-ADVERSARIAL-V1.19.md) — 15 Python/Node negative vectors; still no physical-device claim.
 - [Capsule wire research v1.20](docs/auneya/AUNEYA-CAPSULE-WIRE-PROFILE-V1.20.md) — bounded format and Python/Node attack conformance.
+- [Gate 4 differential rejection v1.21](docs/auneya/AUNEYA-GATE4-DIFFERENTIAL-V1.21.md) — 100+ deterministic tamper and framing attacks checked in Python and Node.js; no device-independence claim.
 - [WVP release identity policy](docs/release/WVP-RELEASE-TRUTH-AND-AUNEYA-GATES.md) — release/source distinction.
 - [Security disclosures](SECURITY.md) · [MIT license](LICENSE).
 

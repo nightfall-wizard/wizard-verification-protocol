@@ -483,3 +483,38 @@ Bounded structural schema, genuine dual-runtime Ed25519 checks,
 Gate 3 partial: two independently operated devices still missing.
 Gate 4 incomplete: outside replication and normative review missing.
 Gates 5/6 blocked; no production/economic activation.
+
+## v1.21 — Deterministic Differential Rejection Research
+
+Status: experimental, non-value offline implementation.
+
+Implemented:
+
+- 100+ deterministic adversarial mutations.
+- Real cryptographically signed baseline evidence.
+- Python and Node.js verification agreement.
+- Fail-closed rejection requirements.
+- Independent expected SHA-256 commitment input.
+- Deterministic machine-readable results.
+- Runtime resource budgets.
+- CI integration.
+- Generated README traceability.
+- Regression tests.
+
+Gate 3 remains partially implemented.
+
+Gate 4 remains incomplete.
+
+Gate 5 remains incomplete.
+
+Gate 6 remains blocked.
+
+Next external engineering milestone:
+
+Real second-device acceptance, independent high-water
+retention, rollback/recovery experiments, signed recipient
+ACK preservation and independently reviewed test evidence.
+
+No production network or economic activation.
+
+See AUNEYA-GATE4-DIFFERENTIAL-V1.21.md.
