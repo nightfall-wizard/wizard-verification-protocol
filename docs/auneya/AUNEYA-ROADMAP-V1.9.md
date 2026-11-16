@@ -518,3 +518,18 @@ ACK preservation and independently reviewed test evidence.
 No production network or economic activation.
 
 See AUNEYA-GATE4-DIFFERENTIAL-V1.21.md.
+
+## v1.22 — Gate 3 offline field-trial verifier (research)
+
+Implemented: bounded, read-only composite verification of existing v1.12
+signed quorum, v1.13 recipient ACK, Python/Node verification and actual
+recipient high-water floor against independently supplied SHA-256 digests.
+Includes genuine signed adversarial fixtures, CI, and generated README.
+
+This does **not** establish physically independent devices, independently
+controlled trust/retention, real outage or rollback/recovery trials, or
+outside review. Two actual separately operated devices remain necessary.
+Gate 3 PARTIALLY IMPLEMENTED; Gate 4 INCOMPLETE; Gate 5 NOT COMPLETED;
+Gate 6 BLOCKED. No mainnet or economic activation.
+
+See AUNEYA-GATE3-FIELDTRIAL-V1.22.md.
