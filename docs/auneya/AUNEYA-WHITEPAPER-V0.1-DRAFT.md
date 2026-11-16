@@ -725,3 +725,16 @@ actual physically separate devices, controlled out-of-band trust, rollback,
 outage, recovery and independent review. The network is not launched;
 the whitepaper remains a technical research draft. No token or economic
 activation is authorized.
+
+## v1.23 research note — transparent chronology of verified evidence
+
+WVP/AUNEYA can derive a bounded, privacy-minimal Merkle journal from genuinely
+rechecked v1.22 signed Gate 3 reports. Independently pinned Merkle roots and
+sizes permit compact inclusion proofs checked by Python and Node.js, while
+complete snapshots permit externally anchored prefix-history comparison.
+
+Hashes alone are not device identity or proof of factual truth; a self-pinned
+root does not establish independent retention. The whitepaper is still a draft.
+
+Real independent device trials, durable outside anchors, security/privacy
+review and legal/economic gates remain outstanding. No token or mainnet launch.

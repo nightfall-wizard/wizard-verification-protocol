@@ -533,3 +533,19 @@ Gate 3 PARTIALLY IMPLEMENTED; Gate 4 INCOMPLETE; Gate 5 NOT COMPLETED;
 Gate 6 BLOCKED. No mainnet or economic activation.
 
 See AUNEYA-GATE3-FIELDTRIAL-V1.22.md.
+
+## v1.23 — Offline Evidence Transparency (research)
+
+Verified v1.22 recipient ACK + quorum reports can now be committed to a
+bounded append-only SHA-256 Merkle journal. Inclusion membership is checked
+independently in Python/Node; two fully retained snapshot histories can be
+compared for truncation, equivocation and prefix rewrites against independently
+pinned roots. All append operations require real v1.22 cryptographic checks.
+
+This does not show independent external retention, physical-device diversity,
+actual multi-device rollback/outage recovery or an independent security audit.
+
+Gate 3 PARTIALLY IMPLEMENTED. Gate 4 INCOMPLETE. Gate 5 NOT COMPLETED.
+Gate 6 BLOCKED. No mainnet or economic activation.
+
+See AUNEYA-TRANSPARENCY-V1.23.md.
