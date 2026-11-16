@@ -711,3 +711,17 @@ Gate 6 remains blocked.
 No token issuance, mainnet or economic activation.
 
 Reference: AUNEYA-GATE4-DIFFERENTIAL-V1.21.md.
+
+## v1.22 research note — Gate 3 physical-device evidence boundary
+
+An offline, deterministic, read-only field-trial verifier binds the real
+signed v1.12 quorum, v1.13 recipient ACK, persisted recipient floor and
+separately pinned trust/recipient Ed25519 identity. Both Python and Node.js
+recheck each signature class, with external SHA-256 input commitments.
+
+This is *cryptographic artifact verification*, not an independent-device
+or retention attestation. The full Gate 3 acceptance contract still requires
+actual physically separate devices, controlled out-of-band trust, rollback,
+outage, recovery and independent review. The network is not launched;
+the whitepaper remains a technical research draft. No token or economic
+activation is authorized.

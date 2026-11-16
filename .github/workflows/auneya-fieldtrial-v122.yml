@@ -1,0 +1,31 @@
+name: AUNEYA Gate 3 Field-Trial v1.22
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  field-trial-evidence:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Real-signature recipient and quorum adversarial checks
+        run: python3 -m unittest discover -s tests -p test_auneya_fieldtrial_v122.py -v
+      - name: Generated README evidence check
+        run: python3 tools/readme_truth.py --check
+      - name: WVP release and README integrity regression
+        run: |
+          python3 -m unittest discover -s tests -p test_readme_truth.py -v
+          python3 -m unittest discover -s tests -p test_wvp_release_truth.py -v
