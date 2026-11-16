@@ -220,6 +220,7 @@ MILESTONES = (
     ('1.20','Bounded capsule wire conformance','auneya_wire_v120.py','AUNEYA-CAPSULE-WIRE-PROFILE-V1.20.md','test_auneya_wire_v120.py'),
     ('1.21','Gate 4 differential cryptographic rejection campaign','auneya_guard_v121.py','AUNEYA-GATE4-DIFFERENTIAL-V1.21.md','test_auneya_guard_v121.py'),
     ('1.22','Offline dual-runtime Gate 3 field-trial verification','auneya_fieldtrial_v122.py','AUNEYA-GATE3-FIELDTRIAL-V1.22.md','test_auneya_fieldtrial_v122.py'),
+    ('1.23','Merkle evidence transparency and dual-runtime inclusion','auneya_transparency_v123.py','AUNEYA-TRANSPARENCY-V1.23.md','test_auneya_transparency_v123.py'),
 )
 
 
@@ -616,7 +617,7 @@ def render(root=ROOT):
         f'| WVP published stable | **[{snap["wvp"]}]({p_wvp})** · [always-current release]({LATEST}) |',
         f'| WVP source package | **`{source}`** · [`Cargo.toml`](reference/rust/wvp-release-check/Cargo.toml); source is not a release |',
         f'| AUNEYA published research preview | **[{snap["auneya_preview"]}]({p_aun})** · distinct from WVP |',
-        f'| AUNEYA research implementation | **v{research}** · [read-only Gate 3 field-trial verifier](docs/auneya/AUNEYA-GATE3-FIELDTRIAL-V1.22.md); not a published v{research} release |',
+        f'| AUNEYA research implementation | **v{research}** · [Merkle evidence transparency research](docs/auneya/AUNEYA-TRANSPARENCY-V1.23.md); not a published v{research} release |',
         '| AUNEYA historical research v1.10 | **[v1.10](docs/auneya/AUNEYA-INDEPENDENT-HIGHWATER-V1.10.md)** · not a published v1.10 release |',
         '',
         f'*Release API snapshot checked on {snap["observed_utc"]} UTC; this snapshot is not real-time. ',
@@ -685,6 +686,7 @@ def render(root=ROOT):
         'python3 -m unittest discover -s tests -p "test_auneya_wire_v120.py" -v',
         'python3 -m unittest discover -s tests -p "test_auneya_guard_v121.py" -v',
         'python3 -m unittest discover -s tests -p "test_auneya_fieldtrial_v122.py" -v',
+        'python3 -m unittest discover -s tests -p "test_auneya_transparency_v123.py" -v',
         'python3 -m unittest discover -s tests -p "test_wvp_release_truth.py" -v',
         'python3 tools/readme_truth.py --check',
         '```',
@@ -706,6 +708,7 @@ def render(root=ROOT):
         '- [Capsule wire research v1.20](docs/auneya/AUNEYA-CAPSULE-WIRE-PROFILE-V1.20.md) — bounded format and Python/Node attack conformance.',
         '- [Gate 4 differential rejection v1.21](docs/auneya/AUNEYA-GATE4-DIFFERENTIAL-V1.21.md) — 100+ deterministic tamper and framing attacks checked in Python and Node.js; no device-independence claim.',
         '- [Gate 3 field-trial verifier v1.22](docs/auneya/AUNEYA-GATE3-FIELDTRIAL-V1.22.md) — pinned quorum, signed ACK and recipient floor, cross-verified in two runtimes; real separate-device gate still open.',
+        '- [Evidence transparency v1.23](docs/auneya/AUNEYA-TRANSPARENCY-V1.23.md) — Merkle inclusion in Python/Node and externally pinned prefix history; real independent anchors still open.',
         '- [WVP release identity policy](docs/release/WVP-RELEASE-TRUTH-AND-AUNEYA-GATES.md) — release/source distinction.',
         '- [Security disclosures](SECURITY.md) · [MIT license](LICENSE).',
         '',

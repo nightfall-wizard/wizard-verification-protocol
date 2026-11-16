@@ -1,0 +1,31 @@
+name: AUNEYA Transparency v1.23
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  transparency-evidence:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: New independent Merkle/verifier tests
+        run: python3 -m unittest discover -s tests -p 'test_auneya_transparency_v123.py' -v
+      - name: Real Ed25519 v1.22 provenance regressions
+        run: python3 -m unittest discover -s tests -p 'test_auneya_fieldtrial_v122.py' -v
+      - name: README truth and documentation regressions
+        run: |
+          python3 tools/readme_truth.py --check
+          python3 -m unittest discover -s tests -p 'test_readme_truth.py' -v
