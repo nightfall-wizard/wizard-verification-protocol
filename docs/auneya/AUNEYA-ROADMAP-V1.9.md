@@ -549,3 +549,15 @@ Gate 3 PARTIALLY IMPLEMENTED. Gate 4 INCOMPLETE. Gate 5 NOT COMPLETED.
 Gate 6 BLOCKED. No mainnet or economic activation.
 
 See AUNEYA-TRANSPARENCY-V1.23.md.
+
+## v1.24 — Compact Merkle prefix consistency (research)
+
+AUNEYA now emits RFC 9162-style bounded consistency proofs from the validated
+v1.23 journal and verifies them independently in Python and Node.js against
+externally retained old/new sizes and SHA-256 roots. Cross-runtime adversarial
+vectors reject forks, altered proofs, changed pins, and same-height conflicts.
+This closes the compact proof-format gap, NOT the external-retention gate.
+Gate 3 PARTIALLY IMPLEMENTED, Gate 4 INCOMPLETE, Gate 5 NOT COMPLETED,
+Gate 6 BLOCKED. Next: actual two-device independent retention, real outage,
+rollback and recovery trials, external audit and approved normative standard.
+No mainnet or economic activation. See AUNEYA-CONSISTENCY-V1.24.md.
