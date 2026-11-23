@@ -738,3 +738,17 @@ root does not establish independent retention. The whitepaper is still a draft.
 
 Real independent device trials, durable outside anchors, security/privacy
 review and legal/economic gates remain outstanding. No token or mainnet launch.
+
+## v1.24 research note — compact append-only evidence continuity
+
+The v1.23 Merkle log now supports a compact RFC 9162-style consistency path,
+independently re-verified in Python and Node.js. A recipient can prove that
+an earlier pinned (size, root) is a prefix of a later separately pinned
+(size, root), without receiving both full journals. The format is bounded to
+256 leaves and nine proof hashes. The journal hash does not prove the truth of
+a claim, device independence, authenticated independent retention, or human
+identity. Two authentic separately retained heads remain a prerequisite.
+Real external rollback/outage/recovery experiments and independent review
+remain missing; Gates 3–6 retain their published restrictions. The whitepaper
+remains an unratified research draft. No network or economic activation.
+See AUNEYA-CONSISTENCY-V1.24.md.

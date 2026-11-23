@@ -1,0 +1,28 @@
+name: AUNEYA v1.24 Compact Merkle Consistency
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  consistency:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Python / independent Node.js consistency adversarial tests
+        run: python3 -m unittest discover -s tests -p 'test_auneya_consistency_v124.py' -v
+      - name: Prior v1.23 transparency regressions
+        run: python3 -m unittest discover -s tests -p 'test_auneya_transparency_v123.py' -v
+      - name: README truth gate
+        run: |
+          python3 tools/readme_truth.py --check
+          python3 -m unittest discover -s tests -p 'test_readme_truth.py' -v
