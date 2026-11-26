@@ -561,3 +561,8 @@ Gate 3 PARTIALLY IMPLEMENTED, Gate 4 INCOMPLETE, Gate 5 NOT COMPLETED,
 Gate 6 BLOCKED. Next: actual two-device independent retention, real outage,
 rollback and recovery trials, external audit and approved normative standard.
 No mainnet or economic activation. See AUNEYA-CONSISTENCY-V1.24.md.
+
+## v1.23/v1.24 input hardening
+
+The Merkle readers enforce descriptor-based bounded input and consistent
+v1.24 proof limits. Existing Gate 3–6 acceptance boundaries are unchanged.

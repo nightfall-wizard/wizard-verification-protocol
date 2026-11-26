@@ -4,7 +4,7 @@
 // Independent read-only v1.23 Merkle inclusion verifier.
 // No signing keys, no network, no disk writes.
 
-const fs = require('fs');
+const readBounded = require('./auneya_bounded_input.js');
 const crypto = require('crypto');
 
 function reject(ok, why) {
@@ -59,33 +59,10 @@ function exact(v, names) {
 }
 
 function read(p) {
-  const st = fs.lstatSync(p);
-
-  reject(
-    st.isFile() &&
-    st.nlink === 1 &&
-    st.size > 0 &&
-    st.size <= 524288,
-    'bad proof input'
-  );
-
-  const b = fs.readFileSync(p);
-
-  reject(
-    b.length === st.size,
-    'proof input changed'
-  );
-
-  const x = JSON.parse(
-    b.toString('utf8')
-  );
-
-  reject(
-    b.equals(canonical(x)),
-    'noncanonical or duplicate JSON'
-  );
-
-  return x;
+  const raw = readBounded(p, 524288);
+  const parsed = JSON.parse(raw.toString('utf8'));
+  reject(raw.equals(canonical(parsed)), 'noncanonical or duplicate JSON');
+  return parsed;
 }
 
 function hash(b) {

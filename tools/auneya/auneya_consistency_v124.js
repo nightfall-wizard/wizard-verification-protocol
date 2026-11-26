@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 'use strict';
 // Independent, read-only RFC 9162 consistency verifier; no local trust minting.
-const fs = require('fs');
+const readBounded = require('./auneya_bounded_input.js');
 const crypto = require('crypto');
 const FORMAT = 'auneya-merkle-consistency-v1.24';
 const HEX = /^[0-9a-f]{64}$/;
@@ -14,15 +14,12 @@ function sortJson(x) {
 }
 function canonical(x) { return Buffer.from(JSON.stringify(sortJson(x)) + '\n'); }
 function read(p) {
-  const s = fs.lstatSync(p);
-  ensure(s.isFile() && s.nlink === 1 && s.size > 0 && s.size <= 4096,
-         'invalid proof file');
-  const raw = fs.readFileSync(p);
-  ensure(raw.length === s.size, 'proof changed while reading');
+  const raw = readBounded(p, 4096);
   const parsed = JSON.parse(raw.toString('utf8'));
-  ensure(raw.equals(canonical(parsed)), 'noncanonical or duplicate-key JSON');
+  ensure(raw.equals(canonical(parsed)), 'noncanonical or duplicate JSON');
   return parsed;
 }
+
 function exact(obj, fields) {
   ensure(obj !== null && typeof obj === 'object' && !Array.isArray(obj)
     && JSON.stringify(Object.keys(obj).sort()) === JSON.stringify([...fields].sort()),

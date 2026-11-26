@@ -261,38 +261,30 @@ def private_parent(path):
     return path
 
 
-def safe_read(path):
+def safe_read(path, *, max_bytes=MAX_JOURNAL):
+    require(type(max_bytes) is int and 1 <= max_bytes <= MAX_JOURNAL,
+            'invalid input budget')
     path = private_parent(path)
-
-    fd = os.open(
-        path,
-        os.O_RDONLY
-        | os.O_NOFOLLOW
-        | getattr(os, 'O_CLOEXEC', 0)
-    )
-
+    fd = os.open(path, os.O_RDONLY | os.O_NOFOLLOW | os.O_NONBLOCK
+                 | getattr(os, 'O_CLOEXEC', 0))
     try:
-        st = os.fstat(fd)
-
-        require(
-            stat.S_ISREG(st.st_mode)
-            and st.st_nlink == 1
-            and st.st_size <= MAX_JOURNAL
-            and st.st_size > 0,
-            'not a bounded regular file'
-        )
-
-        raw = os.read(
-            fd, MAX_JOURNAL + 1
-        )
-
-        require(
-            len(raw) == st.st_size,
-            'concurrent input mutation'
-        )
-
-        return parse(raw)
-
+        before = os.fstat(fd)
+        require(stat.S_ISREG(before.st_mode) and before.st_nlink == 1
+                and 0 < before.st_size <= max_bytes,
+                'not a bounded regular file')
+        raw = bytearray()
+        while len(raw) <= before.st_size:
+            part = os.read(fd, min(65536, before.st_size + 1 - len(raw)))
+            if not part:
+                break
+            raw.extend(part)
+        after = os.fstat(fd)
+        fields = ('st_dev', 'st_ino', 'st_size', 'st_nlink',
+                  'st_mtime_ns', 'st_ctime_ns')
+        require(len(raw) == before.st_size and stat.S_ISREG(after.st_mode)
+                and all(getattr(before, k) == getattr(after, k) for k in fields),
+                'concurrent input mutation')
+        return parse(bytes(raw))
     finally:
         os.close(fd)
 

@@ -1,6 +1,8 @@
 """Adversarial cross-runtime Merkle prefix consistency regression (v1.24)."""
 import copy
 import hashlib
+import os
+from unittest.mock import patch
 from pathlib import Path
 import subprocess
 import sys
@@ -145,6 +147,209 @@ class ConsistencyTests(unittest.TestCase):
             '--expected-old-size', '1', '--expected-new-size', '2'
         ], capture_output=True, text=True, timeout=15)
         self.assertNotEqual(proc.returncode, 0)
+
+
+class BoundedInputTests(unittest.TestCase):
+    def test_both_merkle_clis_reject_nonregular_and_oversized_input(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            d = Path(tmp)
+            record = {'chain_id': 'io-test', 'sequence_decimal': '1',
+                      **{k: hashlib.sha256(k.encode()).hexdigest()
+                         for k in tr.KEYS[2:]}}
+            state = {'format': tr.FORMAT, 'entries': [record],
+                     'root_sha256': tr.leaf(record)}
+            root = state['root_sha256']
+
+            for version, proof, limit, py_action, pins in (
+                ('transparency_v123', tr.prove(state, 0), tr.MAX_JOURNAL,
+                 'verify-proof', ['--expected-root', root, '--expected-size', '1']),
+                ('consistency_v124', ct.generate(state, 1, root), 4096,
+                 'verify', ['--expected-old-root', root, '--expected-new-root', root,
+                            '--expected-old-size', '1', '--expected-new-size', '1']),
+            ):
+                with self.subTest(version=version):
+                    case = d / version
+                    case.mkdir(mode=0o700)
+
+                    valid = case / 'valid.json'
+                    tr.atomic_write(valid, tr.canonical(proof), False)
+
+                    link = case / 'link.json'
+                    link.symlink_to(valid)
+
+                    fifo = case / 'fifo'
+                    os.mkfifo(fifo, 0o600)
+
+                    large = case / 'large.json'
+                    with large.open('wb') as f:
+                        f.truncate(limit + 1)
+
+                    original = case / 'original.json'
+                    original.write_bytes(tr.canonical(proof))
+
+                    hard = case / 'hard.json'
+
+                    # Android Python may omit os.link entirely.
+                    # Node.js provides an independent link syscall binding.
+                    link_script = (
+                        "const fs=require('fs');"
+                        "try{fs.linkSync(process.argv[1],process.argv[2]);}"
+                        "catch(e){if(['ENOSYS','ENOTSUP','EOPNOTSUPP',"
+                        "'EPERM','EACCES','EXDEV'].includes(e.code)){"
+                        "console.error(e.code);process.exit(77)}throw e}"
+                    )
+
+                    link_result = subprocess.run(
+                        ['node', '-e', link_script, str(original), str(hard)],
+                        capture_output=True,
+                        text=True,
+                        timeout=10,
+                    )
+
+                    bad_inputs = [link, fifo, large, case]
+
+                    if link_result.returncode == 0:
+                        self.assertEqual(original.stat().st_nlink, 2)
+                        self.assertEqual(hard.stat().st_nlink, 2)
+                        bad_inputs.append(hard)
+                    elif link_result.returncode == 77:
+                        print(
+                            'Real hardlink fixture unavailable: '
+                            + link_result.stderr.strip()
+                            + '; mandatory metadata rejection test remains active',
+                            file=sys.stderr,
+                        )
+                    else:
+                        self.fail(
+                            'Unexpected hardlink fixture failure: '
+                            + link_result.stderr
+                        )
+
+                    for runtime in ('python', 'node'):
+                        program = ROOT / 'tools/auneya' / ('auneya_' + version +
+                                  ('.py' if runtime == 'python' else '.js'))
+
+                        cmd = ([sys.executable, str(program), py_action]
+                               if runtime == 'python' else ['node', str(program)])
+
+                        good = subprocess.run(
+                            cmd + ['--proof', str(valid)] + pins,
+                            capture_output=True,
+                            timeout=10,
+                        )
+
+                        self.assertEqual(good.returncode, 0, good.stderr)
+
+                        for bad in bad_inputs:
+                            with self.subTest(runtime=runtime, bad=bad.name):
+                                result = subprocess.run(
+                                    cmd + ['--proof', str(bad)] + pins,
+                                    capture_output=True,
+                                    timeout=10,
+                                )
+
+                                self.assertNotEqual(result.returncode, 0)
+                                self.assertEqual(result.stdout, b'')
+                                self.assertIn(b'REJECTED:', result.stderr)
+
+    def test_simulated_hardlink_metadata_rejected(self):
+        # Mandatory on every supported platform, including Android.
+        # Test the actual readers, not a duplicate validation function.
+        from types import SimpleNamespace
+
+        with tempfile.TemporaryDirectory() as tmp:
+            p = Path(tmp) / 'regular.json'
+            p.write_bytes(tr.canonical({'data': 'valid'}))
+
+            self.assertEqual(tr.safe_read(p), {'data': 'valid'})
+
+            actual = p.stat()
+
+            simulated = SimpleNamespace(
+                st_mode=actual.st_mode,
+                st_nlink=2,
+            )
+
+            with patch.object(tr.os, 'fstat', return_value=simulated):
+                with self.assertRaisesRegex(ValueError, 'bounded regular'):
+                    tr.safe_read(p)
+
+            script = (
+                "const fs=require('fs');"
+                "const read=require(process.argv[1]);"
+                "const original=fs.fstatSync;"
+                "let seen=false;"
+                "fs.fstatSync=(...a)=>{"
+                "const s=original(...a);"
+                "seen=true;s.nlink=2n;return s};"
+                "try{read(process.argv[2],4096);process.exit(2)}"
+                "catch(e){"
+                "if(!seen||!e.message.includes('not a bounded regular file'))"
+                "process.exit(3)}"
+            )
+
+            result = subprocess.run(
+                ['node', '-e', script,
+                 str(ROOT / 'tools/auneya/auneya_bounded_input.js'),
+                 str(p)],
+                capture_output=True,
+                timeout=10,
+            )
+
+            self.assertEqual(result.returncode, 0, result.stderr)
+
+
+    def test_python_input_budget(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            p = Path(tmp) / 'data.json'
+            p.write_bytes(tr.canonical({'data': 'x' * 4096}))
+
+            with self.assertRaisesRegex(ValueError, 'bounded regular'):
+                tr.safe_read(p, max_bytes=4096)
+
+            self.assertEqual(tr.safe_read(p)['data'], 'x' * 4096)
+
+    def test_detect_growth_during_descriptor_read(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            p = Path(tmp) / 'data.json'
+            p.write_bytes(tr.canonical({'data': 'unchanged'}))
+            original_read = os.read
+            changed = False
+
+            def grow_then_read(fd, amount):
+                nonlocal changed
+                if not changed:
+                    changed = True
+                    with p.open('ab') as out:
+                        out.write(b' ')
+                return original_read(fd, amount)
+
+            with patch.object(tr.os, 'read', side_effect=grow_then_read):
+                with self.assertRaisesRegex(ValueError, 'concurrent input mutation'):
+                    tr.safe_read(p)
+
+            p.write_bytes(tr.canonical({'data': 'unchanged'}))
+
+            script = (
+                "const fs=require('fs');const read=require(process.argv[1]);"
+                "const path=process.argv[2];const original=fs.readSync;"
+                "let changed=false;fs.readFileSync=()=>{throw Error('path reread')};"
+                "fs.readSync=(...a)=>{if(!changed){changed=true;"
+                "fs.appendFileSync(path,' ');}return original(...a)};"
+                "try{read(path,4096);process.exit(2)}catch(e){"
+                "if(!changed||!e.message.includes('concurrent input mutation'))"
+                "process.exit(3)}"
+            )
+
+            result = subprocess.run(
+                ['node', '-e', script,
+                 str(ROOT / 'tools/auneya/auneya_bounded_input.js'),
+                 str(p)],
+                capture_output=True,
+                timeout=10,
+            )
+
+            self.assertEqual(result.returncode, 0, result.stderr)
 
 
 if __name__ == '__main__':
