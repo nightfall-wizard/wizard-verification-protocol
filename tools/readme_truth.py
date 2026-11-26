@@ -711,7 +711,7 @@ def render(root=ROOT):
         '- [Gate 4 differential rejection v1.21](docs/auneya/AUNEYA-GATE4-DIFFERENTIAL-V1.21.md) — 100+ deterministic tamper and framing attacks checked in Python and Node.js; no device-independence claim.',
         '- [Gate 3 field-trial verifier v1.22](docs/auneya/AUNEYA-GATE3-FIELDTRIAL-V1.22.md) — pinned quorum, signed ACK and recipient floor, cross-verified in two runtimes; real separate-device gate still open.',
         '- [Evidence transparency v1.23](docs/auneya/AUNEYA-TRANSPARENCY-V1.23.md) — Merkle inclusion in Python/Node and externally pinned prefix history; real independent anchors still open.',
-        '- [Merkle consistency v1.24](docs/auneya/AUNEYA-CONSISTENCY-V1.24.md) — compact RFC 9162 prefix proofs in Python/Node; independent retention still open.',
+        '- [Merkle consistency v1.24](docs/auneya/AUNEYA-CONSISTENCY-V1.24.md) — compact RFC 9162 prefix proofs in Python/Node with bounded file input; independent retention still open.',
         '- [WVP release identity policy](docs/release/WVP-RELEASE-TRUTH-AND-AUNEYA-GATES.md) — release/source distinction.',
         '- [Security disclosures](SECURITY.md) · [MIT license](LICENSE).',
         '',

@@ -60,3 +60,12 @@ No mainnet, real token, transferability, audit, consensus or legal approval.
 Repeat with `python3 -m unittest discover -s tests -p
 "test_auneya_consistency_v124.py" -v` and
 `python3 tools/readme_truth.py --check`.
+
+## Bounded file input
+
+Both proof readers enforce a 4096-byte input limit and use a single checked
+file descriptor with nonblocking open, bounded reads and post-read metadata
+checks. The Merkle format, roots, proof algorithm and external trust pins are
+unchanged. This does not establish immutable or independent storage.
+
+Regression tests create real hardlinks through Node.js when supported. If the operating system denies hardlink creation, both readers must still reject simulated multiply linked file-descriptor metadata. This preserves Android test compatibility without relaxing the input policy.

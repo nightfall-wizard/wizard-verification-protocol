@@ -10,6 +10,7 @@ import sys
 import auneya_transparency_v123 as journal
 
 FORMAT = 'auneya-merkle-consistency-v1.24'
+MAX_PROOF_BYTES = 4096
 MAX_PATH = 9  # ceil(log2(256)) + 1 per RFC 9162
 
 
@@ -136,7 +137,7 @@ def main():
         result = {'status': 'PROOF_WRITTEN', 'path_nodes': len(result['path']),
                   'independent_retention_proven': False}
     else:
-        result = verify(journal.safe_read(args.proof),
+        result = verify(journal.safe_read(args.proof, max_bytes=MAX_PROOF_BYTES),
                         args.expected_old_root, args.expected_new_root,
                         args.expected_old_size, args.expected_new_size)
     sys.stdout.buffer.write(journal.canonical(result))

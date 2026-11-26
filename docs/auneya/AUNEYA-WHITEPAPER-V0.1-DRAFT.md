@@ -752,3 +752,8 @@ Real external rollback/outage/recovery experiments and independent review
 remain missing; Gates 3–6 retain their published restrictions. The whitepaper
 remains an unratified research draft. No network or economic activation.
 See AUNEYA-CONSISTENCY-V1.24.md.
+
+## Merkle evidence input boundary
+
+The v1.23/v1.24 local readers use checked descriptors and bounded input.
+No wire-format or trust-model change; no independent-retention claim.

@@ -76,3 +76,10 @@ review and external security review.
 
 Gate 3 stays PARTIAL, Gate 4 INCOMPLETE, Gate 5 NOT COMPLETED,
 Gate 6 BLOCKED. No mainnet/economic activation.
+
+## Bounded file input
+
+Both Merkle readers use a single checked file descriptor, reject nonregular
+files, final-component symlinks and multiply linked files, and read at most
+512 KiB plus one byte. Metadata is checked again after reading. This is local
+input hardening, not proof of immutable storage or independent retention.
